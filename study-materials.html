@@ -22,52 +22,34 @@
       margin: 20px auto;
       padding: 15px;
     }
-    /* WhatsApp & Telegram Community Banner */
-    .community-banner {
-      background: #f0fdf4;
-      border: 2px dashed #16a34a;
+    /* WhatsApp Help Banner */
+    .whatsapp-banner {
+      background: #ecfdf5;
+      border: 2px dashed #10b981;
       padding: 18px;
       border-radius: 12px;
       text-align: center;
       margin-bottom: 25px;
     }
-    .community-banner p {
-      margin: 0 0 14px 0;
-      color: #15803d;
+    .whatsapp-banner p {
+      margin: 0 0 12px 0;
+      color: #065f46;
       font-size: 1.05rem;
       font-weight: bold;
     }
-    .community-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .btn-channel {
+    .btn-whatsapp {
       display: inline-block;
+      background: #25d366;
       color: white !important;
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 30px;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: bold;
       text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
     }
-    .btn-channel:hover {
-      transform: translateY(-2px);
-    }
-    .btn-wa {
-      background: #25d366;
-    }
-    .btn-wa:hover {
+    .btn-whatsapp:hover {
       background: #1ebc59;
-    }
-    .btn-tg {
-      background: #0088cc;
-    }
-    .btn-tg:hover {
-      background: #0077b5;
     }
     .card {
       background: white;
@@ -88,6 +70,7 @@
       font-size: 0.85rem;
       font-weight: bold;
     }
+    /* Subject Accordion */
     details {
       margin: 14px 0;
       border: 1px solid #cbd5e1;
@@ -154,26 +137,12 @@
   </header>
 
   <main>
-    <!-- WhatsApp & Telegram Community Banner -->
-    <div class="community-banner">
-      <p>📢 নতুন নোট, সমাধান আৰু পৰীক্ষাৰ আপডেট পাবলৈ আমাৰ চেনেলত যুক্ত হওক:</p>
-      <div class="community-buttons">
-        <a href="https://whatsapp.com/channel/0029Vb7YYlADZ4LZOtGek320" target="_blank" class="btn-channel btn-wa">
-  💬 WhatsApp Channel
-</a>
-"
-          💬 WhatsApp Channel
-        </a>
-        <a href="<a href="https://t.me/gyankendra26" target="_blank" class="btn-channel btn-tg">
-  ✈️ Telegram Channel
-</a>
-
-  ✈️ Telegram Channel
-</a>
-
-          ✈️ Telegram Channel
-        </a>
-      </div>
+    <!-- WhatsApp Support Banner -->
+    <div class="whatsapp-banner">
+      <p>📢 কোনো পাঠৰ সমাধান বা PDF বিচাৰি পোৱা নাই নেকি?</p>
+      <a href="https://wa.me/917896723247?text=নমস্কাৰ%20ছাৰ,%20মোক%20এটা%20পাঠৰ%20নোট%20বা%20সমাধান%20প্ৰয়োজন%20আছিল।" target="_blank" class="btn-whatsapp">
+        💬 ছাৰক WhatsApp-ত মেছেজ কৰক
+      </a>
     </div>
 
     <h2>Choose Your Class | শ্ৰেণী বাছনি কৰক</h2>
@@ -184,19 +153,13 @@
       <h3>Class X (দশম শ্ৰেণী)</h3>
       <p>বিষয়টোৰ ওপৰত ক্লিক কৰি প্ৰতিটো অধ্যায়ৰ নোট আৰু প্ৰশ্নোত্তৰ PDF ডাউনলোড কৰক:</p>
 
-      <!-- Social Science -->
+      <!-- Social Science (সমাজ বিজ্ঞান) -->
       <details open>
         <summary>🌍 Social Science (সমাজ বিজ্ঞান) — অধ্যায়সমূহ চাওক</summary>
         <div class="chapter-list">
           <div class="chapter-item">
             <span class="chapter-title">
               <strong>ইতিহাস - অধ্যায় ১:</strong> বংগ বিভাজন আৰু স্বদেশী আন্দোলন (সম্পূৰ্ণ নোট আৰু প্ৰশ্নোত্তৰ)
-            </span>
-            <a href="https://drive.google.com/file/d/1XvJLjAat8zJci6tSgCv27EtMl__WeQCx/view?usp=sharing" 
-          </div>
-          <div class="chapter-item">
-            <span class="chapter-title">
-              <strong>ইতিহাস - অধ্যায় ১:</strong> ২০ টা অতি গুৰুত্বপূৰ্ণ অতিৰিক্ত প্ৰশ্নোত্তৰ (Additional Q&A)
             </span>
             <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
           </div>
@@ -212,10 +175,16 @@
             </span>
             <span style="font-size:0.85rem; color:#64748b; font-style:italic;">সোনকালে আহিব</span>
           </div>
+          <div class="chapter-item">
+            <span class="chapter-title">
+              <strong>ভূগোল - অধ্যায় ১:</strong> অৰ্থনৈতিক ভূগোল: বিষয়বস্তু আৰু সম্পদ
+            </span>
+            <span style="font-size:0.85rem; color:#64748b; font-style:italic;">সোনকালে আহিব</span>
+          </div>
         </div>
       </details>
 
-      <!-- General Science -->
+      <!-- General Science (সাধাৰণ বিজ্ঞান) -->
       <details>
         <summary>🔬 General Science (সাধাৰণ বিজ্ঞান)</summary>
         <div class="chapter-list">
@@ -252,12 +221,6 @@
       <p>নৱম শ্ৰেণীলৈকে অন্যান্য শ্ৰেণীৰ অধ্যয়ন সামগ্ৰী অতি সোনকালে যোগ কৰা হ’ব।</p>
     </div>
 
-    <div class="card">
-      <h3>Contact | যোগাযোগ</h3>
-      <p>Founder: Dipankar Mali (Mali Sir)</p>
-      <p>WhatsApp Help: <a href="https://wa.me/917896723247">7896723247</a></p>
-    </div>
-
     <p><a href="index.html">← Back to Home (মূল পৃষ্ঠালৈ যাওক)</a></p>
   </main>
 
@@ -266,4 +229,3 @@
   </footer>
 </body>
 </html>
-
