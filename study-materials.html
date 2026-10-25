@@ -47,11 +47,9 @@
       font-weight: bold;
       text-decoration: none;
       box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
-      transition: background 0.2s, transform 0.2s;
     }
     .btn-whatsapp:hover {
       background: #1ebc59;
-      transform: translateY(-2px);
     }
     .card {
       background: white;
@@ -72,15 +70,39 @@
       font-size: 0.85rem;
       font-weight: bold;
     }
-    .subject-list {
-      margin-top: 15px;
+    /* Subject Accordion */
+    details {
+      margin: 14px 0;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+      background: #f8fafc;
     }
-    .subject-item {
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+      color: #1e40af;
+      font-size: 1.05rem;
+      outline: none;
+    }
+    .chapter-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .chapter-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid #e2e8f0;
+      padding: 10px 12px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+    .chapter-title {
+      font-size: 0.95rem;
+      color: #1e293b;
     }
     .btn-download {
       background: #0284c7;
@@ -88,8 +110,9 @@
       padding: 6px 14px;
       border-radius: 6px;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: bold;
+      white-space: nowrap;
     }
     .btn-download:hover {
       background: #0369a1;
@@ -124,50 +147,78 @@
 
     <h2>Choose Your Class | শ্ৰেণী বাছনি কৰক</h2>
 
-    <!-- Class X Special Section -->
+    <!-- Class X Section -->
     <div class="card class-x-box">
       <span class="badge">HSLC Preparation</span>
       <h3>Class X (দশম শ্ৰেণী)</h3>
-      <p>SEBA / ASSEB পাঠ্যক্ৰমৰ নোট, গুৰুত্বপূৰ্ণ প্ৰশ্নোত্তৰ আৰু MCQ:</p>
+      <p>বিষয়টোৰ ওপৰত ক্লিক কৰি প্ৰতিটো অধ্যায়ৰ নোট আৰু প্ৰশ্নোত্তৰ PDF ডাউনলোড কৰক:</p>
 
-      <div class="subject-list">
-        <div class="subject-item">
-          <span>📘 <strong>General Mathematics (গণিত)</strong></span>
-          <a href="#" class="btn-download">PDF পাবলৈ</a>
+      <!-- Social Science (সমাজ বিজ্ঞান) -->
+      <details open>
+        <summary>🌍 Social Science (সমাজ বিজ্ঞান) — অধ্যায়সমূহ চাওক</summary>
+        <div class="chapter-list">
+          <div class="chapter-item">
+            <span class="chapter-title">
+              <strong>ইতিহাস - অধ্যায় ১:</strong> বংগ বিভাজন আৰু স্বদেশী আন্দোলন (সম্পূৰ্ণ নোট আৰু প্ৰশ্নোত্তৰ)
+            </span>
+            <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
+          </div>
+          <div class="chapter-item">
+            <span class="chapter-title">
+              <strong>ইতিহাস - অধ্যায় ১:</strong> ২৫ নম্বৰীয়া MCQ মক টেষ্ট (HSLC 2027)
+            </span>
+            <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
+          </div>
+          <div class="chapter-item">
+            <span class="chapter-title">
+              <strong>ইতিহাস - অধ্যায় ২:</strong> মহাত্মা গান্ধী আৰু ভাৰতৰ স্বাধীনতা সংগ্ৰাম
+            </span>
+            <span style="font-size:0.85rem; color:#64748b; font-style:italic;">সোনকালে আহিব</span>
+          </div>
+          <div class="chapter-item">
+            <span class="chapter-title">
+              <strong>ভূগোল - অধ্যায় ১:</strong> অৰ্থনৈতিক ভূগোল: বিষয়বস্তু আৰু সম্পদ
+            </span>
+            <span style="font-size:0.85rem; color:#64748b; font-style:italic;">সোনকালে আহিব</span>
+          </div>
         </div>
-        <div class="subject-item">
-          <span>🔬 <strong>General Science (বিজ্ঞান)</strong></span>
-          <a href="#" class="btn-download">PDF পাবলৈ</a>
+      </details>
+
+      <!-- General Science (সাধাৰণ বিজ্ঞান) -->
+      <details>
+        <summary>🔬 General Science (সাধাৰণ বিজ্ঞান)</summary>
+        <div class="chapter-list">
+          <div class="chapter-item">
+            <span class="chapter-title">অধ্যায় ১: ৰাসায়নিক বিক্ৰিয়া আৰু সমীকৰণ</span>
+            <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
+          </div>
+          <div class="chapter-item">
+            <span class="chapter-title">অধ্যায় ২: এছিড, ক্ষাৰক আৰু লৱণ</span>
+            <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
+          </div>
+          <div class="chapter-item">
+            <span class="chapter-title">অধ্যায় ৩: ধাতু আৰু অধাতু</span>
+            <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
+          </div>
         </div>
-        <div class="subject-item">
-          <span>🌍 <strong>Social Science (সমাজ বিজ্ঞান)</strong></span>
-          <a href="#" class="btn-download">PDF পাবলৈ</a>
-        </div>
-        <div class="subject-item">
-          <span>📖 <strong>English (ইংৰাজী)</strong></span>
-          <a href="#" class="btn-download">PDF পাবলৈ</a>
-        </div>
-        <div class="subject-item">
-          <span>🖋️ <strong>Assamese (অসমীয়া MIL)</strong></span>
-          <a href="#" class="btn-download">PDF পাবলৈ</a>
-        </div>
-      </div>
+      </details>
+
+      <!-- General Mathematics -->
+      <details>
+        <summary>📘 General Mathematics (সাধাৰণ গণিত)</summary>
+        <p style="padding: 10px; color: #64748b; margin: 0;">গণিত বিষয়ৰ অধ্যায়ভিত্তিক সমাধান অতি সোনকালে যোগ কৰা হ’ব।</p>
+      </details>
+
+      <!-- English & MIL -->
+      <details>
+        <summary>📖 Languages (English & Assamese MIL)</summary>
+        <p style="padding: 10px; color: #64748b; margin: 0;">ভাষা বিষয়সমূহৰ ব্যাকৰণ আৰু পাঠ্যভিত্তিক সমাধান অতি সোনকালে যোগ কৰা হ’ব।</p>
+      </details>
     </div>
 
     <div class="card">
       <h3>Class VI – IX</h3>
-      <p>গণিত, সাধাৰণ বিজ্ঞান, সমাজ বিজ্ঞান আৰু ভাষা বিষয়সমূহৰ অধ্যয়ন সামগ্ৰী অতি সোনকালে যোগ কৰা হ’ব।</p>
-    </div>
-
-    <div class="card">
-      <h3>Class III – V</h3>
-      <p>প্ৰাথমিক শ্ৰেণীৰ পাঠ্যভিত্তিক অনুশীলন আৰু প্ৰশ্নোত্তৰ।</p>
-    </div>
-
-    <div class="card">
-      <h3>Contact | যোগাযোগ</h3>
-      <p>Founder: Dipankar Mali (Mali Sir)</p>
-      <p>WhatsApp: <a href="https://wa.me/917896723247">7896723247</a></p>
+      <p>নৱম শ্ৰেণীলৈকে অন্যান্য শ্ৰেণীৰ অধ্যয়ন সামগ্ৰী অতি সোনকালে যোগ কৰা হ’ব।</p>
     </div>
 
     <p><a href="index.html">← Back to Home (মূল পৃষ্ঠালৈ যাওক)</a></p>
