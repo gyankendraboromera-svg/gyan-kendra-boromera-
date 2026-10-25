@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="as">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,18 +24,54 @@
     }
     .card {
       background: white;
-      padding: 18px;
-      margin: 14px 0;
+      padding: 20px;
+      margin: 16px 0;
       border-radius: 12px;
-      box-shadow: 0 2px 8px #00000012;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .class-x-box {
+      border: 2px solid #2563eb;
+      background: #ffffff;
+    }
+    .badge {
+      background: #2563eb;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+    .subject-list {
+      margin-top: 15px;
+    }
+    .subject-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .btn-download {
+      background: #0284c7;
+      color: white !important;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+    .btn-download:hover {
+      background: #0369a1;
     }
     a {
       color: #075fc7;
       font-weight: bold;
+      text-decoration: none;
     }
     footer {
       text-align: center;
       padding: 20px;
+      color: #64748b;
     }
   </style>
 </head>
@@ -50,42 +85,57 @@
   <main>
     <h2>Choose Your Class | শ্ৰেণী বাছনি কৰক</h2>
 
+    <!-- Class X Special Section -->
+    <div class="card class-x-box">
+      <span class="badge">HSLC Preparation</span>
+      <h3>Class X (দশম শ্ৰেণী)</h3>
+      <p>SEBA / ASSEB পাঠ্যক্ৰমৰ নোট, গুৰুত্বপূৰ্ণ প্ৰশ্নোত্তৰ আৰু MCQ:</p>
+
+      <div class="subject-list">
+        <div class="subject-item">
+          <span>📘 <strong>General Mathematics (গণিত)</strong></span>
+          <a href="#" class="btn-download">PDF পাবলৈ</a>
+        </div>
+        <div class="subject-item">
+          <span>🔬 <strong>General Science (বিজ্ঞান)</strong></span>
+          <a href="#" class="btn-download">PDF পাবলৈ</a>
+        </div>
+        <div class="subject-item">
+          <span>🌍 <strong>Social Science (সমাজ বিজ্ঞান)</strong></span>
+          <a href="#" class="btn-download">PDF পাবলৈ</a>
+        </div>
+        <div class="subject-item">
+          <span>📖 <strong>English (ইংৰাজী)</strong></span>
+          <a href="#" class="btn-download">PDF পাবলৈ</a>
+        </div>
+        <div class="subject-item">
+          <span>🖋️ <strong>Assamese (অসমীয়া MIL)</strong></span>
+          <a href="#" class="btn-download">PDF পাবলৈ</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Class VI – IX</h3>
+      <p>গণিত, সাধাৰণ বিজ্ঞান, সমাজ বিজ্ঞান আৰু ভাষা বিষয়সমূহৰ অধ্যয়ন সামগ্ৰী অতি সোনকালে যোগ কৰা হ’ব।</p>
+    </div>
+
     <div class="card">
       <h3>Class III – V</h3>
-      <p>অসমীয়া, English, Mathematics, Science</p>
-      <p>Study notes and question answers coming soon.</p>
-    </div>
-
-    <div class="card">
-      <h3>Class VI – VIII</h3>
-      <p>অসমীয়া, English, Mathematics, General Science,
-      Social Science, Hindi, Sanskrit</p>
-      <p>Study notes and question answers coming soon.</p>
-    </div>
-
-    <div class="card">
-      <h3>Class IX – X | HSLC</h3>
-      <p>SEBA/ASSEB study materials, chapter-wise notes,
-      MCQ and question answers.</p>
-      <p>Study notes and question answers coming soon.</p>
+      <p>প্ৰাথমিক শ্ৰেণীৰ পাঠ্যভিত্তিক অনুশীলন আৰু প্ৰশ্নোত্তৰ।</p>
     </div>
 
     <div class="card">
       <h3>Contact | যোগাযোগ</h3>
       <p>Founder: Dipankar Mali (Mali Sir)</p>
-      <p>Email: gyankendraboromera@gmail.com</p>
-      <p>
-        <a href="https://wa.me/917896723247">
-          Contact us on WhatsApp
-        </a>
-      </p>
+      <p>WhatsApp: <a href="https://wa.me/917896723247">7896723247</a></p>
     </div>
 
-    <p><a href="index.html">← Back to Home</a></p>
+    <p><a href="index.html">← Back to Home (মূল পৃষ্ঠালৈ যাওক)</a></p>
   </main>
 
   <footer>
-    Gyan Kendra Tuition Center, Boromera
+    © 2026 Gyan Kendra Tuition Center, Boromera
   </footer>
 </body>
 </html>
