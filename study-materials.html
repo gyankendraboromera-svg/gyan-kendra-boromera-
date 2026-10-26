@@ -22,34 +22,52 @@
       margin: 20px auto;
       padding: 15px;
     }
-    /* WhatsApp Help Banner */
-    .whatsapp-banner {
-      background: #ecfdf5;
-      border: 2px dashed #10b981;
+    /* Official Community Banner */
+    .community-banner {
+      background: #f0fdf4;
+      border: 2px dashed #16a34a;
       padding: 18px;
       border-radius: 12px;
       text-align: center;
       margin-bottom: 25px;
     }
-    .whatsapp-banner p {
-      margin: 0 0 12px 0;
-      color: #065f46;
+    .community-banner p {
+      margin: 0 0 14px 0;
+      color: #15803d;
       font-size: 1.05rem;
       font-weight: bold;
     }
-    .btn-whatsapp {
+    .community-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-channel {
       display: inline-block;
-      background: #25d366;
       color: white !important;
-      padding: 10px 22px;
+      padding: 10px 20px;
       border-radius: 30px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: bold;
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      transition: transform 0.2s, background 0.2s;
     }
-    .btn-whatsapp:hover {
+    .btn-channel:hover {
+      transform: translateY(-2px);
+    }
+    .btn-wa {
+      background: #25d366;
+    }
+    .btn-wa:hover {
       background: #1ebc59;
+    }
+    .btn-tg {
+      background: #0088cc;
+    }
+    .btn-tg:hover {
+      background: #0077b5;
     }
     .card {
       background: white;
@@ -70,7 +88,6 @@
       font-size: 0.85rem;
       font-weight: bold;
     }
-    /* Subject Accordion */
     details {
       margin: 14px 0;
       border: 1px solid #cbd5e1;
@@ -85,8 +102,22 @@
       font-size: 1.05rem;
       outline: none;
     }
+    .chapter-container {
+      margin-top: 15px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .chapter-header {
+      font-weight: bold;
+      color: #0f172a;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 6px;
+    }
     .chapter-list {
-      margin-top: 12px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -96,7 +127,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 12px;
-      background: white;
+      background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 6px;
     }
@@ -116,6 +147,12 @@
     }
     .btn-download:hover {
       background: #0369a1;
+    }
+    .btn-test {
+      background: #ea580c;
+    }
+    .btn-test:hover {
+      background: #c2410c;
     }
     a {
       color: #075fc7;
@@ -137,12 +174,17 @@
   </header>
 
   <main>
-    <!-- WhatsApp Support Banner -->
-    <div class="whatsapp-banner">
-      <p>📢 কোনো পাঠৰ সমাধান বা PDF বিচাৰি পোৱা নাই নেকি?</p>
-      <a href="https://wa.me/917896723247?text=নমস্কাৰ%20ছাৰ,%20মোক%20এটা%20পাঠৰ%20নোট%20বা%20সমাধান%20প্ৰয়োজন%20আছিল।" target="_blank" class="btn-whatsapp">
-        💬 ছাৰক WhatsApp-ত মেছেজ কৰক
-      </a>
+    <!-- Official Channels Banner -->
+    <div class="community-banner">
+      <p>📢 নতুন নোট, সমাধান আৰু পৰীক্ষাৰ আপডেট পাবলৈ আমাৰ অফিচিয়েল চেনেলত যুক্ত হওক:</p>
+      <div class="community-buttons">
+        <a href="https://whatsapp.com/channel/0029Vb7YYlADZ4LZOtGek320" target="_blank" class="btn-channel btn-wa">
+          💬 WhatsApp Channel
+        </a>
+        <a href="https://t.me/gyankendra26" target="_blank" class="btn-channel btn-tg">
+          ✈️ Telegram Channel
+        </a>
+      </div>
     </div>
 
     <h2>Choose Your Class | শ্ৰেণী বাছনি কৰক</h2>
@@ -151,53 +193,67 @@
     <div class="card class-x-box">
       <span class="badge">HSLC Preparation</span>
       <h3>Class X (দশম শ্ৰেণী)</h3>
-      <p>বিষয়টোৰ ওপৰত ক্লিক কৰি প্ৰতিটো অধ্যায়ৰ নোট আৰু প্ৰশ্নোত্তৰ PDF ডাউনলোড কৰক:</p>
+      <p>বিষয়টোৰ ওপৰত ক্লিক কৰি প্ৰতিটো অধ্যায়ৰ নোট, প্ৰশ্নোত্তৰ আৰু টেষ্ট পেপাৰ ডাউনলোড কৰক:</p>
 
       <!-- Social Science (সমাজ বিজ্ঞান) -->
       <details open>
         <summary>🌍 Social Science (সমাজ বিজ্ঞান) — অধ্যায়সমূহ চাওক</summary>
-        <div class="chapter-list">
-          <div class="chapter-item">
-            <span class="chapter-title">
-              <strong>ইতিহাস - অধ্যায় ১:</strong> বংগ বিভাজন আৰু স্বদেশী আন্দোলন (সম্পূৰ্ণ নোট আৰু প্ৰশ্নোত্তৰ)
-            </span>
-            <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
+
+        <div class="chapter-container">
+          <div class="chapter-header">
+            ইতিহাস - অধ্যায় ১: বংগ বিভাজন আৰু স্বদেশী আন্দোলন
           </div>
-          <div class="chapter-item">
-            <span class="chapter-title">
-              <strong>ইতিহাস - অধ্যায় ১:</strong> ২৫ নম্বৰীয়া MCQ মক টেষ্ট (HSLC 2027)
-            </span>
-            <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
+          
+          <div class="chapter-list">
+            <!-- ১. পাঠভিত্তিক অনুশীলনী প্ৰশ্নোত্তৰ -->
+            <div class="chapter-item">
+              <span class="chapter-title">
+                📘 <strong>পাঠভিত্তিক অনুশীলনী:</strong> সকলো অতি চমু, চমু আৰু বহল প্ৰশ্নৰ সমাধান
+              </span>
+              <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
+            </div>
+
+            <!-- ২. অতিৰিক্ত প্ৰশ্নোত্তৰ -->
+            <div class="chapter-item">
+              <span class="chapter-title">
+                📝 <strong>অতিৰিক্ত প্ৰশ্নোত্তৰ:</strong> ২০ টা পৰীক্ষাত সঘনাই অহা গুৰুত্বপূৰ্ণ প্ৰশ্ন আৰু উত্তৰ
+              </span>
+              <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
+            </div>
+
+            <!-- ৩. Assertion-Reason প্ৰশ্নোত্তৰ -->
+            <div class="chapter-item">
+              <span class="chapter-title">
+                🎯 <strong>নিশ্চিতোক্তি আৰু কাৰণ (A-R):</strong> ২০ টা প্ৰশ্নৰ বিশদ ব্যাখ্যাসহ সমাধান
+              </span>
+              <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
+            </div>
+
+            <!-- ৪. ছাত্ৰ-ছাত্ৰীৰ বাবে মক টেষ্ট -->
+            <div class="chapter-item">
+              <span class="chapter-title">
+                ⏱️ <strong>HSLC 2027 মক টেষ্ট:</strong> ২৫ নম্বৰীয়া প্ৰশ্নকাকত (কেৱল ছাত্ৰ-ছাত্ৰীৰ অনুশীলনৰ বাবে)
+              </span>
+              <a href="#" target="_blank" class="btn-download btn-test">PDF পাবলৈ</a>
+            </div>
           </div>
-          <div class="chapter-item">
-            <span class="chapter-title">
-              <strong>ইতিহাস - অধ্যায় ২:</strong> মহাত্মা গান্ধী আৰু ভাৰতৰ স্বাধীনতা সংগ্ৰাম
-            </span>
-            <span style="font-size:0.85rem; color:#64748b; font-style:italic;">সোনকালে আহিব</span>
-          </div>
-          <div class="chapter-item">
-            <span class="chapter-title">
-              <strong>ভূগোল - অধ্যায় ১:</strong> অৰ্থনৈতিক ভূগোল: বিষয়বস্তু আৰু সম্পদ
-            </span>
-            <span style="font-size:0.85rem; color:#64748b; font-style:italic;">সোনকালে আহিব</span>
-          </div>
+        </div>
+
+        <div style="margin-top: 15px; color: #64748b; font-size: 0.9rem;">
+          <em>* ইতিহাসৰ অন্যান্য অধ্যায় আৰু ভূগোল, পৌৰবিজ্ঞানৰ অধ্যয়ন সামগ্ৰী অতি সোনকালে যোগ কৰা হ'ব।</em>
         </div>
       </details>
 
-      <!-- General Science (সাধাৰণ বিজ্ঞান) -->
+      <!-- General Science -->
       <details>
         <summary>🔬 General Science (সাধাৰণ বিজ্ঞান)</summary>
-        <div class="chapter-list">
+        <div class="chapter-list" style="margin-top: 10px;">
           <div class="chapter-item">
             <span class="chapter-title">অধ্যায় ১: ৰাসায়নিক বিক্ৰিয়া আৰু সমীকৰণ</span>
             <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
           </div>
           <div class="chapter-item">
             <span class="chapter-title">অধ্যায় ২: এছিড, ক্ষাৰক আৰু লৱণ</span>
-            <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
-          </div>
-          <div class="chapter-item">
-            <span class="chapter-title">অধ্যায় ৩: ধাতু আৰু অধাতু</span>
             <a href="#" target="_blank" class="btn-download">PDF পাবলৈ</a>
           </div>
         </div>
@@ -209,7 +265,7 @@
         <p style="padding: 10px; color: #64748b; margin: 0;">গণিত বিষয়ৰ অধ্যায়ভিত্তিক সমাধান অতি সোনকালে যোগ কৰা হ’ব।</p>
       </details>
 
-      <!-- English & MIL -->
+      <!-- Languages -->
       <details>
         <summary>📖 Languages (English & Assamese MIL)</summary>
         <p style="padding: 10px; color: #64748b; margin: 0;">ভাষা বিষয়সমূহৰ ব্যাকৰণ আৰু পাঠ্যভিত্তিক সমাধান অতি সোনকালে যোগ কৰা হ’ব।</p>
@@ -219,6 +275,13 @@
     <div class="card">
       <h3>Class VI – IX</h3>
       <p>নৱম শ্ৰেণীলৈকে অন্যান্য শ্ৰেণীৰ অধ্যয়ন সামগ্ৰী অতি সোনকালে যোগ কৰা হ’ব।</p>
+    </div>
+
+    <div class="card">
+      <h3>Contact | যোগাযোগ</h3>
+      <p>Founder: Dipankar Mali (Mali Sir)</p>
+      <p>Centre: Boromera, Agomani, Dhubri (Assam)</p>
+      <p>Phone: 7896723247 / 7002125508</p>
     </div>
 
     <p><a href="index.html">← Back to Home (মূল পৃষ্ঠালৈ যাওক)</a></p>
