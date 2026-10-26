@@ -257,7 +257,7 @@
           </div>
         </div>
 
-        <!-- Payment & QR Code Details Box -->
+        <!-- Payment & Live QR Code Box -->
         <div style="background: #ffffff; border: 2px dashed #0284c7; border-radius: 12px; padding: 20px; margin: 20px 0; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.08);">
           <div style="text-align: center; margin-bottom: 16px;">
             <span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold;">
@@ -292,12 +292,21 @@
             </div>
           </div>
 
-          <!-- QR Code Image and UPI Details Side-by-Side -->
+          <!-- Live Automatic QR Code and Details Side-by-Side -->
           <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 18px; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; gap: 20px;">
-            <!-- QR Code Image -->
+            <!-- Automatic Online QR Code -->
             <div style="text-align: center;">
-              <img src="qr-code.png" alt="Gyan Kendra Payment QR Code" style="max-width: 175px; width: 100%; border: 2px solid #16a34a; border-radius: 10px; background: white; padding: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-              <div style="font-size: 0.8rem; color: #15803d; font-weight: bold; margin-top: 6px;">Scan with Any UPI App</div>
+              <div style="background: white; padding: 8px; border-radius: 10px; border: 2px solid #16a34a; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&data=upi%3A%2F%2Fpay%3Fpa%3D7896723247%40upi%26pn%3DDipankar%20Mali%26cu%3DINR" 
+                     alt="Gyan Kendra Payment QR Code" 
+                     style="width: 160px; height: 160px; display: block; margin: 0 auto;">
+                <div style="font-size: 0.75rem; color: #15803d; font-weight: bold; margin-top: 5px;">
+                  PhonePe • GPay • Paytm
+                </div>
+              </div>
+              <div style="font-size: 0.8rem; color: #15803d; font-weight: bold; margin-top: 6px;">
+                স্কেন কৰি পেমেন্ট কৰক
+              </div>
             </div>
 
             <!-- UPI Account Details -->
