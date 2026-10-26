@@ -15,31 +15,26 @@
       background: #10234b;
       color: white;
       text-align: center;
-      padding: 30px 12px 25px 12px;
+      padding: 26px 12px 22px 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    /* Logo Styling */
-    .logo-img {
-      width: 105px;
-      height: 105px;
-      border-radius: 50%;
-      border: 3px solid #eab308;
-      background: #09142b;
+    .logo-container {
+      width: 100px;
+      height: 100px;
       margin-bottom: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.35);
-      object-fit: cover;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
     }
     header h1 {
-      margin: 0 0 6px 0;
+      margin: 0 0 5px 0;
       font-size: 1.8rem;
       letter-spacing: 1px;
     }
     header h2 {
       margin: 0 0 6px 0;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: #93c5fd;
       font-weight: normal;
     }
@@ -185,7 +180,7 @@
       font-size: 0.95rem;
       color: #1e293b;
       flex: 1;
-      min-width: 200px;
+      min-width: 220px;
     }
     .btn-download {
       background: #0284c7;
@@ -198,32 +193,10 @@
       white-space: nowrap;
       display: inline-block;
       box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+      transition: background 0.2s;
     }
     .btn-download:hover {
       background: #0369a1;
-    }
-    /* Embedded PDF Viewer Box */
-    .pdf-viewer-box {
-      margin-top: 16px;
-      border: 2px solid #cbd5e1;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #f8fafc;
-    }
-    .pdf-viewer-title {
-      background: #1e293b;
-      color: white;
-      padding: 10px 14px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .pdf-frame {
-      width: 100%;
-      height: 480px;
-      border: none;
     }
     a {
       color: #075fc7;
@@ -239,8 +212,56 @@
 </head>
 <body>
   <header>
-    <!-- Live Gyan Kendra Logo -->
-    <img src="logo.png" alt="Gyan Kendra Logo" class="logo-img" onerror="this.style.display='none';">
+    <!-- Built-in 100% Guaranteed Vector Logo (No Image Upload Needed) -->
+    <div class="logo-container">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+        <defs>
+          <linearGradient id="gkGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fef08a"/>
+            <stop offset="50%" stop-color="#eab308"/>
+            <stop offset="100%" stop-color="#ca8a04"/>
+          </linearGradient>
+          <linearGradient id="gkBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#09142b"/>
+            <stop offset="100%" stop-color="#1e3a8a"/>
+          </linearGradient>
+          <path id="topCurve" d="M 32,100 A 68,68 0 1,1 168,100" fill="none"/>
+        </defs>
+        <!-- Circular Badge Background -->
+        <circle cx="100" cy="100" r="95" fill="url(#gkBlue)" stroke="url(#gkGold)" stroke-width="5"/>
+        <circle cx="100" cy="100" r="88" fill="none" stroke="#fde047" stroke-width="1.5" stroke-dasharray="3,3"/>
+        <circle cx="100" cy="100" r="68" fill="#0b1736" stroke="url(#gkGold)" stroke-width="2"/>
+        
+        <!-- Center Emblem: Diya Flame & Open Book -->
+        <path d="M 100,56 C 106,68 112,78 108,86 C 104,93 96,93 92,86 C 88,78 94,68 100,56 Z" fill="url(#gkGold)"/>
+        <path d="M 100,66 C 103,73 105,78 103,82 C 101,86 98,86 97,82 C 95,78 97,73 100,66 Z" fill="#ffffff" opacity="0.9"/>
+        <path d="M 86,88 Q 100,102 114,88 Z" fill="url(#gkGold)"/>
+        
+        <!-- Open Book Representation -->
+        <path d="M 100,106 C 88,96 72,96 60,100 L 60,126 C 72,122 88,122 100,132 C 112,122 128,122 140,126 L 140,100 C 128,96 112,96 100,106 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+        <line x1="100" y1="106" x2="100" y2="132" stroke="#eab308" stroke-width="2"/>
+        
+        <!-- Circular Top Text -->
+        <text fill="#fde047" font-size="11" font-weight="bold" font-family="Arial, sans-serif" letter-spacing="1.5">
+          <textPath href="#topCurve" startOffset="50%" text-anchor="middle">
+            GYAN KENDRA
+          </textPath>
+        </text>
+        
+        <!-- Stars & Bottom Center Badge -->
+        <text x="44" y="104" fill="#fde047" font-size="12">★</text>
+        <text x="144" y="104" fill="#fde047" font-size="12">★</text>
+        
+        <rect x="62" y="140" width="76" height="15" rx="7.5" fill="url(#gkGold)"/>
+        <text x="100" y="151" fill="#09142b" font-size="7.5" font-weight="bold" font-family="Arial, sans-serif" text-anchor="middle" letter-spacing="0.5">
+          BOROMERA
+        </text>
+        <text x="100" y="180" fill="#ffffff" font-size="8.5" font-weight="bold" font-family="Arial, sans-serif" text-anchor="middle" letter-spacing="1">
+          ESTD 2026
+        </text>
+      </svg>
+    </div>
+
     <h1>GYAN KENDRA</h1>
     <h2>Tuition Center, Boromera</h2>
     <p>Study Materials | অধ্যয়ন সামগ্ৰী</p>
@@ -390,17 +411,17 @@
             <!-- 1. Exercise Solutions -->
             <div class="chapter-item">
               <span class="chapter-title">
-                📘 <strong>অধ্যায় ১ পাঠভিত্তিক অনুশীলনী:</strong> অতি চমু, চমু আৰু বহল প্ৰশ্নৰ সমাধান
+                📘 <strong>অধ্যায় ১ পাঠভিত্তিক অনুশীলনী:</strong> অতি চমু, চমু আৰু বহল প্ৰশ্নৰ সম্পূৰ্ণ সমাধান
               </span>
-              <a href="https://drive.google.com/file/d/1XvJLjAat8zJci6tSgCv27EtMl__WeQCx/preview" target="_blank" class="btn-download">📥 পঢ়ক / PDF</a>
+              <a href="https://drive.google.com/file/d/1XvJLjAat8zJci6tSgCv27EtMl__WeQCx/view?usp=sharing" target="_blank" class="btn-download">📥 পঢ়ক / PDF</a>
             </div>
 
             <!-- 2. Additional Q&A -->
             <div class="chapter-item">
               <span class="chapter-title">
-                📝 <strong>অধ্যায় ১ অতিৰিক্ত প্ৰশ্নোত্তৰ:</strong> পৰীক্ষাৰ বাবে গুৰুত্বপূৰ্ণ প্ৰশ্নোত্তৰ
+                📝 <strong>অধ্যায় ১ অতিৰিক্ত প্ৰশ্নোত্তৰ:</strong> পৰীক্ষাৰ বাবে গুৰুত্বপূৰ্ণ প্ৰশ্ন আৰু উত্তৰ
               </span>
-              <a href="https://drive.google.com/file/d/1aGwkdKWLwlfRtPumKnaQKat6jN6s-Rhj/preview" target="_blank" class="btn-download">📥 পঢ়ক / PDF</a>
+              <a href="https://drive.google.com/file/d/1aGwkdKWLwlfRtPumKnaQKat6jN6s-Rhj/view?usp=sharing" target="_blank" class="btn-download">📥 পঢ়ক / PDF</a>
             </div>
 
             <!-- 3. Assertion-Reason Questions -->
@@ -408,15 +429,15 @@
               <span class="chapter-title">
                 🎯 <strong>অধ্যায় ১ নিশ্চিতোক্তি আৰু কাৰণ (A-R):</strong> বিশদ ব্যাখ্যাসহ প্ৰশ্নোত্তৰ
               </span>
-              <a href="https://drive.google.com/file/d/1Vp4o3fuSas7IConKn52sluYzagM5LoXa/preview" target="_blank" class="btn-download">📥 পঢ়ক / PDF</a>
+              <a href="https://drive.google.com/file/d/1Vp4o3fuSas7IConKn52sluYzagM5LoXa/view?usp=sharing" target="_blank" class="btn-download">📥 পঢ়ক / PDF</a>
             </div>
 
             <!-- 4. Mock Test Paper -->
             <div class="chapter-item">
               <span class="chapter-title">
-                ⏱️ <strong>HSLC 2027 মক টেষ্ট:</strong> ২৫ নম্বৰীয়া বিশেষ প্ৰশ্নকাকত (অনুশীলনৰ বাবে)
+                ⏱️ <strong>HSLC 2027 মক টেষ্ট:</strong> ২৫ নম্বৰীয়া বিশেষ প্ৰশ্নকাকত (কেৱল প্ৰশ্ন)
               </span>
-              <a href="https://drive.google.com/file/d/1615W-SZsrhx4vkz6R7TibUGg0EWBhhxT/preview" target="_blank" class="btn-download">📥 টেষ্ট পেপাৰ (PDF)</a>
+              <a href="https://drive.google.com/file/d/1615W-SZsrhx4vkz6R7TibUGg0EWBhhxT/view?usp=sharing" target="_blank" class="btn-download">📥 টেষ্ট পেপাৰ (PDF)</a>
             </div>
 
             <!-- 5. Full Notes Pack (Paid Option) -->
@@ -431,15 +452,6 @@
                 🛒 ক্ৰয় কৰক (₹৪৯)
               </a>
             </div>
-          </div>
-
-          <!-- Live In-Page PDF Reader (ৱেবছাইটৰ ভিতৰতে পঢ়ক) -->
-          <div class="pdf-viewer-box">
-            <div class="pdf-viewer-title">
-              <span>📖 লাইভ পঢ়ক: অধ্যায় ১ পাঠভিত্তিক অনুশীলনী</span>
-              <a href="https://drive.google.com/file/d/1XvJLjAat8zJci6tSgCv27EtMl__WeQCx/preview" target="_blank" style="color: #93c5fd; font-size: 0.8rem;">ডাঙৰকৈ চাওক ↗</a>
-            </div>
-            <iframe src="https://drive.google.com/file/d/1XvJLjAat8zJci6tSgCv27EtMl__WeQCx/preview" class="pdf-frame" allow="autoplay"></iframe>
           </div>
         </div>
       </details>
