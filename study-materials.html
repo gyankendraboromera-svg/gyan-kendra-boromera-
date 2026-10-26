@@ -15,7 +15,22 @@
       background: #10234b;
       color: white;
       text-align: center;
-      padding: 25px 12px;
+      padding: 30px 12px 25px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Logo Styling */
+    .logo-img {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      border: 3px solid #eab308;
+      background: #09142b;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+      object-fit: cover;
     }
     header h1 {
       margin: 0 0 6px 0;
@@ -140,47 +155,75 @@
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
-      padding: 12px;
+      padding: 14px;
     }
     .chapter-header {
       font-weight: bold;
       color: #0f172a;
-      font-size: 1rem;
-      margin-bottom: 10px;
+      font-size: 1.05rem;
+      margin-bottom: 12px;
       border-bottom: 2px solid #e2e8f0;
       padding-bottom: 6px;
     }
     .chapter-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
     .chapter-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 12px;
+      padding: 12px 14px;
       background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .chapter-title {
       font-size: 0.95rem;
       color: #1e293b;
+      flex: 1;
+      min-width: 200px;
     }
     .btn-download {
       background: #0284c7;
       color: white !important;
-      padding: 8px 16px;
+      padding: 10px 18px;
       border-radius: 6px;
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: bold;
       white-space: nowrap;
+      display: inline-block;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
     }
     .btn-download:hover {
       background: #0369a1;
+    }
+    /* Embedded PDF Viewer Box */
+    .pdf-viewer-box {
+      margin-top: 16px;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f8fafc;
+    }
+    .pdf-viewer-title {
+      background: #1e293b;
+      color: white;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pdf-frame {
+      width: 100%;
+      height: 480px;
+      border: none;
     }
     a {
       color: #075fc7;
@@ -196,6 +239,8 @@
 </head>
 <body>
   <header>
+    <!-- Live Gyan Kendra Logo -->
+    <img src="logo.png" alt="Gyan Kendra Logo" class="logo-img" onerror="this.style.display='none';">
     <h1>GYAN KENDRA</h1>
     <h2>Tuition Center, Boromera</h2>
     <p>Study Materials | অধ্যয়ন সামগ্ৰী</p>
@@ -345,17 +390,17 @@
             <!-- 1. Exercise Solutions -->
             <div class="chapter-item">
               <span class="chapter-title">
-                📘 <strong>অধ্যায় ১ পাঠভিত্তিক অনুশীলনী:</strong> অতি চমু, চমু আৰু বহল প্ৰশ্নৰ সম্পূৰ্ণ সমাধান
+                📘 <strong>অধ্যায় ১ পাঠভিত্তিক অনুশীলনী:</strong> অতি চমু, চমু আৰু বহল প্ৰশ্নৰ সমাধান
               </span>
-              <a href="https://drive.google.com/file/d/1XvJLjAat8zJci6tSgCv27EtMl__WeQCx/view?usp=sharing" target="_blank" class="btn-download" style="background: #0284c7;">📥 পঢ়ক / PDF</a>
+              <a href="https://drive.google.com/file/d/1XvJLjAat8zJci6tSgCv27EtMl__WeQCx/preview" target="_blank" class="btn-download">📥 পঢ়ক / PDF</a>
             </div>
 
             <!-- 2. Additional Q&A -->
             <div class="chapter-item">
               <span class="chapter-title">
-                📝 <strong>অধ্যায় ১ অতিৰিক্ত প্ৰশ্নোত্তৰ:</strong> পৰীক্ষাৰ বাবে অতি গুৰুত্বপূৰ্ণ প্ৰশ্ন আৰু উত্তৰ
+                📝 <strong>অধ্যায় ১ অতিৰিক্ত প্ৰশ্নোত্তৰ:</strong> পৰীক্ষাৰ বাবে গুৰুত্বপূৰ্ণ প্ৰশ্নোত্তৰ
               </span>
-              <a href="https://drive.google.com/file/d/1aGwkdKWLwlfRtPumKnaQKat6jN6s-Rhj/view?usp=sharing" target="_blank" class="btn-download" style="background: #0284c7;">📥 পঢ়ক / PDF</a>
+              <a href="https://drive.google.com/file/d/1aGwkdKWLwlfRtPumKnaQKat6jN6s-Rhj/preview" target="_blank" class="btn-download">📥 পঢ়ক / PDF</a>
             </div>
 
             <!-- 3. Assertion-Reason Questions -->
@@ -363,15 +408,15 @@
               <span class="chapter-title">
                 🎯 <strong>অধ্যায় ১ নিশ্চিতোক্তি আৰু কাৰণ (A-R):</strong> বিশদ ব্যাখ্যাসহ প্ৰশ্নোত্তৰ
               </span>
-              <a href="https://drive.google.com/file/d/1Vp4o3fuSas7IConKn52sluYzagM5LoXa/view?usp=sharing" target="_blank" class="btn-download" style="background: #0284c7;">📥 পঢ়ক / PDF</a>
+              <a href="https://drive.google.com/file/d/1Vp4o3fuSas7IConKn52sluYzagM5LoXa/preview" target="_blank" class="btn-download">📥 পঢ়ক / PDF</a>
             </div>
 
-            <!-- 4. Mock Test Paper (Newly Added) -->
+            <!-- 4. Mock Test Paper -->
             <div class="chapter-item">
               <span class="chapter-title">
                 ⏱️ <strong>HSLC 2027 মক টেষ্ট:</strong> ২৫ নম্বৰীয়া বিশেষ প্ৰশ্নকাকত (অনুশীলনৰ বাবে)
               </span>
-              <a href="https://drive.google.com/file/d/1615W-SZsrhx4vkz6R7TibUGg0EWBhhxT/view?usp=sharing" target="_blank" class="btn-download" style="background: #0284c7;">📥 টেষ্ট পেপাৰ (PDF)</a>
+              <a href="https://drive.google.com/file/d/1615W-SZsrhx4vkz6R7TibUGg0EWBhhxT/preview" target="_blank" class="btn-download">📥 টেষ্ট পেপাৰ (PDF)</a>
             </div>
 
             <!-- 5. Full Notes Pack (Paid Option) -->
@@ -382,10 +427,19 @@
               <a href="https://wa.me/917896723247?text=নমস্কাৰ%20ছাৰ,%20মোক%20ইতিহাসৰ%20প্ৰথম%20অধ্যায়ৰ%20সম্পূৰ্ণ%20নোটৰ%20PDF%20খন%20লাগে।" 
                  target="_blank" 
                  class="btn-download" 
-                 style="background: #ea580c;">
+                 style="background: #ea580c; box-shadow: 0 2px 6px rgba(234, 88, 12, 0.3);">
                 🛒 ক্ৰয় কৰক (₹৪৯)
               </a>
             </div>
+          </div>
+
+          <!-- Live In-Page PDF Reader (ৱেবছাইটৰ ভিতৰতে পঢ়ক) -->
+          <div class="pdf-viewer-box">
+            <div class="pdf-viewer-title">
+              <span>📖 লাইভ পঢ়ক: অধ্যায় ১ পাঠভিত্তিক অনুশীলনী</span>
+              <a href="https://drive.google.com/file/d/1XvJLjAat8zJci6tSgCv27EtMl__WeQCx/preview" target="_blank" style="color: #93c5fd; font-size: 0.8rem;">ডাঙৰকৈ চাওক ↗</a>
+            </div>
+            <iframe src="https://drive.google.com/file/d/1XvJLjAat8zJci6tSgCv27EtMl__WeQCx/preview" class="pdf-frame" allow="autoplay"></iframe>
           </div>
         </div>
       </details>
