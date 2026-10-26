@@ -17,6 +17,39 @@
       text-align: center;
       padding: 25px 12px;
     }
+    header h1 {
+      margin: 0 0 6px 0;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+    header h2 {
+      margin: 0 0 6px 0;
+      font-size: 1.2rem;
+      color: #93c5fd;
+      font-weight: normal;
+    }
+    header p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+    }
+    /* Running Notice Ticker */
+    .running-ticker {
+      background: #dc2626;
+      color: white;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      font-size: 0.95rem;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .ticker-label {
+      background: #991b1b;
+      padding: 10px 14px;
+      white-space: nowrap;
+      z-index: 2;
+    }
     main {
       max-width: 850px;
       margin: 20px auto;
@@ -130,6 +163,7 @@
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 6px;
+      gap: 10px;
     }
     .chapter-title {
       font-size: 0.95rem;
@@ -138,7 +172,7 @@
     .btn-download {
       background: #0284c7;
       color: white !important;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 6px;
       text-decoration: none;
       font-size: 0.85rem;
@@ -166,18 +200,14 @@
     <h2>Tuition Center, Boromera</h2>
     <p>Study Materials | অধ্যয়ন সামগ্ৰী</p>
   </header>
-<!-- Running Notice Ticker -->
-<div style="background: #dc2626; color: white; display: flex; align-items: center; overflow: hidden; font-size: 0.95rem; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
-  <!-- বাওঁফালৰ স্থিৰ বাটন -->
-  <span style="background: #991b1b; padding: 10px 14px; white-space: nowrap; z-index: 2;">
-    📢 শেহতীয়া জাননী:
-  </span>
-  
-  <!-- চলি থকা লিখা -->
-  <marquee behavior="scroll" direction="left" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();" style="padding: 8px 0; margin: 0;">
-    🎯 HSLC 2027 প্ৰস্তুতি: দশম শ্ৰেণীৰ সমাজ বিজ্ঞান (ইতিহাস) প্ৰথম অধ্যায়ৰ সম্পূৰ্ণ গাইডবুক, অতিৰিক্ত প্ৰশ্নোত্তৰ আৰু ২৫ নম্বৰীয়া মক টেষ্ট উপলব্ধ হৈছে! &nbsp;&nbsp;&nbsp;&nbsp; ⚡ PDF সংগ্ৰহ কৰিবলৈ তলৰ 'Buy Now' বুটামত ক্লিক কৰক অথবা WhatsApp (7896723247)-ত যোগাযোগ কৰক।
-  </marquee>
-</div>
+
+  <!-- Running Notice Ticker -->
+  <div class="running-ticker">
+    <span class="ticker-label">📢 শেহতীয়া জাননী:</span>
+    <marquee behavior="scroll" direction="left" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();" style="padding: 8px 0; margin: 0;">
+      🎯 HSLC 2027 প্ৰস্তুতি: দশম শ্ৰেণীৰ সমাজ বিজ্ঞান (ইতিহাস) প্ৰথম অধ্যায়ৰ সম্পূৰ্ণ গাইডবুক, অতিৰিক্ত প্ৰশ্নোত্তৰ আৰু ২৫ নম্বৰীয়া মক টেষ্ট উপলব্ধ হৈছে! &nbsp;&nbsp;&nbsp;&nbsp; ⚡ PDF সংগ্ৰহ কৰিবলৈ তলৰ 'Buy Now' বুটামত ক্লিক কৰক অথবা WhatsApp (7896723247)-ত যোগাযোগ কৰক।
+    </marquee>
+  </div>
 
   <main>
     <!-- Official Channels Banner -->
@@ -219,7 +249,6 @@
               </div>
             </div>
             
-            <!-- Direct WhatsApp Buy Button -->
             <a href="https://wa.me/917896723247?text=নমস্কাৰ%20ছাৰ,%20মোক%20দশম%20শ্ৰেণীৰ%20সমাজ%20বিজ্ঞানৰ%20সম্পূৰ্ণ%20PDF%20গাইডবুকখন%20(₹১৯৯)%20ক্ৰয়%20কৰিবলৈ%20লাগে।" 
                target="_blank" 
                style="background: #16a34a; color: white !important; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1rem; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35); display: inline-block;">
@@ -228,17 +257,17 @@
           </div>
         </div>
 
-        <!-- Payment & Verification Box -->
+        <!-- Payment & QR Code Details Box -->
         <div style="background: #ffffff; border: 2px dashed #0284c7; border-radius: 12px; padding: 20px; margin: 20px 0; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.08);">
           <div style="text-align: center; margin-bottom: 16px;">
             <span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold;">
               💳 সহজ আৰু সুৰক্ষিত পেমেন্ট ব্যৱস্থা
             </span>
             <h3 style="margin: 10px 0 6px 0; color: #0f172a; font-size: 1.2rem;">
-              কেনেকৈ ক্ৰয় কৰিব আৰু PDF পাব?
+              স্কেন কৰি পেমেন্ট কৰক আৰু PDF সংগ্ৰহ কৰক
             </h3>
             <p style="margin: 0; color: #64748b; font-size: 0.9rem;">
-              তলৰ ৩ টা সহজ পদক্ষেপ অনুসৰণ কৰি ৫ মিনিটৰ ভিতৰত নিজৰ WhatsApp-ত PDF সংগ্ৰহ কৰক:
+              তলৰ ৩ টা সহজ পদক্ষেপ অনুসৰণ কৰি ৫ মিনিটৰ ভিতৰত নিজৰ WhatsApp-ত PDF লাভ কৰক:
             </p>
           </div>
 
@@ -246,8 +275,8 @@
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 20px;">
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; text-align: center;">
               <div style="font-size: 1.3rem; margin-bottom: 6px;">📱</div>
-              <strong style="color: #1e293b; display: block; margin-bottom: 4px;">১. পেমেন্ট কৰক</strong>
-              <span style="font-size: 0.85rem; color: #475569;">GPay, PhonePe বা Paytm-ৰ জৰিয়তে নিৰ্দিষ্ট মূল্য পৰিশোধ কৰক।</span>
+              <strong style="color: #1e293b; display: block; margin-bottom: 4px;">১. স্কেন কৰি পেমেন্ট কৰক</strong>
+              <span style="font-size: 0.85rem; color: #475569;">GPay, PhonePe বা Paytm-ৰে QR স্কেন কৰি মূল্য পৰিশোধ কৰক।</span>
             </div>
 
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; text-align: center;">
@@ -263,25 +292,37 @@
             </div>
           </div>
 
-          <!-- Payment Account Details Card -->
-          <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 15px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;">
-            <div>
-              <div style="font-size: 0.85rem; color: #166534; font-weight: bold; margin-bottom: 4px;">
-                অফিচিয়েল পেমেন্ট নম্বৰ (GPay / PhonePe / Paytm):
-              </div>
-              <div style="font-size: 1.3rem; font-weight: bold; color: #14532d; letter-spacing: 0.5px;">
-                7896723247
-              </div>
-              <div style="font-size: 0.8rem; color: #15803d; margin-top: 2px;">
-                গ্ৰাহকৰ নাম: <strong>Dipankar Mali (Mali Sir)</strong>
-              </div>
+          <!-- QR Code Image and UPI Details Side-by-Side -->
+          <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 18px; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; gap: 20px;">
+            <!-- QR Code Image -->
+            <div style="text-align: center;">
+              <img src="qr-code.png" alt="Gyan Kendra Payment QR Code" style="max-width: 175px; width: 100%; border: 2px solid #16a34a; border-radius: 10px; background: white; padding: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+              <div style="font-size: 0.8rem; color: #15803d; font-weight: bold; margin-top: 6px;">Scan with Any UPI App</div>
             </div>
 
-            <a href="https://wa.me/917896723247?text=নমস্কাৰ%20ছাৰ,%20মই%20পেমেন্ট%20সম্পূৰ্ণ%20কৰিলোঁ।%20পেমেন্টৰ%20স্ক্ৰীনশ্বটটো%20ইয়াত%20সংলগ্ন%20কৰিছোঁ,%20অনুগ্ৰহ%20কৰি%20মোক%20PDF%20খন%20পঠিয়াই%20দিয়ক।" 
-               target="_blank" 
-               style="background: #16a34a; color: white !important; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem; box-shadow: 0 3px 10px rgba(22, 163, 74, 0.25); display: inline-flex; align-items: center; gap: 6px;">
-              📤 স্ক্ৰীনশ্বট পঠিয়াওক (WhatsApp)
-            </a>
+            <!-- UPI Account Details -->
+            <div>
+              <div style="font-size: 0.85rem; color: #166534; font-weight: bold; margin-bottom: 4px;">
+                অফিচিয়েল পেমেন্ট নম্বৰ:
+              </div>
+              <div style="font-size: 1.35rem; font-weight: bold; color: #14532d; letter-spacing: 0.5px;">
+                7896723247
+              </div>
+              <div style="font-size: 0.85rem; color: #15803d; margin-top: 4px;">
+                UPI ID: <strong>7896723247@upi</strong>
+              </div>
+              <div style="font-size: 0.85rem; color: #15803d; margin-top: 2px;">
+                নাম: <strong>Dipankar Mali (Mali Sir)</strong>
+              </div>
+              
+              <div style="margin-top: 14px;">
+                <a href="https://wa.me/917896723247?text=নমস্কাৰ%20ছাৰ,%20মই%20পেমেন্ট%20সম্পূৰ্ণ%20কৰিলোঁ।%20পেমেন্টৰ%20স্ক্ৰীনশ্বটটো%20ইয়াত%20সংলগ্ন%20কৰিছোঁ,%20অনুগ্ৰহ%20কৰি%20মোক%20PDF%20খন%20পঠিয়াই%20দিয়ক।" 
+                   target="_blank" 
+                   style="background: #16a34a; color: white !important; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem; box-shadow: 0 3px 10px rgba(22, 163, 74, 0.25); display: inline-flex; align-items: center; gap: 6px;">
+                  📤 স্ক্ৰীনশ্বট পঠিয়াওক (WhatsApp)
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
