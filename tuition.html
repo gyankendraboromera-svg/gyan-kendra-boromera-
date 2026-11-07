@@ -23,11 +23,12 @@
 </head>
 <body class="bg-slate-100 text-slate-800 pb-20 select-none">
 
-    <!-- Top Header -->
+    <!-- Top Header (No visible Teacher Login button for outsiders) -->
     <header class="bg-blue-900 text-white sticky top-0 z-40 shadow-md">
         <div class="px-4 py-3 flex items-center justify-between">
             <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center border-2 border-amber-400 font-bold text-amber-400 text-lg">
+                <!-- Secret Trigger: Triple-tap the GK Logo to open Teacher PIN -->
+                <div onclick="handleSecretAdminTap()" class="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center border-2 border-amber-400 font-bold text-amber-400 text-lg cursor-pointer active:scale-95 transition" title="জ্ঞান কেন্দ্ৰ">
                     GK
                 </div>
                 <div>
@@ -36,9 +37,10 @@
                 </div>
             </div>
             <div class="flex items-center space-x-1.5">
-                <button id="adminAuthToggleBtn" onclick="toggleAdminAuth()" class="px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1 bg-amber-400 text-blue-950 shadow">
-                    <i class="fa-solid fa-lock" id="adminLockIcon"></i>
-                    <span id="adminLockText">শিক্ষক লগইন</span>
+                <!-- Lock button appears ONLY when Mali Sir is unlocked -->
+                <button id="adminAuthLockBtn" onclick="lockAdminMode()" class="hidden px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1 bg-rose-600 text-white shadow">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>লক কৰক</span>
                 </button>
             </div>
         </div>
@@ -205,7 +207,7 @@
             <div id="noticesContainer" class="space-y-2"></div>
         </section>
 
-        <!-- ================= ADMIN PROTECTED SECTION ================= -->
+        <!-- ================= ADMIN PROTECTED SECTION (MALI SIR ONLY) ================= -->
         <!-- TAB 4: TEACHER DASHBOARD (ADMIN ONLY) -->
         <section id="tab-dashboard" class="tab-content space-y-4">
             <div class="bg-gradient-to-r from-blue-950 to-indigo-900 rounded-2xl p-4 text-white shadow-sm">
@@ -355,7 +357,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <h2 class="text-base font-bold text-slate-800">মাহেকীয়া মাচুল ব্যৱস্থাপনা</h2>
-                    <p class="text-[11px] text-slate-500">প্ৰতিটো মাহৰ Paid / Unpaid আৰু বাকীৰ সঠিক খতিয়ান</p>
+                    <p class="text-[11px] text-slate-500">এডমিছন মাহৰ পৰা হিচাপ আৰু মাহ মচি পেলোৱাৰ সুবিধা</p>
                 </div>
                 <div class="text-right">
                     <span class="text-[10px] text-slate-400 font-bold block">সৰ্বমুঠ বাকী</span>
@@ -363,7 +365,6 @@
                 </div>
             </div>
 
-            <!-- Top Filter by Class -->
             <div class="flex space-x-2">
                 <select id="feeStudentClassFilter" onchange="renderFeesPassbookList()" class="w-full bg-white px-3 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm font-bold text-blue-950">
                     <option value="ALL">সকলো শ্ৰেণীৰ ছাত্ৰ-ছাত্ৰী</option>
@@ -381,7 +382,6 @@
                 </select>
             </div>
 
-            <!-- List of Students with their Monthly Ledger & Action Buttons -->
             <div id="feesPassbookContainer" class="space-y-3"></div>
         </section>
     </main>
@@ -420,11 +420,10 @@
         </button>
     </nav>
 
-    <!-- ================= FULL STUDENT MONTHLY PASSBOOK MODAL ================= -->
+    <!-- FULL STUDENT MONTHLY PASSBOOK MODAL (WITH DIRECT DELETE / EXCLUDE BUTTON) -->
     <div id="studentPassbookModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-3">
-        <div class="bg-white rounded-2xl w-full max-w-sm max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-            <!-- Modal Header -->
-            <div class="bg-blue-900 text-white p-4 flex justify-between items-start flex-shrink-0">
+        <div class="bg-white rounded-2xl w-full max-w-sm max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="bg-blue-900 text-white p-3.5 flex justify-between items-start flex-shrink-0">
                 <div>
                     <span class="text-[10px] bg-amber-400 text-blue-950 px-2 py-0.5 rounded-full font-black uppercase">মাহেকীয়া খতিয়ান বহী</span>
                     <h3 class="font-bold text-base mt-1" id="pbModalStudentName">-</h3>
@@ -435,26 +434,27 @@
                 </button>
             </div>
 
-            <!-- Modal Dues Summary -->
             <div class="bg-slate-50 border-b border-slate-200 px-4 py-2.5 flex justify-between items-center text-xs flex-shrink-0">
-                <span class="font-bold text-slate-600">সৰ্বমুঠ বাকী থকা মাচুল:</span>
-                <span class="text-base font-black text-rose-600" id="pbModalTotalBalance">₹0</span>
+                <div>
+                    <span class="font-bold text-slate-600 block">সৰ্বমুঠ বাকী মাচুল:</span>
+                    <span class="text-[10px] text-slate-400" id="pbModalAdmissionNotice">নামভৰ্তিৰ মাহৰ পৰা ধাৰ্য</span>
+                </div>
+                <span class="text-lg font-black text-rose-600" id="pbModalTotalBalance">₹0</span>
             </div>
 
-            <!-- Scrollable Months List with Direct Paid, Unpaid and Partial Input -->
+            <!-- Scrollable Months List with Paid, Unpaid, Partial, and DELETE / EXCLUDE Options -->
             <div class="p-3 overflow-y-auto space-y-2.5 flex-grow" id="pbModalMonthsList"></div>
 
-            <!-- Modal Footer WhatsApp Share -->
             <div class="p-3 bg-white border-t border-slate-200 flex-shrink-0 space-y-2">
                 <button id="pbWhatsAppShareBtn" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span>সম্পূৰ্ণ মাহেকীয়া খতিয়ান WhatsApp ত পঠাওক</span>
+                    <span>সঠিক মাহেকীয়া খতিয়ান WhatsApp ত পঠাওক</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- RECORD PAYMENT MODAL (CUSTOM DEPOSIT & REMAINING BALANCE) -->
+    <!-- RECORD PAYMENT MODAL -->
     <div id="paymentModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl space-y-3">
             <div class="flex justify-between items-center">
@@ -483,7 +483,7 @@
         </div>
     </div>
 
-    <!-- PIN AUTH MODAL -->
+    <!-- SECRET PIN AUTH MODAL -->
     <div id="pinAuthModal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-xs p-5 shadow-2xl text-center space-y-3">
             <div class="w-12 h-12 bg-blue-100 text-blue-900 rounded-full flex items-center justify-center mx-auto text-xl">
@@ -521,9 +521,9 @@
         </div>
     </div>
 
-    <!-- ADD/EDIT STUDENT MODAL -->
+    <!-- ADD/EDIT STUDENT MODAL (NOW WITH ADMISSION MONTH SELECTOR) -->
     <div id="studentModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl">
+        <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-3">
                 <h3 class="font-bold text-base text-slate-800" id="modalStudentTitle">নতুন ছাত্ৰ-ছাত্ৰীৰ নামভৰ্তি</h3>
                 <button onclick="closeStudentModal()" class="text-slate-400 hover:text-slate-700 text-lg">
@@ -558,6 +558,29 @@
                         <input type="number" id="sFee" required placeholder="500" value="500" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
                     </div>
                 </div>
+
+                <!-- ADMISSION MONTH SELECTOR (PREVENTS PREVIOUS MONTHS DUE BILLING) -->
+                <div class="bg-amber-50 p-2.5 rounded-xl border border-amber-200">
+                    <label class="block text-[11px] font-bold text-amber-950 mb-1">
+                        <i class="fa-solid fa-calendar-check text-amber-600 mr-1"></i>নামভৰ্তিৰ মাহ (Admission Month) *
+                    </label>
+                    <select id="sAdmissionMonth" required class="w-full text-xs font-bold px-2.5 py-2 bg-white border border-amber-300 rounded-lg outline-none focus:border-blue-600 text-blue-900">
+                        <option value="January 2026">January 2026</option>
+                        <option value="February 2026">February 2026</option>
+                        <option value="March 2026">March 2026</option>
+                        <option value="April 2026">April 2026</option>
+                        <option value="May 2026">May 2026</option>
+                        <option value="June 2026">June 2026</option>
+                        <option value="July 2026">July 2026</option>
+                        <option value="August 2026" selected>August 2026</option>
+                        <option value="September 2026">September 2026</option>
+                        <option value="October 2026">October 2026</option>
+                        <option value="November 2026">November 2026</option>
+                        <option value="December 2026">December 2026</option>
+                    </select>
+                    <p class="text-[10px] text-amber-800 mt-1">এই মাহৰ আগৰ মাহবোৰৰ কোনো বাকী টকা ছাত্ৰজনৰ নামত যোগ নহ'ব।</p>
+                </div>
+
                 <div class="grid grid-cols-2 gap-2">
                     <div>
                         <label class="block text-[11px] font-bold text-slate-600 mb-1">ৰোল নম্বৰ</label>
@@ -627,29 +650,37 @@
         let activePayStudent = null;
         let activePayMonth = null;
 
+        let logoTapCount = 0;
+        let logoTapTimeout = null;
+
         function initApp() {
             renderCurrentDate();
             updateMarquee();
             renderNotices();
             updateAdminUI();
-            if (isAdminUnlocked) {
-                renderDashboard();
-                renderStudents();
-                initAttendanceDate();
-                renderFeesPassbookList();
+
+            if (window.location.hash === '#admin') {
+                document.getElementById('adminPinInput').value = '';
+                document.getElementById('pinAuthModal').classList.remove('hidden');
             }
         }
 
-        // ================= ADMIN LOCK / UNLOCK =================
-        function toggleAdminAuth() {
-            if (isAdminUnlocked) {
-                isAdminUnlocked = false;
-                updateAdminUI();
-                switchTab('public-home');
-                alert("শিক্ষক এডমিন মোড সফলতাৰে লক হ'ল!");
-            } else {
-                document.getElementById('adminPinInput').value = '';
-                document.getElementById('pinAuthModal').classList.remove('hidden');
+        // ================= SECRET ADMIN TRIGGER (TRIPLE TAP ON GK LOGO) =================
+        function handleSecretAdminTap() {
+            logoTapCount++;
+            clearTimeout(logoTapTimeout);
+            logoTapTimeout = setTimeout(() => {
+                logoTapCount = 0;
+            }, 1200);
+
+            if (logoTapCount >= 3) {
+                logoTapCount = 0;
+                if (!isAdminUnlocked) {
+                    document.getElementById('adminPinInput').value = '';
+                    document.getElementById('pinAuthModal').classList.remove('hidden');
+                } else {
+                    switchTab('dashboard');
+                }
             }
         }
 
@@ -674,23 +705,24 @@
             }
         }
 
+        function lockAdminMode() {
+            isAdminUnlocked = false;
+            updateAdminUI();
+            switchTab('public-home');
+            alert("শিক্ষক এডমিন মোড সফলতাৰে লক হ'ল!");
+        }
+
         function updateAdminUI() {
-            const toggleBtn = document.getElementById('adminAuthToggleBtn');
-            const icon = document.getElementById('adminLockIcon');
-            const text = document.getElementById('adminLockText');
+            const lockBtn = document.getElementById('adminAuthLockBtn');
             const addNoticeBtn = document.getElementById('adminAddNoticeBtn');
             const adminNavs = document.querySelectorAll('.admin-only-nav');
 
             if (isAdminUnlocked) {
-                toggleBtn.className = "px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1 bg-rose-600 text-white shadow";
-                icon.className = "fa-solid fa-lock-open";
-                text.innerText = "লক কৰক";
+                if (lockBtn) lockBtn.classList.remove('hidden');
                 if (addNoticeBtn) addNoticeBtn.classList.remove('hidden');
                 adminNavs.forEach(el => el.classList.remove('hidden'));
             } else {
-                toggleBtn.className = "px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1 bg-amber-400 text-blue-950 shadow";
-                icon.className = "fa-solid fa-lock";
-                text.innerText = "শিক্ষক লগইন";
+                if (lockBtn) lockBtn.classList.add('hidden');
                 if (addNoticeBtn) addNoticeBtn.classList.add('hidden');
                 adminNavs.forEach(el => el.classList.add('hidden'));
             }
@@ -734,7 +766,7 @@
         }
 
         function shareDoubtPortalToWhatsApp() {
-            const portalUrl = window.location.href;
+            const portalUrl = window.location.href.split('#')[0];
             const shareText = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (বৰমেৰা)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\n\\nশ্ৰদ্ধাৰ অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰীসকল,\\nপঢ়া-শুনাৰ যিকোনো প্ৰশ্ন, হোমৱৰ্ক বা মাচুল পৰিশোধৰ বাবে আমাৰ অনলাইন প'ৰ্টেল ব্যৱহাৰ কৰক:\\n\\n🔗 *জ্ঞান কেন্দ্ৰ প'ৰ্টেল লিংক:*\\n${portalUrl}\\n\\n📞 *হেল্পলাইন নম্বৰ:* 7896723247\\nধন্যবাদ!`;
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
         }
@@ -755,7 +787,7 @@
         function switchTab(tabId) {
             const adminTabs = ['dashboard', 'students', 'attendance', 'fees'];
             if (adminTabs.includes(tabId) && !isAdminUnlocked) {
-                toggleAdminAuth();
+                handleSecretAdminTap();
                 return;
             }
 
@@ -780,7 +812,7 @@
             if (tabId === 'fees') renderFeesPassbookList();
         }
 
-        // ================= DASHBOARD & STATS =================
+        // ================= DASHBOARD & DUES CALCULATION =================
         function renderDashboard() {
             document.getElementById('dashTotalStudents').innerText = students.length;
             const todayStr = getTodayDateStr();
@@ -793,17 +825,31 @@
             calculateTotalAllPending();
         }
 
+        // Only count dues from student's admissionMonth onwards, and skip deleted/excluded months
         function calculateTotalAllPending() {
             let total = 0;
-            allMonths.forEach(m => {
-                students.forEach(s => {
+            students.forEach(s => {
+                const sAdmMonth = s.admissionMonth || "January 2026";
+                const admIdx = allMonths.indexOf(sAdmMonth);
+
+                allMonths.forEach((m, idx) => {
                     const recKey = `${s.id}_${m}`;
                     const rec = feeRecords[recKey];
+
+                    // Check if month is deleted/excluded or prior to admission
+                    const isExplicitlyExcluded = rec && rec.status === 'EXCLUDED';
+                    const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
+
+                    if (isExplicitlyExcluded || isPriorToAdmission) {
+                        return; // 0 due for this month!
+                    }
+
                     const fee = Number(s.fee || 0);
                     const paid = rec ? Number(rec.paidAmount || 0) : 0;
                     total += Math.max(0, fee - paid);
                 });
             });
+
             const elem = document.getElementById('totalAllMonthsPending');
             const dashElem = document.getElementById('dashPendingFees');
             if (elem) elem.innerText = '₹' + total;
@@ -843,7 +889,7 @@
                             <h4 class="font-bold text-xs text-slate-800">${s.name}</h4>
                             <span class="text-[9px] bg-blue-100 text-blue-800 font-bold px-1.5 py-0.5 rounded">${s.class}</span>
                         </div>
-                        <p class="text-[11px] text-slate-500 mt-0.5 ml-8"><i class="fa-solid fa-clock text-[9px] mr-1"></i>${s.batch || 'সাধাৰণ বেচ'}</p>
+                        <p class="text-[11px] text-slate-500 mt-0.5 ml-8"><i class="fa-solid fa-calendar-check text-[9px] mr-1 text-amber-600"></i>এডমিছন: <span class="font-bold text-slate-700">${s.admissionMonth || 'January 2026'}</span></p>
                         <p class="text-[11px] text-emerald-700 font-bold ml-8">মাচুল: ₹${s.fee}/মাহ • ফোন: ${s.phone}</p>
                     </div>
                     <div class="flex items-center space-x-1.5">
@@ -853,10 +899,10 @@
                         <a href="https://wa.me/91${s.phone}?text=${encodeURIComponent(`নমস্কাৰ, জ্ঞান কেন্দ্ৰৰ (Mali Sir) তৰফৰ পৰা যোগাযোগ কৰা হৈছে।`)}" target="_blank" class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[11px]">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
-                        <button onclick="editStudent(${s.id})" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-[11px]">
+                        <button onclick="editStudent(${s.id})" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-[11px]" title="সম্পাদনা">
                             <i class="fa-solid fa-pen"></i>
                         </button>
-                        <button onclick="deleteStudent(${s.id}, '${s.name}')" class="w-7 h-7 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-100 flex items-center justify-center text-[11px]">
+                        <button onclick="deleteStudent(${s.id}, '${s.name}')" class="w-7 h-7 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-100 flex items-center justify-center text-[11px]" title="মচি পেলাওক">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
@@ -865,7 +911,7 @@
         }
 
         function deleteStudent(id, name) {
-            if (confirm(`আপুনি সঁচাকৈয়ে "${name}" ক মচি পেলাব বিচাৰেনে?`)) {
+            if (confirm(`আপুনি সঁচাকৈয়ে "${name}" ক সম্পূৰ্ণ তালিকাৰ পৰা মচি পেলাব বিচাৰেনে?`)) {
                 students = students.filter(s => s.id !== id);
                 localStorage.setItem('gk_my_students', JSON.stringify(students));
                 renderStudents();
@@ -879,6 +925,7 @@
             document.getElementById('studentId').value = '';
             document.getElementById('studentForm').reset();
             document.getElementById('modalStudentTitle').innerText = 'নতুন ছাত্ৰ-ছাত্ৰীৰ নামভৰ্তি';
+            document.getElementById('sAdmissionMonth').value = 'August 2026';
             document.getElementById('studentModal').classList.remove('hidden');
         }
 
@@ -889,6 +936,7 @@
             document.getElementById('sName').value = s.name;
             document.getElementById('sClass').value = s.class;
             document.getElementById('sFee').value = s.fee;
+            document.getElementById('sAdmissionMonth').value = s.admissionMonth || 'August 2026';
             document.getElementById('sRoll').value = s.roll || '';
             document.getElementById('sPhone').value = s.phone;
             document.getElementById('sBatch').value = s.batch || '';
@@ -909,6 +957,7 @@
                 name: document.getElementById('sName').value.trim(),
                 class: document.getElementById('sClass').value,
                 fee: Number(document.getElementById('sFee').value),
+                admissionMonth: document.getElementById('sAdmissionMonth').value,
                 phone: document.getElementById('sPhone').value.trim(),
                 batch: document.getElementById('sBatch').value.trim()
             };
@@ -1007,7 +1056,7 @@
             renderDashboard();
         }
 
-        // ================= MONTH-BY-MONTH PAID / UNPAID & PASSBOOK ENGINE =================
+        // ================= PASSBOOK & MONTH-BY-MONTH STATUS ENGINE =================
         function renderFeesPassbookList() {
             const container = document.getElementById('feesPassbookContainer');
             const classFilter = document.getElementById('feeStudentClassFilter').value;
@@ -1027,16 +1076,25 @@
             container.innerHTML = filtered.map(s => {
                 let totalDue = 0;
                 let activeMonthsBadges = [];
+                const sAdmMonth = s.admissionMonth || "January 2026";
+                const admIdx = allMonths.indexOf(sAdmMonth);
 
-                allMonths.forEach(m => {
+                allMonths.forEach((m, idx) => {
                     const recKey = `${s.id}_${m}`;
                     const rec = feeRecords[recKey];
+                    const isExplicitlyExcluded = rec && rec.status === 'EXCLUDED';
+                    const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
+
+                    if (isExplicitlyExcluded || isPriorToAdmission) {
+                        return; // Not counted!
+                    }
+
                     const fee = Number(s.fee || 0);
                     const paid = rec ? Number(rec.paidAmount || 0) : 0;
                     const bal = Math.max(0, fee - paid);
                     totalDue += bal;
 
-                    const shortM = m.split(' ')[0]; // 'August', 'September', etc.
+                    const shortM = m.split(' ')[0];
                     if (rec && paid >= fee) {
                         activeMonthsBadges.push(`<span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">${shortM}: Paid</span>`);
                     } else if (paid > 0 && paid < fee) {
@@ -1055,7 +1113,7 @@
                                     <h3 class="font-bold text-xs text-slate-800">${s.name}</h3>
                                     <span class="text-[9px] bg-blue-50 text-blue-800 font-bold px-1.5 py-0.5 rounded">${s.class}</span>
                                 </div>
-                                <p class="text-[11px] text-slate-500 mt-0.5 ml-7.5">ধাৰ্য মাচুল: ₹${s.fee}/মাহ</p>
+                                <p class="text-[11px] text-slate-500 mt-0.5 ml-7.5">মাচুল: ₹${s.fee}/মাহ • <span class="text-amber-800 font-semibold">এডমিছন: ${s.admissionMonth || 'January 2026'}</span></p>
                             </div>
                             <div class="text-right">
                                 <span class="text-[10px] text-slate-400 font-bold block">সৰ্বমুঠ বাকী</span>
@@ -1063,16 +1121,16 @@
                             </div>
                         </div>
 
-                        <!-- Quick Month Status Tags -->
+                        <!-- Active Months Snapshot Tags -->
                         <div class="flex flex-wrap gap-1 pt-0.5">
-                            ${activeMonthsBadges.length > 0 ? activeMonthsBadges.slice(-4).join('') : '<span class="text-[10px] text-slate-400">প্ৰতিটো মাহৰ Paid / Unpaid চাবলৈ তলত ক্লিক কৰক</span>'}
+                            ${activeMonthsBadges.length > 0 ? activeMonthsBadges.slice(-4).join('') : '<span class="text-[10px] text-slate-400">খতিয়ান চাবলৈ তলত ক্লিক কৰক</span>'}
                         </div>
 
                         <!-- Action Buttons -->
                         <div class="flex items-center justify-between pt-1 border-t border-slate-100">
                             <button onclick="openStudentPassbookModal(${s.id})" class="px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-sm">
-                                <i class="fa-solid fa-list-check text-[11px]"></i>
-                                <span>মাহেকীয়া খতিয়ান (Paid/Unpaid)</span>
+                                <i class="fa-solid fa-book-bookmark text-[11px]"></i>
+                                <span>মাহেকীয়া খতিয়ান বহী</span>
                             </button>
                             <button onclick="shareStudentPassbookWhatsApp(${s.id})" class="w-8 h-8 bg-emerald-100 text-emerald-700 hover:bg-emerald-200 rounded-full flex items-center justify-center text-xs shadow-sm" title="WhatsApp ত খতিয়ান পঠাওক">
                                 <i class="fa-brands fa-whatsapp text-sm"></i>
@@ -1090,7 +1148,8 @@
             activePassbookStudent = s;
 
             document.getElementById('pbModalStudentName').innerText = `${s.name} (#${s.roll || s.id})`;
-            document.getElementById('pbModalClassInfo').innerText = `${s.class} • ধাৰ্য মাহেকীয়া মাচুল: ₹${s.fee}`;
+            document.getElementById('pbModalClassInfo').innerText = `${s.class} • মাহেকীয়া মাচুল: ₹${s.fee}`;
+            document.getElementById('pbModalAdmissionNotice').innerText = `এডমিছন মাহ: ${s.admissionMonth || 'January 2026'} (পূৰ্বৰ মাহ প্ৰযোজ্য নহয়)`;
 
             renderPassbookModalMonths();
             document.getElementById('studentPassbookModal').classList.remove('hidden');
@@ -1105,17 +1164,44 @@
             renderFeesPassbookList();
         }
 
-        // Render Months Inside Passbook with 2 Direct Buttons: PAID & UNPAID + PARTIAL INPUT
+        // Render Months with Direct Paid, Unpaid, Partial, AND DELETE / EXCLUDE BUTTON
         function renderPassbookModalMonths() {
             if (!activePassbookStudent) return;
             const s = activePassbookStudent;
             const container = document.getElementById('pbModalMonthsList');
             let totalDue = 0;
 
-            container.innerHTML = allMonths.map(month => {
+            const sAdmMonth = s.admissionMonth || "January 2026";
+            const admIdx = allMonths.indexOf(sAdmMonth);
+
+            container.innerHTML = allMonths.map((month, idx) => {
                 const recKey = `${s.id}_${month}`;
                 const rec = feeRecords[recKey];
                 const fee = Number(s.fee || 0);
+
+                // Check exclusion / delete status
+                const isExplicitlyExcluded = rec && rec.status === 'EXCLUDED';
+                const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
+
+                // If Month is Deleted / Excluded / Prior to admission:
+                if (isExplicitlyExcluded || isPriorToAdmission) {
+                    return `
+                        <div class="bg-slate-100/80 p-2.5 rounded-xl border border-dashed border-slate-300 flex items-center justify-between opacity-75">
+                            <div>
+                                <span class="font-bold text-xs text-slate-500 line-through">${month}</span>
+                                <span class="text-[9px] bg-slate-200 text-slate-600 font-bold px-1.5 py-0.5 rounded ml-1.5">
+                                    ${isPriorToAdmission ? 'নামভৰ্তিৰ পূৰ্বৰ মাহ (বাদ দিয়া হৈছে)' : 'মচি দিয়া হৈছে (প্ৰযোজ্য নহয়)'}
+                                </span>
+                            </div>
+                            <!-- Restore button if Mali Sir wants to include it -->
+                            <button onclick="includeMonthAgain(${s.id}, '${month}')" class="px-2 py-1 bg-blue-100 hover:bg-blue-200 text-blue-900 rounded-lg text-[10px] font-bold shadow-sm flex items-center space-x-1">
+                                <i class="fa-solid fa-rotate-left text-[9px]"></i>
+                                <span>যোগ কৰক</span>
+                            </button>
+                        </div>
+                    `;
+                }
+
                 const paid = rec ? Number(rec.paidAmount || 0) : 0;
                 const balance = Math.max(0, fee - paid);
                 totalDue += balance;
@@ -1140,24 +1226,30 @@
                             ${statusBadge}
                         </div>
                         
-                        <!-- Direct Paid / Unpaid / Custom Deposit Action Buttons -->
-                        <div class="grid grid-cols-3 gap-1.5 pt-1">
-                            <!-- Direct Paid Button -->
-                            <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'PAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-1 transition ${isPaid ? 'bg-emerald-700 text-white shadow' : 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'}">
-                                <i class="fa-solid fa-check"></i>
+                        <!-- Actions Grid: Paid, Unpaid, Partial, and DELETE / EXCLUDE -->
+                        <div class="grid grid-cols-4 gap-1 pt-1">
+                            <!-- Paid -->
+                            <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'PAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPaid ? 'bg-emerald-700 text-white shadow' : 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'}">
+                                <i class="fa-solid fa-check text-[9px]"></i>
                                 <span>Paid</span>
                             </button>
 
-                            <!-- Direct Unpaid Button -->
-                            <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'UNPAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-1 transition ${isUnpaid ? 'bg-rose-700 text-white shadow' : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}">
-                                <i class="fa-solid fa-xmark"></i>
+                            <!-- Unpaid -->
+                            <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'UNPAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isUnpaid ? 'bg-rose-700 text-white shadow' : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}">
+                                <i class="fa-solid fa-xmark text-[9px]"></i>
                                 <span>Unpaid</span>
                             </button>
 
-                            <!-- Custom Deposit / Partial Balance Button -->
-                            <button onclick="openPaymentModal(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-1 transition ${isPartial ? 'bg-amber-600 text-white shadow' : 'bg-amber-100 text-amber-900 hover:bg-amber-200'}">
-                                <i class="fa-solid fa-pen"></i>
-                                <span>কিমান দিলে?</span>
+                            <!-- Partial Deposit -->
+                            <button onclick="openPaymentModal(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPartial ? 'bg-amber-600 text-white shadow' : 'bg-amber-100 text-amber-900 hover:bg-amber-200'}">
+                                <i class="fa-solid fa-pen text-[9px]"></i>
+                                <span>জমা/Edit</span>
+                            </button>
+
+                            <!-- DELETE / EXCLUDE THIS MONTH -->
+                            <button onclick="excludeOrDeleteMonth(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black bg-slate-200 hover:bg-rose-100 text-rose-700 flex items-center justify-center space-x-0.5 transition" title="এই মাহটোৰ মাচুল মচি পেলাওক">
+                                <i class="fa-solid fa-trash-can text-[9px]"></i>
+                                <span>বাদ দিয়ক</span>
                             </button>
                         </div>
                     </div>
@@ -1176,16 +1268,45 @@
             if (type === 'PAID') {
                 feeRecords[recKey] = {
                     paidAmount: Number(s.fee || 0),
+                    status: 'INCLUDED',
                     date: getTodayDateStr()
                 };
             } else {
-                // UNPAID
                 feeRecords[recKey] = {
                     paidAmount: 0,
+                    status: 'INCLUDED',
                     date: ''
                 };
             }
 
+            localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
+            renderPassbookModalMonths();
+            calculateTotalAllPending();
+        }
+
+        // DELETE / EXCLUDE Month for this specific student (Zeroes dues!)
+        function excludeOrDeleteMonth(studId, month) {
+            if (confirm(`আপুনি সঁচাকৈয়ে এই ছাত্ৰজনৰ বাবে ${month} মাহৰ মাচুল মচি পেলাব (বাদ দিব) বিচাৰেনে?`)) {
+                const recKey = `${studId}_${month}`;
+                feeRecords[recKey] = {
+                    paidAmount: 0,
+                    status: 'EXCLUDED',
+                    date: ''
+                };
+                localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
+                renderPassbookModalMonths();
+                calculateTotalAllPending();
+            }
+        }
+
+        // RESTORE / INCLUDE Month back
+        function includeMonthAgain(studId, month) {
+            const recKey = `${studId}_${month}`;
+            feeRecords[recKey] = {
+                paidAmount: 0,
+                status: 'INCLUDED',
+                date: ''
+            };
             localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
             renderPassbookModalMonths();
             calculateTotalAllPending();
@@ -1230,6 +1351,7 @@
 
             feeRecords[recKey] = {
                 paidAmount: dep,
+                status: 'INCLUDED',
                 date: getTodayDateStr()
             };
 
@@ -1240,17 +1362,27 @@
             renderFeesPassbookList();
         }
 
-        // Generate Clean Month-by-Month WhatsApp Breakdown (August Paid, Sept Balance, Oct Balance, Nov Paid...)
+        // Generate Accurate WhatsApp Ledger only showing months from Admission Month onwards (skips deleted months)
         function shareStudentPassbookWhatsApp(studId) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
 
             let totalDue = 0;
             let monthLedgerLines = [];
+            const sAdmMonth = s.admissionMonth || "January 2026";
+            const admIdx = allMonths.indexOf(sAdmMonth);
 
-            allMonths.forEach(m => {
+            allMonths.forEach((m, idx) => {
                 const recKey = `${s.id}_${m}`;
                 const rec = feeRecords[recKey];
+                const isExplicitlyExcluded = rec && rec.status === 'EXCLUDED';
+                const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
+
+                // Skip months prior to admission or deleted
+                if (isExplicitlyExcluded || isPriorToAdmission) {
+                    return;
+                }
+
                 const fee = Number(s.fee || 0);
                 const paid = rec ? Number(rec.paidAmount || 0) : 0;
                 const bal = Math.max(0, fee - paid);
@@ -1260,13 +1392,13 @@
                     monthLedgerLines.push(`• *${m}:* পৰিশোধিত (Paid) ✅`);
                 } else if (paid > 0 && paid < fee) {
                     monthLedgerLines.push(`• *${m}:* জমা দিলে ₹${paid}, বাকী ₹${bal} (Balance) ⚠️`);
-                } else if (rec && paid === 0) {
+                } else {
                     monthLedgerLines.push(`• *${m}:* অপৰিশোধিত (Unpaid, বাকী ₹${fee}) ❌`);
                 }
             });
 
             if (monthLedgerLines.length === 0) {
-                monthLedgerLines.push(`• নিয়মীয়া মাচুল: ₹${s.fee}/মাহ (খতিয়ান প্ৰস্তুত কৰা হোৱা নাই)`);
+                monthLedgerLines.push(`• নামভৰ্তিৰ মাহ: ${s.admissionMonth || 'August 2026'}`);
             }
 
             const upiId = '7896723247@upi';
@@ -1274,7 +1406,7 @@
             const note = encodeURIComponent(`Tuition Fee ${s.name}`);
             const upiLink = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${totalDue}&cu=INR&tn=${note}`;
 
-            const fullMessage = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (Gyan Kendra)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\nঠিকনা: বৰমেৰা, আগমণি, ধুবুৰী\\n--------------------------------\\nনমস্কাৰ, শ্ৰদ্ধাৰ অভিভাৱক।\\n\\nছাত্ৰ/ছাত্ৰীৰ নাম: *${s.name}*\\nশ্ৰেণী: *${s.class}*\\n\\n📋 *মাহেকীয়া মাচুলৰ খতিয়ান:*\\n${monthLedgerLines.join('\\n')}\\n--------------------------------\\n👉 *সৰ্বমুঠ বাকী থকা ধন: ₹${totalDue}*\\n\\nঅনুগ্ৰহ কৰি তলৰ অফিচিয়েল UPI যোগে মাচুল পৰিশোধ কৰক:\\n💳 *UPI ID:* \`${upiId}\`\\n👤 *একাউণ্ট:* DIPANKAR MALI\\n🔗 *ডাইৰেক্ট পেমেণ্ট লিংক:* ${upiLink}\\n\\nমাচুল পৰিশোধৰ পিছত অনুগ্ৰহ কৰি স্ক্ৰীনশ্বট প্ৰেৰণ কৰিব। ধন্যবাদ!`;
+            const fullMessage = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (Gyan Kendra)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\nঠিকনা: বৰমেৰা, আগমণি, ধুবুৰী\\n--------------------------------\\nনমস্কাৰ, শ্ৰদ্ধাৰ অভিভাৱক।\\n\\nছাত্ৰ/ছাত্ৰীৰ নাম: *${s.name}*\\nশ্ৰেণী: *${s.class}*\\nনামভৰ্তিৰ মাহ: *${s.admissionMonth || 'August 2026'}*\\n\\n📋 *মাহেকীয়া মাচুলৰ খতিয়ান:*\\n${monthLedgerLines.join('\\n')}\\n--------------------------------\\n👉 *সৰ্বমুঠ বাকী থকা মাচুল: ₹${totalDue}*\\n\\nঅনুগ্ৰহ কৰি তলৰ অফিচিয়েল UPI যোগে মাচুল পৰিশোধ কৰক:\\n💳 *UPI ID:* \`${upiId}\`\\n👤 *একাউণ্ট:* DIPANKAR MALI\\n🔗 *ডাইৰেক্ট পেমেণ্ট লিংক:* ${upiLink}\\n\\nমাচুল পৰিশোধৰ পিছত অনুগ্ৰহ কৰি স্ক্ৰীনশ্বট প্ৰেৰণ কৰিব। ধন্যবাদ!`;
 
             window.open(`https://wa.me/91${s.phone}?text=${encodeURIComponent(fullMessage)}`, '_blank');
         }
@@ -1325,25 +1457,9 @@
             renderNotices();
         }
 
-        function exportData() {
-            const fullBackup = { students, attendance, feeRecords, notices, exportDate: new Date().toISOString() };
-            const blob = new Blob([JSON.stringify(fullBackup, null, 2)], { type: "application/json" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `Gyan_Kendra_Backup_${getTodayDateStr()}.json`;
-            a.click();
-        }
-
         function getTodayDateStr() {
             const d = new Date();
             return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-        }
-
-        function getCurrentMonthKey() {
-            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            const d = new Date();
-            return `${months[d.getMonth()]} ${d.getFullYear()}`;
         }
 
         document.addEventListener('DOMContentLoaded', initApp);
