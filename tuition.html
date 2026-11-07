@@ -357,7 +357,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <h2 class="text-base font-bold text-slate-800">মাহেকীয়া মাচুল ব্যৱস্থাপনা</h2>
-                    <p class="text-[11px] text-slate-500">এডমিছন মাহৰ পৰা হিচাপ আৰু মাহ মচি পেলোৱাৰ সুবিধা</p>
+                    <p class="text-[11px] text-slate-500">এডমিছন মাহৰ পৰা হিচাপ আৰু পৰিষ্কাৰ WhatsApp খতিয়ান</p>
                 </div>
                 <div class="text-right">
                     <span class="text-[10px] text-slate-400 font-bold block">সৰ্বমুঠ বাকী</span>
@@ -420,7 +420,7 @@
         </button>
     </nav>
 
-    <!-- FULL STUDENT MONTHLY PASSBOOK MODAL (WITH DIRECT DELETE / EXCLUDE BUTTON) -->
+    <!-- FULL STUDENT MONTHLY PASSBOOK MODAL -->
     <div id="studentPassbookModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-3">
         <div class="bg-white rounded-2xl w-full max-w-sm max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
             <div class="bg-blue-900 text-white p-3.5 flex justify-between items-start flex-shrink-0">
@@ -442,13 +442,12 @@
                 <span class="text-lg font-black text-rose-600" id="pbModalTotalBalance">₹0</span>
             </div>
 
-            <!-- Scrollable Months List with Paid, Unpaid, Partial, and DELETE / EXCLUDE Options -->
             <div class="p-3 overflow-y-auto space-y-2.5 flex-grow" id="pbModalMonthsList"></div>
 
             <div class="p-3 bg-white border-t border-slate-200 flex-shrink-0 space-y-2">
                 <button id="pbWhatsAppShareBtn" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span>সঠিক মাহেকীয়া খতিয়ান WhatsApp ত পঠাওক</span>
+                    <span>পৰিষ্কাৰ খতিয়ান WhatsApp ত পঠাওক</span>
                 </button>
             </div>
         </div>
@@ -521,7 +520,7 @@
         </div>
     </div>
 
-    <!-- ADD/EDIT STUDENT MODAL (NOW WITH ADMISSION MONTH SELECTOR) -->
+    <!-- ADD/EDIT STUDENT MODAL -->
     <div id="studentModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-3">
@@ -559,7 +558,6 @@
                     </div>
                 </div>
 
-                <!-- ADMISSION MONTH SELECTOR (PREVENTS PREVIOUS MONTHS DUE BILLING) -->
                 <div class="bg-amber-50 p-2.5 rounded-xl border border-amber-200">
                     <label class="block text-[11px] font-bold text-amber-950 mb-1">
                         <i class="fa-solid fa-calendar-check text-amber-600 mr-1"></i>নামভৰ্তিৰ মাহ (Admission Month) *
@@ -761,14 +759,40 @@
                 return;
             }
 
-            const waText = `*জ্ঞান কেন্দ্ৰ - প্ৰশ্ন আৰু সংশয় প'ৰ্টেল*\\n\\nনমস্কাৰ মালি ছাৰ,\\n\\n👤 *নাম:* ${name}\\n📚 *শ্ৰেণী:* ${sClass}\\n📖 *বিষয়:* ${subject}\\n\\n❓ *প্ৰশ্ন / জানিবলগীয়া কথা:*\\n"${msg}"\\n\\nঅনুগ্ৰহ কৰি সময় পালে উত্তৰ জনাব। ধন্যবাদ!`;
-            window.open(`https://wa.me/917896723247?text=${encodeURIComponent(waText)}`, '_blank');
+            const messageLines = [
+                "জ্ঞান কেন্দ্ৰ - প্ৰশ্ন আৰু সংশয় প'ৰ্টেল",
+                "",
+                "নমস্কাৰ মালি ছাৰ,",
+                "নাম: " + name,
+                "শ্ৰেণী: " + sClass,
+                "বিষয়: " + subject,
+                "",
+                "প্ৰশ্ন বা জানিবলগীয়া কথা:",
+                msg,
+                "",
+                "অনুগ্ৰহ কৰি সময় পালে উত্তৰ জনাব। ধন্যবাদ।"
+            ];
+
+            window.open("https://wa.me/917896723247?text=" + encodeURIComponent(messageLines.join("\n")), "_blank");
         }
 
         function shareDoubtPortalToWhatsApp() {
             const portalUrl = window.location.href.split('#')[0];
-            const shareText = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (বৰমেৰা)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\n\\nশ্ৰদ্ধাৰ অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰীসকল,\\nপঢ়া-শুনাৰ যিকোনো প্ৰশ্ন, হোমৱৰ্ক বা মাচুল পৰিশোধৰ বাবে আমাৰ অনলাইন প'ৰ্টেল ব্যৱহাৰ কৰক:\\n\\n🔗 *জ্ঞান কেন্দ্ৰ প'ৰ্টেল লিংক:*\\n${portalUrl}\\n\\n📞 *হেল্পলাইন নম্বৰ:* 7896723247\\nধন্যবাদ!`;
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
+            const messageLines = [
+                "জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ, বৰমেৰা",
+                "পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)",
+                "",
+                "শ্ৰদ্ধাৰ অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰীসকল,",
+                "পঢ়া-শুনাৰ যিকোনো প্ৰশ্ন, হোমৱৰ্ক বা মাচুল পৰিশোধৰ বাবে আমাৰ অনলাইন প'ৰ্টেল ব্যৱহাৰ কৰক:",
+                "",
+                "প'ৰ্টেল লিংক:",
+                portalUrl,
+                "",
+                "হেল্পলাইন নম্বৰ: 7896723247",
+                "ধন্যবাদ।"
+            ];
+
+            window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(messageLines.join("\n")), "_blank");
         }
 
         function updateMarquee() {
@@ -825,7 +849,6 @@
             calculateTotalAllPending();
         }
 
-        // Only count dues from student's admissionMonth onwards, and skip deleted/excluded months
         function calculateTotalAllPending() {
             let total = 0;
             students.forEach(s => {
@@ -836,12 +859,11 @@
                     const recKey = `${s.id}_${m}`;
                     const rec = feeRecords[recKey];
 
-                    // Check if month is deleted/excluded or prior to admission
                     const isExplicitlyExcluded = rec && rec.status === 'EXCLUDED';
                     const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
 
                     if (isExplicitlyExcluded || isPriorToAdmission) {
-                        return; // 0 due for this month!
+                        return;
                     }
 
                     const fee = Number(s.fee || 0);
@@ -1086,7 +1108,7 @@
                     const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
 
                     if (isExplicitlyExcluded || isPriorToAdmission) {
-                        return; // Not counted!
+                        return;
                     }
 
                     const fee = Number(s.fee || 0);
@@ -1121,12 +1143,10 @@
                             </div>
                         </div>
 
-                        <!-- Active Months Snapshot Tags -->
                         <div class="flex flex-wrap gap-1 pt-0.5">
                             ${activeMonthsBadges.length > 0 ? activeMonthsBadges.slice(-4).join('') : '<span class="text-[10px] text-slate-400">খতিয়ান চাবলৈ তলত ক্লিক কৰক</span>'}
                         </div>
 
-                        <!-- Action Buttons -->
                         <div class="flex items-center justify-between pt-1 border-t border-slate-100">
                             <button onclick="openStudentPassbookModal(${s.id})" class="px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-sm">
                                 <i class="fa-solid fa-book-bookmark text-[11px]"></i>
@@ -1164,7 +1184,6 @@
             renderFeesPassbookList();
         }
 
-        // Render Months with Direct Paid, Unpaid, Partial, AND DELETE / EXCLUDE BUTTON
         function renderPassbookModalMonths() {
             if (!activePassbookStudent) return;
             const s = activePassbookStudent;
@@ -1179,11 +1198,9 @@
                 const rec = feeRecords[recKey];
                 const fee = Number(s.fee || 0);
 
-                // Check exclusion / delete status
                 const isExplicitlyExcluded = rec && rec.status === 'EXCLUDED';
                 const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
 
-                // If Month is Deleted / Excluded / Prior to admission:
                 if (isExplicitlyExcluded || isPriorToAdmission) {
                     return `
                         <div class="bg-slate-100/80 p-2.5 rounded-xl border border-dashed border-slate-300 flex items-center justify-between opacity-75">
@@ -1193,7 +1210,6 @@
                                     ${isPriorToAdmission ? 'নামভৰ্তিৰ পূৰ্বৰ মাহ (বাদ দিয়া হৈছে)' : 'মচি দিয়া হৈছে (প্ৰযোজ্য নহয়)'}
                                 </span>
                             </div>
-                            <!-- Restore button if Mali Sir wants to include it -->
                             <button onclick="includeMonthAgain(${s.id}, '${month}')" class="px-2 py-1 bg-blue-100 hover:bg-blue-200 text-blue-900 rounded-lg text-[10px] font-bold shadow-sm flex items-center space-x-1">
                                 <i class="fa-solid fa-rotate-left text-[9px]"></i>
                                 <span>যোগ কৰক</span>
@@ -1226,27 +1242,22 @@
                             ${statusBadge}
                         </div>
                         
-                        <!-- Actions Grid: Paid, Unpaid, Partial, and DELETE / EXCLUDE -->
                         <div class="grid grid-cols-4 gap-1 pt-1">
-                            <!-- Paid -->
                             <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'PAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPaid ? 'bg-emerald-700 text-white shadow' : 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'}">
                                 <i class="fa-solid fa-check text-[9px]"></i>
                                 <span>Paid</span>
                             </button>
 
-                            <!-- Unpaid -->
                             <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'UNPAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isUnpaid ? 'bg-rose-700 text-white shadow' : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}">
                                 <i class="fa-solid fa-xmark text-[9px]"></i>
                                 <span>Unpaid</span>
                             </button>
 
-                            <!-- Partial Deposit -->
                             <button onclick="openPaymentModal(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPartial ? 'bg-amber-600 text-white shadow' : 'bg-amber-100 text-amber-900 hover:bg-amber-200'}">
                                 <i class="fa-solid fa-pen text-[9px]"></i>
                                 <span>জমা/Edit</span>
                             </button>
 
-                            <!-- DELETE / EXCLUDE THIS MONTH -->
                             <button onclick="excludeOrDeleteMonth(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black bg-slate-200 hover:bg-rose-100 text-rose-700 flex items-center justify-center space-x-0.5 transition" title="এই মাহটোৰ মাচুল মচি পেলাওক">
                                 <i class="fa-solid fa-trash-can text-[9px]"></i>
                                 <span>বাদ দিয়ক</span>
@@ -1259,7 +1270,6 @@
             document.getElementById('pbModalTotalBalance').innerText = '₹' + totalDue;
         }
 
-        // Direct Toggle: Full Paid OR Full Unpaid
         function setMonthFeeStatus(studId, month, type) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
@@ -1284,7 +1294,6 @@
             calculateTotalAllPending();
         }
 
-        // DELETE / EXCLUDE Month for this specific student (Zeroes dues!)
         function excludeOrDeleteMonth(studId, month) {
             if (confirm(`আপুনি সঁচাকৈয়ে এই ছাত্ৰজনৰ বাবে ${month} মাহৰ মাচুল মচি পেলাব (বাদ দিব) বিচাৰেনে?`)) {
                 const recKey = `${studId}_${month}`;
@@ -1299,7 +1308,6 @@
             }
         }
 
-        // RESTORE / INCLUDE Month back
         function includeMonthAgain(studId, month) {
             const recKey = `${studId}_${month}`;
             feeRecords[recKey] = {
@@ -1312,7 +1320,6 @@
             calculateTotalAllPending();
         }
 
-        // Custom Partial Payment Modal
         function openPaymentModal(studId, month) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
@@ -1362,7 +1369,7 @@
             renderFeesPassbookList();
         }
 
-        // Generate Accurate WhatsApp Ledger only showing months from Admission Month onwards (skips deleted months)
+        // ================= CLEAN WHATSAPP MESSAGE GENERATOR (NO SYMBOLS, NO ESCAPES) =================
         function shareStudentPassbookWhatsApp(studId) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
@@ -1378,7 +1385,7 @@
                 const isExplicitlyExcluded = rec && rec.status === 'EXCLUDED';
                 const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
 
-                // Skip months prior to admission or deleted
+                // Skip months prior to admission or explicitly deleted
                 if (isExplicitlyExcluded || isPriorToAdmission) {
                     return;
                 }
@@ -1389,26 +1396,41 @@
                 totalDue += bal;
 
                 if (rec && paid >= fee) {
-                    monthLedgerLines.push(`• *${m}:* পৰিশোধিত (Paid) ✅`);
+                    monthLedgerLines.push(m + ": সম্পূৰ্ণ পৰিশোধিত");
                 } else if (paid > 0 && paid < fee) {
-                    monthLedgerLines.push(`• *${m}:* জমা দিলে ₹${paid}, বাকী ₹${bal} (Balance) ⚠️`);
+                    monthLedgerLines.push(m + ": জমা দিলে " + paid + " টকা, বাকী আছে " + bal + " টকা");
                 } else {
-                    monthLedgerLines.push(`• *${m}:* অপৰিশোধিত (Unpaid, বাকী ₹${fee}) ❌`);
+                    monthLedgerLines.push(m + ": বাকী আছে " + fee + " টকা");
                 }
             });
 
             if (monthLedgerLines.length === 0) {
-                monthLedgerLines.push(`• নামভৰ্তিৰ মাহ: ${s.admissionMonth || 'August 2026'}`);
+                monthLedgerLines.push("নামভৰ্তিৰ মাহ: " + (s.admissionMonth || "August 2026"));
             }
 
-            const upiId = '7896723247@upi';
-            const payeeName = encodeURIComponent('DIPANKAR MALI');
-            const note = encodeURIComponent(`Tuition Fee ${s.name}`);
-            const upiLink = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${totalDue}&cu=INR&tn=${note}`;
+            const cleanLines = [
+                "জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ",
+                "পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)",
+                "ঠিকনা: বৰমেৰা, আগমণি, ধুবুৰী",
+                "",
+                "নমস্কাৰ শ্ৰদ্ধাৰ অভিভাৱক,",
+                "ছাত্ৰ ছাত্ৰীৰ নাম: " + s.name,
+                "শ্ৰেণী: " + s.class,
+                "নামভৰ্তিৰ মাহ: " + (s.admissionMonth || "August 2026"),
+                "",
+                "মাহেকীয়া মাচুলৰ খতিয়ান:",
+                monthLedgerLines.join("\n"),
+                "",
+                "সৰ্বমুঠ বাকী থকা মাচুল: " + totalDue + " টকা",
+                "",
+                "মাচুল পৰিশোধৰ UPI ID: 7896723247@upi",
+                "একাউণ্টৰ নাম: DIPANKAR MALI",
+                "",
+                "অনুগ্ৰহ কৰি বাকী মাচুল পৰিশোধ কৰি জনাব। ধন্যবাদ।"
+            ];
 
-            const fullMessage = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (Gyan Kendra)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\nঠিকনা: বৰমেৰা, আগমণি, ধুবুৰী\\n--------------------------------\\nনমস্কাৰ, শ্ৰদ্ধাৰ অভিভাৱক।\\n\\nছাত্ৰ/ছাত্ৰীৰ নাম: *${s.name}*\\nশ্ৰেণী: *${s.class}*\\nনামভৰ্তিৰ মাহ: *${s.admissionMonth || 'August 2026'}*\\n\\n📋 *মাহেকীয়া মাচুলৰ খতিয়ান:*\\n${monthLedgerLines.join('\\n')}\\n--------------------------------\\n👉 *সৰ্বমুঠ বাকী থকা মাচুল: ₹${totalDue}*\\n\\nঅনুগ্ৰহ কৰি তলৰ অফিচিয়েল UPI যোগে মাচুল পৰিশোধ কৰক:\\n💳 *UPI ID:* \`${upiId}\`\\n👤 *একাউণ্ট:* DIPANKAR MALI\\n🔗 *ডাইৰেক্ট পেমেণ্ট লিংক:* ${upiLink}\\n\\nমাচুল পৰিশোধৰ পিছত অনুগ্ৰহ কৰি স্ক্ৰীনশ্বট প্ৰেৰণ কৰিব। ধন্যবাদ!`;
-
-            window.open(`https://wa.me/91${s.phone}?text=${encodeURIComponent(fullMessage)}`, '_blank');
+            const finalCleanMessage = cleanLines.join("\n");
+            window.open("https://wa.me/91" + s.phone + "?text=" + encodeURIComponent(finalCleanMessage), "_blank");
         }
 
         // ================= NOTICES =================
@@ -1420,7 +1442,16 @@
             }
 
             container.innerHTML = notices.map(n => {
-                const shareText = `*জ্ঞান কেন্দ্ৰ জাননী (Gyan Kendra - Mali Sir)*\\n\\n📌 *${n.title}*\\n${n.desc}\\n\\nতাৰিখ: ${n.date}`;
+                const noticeLines = [
+                    "জ্ঞান কেন্দ্ৰ জাননী",
+                    "মালি ছাৰ, বৰমেৰা",
+                    "",
+                    "বিষয়: " + n.title,
+                    "বিৱৰণ: " + n.desc,
+                    "তাৰিখ: " + n.date
+                ];
+                const cleanShareText = noticeLines.join("\n");
+
                 return `
                     <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm space-y-2">
                         <div class="flex justify-between items-start">
@@ -1429,7 +1460,7 @@
                         </div>
                         <p class="text-xs text-slate-600">${n.desc}</p>
                         <div class="flex justify-end pt-1">
-                            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}" target="_blank" class="inline-flex items-center space-x-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] px-2.5 py-1 rounded-md font-medium">
+                            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(cleanShareText)}" target="_blank" class="inline-flex items-center space-x-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] px-2.5 py-1 rounded-md font-medium">
                                 <i class="fa-brands fa-whatsapp"></i>
                                 <span>WhatsApp ত শ্বেয়াৰ কৰক</span>
                             </a>
