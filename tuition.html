@@ -352,12 +352,12 @@
             <div id="attendanceListContainer" class="space-y-2"></div>
         </section>
 
-        <!-- TAB 7: ENHANCED MONTHLY FEES & PASSBOOK (ADMIN ONLY) -->
+        <!-- TAB 7: ENHANCED MONTHLY FEES & MANUAL MONTH PASSBOOK (ADMIN ONLY) -->
         <section id="tab-fees" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
                 <div>
                     <h2 class="text-base font-bold text-slate-800">মাহেকীয়া মাচুল ব্যৱস্থাপনা</h2>
-                    <p class="text-[11px] text-slate-500">এডমিছন মাহৰ পৰা হিচাপ আৰু পৰিষ্কাৰ WhatsApp খতিয়ান</p>
+                    <p class="text-[11px] text-slate-500">আপুনি নিজে যোগ কৰা মাহসমূহৰ সঠিক হিচাপ</p>
                 </div>
                 <div class="text-right">
                     <span class="text-[10px] text-slate-400 font-bold block">সৰ্বমুঠ বাকী</span>
@@ -365,8 +365,9 @@
                 </div>
             </div>
 
-            <div class="flex space-x-2">
-                <select id="feeStudentClassFilter" onchange="renderFeesPassbookList()" class="w-full bg-white px-3 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm font-bold text-blue-950">
+            <!-- Top Filter and Global Add Month Button -->
+            <div class="flex items-center space-x-2">
+                <select id="feeStudentClassFilter" onchange="renderFeesPassbookList()" class="flex-1 bg-white px-3 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm font-bold text-blue-950">
                     <option value="ALL">সকলো শ্ৰেণীৰ ছাত্ৰ-ছাত্ৰী</option>
                     <option value="Class 10">Class 10</option>
                     <option value="Class 9">Class 9</option>
@@ -380,8 +381,13 @@
                     <option value="Class 1">Class 1</option>
                     <option value="Nursery">Nursery / KG</option>
                 </select>
+                <button onclick="openBulkAddMonthModal()" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center space-x-1 shadow-sm whitespace-nowrap">
+                    <i class="fa-solid fa-calendar-plus text-xs"></i>
+                    <span>নতুন মাহ যোগ কৰক</span>
+                </button>
             </div>
 
+            <!-- Student Fee Cards -->
             <div id="feesPassbookContainer" class="space-y-3"></div>
         </section>
     </main>
@@ -420,7 +426,7 @@
         </button>
     </nav>
 
-    <!-- FULL STUDENT MONTHLY PASSBOOK MODAL -->
+    <!-- FULL STUDENT MONTHLY PASSBOOK MODAL (100% MANUAL MONTHS ONLY) -->
     <div id="studentPassbookModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-3">
         <div class="bg-white rounded-2xl w-full max-w-sm max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
             <div class="bg-blue-900 text-white p-3.5 flex justify-between items-start flex-shrink-0">
@@ -437,14 +443,20 @@
             <div class="bg-slate-50 border-b border-slate-200 px-4 py-2.5 flex justify-between items-center text-xs flex-shrink-0">
                 <div>
                     <span class="font-bold text-slate-600 block">সৰ্বমুঠ বাকী মাচুল:</span>
-                    <span class="text-[10px] text-slate-400" id="pbModalAdmissionNotice">নামভৰ্তিৰ মাহৰ পৰা ধাৰ্য</span>
+                    <span class="text-[10px] text-slate-400">কেৱল যোগ কৰা মাহসমূহৰ হিচাপ</span>
                 </div>
                 <span class="text-lg font-black text-rose-600" id="pbModalTotalBalance">₹0</span>
             </div>
 
+            <!-- Scrollable Months List (ONLY MANUALLY ADDED MONTHS APPEAR HERE) -->
             <div class="p-3 overflow-y-auto space-y-2.5 flex-grow" id="pbModalMonthsList"></div>
 
+            <!-- Footer: Add Month to this Student + WhatsApp Share -->
             <div class="p-3 bg-white border-t border-slate-200 flex-shrink-0 space-y-2">
+                <button onclick="openSingleAddMonthModal()" class="w-full py-2 bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    <span>এই ছাত্ৰজনৰ নামত নতুন মাহ যোগ কৰক</span>
+                </button>
                 <button id="pbWhatsAppShareBtn" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span>পৰিষ্কাৰ খতিয়ান WhatsApp ত পঠাওক</span>
@@ -453,7 +465,70 @@
         </div>
     </div>
 
-    <!-- RECORD PAYMENT MODAL -->
+    <!-- MODAL TO MANUALLY ADD A MONTH (SINGLE OR BULK) -->
+    <div id="addMonthModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-xs p-5 shadow-2xl space-y-3">
+            <div class="flex justify-between items-center">
+                <h3 class="font-bold text-sm text-slate-800" id="addMonthModalTitle">নতুন মাহ যোগ কৰক</h3>
+                <button onclick="closeAddMonthModal()" class="text-slate-400 hover:text-slate-700 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-2.5">
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-600 mb-1">কোনটো মাহ যোগ কৰিব? *</label>
+                    <select id="selectMonthToAdd" class="w-full text-xs font-bold px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600 text-blue-900">
+                        <option value="August 2026" selected>August 2026</option>
+                        <option value="September 2026">September 2026</option>
+                        <option value="October 2026">October 2026</option>
+                        <option value="November 2026">November 2026</option>
+                        <option value="December 2026">December 2026</option>
+                        <option value="July 2026">July 2026</option>
+                        <option value="June 2026">June 2026</option>
+                        <option value="May 2026">May 2026</option>
+                        <option value="April 2026">April 2026</option>
+                        <option value="March 2026">March 2026</option>
+                        <option value="February 2026">February 2026</option>
+                        <option value="January 2026">January 2026</option>
+                    </select>
+                </div>
+
+                <div id="bulkClassOptionDiv" class="hidden">
+                    <label class="block text-[11px] font-bold text-slate-600 mb-1">কাৰ নামত যোগ কৰিব? *</label>
+                    <select id="bulkAddClassSelect" class="w-full text-xs font-bold px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600 text-slate-700">
+                        <option value="ALL">সকলো শ্ৰেণীৰ ছাত্ৰ-ছাত্ৰী</option>
+                        <option value="Class 10">Class 10 ৰ সকলো ছাত্ৰ</option>
+                        <option value="Class 9">Class 9 ৰ সকলো ছাত্ৰ</option>
+                        <option value="Class 8">Class 8 ৰ সকলো ছাত্ৰ</option>
+                        <option value="Class 7">Class 7 ৰ সকলো ছাত্ৰ</option>
+                        <option value="Class 6">Class 6 ৰ সকলো ছাত্ৰ</option>
+                        <option value="Class 5">Class 5 ৰ সকলো ছাত্ৰ</option>
+                        <option value="Class 4">Class 4 ৰ সকলো ছাত্ৰ</option>
+                        <option value="Class 3">Class 3 ৰ সকলো ছাত্ৰ</option>
+                        <option value="Class 2">Class 2 ৰ সকলো ছাত্ৰ</option>
+                        <option value="Class 1">Class 1 ৰ সকলো ছাত্ৰ</option>
+                        <option value="Nursery">Nursery ৰ সকলো ছাত্ৰ</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-600 mb-1">প্ৰাৰম্ভিক অৱস্থা</label>
+                    <select id="addMonthInitialStatus" class="w-full text-xs font-bold px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600 text-slate-700">
+                        <option value="UNPAID">অপৰিশোধিত (Unpaid - বাকী থাকিব)</option>
+                        <option value="PAID">পৰিশোধিত (Paid - সম্পূৰ্ণ জমা)</option>
+                    </select>
+                </div>
+
+                <div class="flex space-x-2 pt-2">
+                    <button onclick="closeAddMonthModal()" class="flex-1 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg">বাতিল</button>
+                    <button onclick="confirmAddMonthExecution()" class="flex-1 py-2 text-xs font-bold text-white bg-emerald-600 rounded-lg shadow">যোগ কৰক</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RECORD PAYMENT MODAL (CUSTOM AMOUNT) -->
     <div id="paymentModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl space-y-3">
             <div class="flex justify-between items-center">
@@ -558,27 +633,6 @@
                     </div>
                 </div>
 
-                <div class="bg-amber-50 p-2.5 rounded-xl border border-amber-200">
-                    <label class="block text-[11px] font-bold text-amber-950 mb-1">
-                        <i class="fa-solid fa-calendar-check text-amber-600 mr-1"></i>নামভৰ্তিৰ মাহ (Admission Month) *
-                    </label>
-                    <select id="sAdmissionMonth" required class="w-full text-xs font-bold px-2.5 py-2 bg-white border border-amber-300 rounded-lg outline-none focus:border-blue-600 text-blue-900">
-                        <option value="January 2026">January 2026</option>
-                        <option value="February 2026">February 2026</option>
-                        <option value="March 2026">March 2026</option>
-                        <option value="April 2026">April 2026</option>
-                        <option value="May 2026">May 2026</option>
-                        <option value="June 2026">June 2026</option>
-                        <option value="July 2026">July 2026</option>
-                        <option value="August 2026" selected>August 2026</option>
-                        <option value="September 2026">September 2026</option>
-                        <option value="October 2026">October 2026</option>
-                        <option value="November 2026">November 2026</option>
-                        <option value="December 2026">December 2026</option>
-                    </select>
-                    <p class="text-[10px] text-amber-800 mt-1">এই মাহৰ আগৰ মাহবোৰৰ কোনো বাকী টকা ছাত্ৰজনৰ নামত যোগ নহ'ব।</p>
-                </div>
-
                 <div class="grid grid-cols-2 gap-2">
                     <div>
                         <label class="block text-[11px] font-bold text-slate-600 mb-1">ৰোল নম্বৰ</label>
@@ -629,17 +683,17 @@
 
     <!-- Application Script Engine -->
     <script>
-        const allMonths = [
-            "January 2026", "February 2026", "March 2026", "April 2026", "May 2026", "June 2026",
-            "July 2026", "August 2026", "September 2026", "October 2026", "November 2026", "December 2026"
-        ];
-
         let isAdminUnlocked = false;
         let storedPin = localStorage.getItem('gk_admin_pin') || '1234';
 
         let students = JSON.parse(localStorage.getItem('gk_my_students')) || [];
         let attendance = JSON.parse(localStorage.getItem('gk_my_attendance')) || {};
+        
+        // In the new system: Each student has an explicit list of months Mali Sir added!
+        // gk_student_billed_months: { studentId: [ "August 2026", "September 2026", "October 2026" ] }
+        let studentBilledMonths = JSON.parse(localStorage.getItem('gk_student_billed_months')) || {};
         let feeRecords = JSON.parse(localStorage.getItem('gk_my_feeRecords')) || {};
+        
         let notices = JSON.parse(localStorage.getItem('gk_my_notices')) || [
             { id: 1, title: "HSLC বিশেষ মক টেষ্ট", desc: "জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ • পৰিচালক: দীপংকৰ মালি (মালি ছাৰ), বৰমেৰা • নিয়মীয়া উপস্থিতি বাধ্যতামূলক।", date: "2026-11-08" }
         ];
@@ -647,6 +701,7 @@
         let activePassbookStudent = null;
         let activePayStudent = null;
         let activePayMonth = null;
+        let isBulkAddMonth = false;
 
         let logoTapCount = 0;
         let logoTapTimeout = null;
@@ -849,23 +904,14 @@
             calculateTotalAllPending();
         }
 
+        // CALCULATES DUES ONLY FOR MONTHS MANUALLY ADDED BY MALI SIR
         function calculateTotalAllPending() {
             let total = 0;
             students.forEach(s => {
-                const sAdmMonth = s.admissionMonth || "January 2026";
-                const admIdx = allMonths.indexOf(sAdmMonth);
-
-                allMonths.forEach((m, idx) => {
+                const sMonths = studentBilledMonths[s.id] || [];
+                sMonths.forEach(m => {
                     const recKey = `${s.id}_${m}`;
                     const rec = feeRecords[recKey];
-
-                    const isExplicitlyExcluded = rec && rec.status === 'EXCLUDED';
-                    const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
-
-                    if (isExplicitlyExcluded || isPriorToAdmission) {
-                        return;
-                    }
-
                     const fee = Number(s.fee || 0);
                     const paid = rec ? Number(rec.paidAmount || 0) : 0;
                     total += Math.max(0, fee - paid);
@@ -903,39 +949,44 @@
                 return;
             }
 
-            container.innerHTML = filtered.map(s => `
-                <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div>
-                        <div class="flex items-center space-x-2">
-                            <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-700 text-[10px] font-bold flex items-center justify-center border border-slate-200">#${s.roll || s.id}</span>
-                            <h4 class="font-bold text-xs text-slate-800">${s.name}</h4>
-                            <span class="text-[9px] bg-blue-100 text-blue-800 font-bold px-1.5 py-0.5 rounded">${s.class}</span>
+            container.innerHTML = filtered.map(s => {
+                const sMonths = studentBilledMonths[s.id] || [];
+                return `
+                    <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-700 text-[10px] font-bold flex items-center justify-center border border-slate-200">#${s.roll || s.id}</span>
+                                <h4 class="font-bold text-xs text-slate-800">${s.name}</h4>
+                                <span class="text-[9px] bg-blue-100 text-blue-800 font-bold px-1.5 py-0.5 rounded">${s.class}</span>
+                            </div>
+                            <p class="text-[11px] text-slate-500 mt-0.5 ml-8">মাচুল: ₹${s.fee}/মাহ • যোগ কৰা মাহ: <span class="font-bold text-blue-900">${sMonths.length} টা</span></p>
+                            <p class="text-[11px] text-slate-500 ml-8">ফোন: ${s.phone}</p>
                         </div>
-                        <p class="text-[11px] text-slate-500 mt-0.5 ml-8"><i class="fa-solid fa-calendar-check text-[9px] mr-1 text-amber-600"></i>এডমিছন: <span class="font-bold text-slate-700">${s.admissionMonth || 'January 2026'}</span></p>
-                        <p class="text-[11px] text-emerald-700 font-bold ml-8">মাচুল: ₹${s.fee}/মাহ • ফোন: ${s.phone}</p>
+                        <div class="flex items-center space-x-1.5">
+                            <a href="tel:${s.phone}" class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-[11px] hover:bg-blue-100">
+                                <i class="fa-solid fa-phone"></i>
+                            </a>
+                            <a href="https://wa.me/91${s.phone}?text=${encodeURIComponent(`নমস্কাৰ, জ্ঞান কেন্দ্ৰৰ (Mali Sir) তৰফৰ পৰা যোগাযোগ কৰা হৈছে।`)}" target="_blank" class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[11px]">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                            <button onclick="editStudent(${s.id})" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-[11px]" title="সম্পাদনা">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button onclick="deleteStudent(${s.id}, '${s.name}')" class="w-7 h-7 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-100 flex items-center justify-center text-[11px]" title="মচি পেলাওক">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="flex items-center space-x-1.5">
-                        <a href="tel:${s.phone}" class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-[11px] hover:bg-blue-100">
-                            <i class="fa-solid fa-phone"></i>
-                        </a>
-                        <a href="https://wa.me/91${s.phone}?text=${encodeURIComponent(`নমস্কাৰ, জ্ঞান কেন্দ্ৰৰ (Mali Sir) তৰফৰ পৰা যোগাযোগ কৰা হৈছে।`)}" target="_blank" class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[11px]">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-                        <button onclick="editStudent(${s.id})" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-[11px]" title="সম্পাদনা">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button onclick="deleteStudent(${s.id}, '${s.name}')" class="w-7 h-7 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-100 flex items-center justify-center text-[11px]" title="মচি পেলাওক">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function deleteStudent(id, name) {
             if (confirm(`আপুনি সঁচাকৈয়ে "${name}" ক সম্পূৰ্ণ তালিকাৰ পৰা মচি পেলাব বিচাৰেনে?`)) {
                 students = students.filter(s => s.id !== id);
+                delete studentBilledMonths[id];
                 localStorage.setItem('gk_my_students', JSON.stringify(students));
+                localStorage.setItem('gk_student_billed_months', JSON.stringify(studentBilledMonths));
                 renderStudents();
                 renderDashboard();
                 renderAttendance();
@@ -947,7 +998,6 @@
             document.getElementById('studentId').value = '';
             document.getElementById('studentForm').reset();
             document.getElementById('modalStudentTitle').innerText = 'নতুন ছাত্ৰ-ছাত্ৰীৰ নামভৰ্তি';
-            document.getElementById('sAdmissionMonth').value = 'August 2026';
             document.getElementById('studentModal').classList.remove('hidden');
         }
 
@@ -958,7 +1008,6 @@
             document.getElementById('sName').value = s.name;
             document.getElementById('sClass').value = s.class;
             document.getElementById('sFee').value = s.fee;
-            document.getElementById('sAdmissionMonth').value = s.admissionMonth || 'August 2026';
             document.getElementById('sRoll').value = s.roll || '';
             document.getElementById('sPhone').value = s.phone;
             document.getElementById('sBatch').value = s.batch || '';
@@ -973,13 +1022,13 @@
         function saveStudent(e) {
             e.preventDefault();
             const idVal = document.getElementById('studentId').value;
+            const studId = idVal ? Number(idVal) : Date.now();
             const newObj = {
-                id: idVal ? Number(idVal) : Date.now(),
+                id: studId,
                 roll: document.getElementById('sRoll').value ? Number(document.getElementById('sRoll').value) : (students.length + 1),
                 name: document.getElementById('sName').value.trim(),
                 class: document.getElementById('sClass').value,
                 fee: Number(document.getElementById('sFee').value),
-                admissionMonth: document.getElementById('sAdmissionMonth').value,
                 phone: document.getElementById('sPhone').value.trim(),
                 batch: document.getElementById('sBatch').value.trim()
             };
@@ -989,8 +1038,13 @@
                 if (idx !== -1) students[idx] = newObj;
             } else {
                 students.push(newObj);
+                // When a new student is added, initialize their months array
+                if (!studentBilledMonths[studId]) {
+                    studentBilledMonths[studId] = [];
+                }
             }
             localStorage.setItem('gk_my_students', JSON.stringify(students));
+            localStorage.setItem('gk_student_billed_months', JSON.stringify(studentBilledMonths));
             closeStudentModal();
             renderStudents();
             renderDashboard();
@@ -1078,7 +1132,7 @@
             renderDashboard();
         }
 
-        // ================= PASSBOOK & MONTH-BY-MONTH STATUS ENGINE =================
+        // ================= MANUAL MONTHS PASSBOOK ENGINE =================
         function renderFeesPassbookList() {
             const container = document.getElementById('feesPassbookContainer');
             const classFilter = document.getElementById('feeStudentClassFilter').value;
@@ -1096,33 +1150,25 @@
             }
 
             container.innerHTML = filtered.map(s => {
+                const sMonths = studentBilledMonths[s.id] || [];
                 let totalDue = 0;
-                let activeMonthsBadges = [];
-                const sAdmMonth = s.admissionMonth || "January 2026";
-                const admIdx = allMonths.indexOf(sAdmMonth);
+                let monthBadges = [];
 
-                allMonths.forEach((m, idx) => {
+                sMonths.forEach(m => {
                     const recKey = `${s.id}_${m}`;
                     const rec = feeRecords[recKey];
-                    const isExplicitlyExcluded = rec && rec.status === 'EXCLUDED';
-                    const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
-
-                    if (isExplicitlyExcluded || isPriorToAdmission) {
-                        return;
-                    }
-
                     const fee = Number(s.fee || 0);
                     const paid = rec ? Number(rec.paidAmount || 0) : 0;
                     const bal = Math.max(0, fee - paid);
                     totalDue += bal;
 
                     const shortM = m.split(' ')[0];
-                    if (rec && paid >= fee) {
-                        activeMonthsBadges.push(`<span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">${shortM}: Paid</span>`);
-                    } else if (paid > 0 && paid < fee) {
-                        activeMonthsBadges.push(`<span class="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.5 rounded">${shortM}: জমা ₹${paid} (বাকী ₹${bal})</span>`);
-                    } else if (rec && paid === 0) {
-                        activeMonthsBadges.push(`<span class="text-[9px] bg-rose-100 text-rose-800 font-bold px-1.5 py-0.5 rounded">${shortM}: Unpaid (₹${fee})</span>`);
+                    if (paid >= fee) {
+                        monthBadges.push(`<span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">${shortM}: Paid</span>`);
+                    } else if (paid > 0) {
+                        monthBadges.push(`<span class="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.5 rounded">${shortM}: জমা ₹${paid} (বাকী ₹${bal})</span>`);
+                    } else {
+                        monthBadges.push(`<span class="text-[9px] bg-rose-100 text-rose-800 font-bold px-1.5 py-0.5 rounded">${shortM}: বাকী ₹${fee}</span>`);
                     }
                 });
 
@@ -1135,7 +1181,7 @@
                                     <h3 class="font-bold text-xs text-slate-800">${s.name}</h3>
                                     <span class="text-[9px] bg-blue-50 text-blue-800 font-bold px-1.5 py-0.5 rounded">${s.class}</span>
                                 </div>
-                                <p class="text-[11px] text-slate-500 mt-0.5 ml-7.5">মাচুল: ₹${s.fee}/মাহ • <span class="text-amber-800 font-semibold">এডমিছন: ${s.admissionMonth || 'January 2026'}</span></p>
+                                <p class="text-[11px] text-slate-500 mt-0.5 ml-7.5">মাচুল: ₹${s.fee}/মাহ • বিল কৰা মাহ: <span class="font-bold text-blue-900">${sMonths.length} টা</span></p>
                             </div>
                             <div class="text-right">
                                 <span class="text-[10px] text-slate-400 font-bold block">সৰ্বমুঠ বাকী</span>
@@ -1143,10 +1189,12 @@
                             </div>
                         </div>
 
+                        <!-- Active Months Badges -->
                         <div class="flex flex-wrap gap-1 pt-0.5">
-                            ${activeMonthsBadges.length > 0 ? activeMonthsBadges.slice(-4).join('') : '<span class="text-[10px] text-slate-400">খতিয়ান চাবলৈ তলত ক্লিক কৰক</span>'}
+                            ${monthBadges.length > 0 ? monthBadges.join('') : '<span class="text-[10px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded">কোনো মাহ যোগ কৰা হোৱা নাই (তলৰ বুটামত টিপি যোগ কৰক)</span>'}
                         </div>
 
+                        <!-- Action Buttons -->
                         <div class="flex items-center justify-between pt-1 border-t border-slate-100">
                             <button onclick="openStudentPassbookModal(${s.id})" class="px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-sm">
                                 <i class="fa-solid fa-book-bookmark text-[11px]"></i>
@@ -1169,7 +1217,6 @@
 
             document.getElementById('pbModalStudentName').innerText = `${s.name} (#${s.roll || s.id})`;
             document.getElementById('pbModalClassInfo').innerText = `${s.class} • মাহেকীয়া মাচুল: ₹${s.fee}`;
-            document.getElementById('pbModalAdmissionNotice').innerText = `এডমিছন মাহ: ${s.admissionMonth || 'January 2026'} (পূৰ্বৰ মাহ প্ৰযোজ্য নহয়)`;
 
             renderPassbookModalMonths();
             document.getElementById('studentPassbookModal').classList.remove('hidden');
@@ -1184,47 +1231,37 @@
             renderFeesPassbookList();
         }
 
+        // Render ONLY the months Mali Sir actually added for this student
         function renderPassbookModalMonths() {
             if (!activePassbookStudent) return;
             const s = activePassbookStudent;
             const container = document.getElementById('pbModalMonthsList');
+            const sMonths = studentBilledMonths[s.id] || [];
             let totalDue = 0;
 
-            const sAdmMonth = s.admissionMonth || "January 2026";
-            const admIdx = allMonths.indexOf(sAdmMonth);
+            if (sMonths.length === 0) {
+                container.innerHTML = `
+                    <div class="p-6 text-center bg-slate-50 border border-dashed border-slate-300 rounded-xl space-y-2">
+                        <i class="fa-regular fa-calendar-xmark text-2xl text-slate-400"></i>
+                        <p class="text-xs font-bold text-slate-600">কোনো মাহ যোগ কৰা হোৱা নাই</p>
+                        <p class="text-[11px] text-slate-400">তলৰ 'নতুন মাহ যোগ কৰক' বুটামত টিপি ছাত্ৰজনে পঢ়া মাহটো বাছক।</p>
+                    </div>
+                `;
+                document.getElementById('pbModalTotalBalance').innerText = '₹0';
+                return;
+            }
 
-            container.innerHTML = allMonths.map((month, idx) => {
+            container.innerHTML = sMonths.map(month => {
                 const recKey = `${s.id}_${month}`;
                 const rec = feeRecords[recKey];
                 const fee = Number(s.fee || 0);
-
-                const isExplicitlyExcluded = rec && rec.status === 'EXCLUDED';
-                const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
-
-                if (isExplicitlyExcluded || isPriorToAdmission) {
-                    return `
-                        <div class="bg-slate-100/80 p-2.5 rounded-xl border border-dashed border-slate-300 flex items-center justify-between opacity-75">
-                            <div>
-                                <span class="font-bold text-xs text-slate-500 line-through">${month}</span>
-                                <span class="text-[9px] bg-slate-200 text-slate-600 font-bold px-1.5 py-0.5 rounded ml-1.5">
-                                    ${isPriorToAdmission ? 'নামভৰ্তিৰ পূৰ্বৰ মাহ (বাদ দিয়া হৈছে)' : 'মচি দিয়া হৈছে (প্ৰযোজ্য নহয়)'}
-                                </span>
-                            </div>
-                            <button onclick="includeMonthAgain(${s.id}, '${month}')" class="px-2 py-1 bg-blue-100 hover:bg-blue-200 text-blue-900 rounded-lg text-[10px] font-bold shadow-sm flex items-center space-x-1">
-                                <i class="fa-solid fa-rotate-left text-[9px]"></i>
-                                <span>যোগ কৰক</span>
-                            </button>
-                        </div>
-                    `;
-                }
-
                 const paid = rec ? Number(rec.paidAmount || 0) : 0;
                 const balance = Math.max(0, fee - paid);
                 totalDue += balance;
 
-                const isPaid = rec && paid >= fee;
+                const isPaid = paid >= fee;
                 const isPartial = paid > 0 && paid < fee;
-                const isUnpaid = !rec || paid === 0;
+                const isUnpaid = paid === 0;
 
                 let statusBadge = '';
                 if (isPaid) {
@@ -1242,25 +1279,30 @@
                             ${statusBadge}
                         </div>
                         
+                        <!-- Actions Grid: Paid, Unpaid, Partial, and DELETE MONTH -->
                         <div class="grid grid-cols-4 gap-1 pt-1">
+                            <!-- Paid -->
                             <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'PAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPaid ? 'bg-emerald-700 text-white shadow' : 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'}">
                                 <i class="fa-solid fa-check text-[9px]"></i>
                                 <span>Paid</span>
                             </button>
 
+                            <!-- Unpaid -->
                             <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'UNPAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isUnpaid ? 'bg-rose-700 text-white shadow' : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}">
                                 <i class="fa-solid fa-xmark text-[9px]"></i>
                                 <span>Unpaid</span>
                             </button>
 
+                            <!-- Partial Deposit -->
                             <button onclick="openPaymentModal(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPartial ? 'bg-amber-600 text-white shadow' : 'bg-amber-100 text-amber-900 hover:bg-amber-200'}">
                                 <i class="fa-solid fa-pen text-[9px]"></i>
                                 <span>জমা/Edit</span>
                             </button>
 
-                            <button onclick="excludeOrDeleteMonth(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black bg-slate-200 hover:bg-rose-100 text-rose-700 flex items-center justify-center space-x-0.5 transition" title="এই মাহটোৰ মাচুল মচি পেলাওক">
+                            <!-- DELETE THIS MONTH -->
+                            <button onclick="deleteBilledMonth(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black bg-rose-50 hover:bg-rose-100 text-rose-700 flex items-center justify-center space-x-0.5 transition" title="এই মাহটো বহীৰ পৰা মচি পেলাওক">
                                 <i class="fa-solid fa-trash-can text-[9px]"></i>
-                                <span>বাদ দিয়ক</span>
+                                <span>মচক</span>
                             </button>
                         </div>
                     </div>
@@ -1270,6 +1312,7 @@
             document.getElementById('pbModalTotalBalance').innerText = '₹' + totalDue;
         }
 
+        // Direct Toggle: Full Paid OR Full Unpaid
         function setMonthFeeStatus(studId, month, type) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
@@ -1278,13 +1321,11 @@
             if (type === 'PAID') {
                 feeRecords[recKey] = {
                     paidAmount: Number(s.fee || 0),
-                    status: 'INCLUDED',
                     date: getTodayDateStr()
                 };
             } else {
                 feeRecords[recKey] = {
                     paidAmount: 0,
-                    status: 'INCLUDED',
                     date: ''
                 };
             }
@@ -1294,32 +1335,101 @@
             calculateTotalAllPending();
         }
 
-        function excludeOrDeleteMonth(studId, month) {
-            if (confirm(`আপুনি সঁচাকৈয়ে এই ছাত্ৰজনৰ বাবে ${month} মাহৰ মাচুল মচি পেলাব (বাদ দিব) বিচাৰেনে?`)) {
-                const recKey = `${studId}_${month}`;
-                feeRecords[recKey] = {
-                    paidAmount: 0,
-                    status: 'EXCLUDED',
-                    date: ''
-                };
+        // DELETE MONTH FOR THIS STUDENT
+        function deleteBilledMonth(studId, month) {
+            if (confirm(`আপুনি সঁচাকৈয়ে এই ছাত্ৰজনৰ বহীৰ পৰা ${month} মাহটো মচি পেলাব বিচাৰেনে? (ইয়াৰ বাকী ধন শূন্য হৈ যাব)`)) {
+                if (studentBilledMonths[studId]) {
+                    studentBilledMonths[studId] = studentBilledMonths[studId].filter(m => m !== month);
+                    localStorage.setItem('gk_student_billed_months', JSON.stringify(studentBilledMonths));
+                }
+                delete feeRecords[`${studId}_${month}`];
                 localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
+
                 renderPassbookModalMonths();
                 calculateTotalAllPending();
             }
         }
 
-        function includeMonthAgain(studId, month) {
-            const recKey = `${studId}_${month}`;
-            feeRecords[recKey] = {
-                paidAmount: 0,
-                status: 'INCLUDED',
-                date: ''
-            };
-            localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
-            renderPassbookModalMonths();
-            calculateTotalAllPending();
+        // ================= ADD MONTH MODAL LOGIC =================
+        function openSingleAddMonthModal() {
+            if (!activePassbookStudent) return;
+            isBulkAddMonth = false;
+            document.getElementById('addMonthModalTitle').innerText = `${activePassbookStudent.name} ৰ নামত মাহ যোগ কৰক`;
+            document.getElementById('bulkClassOptionDiv').classList.add('hidden');
+            document.getElementById('addMonthModal').classList.remove('hidden');
         }
 
+        function openBulkAddMonthModal() {
+            isBulkAddMonth = true;
+            document.getElementById('addMonthModalTitle').innerText = 'নতুন মাহৰ মাচুল যোগ কৰক';
+            document.getElementById('bulkClassOptionDiv').classList.remove('hidden');
+            document.getElementById('addMonthModal').classList.remove('hidden');
+        }
+
+        function closeAddMonthModal() {
+            document.getElementById('addMonthModal').classList.add('hidden');
+        }
+
+        function confirmAddMonthExecution() {
+            const selectedMonth = document.getElementById('selectMonthToAdd').value;
+            const initStatus = document.getElementById('addMonthInitialStatus').value;
+
+            if (isBulkAddMonth) {
+                // Add to multiple students
+                const targetClass = document.getElementById('bulkAddClassSelect').value;
+                let targetStudents = students.filter(s => targetClass === 'ALL' || s.class === targetClass);
+
+                if (targetStudents.length === 0) {
+                    alert("কোনো ছাত্ৰ-ছাত্ৰী পোৱা নগ'ল!");
+                    return;
+                }
+
+                targetStudents.forEach(s => {
+                    if (!studentBilledMonths[s.id]) studentBilledMonths[s.id] = [];
+                    if (!studentBilledMonths[s.id].includes(selectedMonth)) {
+                        studentBilledMonths[s.id].push(selectedMonth);
+                    }
+                    const recKey = `${s.id}_${selectedMonth}`;
+                    if (!feeRecords[recKey]) {
+                        feeRecords[recKey] = {
+                            paidAmount: initStatus === 'PAID' ? Number(s.fee || 0) : 0,
+                            date: initStatus === 'PAID' ? getTodayDateStr() : ''
+                        };
+                    }
+                });
+
+                localStorage.setItem('gk_student_billed_months', JSON.stringify(studentBilledMonths));
+                localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
+                closeAddMonthModal();
+                renderFeesPassbookList();
+                calculateTotalAllPending();
+                alert(`সফলতাৰে ${targetStudents.length} জন ছাত্ৰৰ নামত ${selectedMonth} যোগ হ'ল!`);
+            } else {
+                // Add to single active student
+                if (!activePassbookStudent) return;
+                const s = activePassbookStudent;
+
+                if (!studentBilledMonths[s.id]) studentBilledMonths[s.id] = [];
+                if (!studentBilledMonths[s.id].includes(selectedMonth)) {
+                    studentBilledMonths[s.id].push(selectedMonth);
+                }
+
+                const recKey = `${s.id}_${selectedMonth}`;
+                feeRecords[recKey] = {
+                    paidAmount: initStatus === 'PAID' ? Number(s.fee || 0) : 0,
+                    date: initStatus === 'PAID' ? getTodayDateStr() : ''
+                };
+
+                localStorage.setItem('gk_student_billed_months', JSON.stringify(studentBilledMonths));
+                localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
+                closeAddMonthModal();
+                renderPassbookModalMonths();
+                calculateTotalAllPending();
+                alert(`${s.name} ৰ নামত ${selectedMonth} সফলতাৰে যোগ হ'ল!`);
+            }
+        }
+
+        // Custom Partial Payment Modal
         function openPaymentModal(studId, month) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
@@ -1358,7 +1468,6 @@
 
             feeRecords[recKey] = {
                 paidAmount: dep,
-                status: 'INCLUDED',
                 date: getTodayDateStr()
             };
 
@@ -1369,35 +1478,26 @@
             renderFeesPassbookList();
         }
 
-        // ================= CLEAN WHATSAPP MESSAGE GENERATOR (NO SYMBOLS, NO ESCAPES) =================
+        // ================= CLEAN WHATSAPP MESSAGE (ZERO SYMBOLS, SINGLE COMPLETE MESSAGE) =================
         function shareStudentPassbookWhatsApp(studId) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
 
             let totalDue = 0;
             let monthLedgerLines = [];
-            const sAdmMonth = s.admissionMonth || "January 2026";
-            const admIdx = allMonths.indexOf(sAdmMonth);
+            const sMonths = studentBilledMonths[s.id] || [];
 
-            allMonths.forEach((m, idx) => {
+            sMonths.forEach(m => {
                 const recKey = `${s.id}_${m}`;
                 const rec = feeRecords[recKey];
-                const isExplicitlyExcluded = rec && rec.status === 'EXCLUDED';
-                const isPriorToAdmission = (admIdx !== -1 && idx < admIdx && (!rec || rec.status !== 'INCLUDED'));
-
-                // Skip months prior to admission or explicitly deleted
-                if (isExplicitlyExcluded || isPriorToAdmission) {
-                    return;
-                }
-
                 const fee = Number(s.fee || 0);
                 const paid = rec ? Number(rec.paidAmount || 0) : 0;
                 const bal = Math.max(0, fee - paid);
                 totalDue += bal;
 
-                if (rec && paid >= fee) {
+                if (paid >= fee) {
                     monthLedgerLines.push(m + ": সম্পূৰ্ণ পৰিশোধিত");
-                } else if (paid > 0 && paid < fee) {
+                } else if (paid > 0) {
                     monthLedgerLines.push(m + ": জমা দিলে " + paid + " টকা, বাকী আছে " + bal + " টকা");
                 } else {
                     monthLedgerLines.push(m + ": বাকী আছে " + fee + " টকা");
@@ -1405,7 +1505,7 @@
             });
 
             if (monthLedgerLines.length === 0) {
-                monthLedgerLines.push("নামভৰ্তিৰ মাহ: " + (s.admissionMonth || "August 2026"));
+                monthLedgerLines.push("কোনো মাহৰ মাচুল ধাৰ্য কৰা হোৱা নাই");
             }
 
             const cleanLines = [
@@ -1416,7 +1516,6 @@
                 "নমস্কাৰ শ্ৰদ্ধাৰ অভিভাৱক,",
                 "ছাত্ৰ ছাত্ৰীৰ নাম: " + s.name,
                 "শ্ৰেণী: " + s.class,
-                "নামভৰ্তিৰ মাহ: " + (s.admissionMonth || "August 2026"),
                 "",
                 "মাহেকীয়া মাচুলৰ খতিয়ান:",
                 monthLedgerLines.join("\n"),
