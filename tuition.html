@@ -31,6 +31,9 @@
             </div>
         </div>
         <div class="flex items-center space-x-2">
+            <button onclick="resetTo696Students()" title="৬৯৬ জন ছাত্ৰ-ছাত্ৰী পুনৰ সংস্থাপন" class="p-2 bg-blue-800/80 rounded-lg text-emerald-300 text-xs hover:bg-blue-700">
+                <i class="fa-solid fa-arrows-rotate mr-1"></i>ৰিচেট
+            </button>
             <button onclick="exportData()" title="ডাটা বেকআপ" class="p-2 bg-blue-800/80 rounded-lg text-amber-300 text-sm hover:bg-blue-700">
                 <i class="fa-solid fa-cloud-arrow-down"></i>
             </button>
@@ -46,12 +49,12 @@
             <div class="bg-gradient-to-r from-blue-900 to-indigo-800 rounded-2xl p-4 text-white shadow-sm">
                 <div class="flex justify-between items-start">
                     <div>
-                        <span class="inline-block bg-amber-400 text-blue-950 font-bold text-[10px] px-2 py-0.5 rounded-full mb-1">সক্ৰিয় শৈক্ষিক বৰ্ষ ২০২৬-২৭</span>
+                        <span class="inline-block bg-amber-400 text-blue-950 font-bold text-[10px] px-2 py-0.5 rounded-full mb-1">শৈক্ষিক বৰ্ষ ২০২৬-২৭</span>
                         <h2 class="text-lg font-bold">নমস্কাৰ, মালি ছাৰ!</h2>
                         <p class="text-xs text-blue-200" id="currentDateAssamese">আজিৰ দিনটো শুভ হওক</p>
                     </div>
                     <div class="text-right">
-                        <span class="text-2xl font-black text-amber-300" id="dashTotalStudents">0</span>
+                        <span class="text-2xl font-black text-amber-300" id="dashTotalStudents">696</span>
                         <p class="text-[10px] text-blue-200">মুঠ ছাত্ৰ-ছাত্ৰী</p>
                     </div>
                 </div>
@@ -74,8 +77,54 @@
                         <i class="fa-solid fa-hand-holding-dollar"></i>
                     </div>
                     <div>
-                        <p class="text-[11px] text-slate-500 font-medium">বাকী মাচুল (Dues)</p>
+                        <p class="text-[11px] text-slate-500 font-medium">চলতি মাহৰ বাকী</p>
                         <h3 class="text-lg font-bold text-slate-800" id="dashPendingFees">₹0</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Class Distribution Summary Cards -->
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <h3 class="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center justify-between">
+                    <span>শ্ৰেণীভিত্তিক ছাত্ৰ-ছাত্ৰী সংখ্যা</span>
+                    <span class="text-[10px] text-blue-900 font-black">মুঠ: ৬৯৬ জন</span>
+                </h3>
+                <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                    <div class="bg-blue-50 p-2 rounded-lg border border-blue-100">
+                        <span class="text-[10px] text-slate-500 block">Class 10</span>
+                        <span class="font-bold text-blue-900 text-sm">২৫৫ জন</span>
+                    </div>
+                    <div class="bg-blue-50 p-2 rounded-lg border border-blue-100">
+                        <span class="text-[10px] text-slate-500 block">Class 9</span>
+                        <span class="font-bold text-blue-900 text-sm">১৫৩ জন</span>
+                    </div>
+                    <div class="bg-blue-50 p-2 rounded-lg border border-blue-100">
+                        <span class="text-[10px] text-slate-500 block">Class 8</span>
+                        <span class="font-bold text-blue-900 text-sm">৭৫ জন</span>
+                    </div>
+                    <div class="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                        <span class="text-[10px] text-slate-500 block">Class 7</span>
+                        <span class="font-bold text-slate-800 text-sm">৭৯ জন</span>
+                    </div>
+                    <div class="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                        <span class="text-[10px] text-slate-500 block">Class 6</span>
+                        <span class="font-bold text-slate-800 text-sm">২৯ জন</span>
+                    </div>
+                    <div class="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                        <span class="text-[10px] text-slate-500 block">Class 5</span>
+                        <span class="font-bold text-slate-800 text-sm">৩৭ জন</span>
+                    </div>
+                    <div class="bg-amber-50 p-2 rounded-lg border border-amber-100">
+                        <span class="text-[10px] text-slate-500 block">Class 4</span>
+                        <span class="font-bold text-amber-900 text-sm">৪৬ জন</span>
+                    </div>
+                    <div class="bg-amber-50 p-2 rounded-lg border border-amber-100">
+                        <span class="text-[10px] text-slate-500 block">Class 3</span>
+                        <span class="font-bold text-amber-900 text-sm">১৭ জন</span>
+                    </div>
+                    <div class="bg-amber-50 p-2 rounded-lg border border-amber-100">
+                        <span class="text-[10px] text-slate-500 block">Nursery</span>
+                        <span class="font-bold text-amber-900 text-sm">৫ জন</span>
                     </div>
                 </div>
             </div>
@@ -92,56 +141,56 @@
                         <i class="fa-solid fa-clipboard-user text-base mb-1"></i>
                         <span class="text-[11px] font-semibold text-center">উপস্থিতি লওক</span>
                     </button>
-                    <button onclick="switchTab('fees')" class="flex flex-col items-center justify-center p-2.5 bg-amber-50 text-amber-800 rounded-lg hover:bg-amber-100 transition">
-                        <i class="fa-solid fa-receipt text-base mb-1"></i>
-                        <span class="text-[11px] font-semibold text-center">মাচুল সংগ্ৰহ</span>
+                    <button onclick="switchTab('fees'); setFeeView('breakdown');" class="flex flex-col items-center justify-center p-2.5 bg-rose-50 text-rose-800 rounded-lg hover:bg-rose-100 transition">
+                        <i class="fa-solid fa-chart-pie text-base mb-1"></i>
+                        <span class="text-[11px] font-semibold text-center">মাহেকীয়া বাকী</span>
                     </button>
                 </div>
             </div>
-
-            <!-- Notice Highlight -->
-            <div class="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-xl">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-bullhorn text-amber-600"></i>
-                        <span class="text-xs font-bold text-amber-900">HSLC & বোৰ্ড পৰীক্ষা প্ৰস্তুতি</span>
-                    </div>
-                    <span class="text-[10px] bg-amber-200 text-amber-900 px-1.5 py-0.5 rounded">সজাগতা</span>
-                </div>
-                <p class="text-[11px] text-amber-800 mt-1">নিয়মীয়া উপস্থিতি আৰু সাপ্তাহিক মক টেষ্টত অংশগ্ৰহণ বাধ্যতামূলক।</p>
-            </div>
         </section>
 
-        <!-- TAB 2: STUDENTS -->
+        <!-- TAB 2: STUDENTS (WITH CLASS FILTER & INSTANT SEARCH) -->
         <section id="tab-students" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
-                <h2 class="text-base font-bold text-slate-800">ছাত্ৰ-ছাত্ৰীৰ তালিকা</h2>
+                <div>
+                    <h2 class="text-base font-bold text-slate-800">ছাত্ৰ-ছাত্ৰীৰ তালিকা</h2>
+                    <p class="text-[11px] text-slate-500" id="studentCountLabel">মুঠ: ৬৯৬ জন</p>
+                </div>
                 <button onclick="openAddStudentModal()" class="bg-blue-900 text-white text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1 shadow-sm">
                     <i class="fa-solid fa-plus"></i>
                     <span>নতুন নাম</span>
                 </button>
             </div>
 
+            <!-- Filters -->
             <div class="flex space-x-2">
                 <div class="relative flex-1">
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
-                    <input type="text" id="studentSearchInput" oninput="renderStudents()" placeholder="নাম বা ফোন নম্বৰ বিচাৰক..." class="w-full bg-white pl-8 pr-3 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm">
+                    <input type="text" id="studentSearchInput" oninput="renderStudents()" placeholder="নাম, ৰোল বা ফোন বিচাৰক..." class="w-full bg-white pl-8 pr-3 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm">
                 </div>
                 <select id="studentClassFilter" onchange="renderStudents()" class="bg-white px-2.5 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm font-medium">
-                    <option value="ALL">সকলো শ্ৰেণী</option>
-                    <option value="Class 10">Class 10</option>
-                    <option value="Class 9">Class 9</option>
-                    <option value="Class 8">Class 8</option>
-                    <option value="Class 7">Class 7</option>
-                    <option value="Class 6">Class 6</option>
-                    <option value="Primary">প্ৰাথমিক (N-5)</option>
+                    <option value="ALL">সকলো (৬৯৬)</option>
+                    <option value="Class 10" selected>Class 10 (২৫৫)</option>
+                    <option value="Class 9">Class 9 (১৫৩)</option>
+                    <option value="Class 8">Class 8 (৭৫)</option>
+                    <option value="Class 7">Class 7 (৭৯)</option>
+                    <option value="Class 6">Class 6 (২৯)</option>
+                    <option value="Class 5">Class 5 (৩৭)</option>
+                    <option value="Class 4">Class 4 (৪৬)</option>
+                    <option value="Class 3">Class 3 (১৭)</option>
+                    <option value="Class Nursery">Nursery (৫)</option>
                 </select>
             </div>
 
             <div id="studentsListContainer" class="space-y-2"></div>
+            <div id="studentLoadMoreBtn" class="pt-2 text-center hidden">
+                <button onclick="loadMoreStudents()" class="w-full py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-xl transition">
+                    আৰু ৪০ জন চাওক (Load More)
+                </button>
+            </div>
         </section>
 
-        <!-- TAB 3: ATTENDANCE -->
+        <!-- TAB 3: ATTENDANCE (WITH BATCH/CLASS SELECTOR) -->
         <section id="tab-attendance" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
                 <div>
@@ -149,6 +198,22 @@
                     <p class="text-[11px] text-slate-500" id="attDateLabel"></p>
                 </div>
                 <input type="date" id="attDatePicker" onchange="onAttDateChange()" class="text-xs bg-white border border-slate-200 rounded-lg px-2 py-1 outline-none font-semibold text-slate-700">
+            </div>
+
+            <!-- Attendance Class Selector -->
+            <div class="flex items-center space-x-2">
+                <select id="attClassFilter" onchange="renderAttendance()" class="w-full bg-white px-3 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm font-bold text-blue-950">
+                    <option value="Class 10">Class 10 ৰ উপস্থিতি (২৫৫ জন)</option>
+                    <option value="Class 9">Class 9 ৰ উপস্থিতি (১৫৩ জন)</option>
+                    <option value="Class 8">Class 8 ৰ উপস্থিতি (৭৫ জন)</option>
+                    <option value="Class 7">Class 7 ৰ উপস্থিতি (৭৯ জন)</option>
+                    <option value="Class 6">Class 6 ৰ উপস্থিতি (২৯ জন)</option>
+                    <option value="Class 5">Class 5 ৰ উপস্থিতি (৩৭ জন)</option>
+                    <option value="Class 4">Class 4 ৰ উপস্থিতি (৪৬ জন)</option>
+                    <option value="Class 3">Class 3 ৰ উপস্থিতি (১৭ জন)</option>
+                    <option value="Class Nursery">Nursery ৰ উপস্থিতি (৫ জন)</option>
+                    <option value="ALL">সকলো শ্ৰেণী একলগে (৬৯৬ জন)</option>
+                </select>
             </div>
 
             <div class="flex items-center justify-between bg-slate-200/70 p-2 rounded-xl text-xs">
@@ -162,23 +227,74 @@
             <div id="attendanceListContainer" class="space-y-2"></div>
         </section>
 
-        <!-- TAB 4: FEES -->
+        <!-- TAB 4: FEES (WITH MONTH-WISE PENDING BREAKDOWN) -->
         <section id="tab-fees" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
                 <div>
-                    <h2 class="text-base font-bold text-slate-800">মাহেকীয়া মাচুল (Fees)</h2>
-                    <p class="text-[11px] text-slate-500">হিচাপ আৰু WhatsApp ৰচিদ প্ৰেৰণ</p>
+                    <h2 class="text-base font-bold text-slate-800">মাচুল ব্যৱস্থাপনা</h2>
+                    <p class="text-[11px] text-slate-500">সংগ্ৰহ আৰু মাহেকীয়া বাকীৰ ভাগ</p>
                 </div>
-                <select id="feeMonthSelect" onchange="renderFees()" class="bg-white border border-slate-200 text-xs rounded-lg px-2 py-1 outline-none font-bold text-blue-900"></select>
+                <div class="text-right">
+                    <span class="text-[10px] text-slate-400 font-bold block">সৰ্বমুঠ বাকী</span>
+                    <span class="text-xs font-black text-rose-600" id="totalAllMonthsPending">₹0</span>
+                </div>
             </div>
 
-            <div class="flex space-x-2">
-                <button onclick="filterFees('ALL')" id="feeFilterAll" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-blue-900 text-white shadow-sm">সকলো</button>
-                <button onclick="filterFees('PENDING')" id="feeFilterPending" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200">বাকী (Pending)</button>
-                <button onclick="filterFees('PAID')" id="feeFilterPaid" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200">পৰিশোধ (Paid)</button>
+            <!-- View Switcher -->
+            <div class="grid grid-cols-2 gap-1 bg-slate-200/80 p-1 rounded-xl text-xs font-bold">
+                <button id="btnViewRegular" onclick="setFeeView('regular')" class="py-2 rounded-lg bg-blue-900 text-white shadow-sm transition">
+                    <i class="fa-solid fa-list-check mr-1"></i> মাহ অনুযায়ী হিচাপ
+                </button>
+                <button id="btnViewBreakdown" onclick="setFeeView('breakdown')" class="py-2 rounded-lg text-slate-600 hover:text-slate-900 transition">
+                    <i class="fa-solid fa-layer-group mr-1"></i> মাহেকীয়া বাকীৰ ভাগ
+                </button>
             </div>
 
-            <div id="feesListContainer" class="space-y-2"></div>
+            <!-- VIEW 1: REGULAR MONTH SELECTOR VIEW -->
+            <div id="feeRegularSection" class="space-y-3">
+                <div class="grid grid-cols-2 gap-2 bg-white p-2.5 rounded-xl border border-slate-200">
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 block mb-0.5">মাহ বাছক:</label>
+                        <select id="feeMonthSelect" onchange="renderFees()" class="w-full bg-slate-50 border border-slate-200 text-xs rounded-lg px-2 py-1.5 outline-none font-bold text-blue-900"></select>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 block mb-0.5">শ্ৰেণী বাছক:</label>
+                        <select id="feeClassSelect" onchange="renderFees()" class="w-full bg-slate-50 border border-slate-200 text-xs rounded-lg px-2 py-1.5 outline-none font-bold text-slate-700">
+                            <option value="ALL">সকলো শ্ৰেণী</option>
+                            <option value="Class 10">Class 10 (২৫৫)</option>
+                            <option value="Class 9">Class 9 (১৫৩)</option>
+                            <option value="Class 8">Class 8 (৭৫)</option>
+                            <option value="Class 7">Class 7 (৭৯)</option>
+                            <option value="Class 6">Class 6 (২৯)</option>
+                            <option value="Class 5">Class 5 (৩৭)</option>
+                            <option value="Class 4">Class 4 (৪৬)</option>
+                            <option value="Class 3">Class 3 (১৭)</option>
+                            <option value="Class Nursery">Nursery (৫)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex space-x-2">
+                    <button onclick="filterFees('ALL')" id="feeFilterAll" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-blue-900 text-white shadow-sm">সকলো</button>
+                    <button onclick="filterFees('PENDING')" id="feeFilterPending" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200">বাকী (Pending)</button>
+                    <button onclick="filterFees('PAID')" id="feeFilterPaid" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200">পৰিশোধ (Paid)</button>
+                </div>
+
+                <div id="feesListContainer" class="space-y-2"></div>
+            </div>
+
+            <!-- VIEW 2: MONTH-WISE BREAKDOWN VIEW -->
+            <div id="feeBreakdownSection" class="space-y-3 hidden">
+                <div class="bg-blue-50 border border-blue-200 p-3 rounded-xl flex items-center justify-between text-xs text-blue-900">
+                    <div>
+                        <p class="font-bold">মাহেকীয়া বাকীৰ তালিকা</p>
+                        <p class="text-[11px] text-blue-700">প্ৰতিটো মাহৰ সুকীয়া বাকী আৰু ছাত্ৰ-ছাত্ৰীৰ খতিয়ান</p>
+                    </div>
+                    <i class="fa-solid fa-calendar-days text-xl text-blue-700"></i>
+                </div>
+
+                <div id="monthBreakdownContainer" class="space-y-3"></div>
+            </div>
         </section>
 
         <!-- TAB 5: NOTICES -->
@@ -198,12 +314,16 @@
                 </h3>
                 <div class="space-y-1.5 text-xs text-slate-600 divide-y divide-slate-100">
                     <div class="pt-1 flex justify-between">
-                        <span class="font-medium">ৰাতিপুৱাৰ বেচ (Class 9 - 10):</span>
+                        <span class="font-medium">Class 9 & 10 (পুৱাৰ বেচ):</span>
                         <span class="font-bold text-slate-800">06:00 AM - 08:30 AM</span>
                     </div>
                     <div class="pt-1 flex justify-between">
-                        <span class="font-medium">গধূলিৰ বেচ (Class 6 - 8):</span>
+                        <span class="font-medium">Class 6, 7 & 8 (আবেলিৰ বেচ):</span>
                         <span class="font-bold text-slate-800">03:30 PM - 05:30 PM</span>
+                    </div>
+                    <div class="pt-1 flex justify-between">
+                        <span class="font-medium">প্ৰাথমিক (Nursery - Class 5):</span>
+                        <span class="font-bold text-slate-800">03:00 PM - 04:30 PM</span>
                     </div>
                     <div class="pt-1 flex justify-between">
                         <span class="font-medium">দেওবৰীয়া বিশেষ টেষ্ট:</span>
@@ -216,7 +336,7 @@
         </section>
     </main>
 
-    <!-- Bottom App Navigation Bar -->
+    <!-- Bottom Navigation Bar -->
     <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-2 px-3 z-40 flex justify-around items-center max-w-md mx-auto shadow-lg">
         <button onclick="switchTab('dashboard')" class="nav-btn active flex flex-col items-center text-blue-900" id="nav-dashboard">
             <i class="fa-solid fa-house text-lg"></i>
@@ -253,7 +373,7 @@
                 <input type="hidden" id="studentId">
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">সম্পূৰ্ণ নাম *</label>
-                    <input type="text" id="sName" required placeholder="যেনে: ৰাহুল ৰায়" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
+                    <input type="text" id="sName" required placeholder="যেনে: কৌশল শৰ্মা" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
                 </div>
                 <div class="grid grid-cols-2 gap-2">
                     <div>
@@ -267,9 +387,7 @@
                             <option value="Class 5">Class 5</option>
                             <option value="Class 4">Class 4</option>
                             <option value="Class 3">Class 3</option>
-                            <option value="Class 2">Class 2</option>
-                            <option value="Class 1">Class 1</option>
-                            <option value="Primary">Nursery / KG</option>
+                            <option value="Class Nursery">Nursery</option>
                         </select>
                     </div>
                     <div>
@@ -283,7 +401,7 @@
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">বেচ সময় / বিষয়</label>
-                    <input type="text" id="sBatch" placeholder="পুৱা 06:00 AM" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
+                    <input type="text" id="sBatch" placeholder="পুৱা 06:00 AM (Social Science)" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
                 </div>
                 <div class="flex space-x-2 pt-2">
                     <button type="button" onclick="closeStudentModal()" class="flex-1 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg">বাতিল</button>
@@ -309,7 +427,7 @@
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">বিৱৰণ *</label>
-                    <textarea id="noticeDesc" rows="3" required placeholder="জাননীৰ সবিশেষ ইয়াত লিখক..." class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600"></textarea>
+                    <textarea id="noticeDesc" rows="3" required placeholder="জাননীৰ সবিশেষ লিখক..." class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600"></textarea>
                 </div>
                 <div class="flex space-x-2 pt-2">
                     <button type="button" onclick="closeNoticeModal()" class="flex-1 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg">বাতিল</button>
@@ -319,23 +437,108 @@
         </div>
     </div>
 
-    <!-- Application Script -->
+    <!-- Application Engine Script -->
     <script>
-        const defaultStudents = [
-            { id: 1, name: "ৰাহুল ৰায়", class: "Class 10", fee: 600, phone: "9876543210", batch: "06:00 AM (Social Science)" },
-            { id: 2, name: "প্ৰিয়া বৰ্মন", class: "Class 10", fee: 600, phone: "9876543211", batch: "06:00 AM (Mathematics)" },
-            { id: 3, name: "দীপক মণ্ডল", class: "Class 9", fee: 500, phone: "9876543212", batch: "07:15 AM (General Science)" },
-            { id: 4, name: "পূজা সাহা", class: "Class 8", fee: 400, phone: "9876543213", batch: "03:30 PM (All Subjects)" }
+        const allMonths = [
+            "January 2026", "February 2026", "March 2026", "April 2026", "May 2026", "June 2026",
+            "July 2026", "August 2026", "September 2026", "October 2026", "November 2026", "December 2026"
         ];
 
-        let students = JSON.parse(localStorage.getItem('gk_students')) || defaultStudents;
+        // 696 Students Generator Function (Class 10: 255, 9: 153, 8: 75, 7: 79, 6: 29, 5: 37, 4: 46, 3: 17, Nursery: 5)
+        function generate696Students() {
+            const priority = [
+                { name: "কৌশিক সেন (Kaushik Sen)", class: "Class 10", fee: 600, phone: "7896723201", batch: "পুৱা 06:00 AM (Social Science)" },
+                { name: "বিনিতা মালি (Binita Mali)", class: "Class 10", fee: 600, phone: "7896723202", batch: "পুৱা 06:00 AM (Social Science)" },
+                { name: "অনিশ বৰ্মন (Anesh Barman)", class: "Class 10", fee: 600, phone: "7896723203", batch: "পুৱা 06:00 AM (Mathematics)" },
+                { name: "সোনালী (Sonali)", class: "Class 10", fee: 600, phone: "7896723204", batch: "পুৱা 06:00 AM (All Subjects)" },
+                { name: "শুভজিতা (Subhajita)", class: "Class 10", fee: 600, phone: "7896723205", batch: "পুৱা 06:00 AM (Science)" },
+                { name: "মিহিৰ (Mihir)", class: "Class 10", fee: 600, phone: "7896723206", batch: "পুৱা 06:00 AM (Mathematics)" }
+            ];
+
+            const firstNames = [
+                "ৰাহুল", "ৰাজ", "ৰুবুল", "আকাশ", "বিকাশ", "সুমিত", "প্ৰীতম", "দেৱজিৎ", "মানব", "অংকুৰ", 
+                "অনুপম", "জয়ন্ত", "বিশ্বজিৎ", "তন্ময়", "উৎপল", "ৰূপম", "সৌৰভ", "নয়ন", "পংকজ", "প্ৰসেনজিৎ", 
+                "সুজিত", "অভিজিৎ", "বিপুল", "দীপক", "ধ্ৰুৱ", "গৌৰৱ", "ভাস্কৰ", "ঋতুৰাজ", "চন্দন", "পাৰ্থ",
+                "প্ৰিয়া", "ৰিয়া", "পূজা", "সুস্মিতা", "বৰ্ণালী", "ৰূপালী", "দীপিকা", "সংগীতা", "ৰশ্মি", "অনামিকা", 
+                "মাম্পী", "তৃষ্ণা", "পাৰুল", "জয়ন্তী", "দিপালী", "ৰিংকী", "মৌচুমী", "ৰশ্মিতা", "বন্দনা", "মৃদুলা", 
+                "ৰিম্পী", "শতাব্দী", "পল্লৱী", "স্বাগতা", "ৰুপা", "টুম্পা", "নন্দিনী", "বিনীতা", "নিশা", "স্নিগ্ধা"
+            ];
+
+            const lastNames = [
+                "মালি", "বৰ্মন", "ৰায়", "সৰকাৰ", "দাস", "দেৱনাথ", "সেন", "সাহা", "নাথ", "মণ্ডল", 
+                "বিশ্বাস", "চৌধুৰী", "পল", "ঘোষ", "চক্ৰৱৰ্তী", "প্ৰধানী", "অধিকাৰী", "শীল", "মেধি"
+            ];
+
+            const classConfig = [
+                { name: "Class 10", count: 255, fee: 600, batch: "পুৱা 06:00 AM" },
+                { name: "Class 9", count: 153, fee: 500, batch: "পুৱা 07:15 AM" },
+                { name: "Class 8", count: 75, fee: 450, batch: "আবেলি 03:30 PM" },
+                { name: "Class 7", count: 79, fee: 450, batch: "আবেলি 03:30 PM" },
+                { name: "Class 6", count: 29, fee: 400, batch: "আবেলি 04:30 PM" },
+                { name: "Class 5", count: 37, fee: 350, batch: "আবেলি 04:30 PM" },
+                { name: "Class 4", count: 46, fee: 350, batch: "আবেলি 04:30 PM" },
+                { name: "Class 3", count: 17, fee: 300, batch: "আবেলি 03:00 PM" },
+                { name: "Class Nursery", count: 5, fee: 300, batch: "আবেলি 03:00 PM" }
+            ];
+
+            let list = [];
+            let idCounter = 1;
+
+            // Add requested priority students first
+            priority.forEach(p => {
+                list.push({
+                    id: idCounter,
+                    roll: idCounter,
+                    name: p.name,
+                    class: p.class,
+                    fee: p.fee,
+                    phone: p.phone,
+                    batch: p.batch
+                });
+                idCounter++;
+            });
+
+            // Populate remaining class allocations
+            classConfig.forEach(cfg => {
+                let alreadyAdded = list.filter(s => s.class === cfg.name).length;
+                let needed = cfg.count - alreadyAdded;
+                for (let i = 0; i < needed; i++) {
+                    let fn = firstNames[(idCounter * 7 + i * 3) % firstNames.length];
+                    let ln = lastNames[(idCounter * 5 + i * 11) % lastNames.length];
+                    let phoneNum = "98" + String(10000000 + (idCounter * 1234567) % 90000000);
+                    list.push({
+                        id: idCounter,
+                        roll: alreadyAdded + i + 1,
+                        name: `${fn} ${ln}`,
+                        class: cfg.name,
+                        fee: cfg.fee,
+                        phone: phoneNum,
+                        batch: cfg.batch
+                    });
+                    idCounter++;
+                }
+            });
+
+            return list;
+        }
+
+        // Initialize or load students from storage
+        let storedStudents = JSON.parse(localStorage.getItem('gk_students_v696'));
+        if (!storedStudents || storedStudents.length < 500) {
+            storedStudents = generate696Students();
+            localStorage.setItem('gk_students_v696', JSON.stringify(storedStudents));
+        }
+
+        let students = storedStudents;
         let attendance = JSON.parse(localStorage.getItem('gk_attendance')) || {};
         let feeRecords = JSON.parse(localStorage.getItem('gk_feeRecords')) || {};
         let notices = JSON.parse(localStorage.getItem('gk_notices')) || [
-            { id: 1, title: "HSLC বিশেষ মক টেষ্ট", desc: "দেওবাৰে পুৱা ৯ বজাত Class 10 ৰ Social Science ৰ সম্পূৰ্ণ ৯০ নম্বৰৰ টেষ্ট অনুষ্ঠিত হ'ব।", date: "2026-11-08" }
+            { id: 1, title: "HSLC 2027 বিশেষ মক টেষ্ট", desc: "অহা দেওবাৰে পুৱা ৯ বজাত Class 10 ৰ Social Science ৰ সম্পূৰ্ণ ৯০ নম্বৰৰ মক টেষ্ট অনুষ্ঠিত হ'ব। সকলোৰে উপস্থিতি বাধ্যতামূলক।", date: "2026-11-08" }
         ];
 
         let currentFeeFilter = 'ALL';
+        let currentFeeView = 'regular';
+        let studentRenderLimit = 40;
 
         function initApp() {
             renderCurrentDate();
@@ -345,6 +548,18 @@
             initAttendanceDate();
             renderFees();
             renderNotices();
+        }
+
+        function resetTo696Students() {
+            if (confirm("আপুনি ৬৯৬ জন ছাত্ৰ-ছাত্ৰীৰ তালিকাখন পুনৰ সংস্থাপন কৰিব বিচাৰেনে? (কৌশিক সেন, বিনিতা মালি আদি নামসমূহ অন্তৰ্ভুক্ত হ'ব)")) {
+                students = generate696Students();
+                localStorage.setItem('gk_students_v696', JSON.stringify(students));
+                renderDashboard();
+                renderStudents();
+                renderAttendance();
+                renderFees();
+                alert("সফলতাৰে ৬৯৬ জন ছাত্ৰ-ছাত্ৰী পুনৰ লোড হ'ল!");
+            }
         }
 
         function renderCurrentDate() {
@@ -366,8 +581,12 @@
             activeBtn.classList.add('text-blue-900');
 
             if (tabId === 'dashboard') renderDashboard();
+            if (tabId === 'students') renderStudents();
             if (tabId === 'attendance') renderAttendance();
-            if (tabId === 'fees') renderFees();
+            if (tabId === 'fees') {
+                renderFees();
+                renderMonthWiseBreakdown();
+            }
         }
 
         function renderDashboard() {
@@ -389,8 +608,46 @@
                 }
             });
             document.getElementById('dashPendingFees').innerText = '₹' + pendingSum;
+            calculateTotalAllPending();
         }
 
+        function calculateTotalAllPending() {
+            let total = 0;
+            allMonths.forEach(m => {
+                students.forEach(s => {
+                    const recKey = `${s.id}_${m}`;
+                    if (!feeRecords[recKey] || !feeRecords[recKey].paid) {
+                        total += Number(s.fee || 0);
+                    }
+                });
+            });
+            const elem = document.getElementById('totalAllMonthsPending');
+            if (elem) elem.innerText = '₹' + total;
+        }
+
+        function setFeeView(view) {
+            currentFeeView = view;
+            const regSec = document.getElementById('feeRegularSection');
+            const brkSec = document.getElementById('feeBreakdownSection');
+            const btnReg = document.getElementById('btnViewRegular');
+            const btnBrk = document.getElementById('btnViewBreakdown');
+
+            if (view === 'regular') {
+                regSec.classList.remove('hidden');
+                brkSec.classList.add('hidden');
+                btnReg.className = "py-2 rounded-lg bg-blue-900 text-white shadow-sm transition";
+                btnBrk.className = "py-2 rounded-lg text-slate-600 hover:text-slate-900 transition";
+                renderFees();
+            } else {
+                regSec.classList.add('hidden');
+                brkSec.classList.remove('hidden');
+                btnBrk.className = "py-2 rounded-lg bg-blue-900 text-white shadow-sm transition";
+                btnReg.className = "py-2 rounded-lg text-slate-600 hover:text-slate-900 transition";
+                renderMonthWiseBreakdown();
+            }
+        }
+
+        // STUDENTS LIST (PAGINATED & SMOOTH)
         function renderStudents() {
             const container = document.getElementById('studentsListContainer');
             const filterClass = document.getElementById('studentClassFilter').value;
@@ -398,38 +655,54 @@
 
             let filtered = students.filter(s => {
                 const matchClass = (filterClass === 'ALL' || s.class === filterClass);
-                const matchQuery = s.name.toLowerCase().includes(query) || s.phone.includes(query);
+                const matchQuery = s.name.toLowerCase().includes(query) || s.phone.includes(query) || String(s.roll || '').includes(query);
                 return matchClass && matchQuery;
             });
 
+            document.getElementById('studentCountLabel').innerText = `দেখা হৈছে: ${filtered.length} জন (মুঠ: ${students.length} জন)`;
+
             if (filtered.length === 0) {
                 container.innerHTML = `<div class="bg-white p-6 rounded-xl text-center text-slate-400 text-xs">কোনো ছাত্ৰ-ছাত্ৰী পোৱা নগ'ল।</div>`;
+                document.getElementById('studentLoadMoreBtn').classList.add('hidden');
                 return;
             }
 
-            container.innerHTML = filtered.map(s => `
-                <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+            const visibleItems = filtered.slice(0, studentRenderLimit);
+            if (filtered.length > studentRenderLimit) {
+                document.getElementById('studentLoadMoreBtn').classList.remove('hidden');
+            } else {
+                document.getElementById('studentLoadMoreBtn').classList.add('hidden');
+            }
+
+            container.innerHTML = visibleItems.map(s => `
+                <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
                     <div>
                         <div class="flex items-center space-x-2">
-                            <h4 class="font-bold text-sm text-slate-800">${s.name}</h4>
-                            <span class="text-[10px] bg-blue-100 text-blue-800 font-semibold px-2 py-0.5 rounded-full">${s.class}</span>
+                            <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-700 text-[10px] font-bold flex items-center justify-center border border-slate-200">#${s.roll || s.id}</span>
+                            <h4 class="font-bold text-xs text-slate-800">${s.name}</h4>
+                            <span class="text-[9px] bg-blue-100 text-blue-800 font-bold px-1.5 py-0.5 rounded">${s.class}</span>
                         </div>
-                        <p class="text-xs text-slate-500 mt-0.5"><i class="fa-solid fa-clock text-[10px] mr-1"></i>${s.batch || 'সাধাৰণ বেচ'}</p>
-                        <p class="text-xs text-emerald-700 font-bold mt-0.5">মাচুল: ₹${s.fee}/মাহ</p>
+                        <p class="text-[11px] text-slate-500 mt-0.5 ml-8"><i class="fa-solid fa-clock text-[9px] mr-1"></i>${s.batch || 'সাধাৰণ বেচ'}</p>
+                        <p class="text-[11px] text-emerald-700 font-bold ml-8">মাচুল: ₹${s.fee}/মাহ</p>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <a href="tel:${s.phone}" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-xs hover:bg-blue-100">
+                    <div class="flex items-center space-x-1.5">
+                        <a href="tel:${s.phone}" class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-[11px] hover:bg-blue-100">
                             <i class="fa-solid fa-phone"></i>
                         </a>
-                        <a href="https://wa.me/91${s.phone}?text=${encodeURIComponent(`নমস্কাৰ, জ্ঞান কেন্দ্ৰৰ (Mali Sir) পৰা যোগাযোগ কৰা হৈছে।`)}" target="_blank" class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs">
+                        <a href="https://wa.me/91${s.phone}?text=${encodeURIComponent(`নমস্কাৰ, জ্ঞান কেন্দ্ৰৰ (Mali Sir) পৰা যোগাযোগ কৰা হৈছে।`)}" target="_blank" class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[11px]">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
-                        <button onclick="editStudent(${s.id})" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-xs">
+                        <button onclick="editStudent(${s.id})" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-[11px]">
                             <i class="fa-solid fa-pen"></i>
                         </button>
                     </div>
                 </div>
             `).join('');
+        }
+
+        function loadMoreStudents() {
+            studentRenderLimit += 40;
+            renderStudents();
         }
 
         function openAddStudentModal() {
@@ -461,6 +734,7 @@
             const idVal = document.getElementById('studentId').value;
             const newObj = {
                 id: idVal ? Number(idVal) : Date.now(),
+                roll: idVal ? (students.find(s=>s.id === Number(idVal))?.roll || 1) : (students.length + 1),
                 name: document.getElementById('sName').value.trim(),
                 class: document.getElementById('sClass').value,
                 fee: Number(document.getElementById('sFee').value),
@@ -472,9 +746,9 @@
                 const idx = students.findIndex(s => s.id === Number(idVal));
                 if (idx !== -1) students[idx] = newObj;
             } else {
-                students.push(newObj);
+                students.unshift(newObj);
             }
-            localStorage.setItem('gk_students', JSON.stringify(students));
+            localStorage.setItem('gk_students_v696', JSON.stringify(students));
             closeStudentModal();
             renderStudents();
             renderDashboard();
@@ -482,6 +756,7 @@
             renderFees();
         }
 
+        // ATTENDANCE (WITH CLASS FILTER)
         function initAttendanceDate() {
             document.getElementById('attDatePicker').value = getTodayDateStr();
             onAttDateChange();
@@ -495,37 +770,41 @@
         function renderAttendance() {
             const container = document.getElementById('attendanceListContainer');
             const dateKey = document.getElementById('attDatePicker').value || getTodayDateStr();
+            const classFilter = document.getElementById('attClassFilter').value;
+
             if (!attendance[dateKey]) attendance[dateKey] = {};
-
             const dateRecords = attendance[dateKey];
+
+            let classFiltered = students.filter(s => classFilter === 'ALL' || s.class === classFilter);
+
             let pCount = 0;
-
-            if (students.length === 0) {
-                container.innerHTML = `<div class="bg-white p-6 rounded-xl text-center text-slate-400 text-xs">কোনো ছাত্ৰ-ছাত্ৰী নাই। প্ৰথমে নামভৰ্তি কৰক।</div>`;
-                document.getElementById('attSummaryText').innerText = "0 / 0";
-                return;
-            }
-
-            container.innerHTML = students.map(s => {
-                const status = dateRecords[s.id] || 'P';
+            classFiltered.forEach(s => {
+                const status = dateRecords[s.id] || 'P'; // default present
                 if (status === 'P') pCount++;
+            });
+
+            document.getElementById('attSummaryText').innerText = `${pCount} উপস্থিত / ${classFiltered.length}`;
+
+            container.innerHTML = classFiltered.map(s => {
+                const status = dateRecords[s.id] || 'P';
                 const isP = status === 'P';
 
                 return `
-                    <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div class="bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
                         <div>
-                            <h4 class="font-bold text-xs text-slate-800">${s.name}</h4>
-                            <span class="text-[10px] text-slate-500">${s.class}</span>
+                            <div class="flex items-center space-x-1.5">
+                                <span class="text-[10px] font-bold text-slate-400">#${s.roll || s.id}</span>
+                                <h4 class="font-bold text-xs text-slate-800">${s.name}</h4>
+                            </div>
+                            <span class="text-[10px] text-slate-500">${s.class} • ${s.batch}</span>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <button onclick="toggleAttendance(${s.id}, 'P')" class="w-9 h-9 rounded-xl font-bold text-xs flex items-center justify-center transition ${isP ? 'bg-emerald-600 text-white shadow-md' : 'bg-slate-100 text-slate-400'}">P</button>
-                            <button onclick="toggleAttendance(${s.id}, 'A')" class="w-9 h-9 rounded-xl font-bold text-xs flex items-center justify-center transition ${!isP ? 'bg-rose-600 text-white shadow-md' : 'bg-slate-100 text-slate-400'}">A</button>
+                        <div class="flex items-center space-x-1.5">
+                            <button onclick="toggleAttendance(${s.id}, 'P')" class="w-8 h-8 rounded-lg font-bold text-xs transition ${isP ? 'bg-emerald-600 text-white shadow-md' : 'bg-slate-100 text-slate-400'}">P</button>
+                            <button onclick="toggleAttendance(${s.id}, 'A')" class="w-8 h-8 rounded-lg font-bold text-xs transition ${!isP ? 'bg-rose-600 text-white shadow-md' : 'bg-slate-100 text-slate-400'}">A</button>
                         </div>
                     </div>
                 `;
             }).join('');
-
-            document.getElementById('attSummaryText').innerText = `${pCount} উপস্থিত / ${students.length}`;
         }
 
         function toggleAttendance(studId, status) {
@@ -539,19 +818,99 @@
 
         function markAllAttendance(isPresent) {
             const dateKey = document.getElementById('attDatePicker').value || getTodayDateStr();
+            const classFilter = document.getElementById('attClassFilter').value;
             if (!attendance[dateKey]) attendance[dateKey] = {};
             const val = isPresent ? 'P' : 'A';
-            students.forEach(s => { attendance[dateKey][s.id] = val; });
+
+            students.filter(s => classFilter === 'ALL' || s.class === classFilter).forEach(s => {
+                attendance[dateKey][s.id] = val;
+            });
+
             localStorage.setItem('gk_attendance', JSON.stringify(attendance));
             renderAttendance();
             renderDashboard();
         }
 
+        // MONTH-WISE PENDING BREAKDOWN
+        function renderMonthWiseBreakdown() {
+            const container = document.getElementById('monthBreakdownContainer');
+            calculateTotalAllPending();
+
+            let html = '';
+            let anyMonthPending = false;
+
+            allMonths.forEach(month => {
+                let monthPendingTotal = 0;
+                let unpaidStudents = [];
+
+                students.forEach(s => {
+                    const recKey = `${s.id}_${month}`;
+                    const isPaid = feeRecords[recKey] && feeRecords[recKey].paid;
+                    if (!isPaid) {
+                        monthPendingTotal += Number(s.fee || 0);
+                        unpaidStudents.push(s);
+                    }
+                });
+
+                if (unpaidStudents.length > 0) {
+                    anyMonthPending = true;
+                    html += `
+                        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                            <div class="bg-slate-50 px-3.5 py-2.5 border-b border-slate-200 flex justify-between items-center cursor-pointer" onclick="document.getElementById('brk_list_${month.replace(/\s+/g,'')}').classList.toggle('hidden')">
+                                <div class="flex items-center space-x-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                                    <h3 class="font-bold text-xs text-slate-800">${month}</h3>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs font-black text-rose-600">₹${monthPendingTotal} বাকী</span>
+                                    <span class="text-[10px] text-blue-700 ml-1 font-bold"><i class="fa-solid fa-chevron-down text-[9px]"></i></span>
+                                </div>
+                            </div>
+                            <div id="brk_list_${month.replace(/\s+/g,'')}" class="divide-y divide-slate-100 p-2 space-y-1">
+                                ${unpaidStudents.slice(0, 30).map(st => {
+                                    const reminderMsg = `নমস্কাৰ, শ্ৰদ্ধাৰ অভিভাৱক। জ্ঞান কেন্দ্ৰৰ (Mali Sir) পৰা জনোৱা হয় যে ${st.name} (${st.class}) ৰ ${month} মাহৰ টিউচন মাচুল ₹${st.fee} বাকী আছে। অনুগ্ৰহ কৰি পৰিশোধ কৰিবলৈ অনুৰোধ জনোৱা হ'ল। ধন্যবাদ।`;
+                                    return `
+                                        <div class="flex items-center justify-between py-1.5 px-2 hover:bg-slate-50 rounded-lg">
+                                            <div>
+                                                <p class="font-bold text-xs text-slate-800">${st.name} <span class="text-[10px] font-normal text-slate-500">(${st.class})</span></p>
+                                                <p class="text-[11px] font-semibold text-rose-600">ধাৰ্য মাচুল: ₹${st.fee}</p>
+                                            </div>
+                                            <div class="flex items-center space-x-1.5">
+                                                <button onclick="toggleFeeStatus(${st.id}, '${month}'); renderMonthWiseBreakdown();" class="px-2 py-1 bg-emerald-600 text-white rounded text-[10px] font-bold shadow-sm">
+                                                    জমা লওক
+                                                </button>
+                                                <a href="https://wa.me/91${st.phone}?text=${encodeURIComponent(reminderMsg)}" target="_blank" class="w-7 h-7 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-xs">
+                                                    <i class="fa-brands fa-whatsapp"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                                ${unpaidStudents.length > 30 ? `<p class="text-center text-[10px] text-slate-400 py-1">আৰু ${unpaidStudents.length - 30} জনৰ বাকী আছে (সবিশেষ চাবলৈ 'মাহ অনুযায়ী হিচাপ' ব্যৱহাৰ কৰক)</p>` : ''}
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            if (!anyMonthPending) {
+                container.innerHTML = `
+                    <div class="bg-white p-6 rounded-xl text-center text-slate-500 text-xs shadow-sm">
+                        <i class="fa-solid fa-circle-check text-2xl text-emerald-500 mb-2"></i>
+                        <p class="font-bold text-slate-700">কোনো মাহৰ মাচুল বাকী নাই!</p>
+                        <p class="text-[11px] text-slate-400 mt-0.5">সকলো মাহৰ মাচুল পৰিশোধিত।</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = html;
+            }
+        }
+
+        // REGULAR FEES
         function initMonthSelector() {
             const sel = document.getElementById('feeMonthSelect');
-            const months = ["January 2026", "February 2026", "March 2026", "April 2026", "May 2026", "June 2026", "July 2026", "August 2026", "September 2026", "October 2026", "November 2026", "December 2026"];
             const curMonth = getCurrentMonthKey();
-            sel.innerHTML = months.map(m => `<option value="${m}" ${m === curMonth ? 'selected' : ''}>${m}</option>`).join('');
+            sel.innerHTML = allMonths.map(m => `<option value="${m}" ${m === curMonth ? 'selected' : ''}>${m}</option>`).join('');
         }
 
         function filterFees(type) {
@@ -570,10 +929,13 @@
         function renderFees() {
             const container = document.getElementById('feesListContainer');
             const selectedMonth = document.getElementById('feeMonthSelect').value;
+            const selectedClass = document.getElementById('feeClassSelect').value;
 
             let filtered = students.filter(s => {
+                const matchClass = (selectedClass === 'ALL' || s.class === selectedClass);
                 const recKey = `${s.id}_${selectedMonth}`;
                 const isPaid = feeRecords[recKey] && feeRecords[recKey].paid;
+                if (!matchClass) return false;
                 if (currentFeeFilter === 'PAID') return isPaid;
                 if (currentFeeFilter === 'PENDING') return !isPaid;
                 return true;
@@ -584,30 +946,31 @@
                 return;
             }
 
-            container.innerHTML = filtered.map(s => {
+            container.innerHTML = filtered.slice(0, 50).map(s => {
                 const recKey = `${s.id}_${selectedMonth}`;
                 const isPaid = feeRecords[recKey] && feeRecords[recKey].paid;
                 const paidDate = isPaid ? feeRecords[recKey].date : '';
 
-                const reminderMsg = `নমস্কাৰ, শ্ৰদ্ধাৰ অভিভাৱক। জ্ঞান কেন্দ্ৰ টিউচনৰ (Mali Sir) তৰফৰ পৰা জনোৱা হয় যে ${s.name} ৰ ${selectedMonth} মাহৰ মাচুল ₹${s.fee} পৰিশোধৰ বাবে অনুৰোধ জনোৱা হ'ল। ধন্যবাদ।`;
-                const receiptMsg = `নমস্কাৰ। জ্ঞান কেন্দ্ৰৰ তৰফৰ পৰা নিশ্চিতি জনোৱা হ'ল: ${s.name} ৰ ${selectedMonth} মাহৰ মাচুল ₹${s.fee} সফলভাৱে গ্ৰহণ কৰা হৈছে। ধন্যবাদ!`;
+                const reminderMsg = `নমস্কাৰ, শ্ৰদ্ধাৰ অভিভাৱক। জ্ঞান কেন্দ্ৰ টিউচনৰ (Mali Sir) তৰফৰ পৰা জনোৱা হয় যে ${s.name} (${s.class}) ৰ ${selectedMonth} মাহৰ মাচুল ₹${s.fee} পৰিশোধৰ বাবে অনুৰোধ জনোৱা হ'ল। ধন্যবাদ।`;
+                const receiptMsg = `নমস্কাৰ। জ্ঞান কেন্দ্ৰৰ তৰফৰ পৰা নিশ্চিতি জনোৱা হ'ল: ${s.name} (${s.class}) ৰ ${selectedMonth} মাহৰ মাচুল ₹${s.fee} সফলভাৱে গ্ৰহণ কৰা হৈছে। ধন্যবাদ!`;
 
                 return `
-                    <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
                         <div>
                             <div class="flex items-center space-x-2">
+                                <span class="text-[10px] font-bold text-slate-400">#${s.roll || s.id}</span>
                                 <h4 class="font-bold text-xs text-slate-800">${s.name}</h4>
-                                <span class="text-[9px] px-2 py-0.5 rounded-full font-bold ${isPaid ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
-                                    ${isPaid ? 'পৰিশোধিত' : 'বাকী (Due)'}
+                                <span class="text-[9px] px-1.5 py-0.5 rounded font-bold ${isPaid ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                                    ${isPaid ? 'পৰিশোধিত' : 'বাকী'}
                                 </span>
                             </div>
-                            <p class="text-xs text-slate-500 mt-0.5">ধাৰ্য মাচুল: ₹${s.fee} ${isPaid ? `• তাৰিখ: ${paidDate}` : ''}</p>
+                            <p class="text-[11px] text-slate-500 mt-0.5 ml-4">${s.class} • মাচুল: ₹${s.fee} ${isPaid ? `(${paidDate})` : ''}</p>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <button onclick="toggleFeeStatus(${s.id}, '${selectedMonth}')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold ${isPaid ? 'bg-slate-100 text-slate-600' : 'bg-emerald-600 text-white shadow-sm'}">
+                        <div class="flex items-center space-x-1.5">
+                            <button onclick="toggleFeeStatus(${s.id}, '${selectedMonth}')" class="px-2 py-1 rounded-lg text-xs font-bold ${isPaid ? 'bg-slate-100 text-slate-600' : 'bg-emerald-600 text-white shadow-sm'}">
                                 ${isPaid ? 'Undo' : 'গ্ৰহণ'}
                             </button>
-                            <a href="https://wa.me/91${s.phone}?text=${encodeURIComponent(isPaid ? receiptMsg : reminderMsg)}" target="_blank" class="w-8 h-8 rounded-full ${isPaid ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-700'} flex items-center justify-center text-xs">
+                            <a href="https://wa.me/91${s.phone}?text=${encodeURIComponent(isPaid ? receiptMsg : reminderMsg)}" target="_blank" class="w-7 h-7 rounded-full ${isPaid ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-700'} flex items-center justify-center text-xs">
                                 <i class="fa-brands fa-whatsapp"></i>
                             </a>
                         </div>
@@ -625,8 +988,10 @@
             localStorage.setItem('gk_feeRecords', JSON.stringify(feeRecords));
             renderFees();
             renderDashboard();
+            calculateTotalAllPending();
         }
 
+        // NOTICES
         function renderNotices() {
             const container = document.getElementById('noticesContainer');
             if (notices.length === 0) {
