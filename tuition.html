@@ -16,7 +16,7 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         .marquee-box { overflow: hidden; white-space: nowrap; box-sizing: border-box; }
-        .marquee-text { display: inline-block; padding-left: 100%; animation: marqueeAnim 20s linear infinite; }
+        .marquee-text { display: inline-block; padding-left: 100%; animation: marqueeAnim 22s linear infinite; }
         .marquee-box:hover .marquee-text { animation-play-state: paused; }
         @keyframes marqueeAnim { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
     </style>
@@ -32,11 +32,11 @@
                 </div>
                 <div>
                     <h1 class="font-bold text-base leading-tight">জ্ঞান কেন্দ্ৰ (Gyan Kendra)</h1>
-                    <p class="text-xs text-blue-200">বৰমেৰা, আগমণি • মালি ছাৰ (Mali Sir)</p>
+                    <p class="text-xs text-blue-200">বৰমেৰা, আগমণি • পৰিচালক: দীপংকৰ মালি (Mali Sir)</p>
                 </div>
             </div>
             <div class="flex items-center space-x-1.5">
-                <button onclick="openUpiSettingsModal()" title="UPI / QR ছেটিং" class="p-2 bg-blue-800 rounded-lg text-emerald-300 text-sm hover:bg-blue-700">
+                <button onclick="openUpiSettingsModal()" title="UPI / QR বিৱৰণ" class="p-2 bg-blue-800 rounded-lg text-emerald-300 text-sm hover:bg-blue-700">
                     <i class="fa-solid fa-qrcode"></i>
                 </button>
                 <button onclick="exportData()" title="ডাটা বেকআপ" class="p-2 bg-blue-800 rounded-lg text-amber-300 text-sm hover:bg-blue-700">
@@ -45,14 +45,14 @@
             </div>
         </div>
 
-        <!-- 24/7 Running Marquee Notice Bar with Mali Sir's Name -->
+        <!-- 24/7 Running Marquee Notice Bar with Mali Sir's Details -->
         <div class="bg-amber-400 text-blue-950 font-bold text-xs py-1.5 px-3 flex items-center shadow-inner overflow-hidden border-t border-amber-300">
             <span class="bg-rose-600 text-white text-[10px] uppercase font-black px-1.5 py-0.5 rounded mr-2 flex-shrink-0 flex items-center shadow-sm">
                 <i class="fa-solid fa-bullhorn mr-1"></i>জাননী
             </span>
             <div class="marquee-box w-full">
                 <div class="marquee-text font-bold" id="runningMarqueeText">
-                    জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ • পৰিচালক: দীপংকৰ মালি (মালি ছাৰ), বৰমেৰা • নিয়মীয়া উপস্থিতি আৰু সাপ্তাহিক টেষ্ট বাধ্যতামূলক।
+                    জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ • পৰিচালক: দীপংকৰ মালি (মালি ছাৰ), বৰমেৰা • হেল্পলাইন: 7896723247 • নিয়মীয়া উপস্থিতি আৰু সাপ্তাহিক মক টেষ্ট বাধ্যতামূলক।
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
                 </div>
             </div>
 
-            <!-- Quick Actions -->
+            <!-- Quick Action Buttons -->
             <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">দ্ৰুত কাম (Quick Actions)</h3>
                 <div class="grid grid-cols-3 gap-2">
@@ -120,20 +120,44 @@
                 </div>
             </div>
 
-            <!-- UPI Payment Info Card -->
-            <div class="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 p-3.5 rounded-xl flex items-center justify-between">
+            <!-- Verified UPI QR Info Card -->
+            <div class="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 p-3.5 rounded-xl flex items-center justify-between shadow-sm">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-lg">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl shadow">
                         <i class="fa-solid fa-qrcode"></i>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-emerald-950">মাচুল সংগ্ৰহৰ UPI ID</p>
-                        <p class="text-[11px] font-medium text-emerald-700" id="dashUpiDisplay">ছেট কৰা হোৱা নাই</p>
+                        <div class="flex items-center space-x-1">
+                            <span class="text-xs font-bold text-emerald-950">মালি ছাৰৰ অফিচিয়েল UPI QR</span>
+                            <span class="bg-emerald-200 text-emerald-900 text-[9px] font-black px-1.5 py-0.2 rounded-full">সক্ৰিয়</span>
+                        </div>
+                        <p class="text-[11px] font-bold text-emerald-800 mt-0.5">7896723247@upi (DIPANKAR MALI)</p>
                     </div>
                 </div>
-                <button onclick="openUpiSettingsModal()" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow-sm">
-                    পৰিৱৰ্তন
+                <button onclick="showGeneralQrModal()" class="px-2.5 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1">
+                    <i class="fa-solid fa-eye text-[10px]"></i>
+                    <span>QR চাওক</span>
                 </button>
+            </div>
+
+            <!-- Share Portal & Doubt Link Banner -->
+            <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl space-y-2">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-blue-900 flex items-center">
+                        <i class="fa-solid fa-comments text-blue-700 mr-1.5"></i>অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰীৰ সহায় কেন্দ্ৰ
+                    </span>
+                    <span class="text-[10px] bg-blue-200 text-blue-900 font-bold px-2 py-0.5 rounded-full">হোৱাটছএপ লিংক</span>
+                </div>
+                <p class="text-[11px] text-blue-700">ছাত্ৰ-ছাত্ৰী বা অভিভাৱকে ঘৰৰ পৰাই পোনপটীয়াকৈ প্ৰশ্ন বা সংশয় জনাব পৰাকৈ লিংকটো শ্বেয়াৰ কৰক।</p>
+                <div class="flex space-x-2 pt-1">
+                    <button onclick="shareDoubtPortalToWhatsApp()" class="flex-1 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold flex items-center justify-center space-x-1 shadow-sm">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>গ্ৰুপত লিংক শ্বেয়াৰ কৰক</span>
+                    </button>
+                    <button onclick="switchTab('doubts')" class="px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-lg text-xs font-bold shadow-sm">
+                        সংশয় ফৰ্ম
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -213,7 +237,7 @@
             <div id="attendanceListContainer" class="space-y-2"></div>
         </section>
 
-        <!-- TAB 4: FEES (WITH QR CODE & WHATSAPP PAYMENT LINK) -->
+        <!-- TAB 4: FEES (WITH REAL QR CODE & WHATSAPP PAYMENT LINK) -->
         <section id="tab-fees" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
                 <div>
@@ -285,7 +309,79 @@
             </div>
         </section>
 
-        <!-- TAB 5: NOTICES -->
+        <!-- TAB 5: PARENTS & STUDENTS DOUBT & QUESTION PORTAL -->
+        <section id="tab-doubts" class="tab-content space-y-4">
+            <div class="bg-gradient-to-r from-blue-900 to-indigo-800 p-4 rounded-2xl text-white shadow-sm space-y-1">
+                <span class="inline-block bg-amber-400 text-blue-950 text-[10px] font-bold px-2 py-0.5 rounded-full">অভিভাৱক আৰু ছাত্ৰ সহায় কক্ষ</span>
+                <h2 class="text-base font-bold">প্ৰশ্ন, সংশয় বা দিহা-পৰামৰ্শ</h2>
+                <p class="text-xs text-blue-200">তলৰ ফৰ্মখন পূৰণ কৰি পোনে পোনে মালি ছাৰৰ ব্যক্তিগত WhatsApp-লৈ পঠাওক।</p>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <h3 class="font-bold text-xs text-slate-700 uppercase tracking-wider flex items-center">
+                    <i class="fa-solid fa-pen-to-square text-blue-900 mr-1.5"></i>প্ৰশ্ন বা অসুবিধা প্ৰেৰণ কৰক
+                </h3>
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-600 mb-1">ছাত্ৰ/ছাত্ৰী বা অভিভাৱকৰ নাম *</label>
+                    <input type="text" id="doubtSenderName" placeholder="যেনে: কৌশিক সেন / অভিভাৱক" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-600 mb-1">শ্ৰেণী (Class) *</label>
+                        <select id="doubtSenderClass" class="w-full text-xs px-2.5 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
+                            <option value="Class 10">Class 10</option>
+                            <option value="Class 9">Class 9</option>
+                            <option value="Class 8">Class 8</option>
+                            <option value="Class 7">Class 7</option>
+                            <option value="Class 6">Class 6</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="প্ৰাথমিক">প্ৰাথমিক (Nursery - 4)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-600 mb-1">বিষয় (Subject)</label>
+                        <input type="text" id="doubtSubject" placeholder="যেনে: Social Science / Math" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-600 mb-1">আপোনাৰ প্ৰশ্ন / জানিবলগীয়া কথা *</label>
+                    <textarea id="doubtMessage" rows="3" placeholder="যিকোনো পঢ়া-শুনাৰ প্ৰশ্ন, হোমৱৰ্ক, বা টিউচন মাচুল সম্পৰ্কীয় কথা ইয়াত লিখক..." class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600"></textarea>
+                </div>
+                <button onclick="submitDoubtForm()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-2 shadow-md">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span>মালি ছাৰলৈ WhatsApp মেচেজ পঠাওক</span>
+                </button>
+            </div>
+
+            <!-- Important Helplines & Links -->
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
+                <h3 class="font-bold text-xs text-blue-900 uppercase tracking-wider">প্ৰয়োজনীয় সংযোগ আৰু হেল্পলাইন</h3>
+                <div class="space-y-2 text-xs">
+                    <a href="tel:7896723247" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fa-solid fa-phone text-blue-900"></i>
+                            <div>
+                                <p class="font-bold text-slate-800">মালি ছাৰৰ ফোন নম্বৰ</p>
+                                <p class="text-[11px] text-slate-500">7896723247</p>
+                            </div>
+                        </div>
+                        <span class="text-blue-900 font-bold text-[11px]">Call <i class="fa-solid fa-chevron-right text-[9px]"></i></span>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb7YYlADZ4LZOtGek320" target="_blank" class="flex items-center justify-between p-2.5 bg-emerald-50 hover:bg-emerald-100 rounded-xl border border-emerald-200">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fa-brands fa-whatsapp text-emerald-700 text-base"></i>
+                            <div>
+                                <p class="font-bold text-emerald-950">জ্ঞান কেন্দ্ৰ অফিচিয়েল হোৱাটছএপ চেনেল</p>
+                                <p class="text-[11px] text-emerald-700">নোটছ আৰু গুৰুত্বপূৰ্ণ জাননীৰ বাবে</p>
+                            </div>
+                        </div>
+                        <span class="text-emerald-700 font-bold text-[11px]">Join <i class="fa-solid fa-chevron-right text-[9px]"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: NOTICES -->
         <section id="tab-notices" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
                 <h2 class="text-base font-bold text-slate-800">ৰুটিন আৰু নোটিচ বৰ্ড</h2>
@@ -324,27 +420,31 @@
         </section>
     </main>
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-2 px-3 z-40 flex justify-around items-center max-w-md mx-auto shadow-lg">
+    <!-- Bottom Navigation Bar (Now with Doubt Portal Tab) -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-2 px-2 z-40 flex justify-around items-center max-w-md mx-auto shadow-lg">
         <button onclick="switchTab('dashboard')" class="nav-btn active flex flex-col items-center text-blue-900" id="nav-dashboard">
-            <i class="fa-solid fa-house text-lg"></i>
-            <span class="text-[10px] font-semibold mt-0.5">গৃহ</span>
+            <i class="fa-solid fa-house text-base"></i>
+            <span class="text-[9px] font-semibold mt-0.5">গৃহ</span>
         </button>
         <button onclick="switchTab('students')" class="nav-btn flex flex-col items-center text-slate-400" id="nav-students">
-            <i class="fa-solid fa-users text-lg"></i>
-            <span class="text-[10px] font-semibold mt-0.5">ছাত্ৰ-ছাত্ৰী</span>
+            <i class="fa-solid fa-users text-base"></i>
+            <span class="text-[9px] font-semibold mt-0.5">ছাত্ৰ</span>
         </button>
         <button onclick="switchTab('attendance')" class="nav-btn flex flex-col items-center text-slate-400" id="nav-attendance">
-            <i class="fa-solid fa-calendar-check text-lg"></i>
-            <span class="text-[10px] font-semibold mt-0.5">উপস্থিতি</span>
+            <i class="fa-solid fa-calendar-check text-base"></i>
+            <span class="text-[9px] font-semibold mt-0.5">উপস্থিতি</span>
         </button>
         <button onclick="switchTab('fees')" class="nav-btn flex flex-col items-center text-slate-400" id="nav-fees">
-            <i class="fa-solid fa-indian-rupee-sign text-lg"></i>
-            <span class="text-[10px] font-semibold mt-0.5">মাচুল</span>
+            <i class="fa-solid fa-indian-rupee-sign text-base"></i>
+            <span class="text-[9px] font-semibold mt-0.5">মাচুল</span>
+        </button>
+        <button onclick="switchTab('doubts')" class="nav-btn flex flex-col items-center text-slate-400" id="nav-doubts">
+            <i class="fa-solid fa-comments text-base"></i>
+            <span class="text-[9px] font-semibold mt-0.5">সংশয়</span>
         </button>
         <button onclick="switchTab('notices')" class="nav-btn flex flex-col items-center text-slate-400" id="nav-notices">
-            <i class="fa-solid fa-bullhorn text-lg"></i>
-            <span class="text-[10px] font-semibold mt-0.5">জাননী</span>
+            <i class="fa-solid fa-bullhorn text-base"></i>
+            <span class="text-[9px] font-semibold mt-0.5">জাননী</span>
         </button>
     </nav>
 
@@ -359,14 +459,14 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <p class="text-xs text-slate-500">আপোনাৰ Google Pay বা PhonePe ৰ UPI ID ইয়াত লিখক। এই ID ৰে ছাত্ৰ-ছাত্ৰীৰ বাবে স্বয়ংক্ৰিয়ভাৱে QR ক'ড আৰু WhatsApp পেমেণ্ট লিংক তৈয়াৰ হ'ব।</p>
+            <p class="text-xs text-slate-500">মালি ছাৰৰ UPI ID সফলভাৱে সংযোগ কৰা আছে। প্ৰয়োজন হ'লে সলনি কৰিব পাৰে:</p>
             <div>
                 <label class="block text-[11px] font-bold text-slate-600 mb-1">আপোনাৰ UPI ID *</label>
-                <input type="text" id="upiIdInput" placeholder="যেনে: 9876543210@ybl বা dipankarmali@okaxis" class="w-full text-xs font-bold px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
+                <input type="text" id="upiIdInput" placeholder="7896723247@upi" class="w-full text-xs font-bold px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
             </div>
             <div>
                 <label class="block text-[11px] font-bold text-slate-600 mb-1">একাউণ্টধাৰীৰ নাম</label>
-                <input type="text" id="upiNameInput" placeholder="Dipankar Mali" value="Dipankar Mali (Gyan Kendra)" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
+                <input type="text" id="upiNameInput" placeholder="DIPANKAR MALI" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
             </div>
             <div class="flex space-x-2 pt-2">
                 <button type="button" onclick="closeUpiSettingsModal()" class="flex-1 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg">বাতিল</button>
@@ -375,7 +475,7 @@
         </div>
     </div>
 
-    <!-- QR CODE VIEW MODAL -->
+    <!-- QR CODE VIEW MODAL (SHOWS EXACT QR CODE) -->
     <div id="qrCodeModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl text-center space-y-3">
             <div class="flex justify-between items-center">
@@ -386,21 +486,21 @@
             </div>
             
             <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <p class="font-bold text-xs text-blue-950" id="qrModalStudentName">-</p>
-                <p class="text-[11px] text-slate-500" id="qrModalDetails">-</p>
+                <p class="font-bold text-xs text-blue-950" id="qrModalStudentName">জ্ঞান কেন্দ্ৰ (DIPANKAR MALI)</p>
+                <p class="text-[11px] text-slate-500" id="qrModalDetails">Google Pay • PhonePe • Paytm</p>
                 <p class="text-base font-black text-rose-600 mt-1" id="qrModalAmount">₹0</p>
             </div>
 
-            <!-- Dynamic QR Code Image Container -->
-            <div class="p-3 bg-white border-2 border-dashed border-emerald-400 rounded-xl inline-block shadow-sm">
-                <img id="qrCodeImage" src="" alt="UPI QR Code" class="w-48 h-48 mx-auto object-contain">
-                <p class="text-[10px] text-slate-400 mt-1 font-semibold">GPay • PhonePe • Paytm ৰে স্কেন কৰক</p>
+            <!-- Dynamic Direct QR Code Image -->
+            <div class="p-3 bg-white border-2 border-dashed border-emerald-500 rounded-2xl inline-block shadow-sm">
+                <img id="qrCodeImage" src="" alt="DIPANKAR MALI UPI QR Code" class="w-48 h-48 mx-auto object-contain">
+                <p class="text-[10px] text-emerald-800 font-bold mt-1">DIPANKAR MALI • 7896723247@upi</p>
             </div>
 
             <div class="pt-1">
                 <button id="qrWhatsAppShareBtn" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span>WhatsApp ত পেমেণ্ট লিংক আৰু খতিয়ান পঠাওক</span>
+                    <span>অভিভাৱকলৈ পেমেণ্ট লিংক আৰু খতিয়ান পঠাওক</span>
                 </button>
             </div>
         </div>
@@ -527,14 +627,16 @@
             "July 2026", "August 2026", "September 2026", "October 2026", "November 2026", "December 2026"
         ];
 
-        // Storage Data
+        // Mali Sir's Verified UPI Configuration from Uploaded QR
+        const defaultUpiConfig = {
+            upiId: "7896723247@upi",
+            name: "DIPANKAR MALI"
+        };
+
         let students = JSON.parse(localStorage.getItem('gk_my_students')) || [];
         let attendance = JSON.parse(localStorage.getItem('gk_my_attendance')) || {};
         let feeRecords = JSON.parse(localStorage.getItem('gk_my_feeRecords')) || {};
-        let upiConfig = JSON.parse(localStorage.getItem('gk_upi_config')) || {
-            upiId: "dipankarmali@upi",
-            name: "Dipankar Mali (Gyan Kendra)"
-        };
+        let upiConfig = JSON.parse(localStorage.getItem('gk_upi_config')) || defaultUpiConfig;
         let notices = JSON.parse(localStorage.getItem('gk_my_notices')) || [
             { id: 1, title: "HSLC বিশেষ মক টেষ্ট", desc: "জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ • পৰিচালক: দীপংকৰ মালি (মালি ছাৰ), বৰমেৰা • নিয়মীয়া উপস্থিতি বাধ্যতামূলক।", date: "2026-11-08" }
         ];
@@ -547,7 +649,6 @@
         function initApp() {
             renderCurrentDate();
             initMonthSelector();
-            updateUpiDisplay();
             updateMarquee();
             renderDashboard();
             renderStudents();
@@ -556,39 +657,30 @@
             renderNotices();
         }
 
-        // UPI Settings
-        function openUpiSettingsModal() {
-            document.getElementById('upiIdInput').value = upiConfig.upiId || '';
-            document.getElementById('upiNameInput').value = upiConfig.name || 'Dipankar Mali (Gyan Kendra)';
-            document.getElementById('upiSettingsModal').classList.remove('hidden');
+        // Generate General QR Modal
+        function showGeneralQrModal() {
+            const upiId = upiConfig.upiId || '7896723247@upi';
+            const payeeName = encodeURIComponent(upiConfig.name || 'DIPANKAR MALI');
+            const upiUrl = `upi://pay?pa=${upiId}&pn=${payeeName}&cu=INR&tn=${encodeURIComponent('Gyan Kendra Tuition Fee')}`;
+            const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
+
+            document.getElementById('qrModalTitle').innerText = `জ্ঞান কেন্দ্ৰৰ অফিচিয়েল UPI QR Code`;
+            document.getElementById('qrModalStudentName').innerText = `পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)`;
+            document.getElementById('qrModalDetails').innerText = `বৰমেৰা, আগমণি, ধুবুৰী`;
+            document.getElementById('qrModalAmount').innerText = `Google Pay / PhonePe / Paytm`;
+            document.getElementById('qrCodeImage').src = qrImageUrl;
+
+            const generalShareText = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (Gyan Kendra)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\nঠিকনা: বৰমেৰা, আগমণি, ধুবুৰী\\n--------------------------------\\nমাচুল পৰিশোধৰ অফিচিয়েল UPI বিৱৰণ:\\n\\n💳 *UPI ID:* \`${upiId}\`\\n👤 *নাম:* ${upiConfig.name}\\n🔗 *পেমেণ্ট লিংক:* ${upiUrl}\\n\\nসকলো অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰীক এই লিংক বা UPI ৰ জৰিয়তে মাচুল জমা দিবলৈ অনুৰোধ কৰা হ'ল। ধন্যবাদ!`;
+
+            const waBtn = document.getElementById('qrWhatsAppShareBtn');
+            waBtn.onclick = function() {
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(generalShareText)}`, '_blank');
+            };
+
+            document.getElementById('qrCodeModal').classList.remove('hidden');
         }
 
-        function closeUpiSettingsModal() {
-            document.getElementById('upiSettingsModal').classList.add('hidden');
-        }
-
-        function saveUpiSettings() {
-            const upiId = document.getElementById('upiIdInput').value.trim();
-            const name = document.getElementById('upiNameInput').value.trim() || 'Dipankar Mali';
-            if (!upiId) {
-                alert("অনুগ্ৰহ কৰি সঠিক UPI ID লিখক!");
-                return;
-            }
-            upiConfig = { upiId, name };
-            localStorage.setItem('gk_upi_config', JSON.stringify(upiConfig));
-            updateUpiDisplay();
-            closeUpiSettingsModal();
-            renderFees();
-            if (currentFeeView === 'breakdown') renderMonthWiseBreakdown();
-            alert("UPI ID সফলতাৰে চেভ হ'ল!");
-        }
-
-        function updateUpiDisplay() {
-            const el = document.getElementById('dashUpiDisplay');
-            if (el) el.innerText = upiConfig.upiId ? `ID: ${upiConfig.upiId}` : 'ছেট কৰা হোৱা নাই';
-        }
-
-        // Generate UPI Dynamic QR Code & Open Modal
+        // Student-specific QR Modal
         function showStudentQrCode(studId, month) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
@@ -598,24 +690,22 @@
             const fee = Number(s.fee || 0);
             const paid = rec ? Number(rec.paidAmount || 0) : 0;
             const balance = Math.max(0, fee - paid);
-
             const amountToPay = balance > 0 ? balance : fee;
-            const upiId = upiConfig.upiId || 'dipankarmali@upi';
-            const payeeName = encodeURIComponent(upiConfig.name || 'Gyan Kendra');
+
+            const upiId = upiConfig.upiId || '7896723247@upi';
+            const payeeName = encodeURIComponent(upiConfig.name || 'DIPANKAR MALI');
             const note = encodeURIComponent(`Tuition Fee ${s.name} ${month}`);
 
-            // Standard Indian UPI Deep Link
             const upiUrl = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${amountToPay}&cu=INR&tn=${note}`;
-            // Dynamic QR Server Link
             const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
 
             document.getElementById('qrModalTitle').innerText = `${s.name} ৰ মাচুলৰ QR ক'ড`;
             document.getElementById('qrModalStudentName').innerText = `${s.name} (${s.class})`;
-            document.getElementById('qrModalDetails').innerText = `${month} মাহৰ বাকী ধন`;
+            document.getElementById('qrModalDetails').innerText = `${month} মাহৰ বাকী থকা মাচুল`;
             document.getElementById('qrModalAmount').innerText = `পৰিশোধ কৰিবলগীয়া: ₹${amountToPay}`;
             document.getElementById('qrCodeImage').src = qrImageUrl;
 
-            const shareMsg = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (Gyan Kendra)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\nঠিকনা: বৰমেৰা, আগমণি, ধুবুৰী\\n--------------------------------\\nনমস্কাৰ, শ্ৰদ্ধাৰ অভিভাৱক।\\n\\nছাত্ৰ/ছাত্ৰীৰ নাম: *${s.name}*\\nশ্ৰেণী: *${s.class}*\\nমাহ: *${month}*\\nধাৰ্য মাচুল: ₹${fee}\\nজমা দিয়া ধন: ₹${paid}\\n👉 *বৰ্তমান বাকী থকা ধন: ₹${balance}*\\n\\nঅনুগ্ৰহ কৰি তলৰ UPI ID বা লিংকৰ জৰিয়তে PhonePe/GooglePay/Paytm ৰে মাচুল পৰিশোধ কৰক:\\n\\n💳 *UPI ID:* \`${upiId}\`\\n🔗 *ডাইৰেক্ট পেমেণ্ট লিংক:* ${upiUrl}\\n\\nপৰিশোধ কৰাৰ পিছত অনুগ্ৰহ কৰি স্ক্ৰীনশ্বট প্ৰেৰণ কৰিব। ধন্যবাদ!`;
+            const shareMsg = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (Gyan Kendra)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\nঠিকনা: বৰমেৰা, আগমণি, ধুবুৰী\\n--------------------------------\\nনমস্কাৰ, শ্ৰদ্ধাৰ অভিভাৱক।\\n\\nছাত্ৰ/ছাত্ৰীৰ নাম: *${s.name}*\\nশ্ৰেণী: *${s.class}*\\nমাহ: *${month}*\\nধাৰ্য মাচুল: ₹${fee}\\nজমা দিয়া ধন: ₹${paid}\\n👉 *বৰ্তমান বাকী থকা ধন: ₹${balance}*\\n\\nঅনুগ্ৰহ কৰি তলৰ QR ক'ড বা লিংকৰ জৰিয়তে মাচুল পৰিশোধ কৰক:\\n\\n💳 *UPI ID:* \`${upiId}\`\\n🔗 *ডাইৰেক্ট পেমেণ্ট লিংক:* ${upiUrl}\\n\\nপৰিশোধ কৰাৰ পিছত অনুগ্ৰহ কৰি স্ক্ৰীনশ্বট প্ৰেৰণ কৰিব। ধন্যবাদ!`;
 
             const waBtn = document.getElementById('qrWhatsAppShareBtn');
             waBtn.onclick = function() {
@@ -629,9 +719,57 @@
             document.getElementById('qrCodeModal').classList.add('hidden');
         }
 
+        // UPI Settings Modal
+        function openUpiSettingsModal() {
+            document.getElementById('upiIdInput').value = upiConfig.upiId || '7896723247@upi';
+            document.getElementById('upiNameInput').value = upiConfig.name || 'DIPANKAR MALI';
+            document.getElementById('upiSettingsModal').classList.remove('hidden');
+        }
+
+        function closeUpiSettingsModal() {
+            document.getElementById('upiSettingsModal').classList.add('hidden');
+        }
+
+        function saveUpiSettings() {
+            const upiId = document.getElementById('upiIdInput').value.trim();
+            const name = document.getElementById('upiNameInput').value.trim() || 'DIPANKAR MALI';
+            if (!upiId) {
+                alert("অনুগ্ৰহ কৰি সঠিক UPI ID দিয়ক!");
+                return;
+            }
+            upiConfig = { upiId, name };
+            localStorage.setItem('gk_upi_config', JSON.stringify(upiConfig));
+            closeUpiSettingsModal();
+            renderFees();
+            if (currentFeeView === 'breakdown') renderMonthWiseBreakdown();
+            alert("UPI ID সফলতাৰে সংৰক্ষণ হ'ল!");
+        }
+
+        // Doubt / Question Submission to Mali Sir's WhatsApp
+        function submitDoubtForm() {
+            const name = document.getElementById('doubtSenderName').value.trim();
+            const sClass = document.getElementById('doubtSenderClass').value;
+            const subject = document.getElementById('doubtSubject').value.trim() || 'টিউচন / সাধাৰণ';
+            const msg = document.getElementById('doubtMessage').value.trim();
+
+            if (!name || !msg) {
+                alert("অনুগ্ৰহ কৰি আপোনাৰ নাম আৰু প্ৰশ্নটো লিখক!");
+                return;
+            }
+
+            const waText = `*জ্ঞান কেন্দ্ৰ - প্ৰশ্ন আৰু সংশয় প'ৰ্টেল*\\n\\nনমস্কাৰ মালি ছাৰ,\\n\\n👤 *নাম:* ${name}\\n📚 *শ্ৰেণী:* ${sClass}\\n📖 *বিষয়:* ${subject}\\n\\n❓ *প্ৰশ্ন / জানিবলগীয়া কথা:*\\n"${msg}"\\n\\nঅনুগ্ৰহ কৰি সময় পালে উত্তৰ জনাব। ধন্যবাদ!`;
+            window.open(`https://wa.me/917896723247?text=${encodeURIComponent(waText)}`, '_blank');
+        }
+
+        function shareDoubtPortalToWhatsApp() {
+            const portalUrl = window.location.href;
+            const shareText = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (বৰমেৰা)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\n\\nশ্ৰদ্ধাৰ অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰীসকল,\\nপঢ়া-শুনাৰ কোনো প্ৰশ্ন, হোমৱৰ্ক বা মাচুল পৰিশোধৰ বাবে আমাৰ অনলাইন প'ৰ্টেল ব্যৱহাৰ কৰক:\\n\\n🔗 *জ্ঞান কেন্দ্ৰ প'ৰ্টেল লিংক:*\\n${portalUrl}\\n\\n📞 *হেল্পলাইন নম্বৰ:* 7896723247\\nধন্যবাদ!`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
+        }
+
         function updateMarquee() {
             const latestNotice = notices[0] ? notices[0].desc : "জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ • পৰিচালক: দীপংকৰ মালি (মালি ছাৰ), বৰমেৰা";
-            document.getElementById('runningMarqueeText').innerText = `পৰিচালক: দীপংকৰ মালি (মালি ছাৰ), বৰমেৰা • 📢 জাননী: ${latestNotice}`;
+            document.getElementById('runningMarqueeText').innerText = `পৰিচালক: দীপংকৰ মালি (মালি ছাৰ), বৰমেৰা • হেল্পলাইন: 7896723247 • 📢 জাননী: ${latestNotice}`;
         }
 
         function renderCurrentDate() {
@@ -721,7 +859,7 @@
             }
         }
 
-        // ==================== STUDENTS ====================
+        // ==================== STUDENTS CRUD ====================
         function renderStudents() {
             const container = document.getElementById('studentsListContainer');
             const filterClass = document.getElementById('studentClassFilter').value;
@@ -764,10 +902,10 @@
                         <a href="https://wa.me/91${s.phone}?text=${encodeURIComponent(`নমস্কাৰ, জ্ঞান কেন্দ্ৰৰ (Mali Sir) তৰফৰ পৰা যোগাযোগ কৰা হৈছে।`)}" target="_blank" class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[11px]">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
-                        <button onclick="editStudent(${s.id})" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-[11px]">
+                        <button onclick="editStudent(${s.id})" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-[11px]" title="সম্পাদনা">
                             <i class="fa-solid fa-pen"></i>
                         </button>
-                        <button onclick="deleteStudent(${s.id}, '${s.name}')" class="w-7 h-7 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-100 flex items-center justify-center text-[11px]">
+                        <button onclick="deleteStudent(${s.id}, '${s.name}')" class="w-7 h-7 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-100 flex items-center justify-center text-[11px]" title="মচি পেলাওক">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
@@ -919,7 +1057,7 @@
             renderDashboard();
         }
 
-        // ==================== FEES WITH QR & WHATSAPP ====================
+        // ==================== FEES ====================
         function initMonthSelector() {
             const sel = document.getElementById('feeMonthSelect');
             const curMonth = getCurrentMonthKey();
@@ -963,7 +1101,7 @@
                 return;
             }
 
-            const upiId = upiConfig.upiId || 'dipankarmali@upi';
+            const upiId = upiConfig.upiId || '7896723247@upi';
 
             container.innerHTML = filtered.map(s => {
                 const recKey = `${s.id}_${selectedMonth}`;
@@ -974,7 +1112,7 @@
                 const isPaid = paid >= fee;
                 const isPartial = paid > 0 && paid < fee;
 
-                const payeeName = encodeURIComponent(upiConfig.name || 'Gyan Kendra');
+                const payeeName = encodeURIComponent(upiConfig.name || 'DIPANKAR MALI');
                 const note = encodeURIComponent(`Fee ${s.name} ${selectedMonth}`);
                 const upiLink = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${balance > 0 ? balance : fee}&cu=INR&tn=${note}`;
 
@@ -997,7 +1135,6 @@
                             <p class="text-[11px] text-slate-500 mt-0.5 ml-4">ধাৰ্য: ₹${fee} | জমা: <span class="text-emerald-700 font-bold">₹${paid}</span> | বাকী: <span class="text-rose-600 font-bold">₹${balance}</span></p>
                         </div>
                         <div class="flex items-center space-x-1.5">
-                            <!-- QR CODE BUTTON -->
                             <button onclick="showStudentQrCode(${s.id}, '${selectedMonth}')" class="w-7 h-7 rounded-full bg-blue-50 text-blue-700 hover:bg-blue-100 flex items-center justify-center text-xs" title="QR Code চাওক">
                                 <i class="fa-solid fa-qrcode"></i>
                             </button>
@@ -1069,7 +1206,7 @@
 
             let html = '';
             let anyMonthPending = false;
-            const upiId = upiConfig.upiId || 'dipankarmali@upi';
+            const upiId = upiConfig.upiId || '7896723247@upi';
 
             allMonths.forEach(month => {
                 let monthPendingTotal = 0;
@@ -1105,7 +1242,7 @@
                             <div id="brk_${month.replace(/\\s+/g,'')}" class="divide-y divide-slate-100 p-2 space-y-1">
                                 ${unpaidList.map(item => {
                                     const st = item.student;
-                                    const payeeName = encodeURIComponent(upiConfig.name || 'Gyan Kendra');
+                                    const payeeName = encodeURIComponent(upiConfig.name || 'DIPANKAR MALI');
                                     const note = encodeURIComponent(`Fee ${st.name} ${month}`);
                                     const upiLink = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${item.balance}&cu=INR&tn=${note}`;
 
