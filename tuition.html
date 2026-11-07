@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>জ্ঞান কেন্দ্ৰ - Tuition Manager</title>
+    <title>জ্ঞান কেন্দ্ৰ - Gyan Kendra</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1e3a8a">
     <meta name="mobile-web-app-capable" content="yes">
@@ -36,11 +36,10 @@
                 </div>
             </div>
             <div class="flex items-center space-x-1.5">
-                <button onclick="openUpiSettingsModal()" title="UPI / QR বিৱৰণ" class="p-2 bg-blue-800 rounded-lg text-emerald-300 text-sm hover:bg-blue-700">
-                    <i class="fa-solid fa-qrcode"></i>
-                </button>
-                <button onclick="exportData()" title="ডাটা বেকআপ" class="p-2 bg-blue-800 rounded-lg text-amber-300 text-sm hover:bg-blue-700">
-                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                <!-- Lock/Unlock Admin Mode Button -->
+                <button id="adminAuthToggleBtn" onclick="toggleAdminAuth()" class="px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1 bg-amber-400 text-blue-950 shadow">
+                    <i class="fa-solid fa-lock" id="adminLockIcon"></i>
+                    <span id="adminLockText">শিক্ষক লগইন</span>
                 </button>
             </div>
         </div>
@@ -61,255 +60,71 @@
     <!-- Main Content Container -->
     <main class="p-4 max-w-md mx-auto">
 
-        <!-- TAB 1: DASHBOARD -->
-        <section id="tab-dashboard" class="tab-content active space-y-4">
-            <!-- Welcome Card -->
-            <div class="bg-gradient-to-r from-blue-900 to-indigo-800 rounded-2xl p-4 text-white shadow-sm">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <span class="inline-block bg-amber-400 text-blue-950 font-bold text-[10px] px-2 py-0.5 rounded-full mb-1">সক্ৰিয় শৈক্ষিক বৰ্ষ ২০২৬</span>
-                        <h2 class="text-lg font-bold">নমস্কাৰ, মালি ছাৰ!</h2>
-                        <p class="text-xs text-blue-200" id="currentDateAssamese">আজিৰ দিনটো শুভ হওক</p>
+        <!-- ================= PUBLIC TAB 1: PARENTS & STUDENTS HOME ================= -->
+        <section id="tab-public-home" class="tab-content active space-y-4">
+            <!-- Portal Welcome Banner -->
+            <div class="bg-gradient-to-r from-blue-900 to-indigo-800 rounded-2xl p-4 text-white shadow-sm space-y-1.5">
+                <span class="inline-block bg-amber-400 text-blue-950 font-bold text-[10px] px-2 py-0.5 rounded-full">জ্ঞান কেন্দ্ৰ প'ৰ্টেল</span>
+                <h2 class="text-base font-bold">অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰী কক্ষ</h2>
+                <p class="text-xs text-blue-200">নিয়মীয়া পঢ়া-শুনা, বিষয়ভিত্তিক টেষ্ট আৰু শৈক্ষিক সহায়ৰ একমাত্ৰ বিশ্বস্ত কেন্দ্ৰ।</p>
+                <div class="pt-1 flex items-center justify-between text-[11px] text-amber-300">
+                    <span>পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)</span>
+                    <span id="publicTodayDate">২০২৬</span>
+                </div>
+            </div>
+
+            <!-- Verified UPI QR Info Card (Public View) -->
+            <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm text-center space-y-2">
+                <div class="flex items-center justify-center space-x-1.5 text-emerald-800 font-bold text-xs">
+                    <i class="fa-solid fa-shield-halved text-emerald-600"></i>
+                    <span>টিউচন মাচুল পৰিশোধৰ অফিচিয়েল QR ক'ড</span>
+                </div>
+                
+                <div class="p-3 bg-slate-50 border-2 border-dashed border-emerald-400 rounded-2xl inline-block">
+                    <img id="publicQrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=7896723247@upi&pn=DIPANKAR%20MALI&cu=INR&tn=Gyan%20Kendra%20Tuition" alt="DIPANKAR MALI UPI QR Code" class="w-44 h-44 mx-auto object-contain">
+                    <p class="text-[10px] text-slate-500 font-bold mt-1">GPay • PhonePe • Paytm</p>
+                </div>
+
+                <div class="bg-emerald-50 text-emerald-950 p-2.5 rounded-xl text-xs font-bold border border-emerald-200">
+                    <p>UPI ID: <span class="text-blue-900 font-black">7896723247@upi</span></p>
+                    <p class="text-[10px] text-slate-600 font-normal mt-0.5">একাউণ্টধাৰী: DIPANKAR MALI (মালি ছাৰ)</p>
+                </div>
+            </div>
+
+            <!-- Routine Snapshot -->
+            <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <h3 class="text-xs font-bold text-blue-900 uppercase tracking-wider flex items-center space-x-1">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>ক্লাচৰ নিয়মীয়া সময়সূচী</span>
+                </h3>
+                <div class="space-y-1.5 text-xs text-slate-600 divide-y divide-slate-100">
+                    <div class="pt-1 flex justify-between">
+                        <span class="font-medium">Class 9 & 10 (পুৱাৰ বেচ):</span>
+                        <span class="font-bold text-slate-800">06:00 AM - 08:30 AM</span>
                     </div>
-                    <div class="text-right">
-                        <span class="text-2xl font-black text-amber-300" id="dashTotalStudents">0</span>
-                        <p class="text-[10px] text-blue-200">মুঠ ছাত্ৰ-ছাত্ৰী</p>
+                    <div class="pt-1 flex justify-between">
+                        <span class="font-medium">Class 6, 7 & 8 (আবেলিৰ বেচ):</span>
+                        <span class="font-bold text-slate-800">03:30 PM - 05:30 PM</span>
+                    </div>
+                    <div class="pt-1 flex justify-between">
+                        <span class="font-medium">প্ৰাথমিক (Nursery - Class 5):</span>
+                        <span class="font-bold text-slate-800">03:00 PM - 04:30 PM</span>
+                    </div>
+                    <div class="pt-1 flex justify-between">
+                        <span class="font-medium">দেওবৰীয়া বিশেষ টেষ্ট:</span>
+                        <span class="font-bold text-amber-600">09:00 AM - 12:00 PM</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-2 gap-3">
-                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-200 flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg">
-                        <i class="fa-solid fa-user-check"></i>
-                    </div>
-                    <div>
-                        <p class="text-[11px] text-slate-500 font-medium">আজিৰ উপস্থিতি</p>
-                        <h3 class="text-lg font-bold text-slate-800" id="dashPresentCount">0</h3>
-                    </div>
-                </div>
-
-                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-200 flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center text-lg">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                    </div>
-                    <div>
-                        <p class="text-[11px] text-slate-500 font-medium">চলতি মাহৰ বাকী</p>
-                        <h3 class="text-lg font-bold text-rose-600" id="dashPendingFees">₹0</h3>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Action Buttons -->
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">দ্ৰুত কাম (Quick Actions)</h3>
-                <div class="grid grid-cols-3 gap-2">
-                    <button onclick="openAddStudentModal()" class="flex flex-col items-center justify-center p-2.5 bg-blue-50 text-blue-800 rounded-lg hover:bg-blue-100 transition">
-                        <i class="fa-solid fa-user-plus text-base mb-1"></i>
-                        <span class="text-[11px] font-semibold text-center">নতুন নামভৰ্তি</span>
-                    </button>
-                    <button onclick="switchTab('attendance')" class="flex flex-col items-center justify-center p-2.5 bg-emerald-50 text-emerald-800 rounded-lg hover:bg-emerald-100 transition">
-                        <i class="fa-solid fa-clipboard-user text-base mb-1"></i>
-                        <span class="text-[11px] font-semibold text-center">উপস্থিতি লওক</span>
-                    </button>
-                    <button onclick="switchTab('fees'); setFeeView('breakdown');" class="flex flex-col items-center justify-center p-2.5 bg-amber-50 text-amber-800 rounded-lg hover:bg-amber-100 transition">
-                        <i class="fa-solid fa-chart-pie text-base mb-1"></i>
-                        <span class="text-[11px] font-semibold text-center">মাহেকীয়া বাকী</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Verified UPI QR Info Card -->
-            <div class="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 p-3.5 rounded-xl flex items-center justify-between shadow-sm">
-                <div class="flex items-center space-x-3">
-                    <div class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl shadow">
-                        <i class="fa-solid fa-qrcode"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center space-x-1">
-                            <span class="text-xs font-bold text-emerald-950">মালি ছাৰৰ অফিচিয়েল UPI QR</span>
-                            <span class="bg-emerald-200 text-emerald-900 text-[9px] font-black px-1.5 py-0.2 rounded-full">সক্ৰিয়</span>
-                        </div>
-                        <p class="text-[11px] font-bold text-emerald-800 mt-0.5">7896723247@upi (DIPANKAR MALI)</p>
-                    </div>
-                </div>
-                <button onclick="showGeneralQrModal()" class="px-2.5 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1">
-                    <i class="fa-solid fa-eye text-[10px]"></i>
-                    <span>QR চাওক</span>
-                </button>
-            </div>
-
-            <!-- Share Portal & Doubt Link Banner -->
-            <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl space-y-2">
-                <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold text-blue-900 flex items-center">
-                        <i class="fa-solid fa-comments text-blue-700 mr-1.5"></i>অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰীৰ সহায় কেন্দ্ৰ
-                    </span>
-                    <span class="text-[10px] bg-blue-200 text-blue-900 font-bold px-2 py-0.5 rounded-full">হোৱাটছএপ লিংক</span>
-                </div>
-                <p class="text-[11px] text-blue-700">ছাত্ৰ-ছাত্ৰী বা অভিভাৱকে ঘৰৰ পৰাই পোনপটীয়াকৈ প্ৰশ্ন বা সংশয় জনাব পৰাকৈ লিংকটো শ্বেয়াৰ কৰক।</p>
-                <div class="flex space-x-2 pt-1">
-                    <button onclick="shareDoubtPortalToWhatsApp()" class="flex-1 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold flex items-center justify-center space-x-1 shadow-sm">
-                        <i class="fa-brands fa-whatsapp text-sm"></i>
-                        <span>গ্ৰুপত লিংক শ্বেয়াৰ কৰক</span>
-                    </button>
-                    <button onclick="switchTab('doubts')" class="px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-lg text-xs font-bold shadow-sm">
-                        সংশয় ফৰ্ম
-                    </button>
-                </div>
-            </div>
+            <!-- Quick Action to Doubts -->
+            <button onclick="switchTab('doubts')" class="w-full py-2.5 bg-blue-900 hover:bg-blue-800 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-2 shadow">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>মালি ছাৰলৈ প্ৰশ্ন বা সংশয় পঠাওক</span>
+            </button>
         </section>
 
-        <!-- TAB 2: STUDENTS -->
-        <section id="tab-students" class="tab-content space-y-3">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h2 class="text-base font-bold text-slate-800">ছাত্ৰ-ছাত্ৰীৰ তালিকা</h2>
-                    <p class="text-[11px] text-slate-500" id="studentCountLabel">মুঠ ছাত্ৰ-ছাত্ৰী: 0 জন</p>
-                </div>
-                <button onclick="openAddStudentModal()" class="bg-blue-900 text-white text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1 shadow-sm font-semibold hover:bg-blue-800">
-                    <i class="fa-solid fa-user-plus"></i>
-                    <span>নতুন নাম</span>
-                </button>
-            </div>
-
-            <!-- Filters -->
-            <div class="flex space-x-2">
-                <div class="relative flex-1">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
-                    <input type="text" id="studentSearchInput" oninput="renderStudents()" placeholder="নাম, ফোন বা ৰোল নং..." class="w-full bg-white pl-8 pr-3 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm">
-                </div>
-                <select id="studentClassFilter" onchange="renderStudents()" class="bg-white px-2 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm font-semibold">
-                    <option value="ALL">সকলো শ্ৰেণী</option>
-                    <option value="Class 10">Class 10</option>
-                    <option value="Class 9">Class 9</option>
-                    <option value="Class 8">Class 8</option>
-                    <option value="Class 7">Class 7</option>
-                    <option value="Class 6">Class 6</option>
-                    <option value="Class 5">Class 5</option>
-                    <option value="Class 4">Class 4</option>
-                    <option value="Class 3">Class 3</option>
-                    <option value="Class 2">Class 2</option>
-                    <option value="Class 1">Class 1</option>
-                    <option value="Nursery">Nursery / KG</option>
-                </select>
-            </div>
-
-            <div id="studentsListContainer" class="space-y-2"></div>
-        </section>
-
-        <!-- TAB 3: ATTENDANCE -->
-        <section id="tab-attendance" class="tab-content space-y-3">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h2 class="text-base font-bold text-slate-800">দৈনিক উপস্থিতি বহী</h2>
-                    <p class="text-[11px] text-slate-500" id="attDateLabel"></p>
-                </div>
-                <input type="date" id="attDatePicker" onchange="onAttDateChange()" class="text-xs bg-white border border-slate-200 rounded-lg px-2 py-1 outline-none font-semibold text-slate-700">
-            </div>
-
-            <div class="flex space-x-2">
-                <select id="attClassFilter" onchange="renderAttendance()" class="w-full bg-white px-3 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm font-bold text-blue-950">
-                    <option value="ALL">সকলো শ্ৰেণী</option>
-                    <option value="Class 10">Class 10</option>
-                    <option value="Class 9">Class 9</option>
-                    <option value="Class 8">Class 8</option>
-                    <option value="Class 7">Class 7</option>
-                    <option value="Class 6">Class 6</option>
-                    <option value="Class 5">Class 5</option>
-                    <option value="Class 4">Class 4</option>
-                    <option value="Class 3">Class 3</option>
-                    <option value="Class 2">Class 2</option>
-                    <option value="Class 1">Class 1</option>
-                    <option value="Nursery">Nursery / KG</option>
-                </select>
-            </div>
-
-            <div class="flex items-center justify-between bg-slate-200/70 p-2 rounded-xl text-xs">
-                <div class="flex space-x-1">
-                    <button onclick="markAllAttendance(true)" class="bg-emerald-600 text-white px-2.5 py-1 rounded-md text-[11px] font-medium shadow-sm">সকলো উপস্থিত (All P)</button>
-                    <button onclick="markAllAttendance(false)" class="bg-rose-600 text-white px-2.5 py-1 rounded-md text-[11px] font-medium shadow-sm">সকলো অনুপস্থিত (All A)</button>
-                </div>
-                <span class="font-bold text-slate-700" id="attSummaryText">0 / 0</span>
-            </div>
-
-            <div id="attendanceListContainer" class="space-y-2"></div>
-        </section>
-
-        <!-- TAB 4: FEES (WITH REAL QR CODE & WHATSAPP PAYMENT LINK) -->
-        <section id="tab-fees" class="tab-content space-y-3">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h2 class="text-base font-bold text-slate-800">মাচুল ব্যৱস্থাপনা</h2>
-                    <p class="text-[11px] text-slate-500">জমা, বাকী আৰু UPI QR ক'ড</p>
-                </div>
-                <div class="text-right">
-                    <span class="text-[10px] text-slate-400 font-bold block">সৰ্বমুঠ বাকী</span>
-                    <span class="text-xs font-black text-rose-600" id="totalAllMonthsPending">₹0</span>
-                </div>
-            </div>
-
-            <!-- View Switcher -->
-            <div class="grid grid-cols-2 gap-1 bg-slate-200/80 p-1 rounded-xl text-xs font-bold">
-                <button id="btnViewRegular" onclick="setFeeView('regular')" class="py-2 rounded-lg bg-blue-900 text-white shadow-sm transition">
-                    <i class="fa-solid fa-list-check mr-1"></i> মাহ অনুযায়ী হিচাপ
-                </button>
-                <button id="btnViewBreakdown" onclick="setFeeView('breakdown')" class="py-2 rounded-lg text-slate-600 hover:text-slate-900 transition">
-                    <i class="fa-solid fa-chart-pie mr-1"></i> মাহেকীয়া বাকীৰ ভাগ
-                </button>
-            </div>
-
-            <!-- VIEW 1: REGULAR MONTH VIEW -->
-            <div id="feeRegularSection" class="space-y-3">
-                <div class="grid grid-cols-2 gap-2 bg-white p-2.5 rounded-xl border border-slate-200">
-                    <div>
-                        <label class="text-[10px] font-bold text-slate-500 block mb-0.5">মাহ বাছক:</label>
-                        <select id="feeMonthSelect" onchange="renderFees()" class="w-full bg-slate-50 border border-slate-200 text-xs rounded-lg px-2 py-1.5 outline-none font-bold text-blue-900"></select>
-                    </div>
-                    <div>
-                        <label class="text-[10px] font-bold text-slate-500 block mb-0.5">শ্ৰেণী বাছক:</label>
-                        <select id="feeClassSelect" onchange="renderFees()" class="w-full bg-slate-50 border border-slate-200 text-xs rounded-lg px-2 py-1.5 outline-none font-semibold text-slate-700">
-                            <option value="ALL">সকলো শ্ৰেণী</option>
-                            <option value="Class 10">Class 10</option>
-                            <option value="Class 9">Class 9</option>
-                            <option value="Class 8">Class 8</option>
-                            <option value="Class 7">Class 7</option>
-                            <option value="Class 6">Class 6</option>
-                            <option value="Class 5">Class 5</option>
-                            <option value="Class 4">Class 4</option>
-                            <option value="Class 3">Class 3</option>
-                            <option value="Class 2">Class 2</option>
-                            <option value="Class 1">Class 1</option>
-                            <option value="Nursery">Nursery / KG</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="flex space-x-2">
-                    <button onclick="filterFees('ALL')" id="feeFilterAll" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-blue-900 text-white shadow-sm">সকলো</button>
-                    <button onclick="filterFees('PENDING')" id="feeFilterPending" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200">বাকী থকা</button>
-                    <button onclick="filterFees('PAID')" id="feeFilterPaid" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200">পৰিশোধিত</button>
-                </div>
-
-                <div id="feesListContainer" class="space-y-2"></div>
-            </div>
-
-            <!-- VIEW 2: MONTH-WISE BREAKDOWN VIEW -->
-            <div id="feeBreakdownSection" class="space-y-3 hidden">
-                <div class="bg-blue-50 border border-blue-200 p-3 rounded-xl flex items-center justify-between text-xs text-blue-900">
-                    <div>
-                        <p class="font-bold">মাহেকীয়া বাকীৰ তালিকা</p>
-                        <p class="text-[11px] text-blue-700">প্ৰতিটো মাহৰ সুকীয়া বাকী আৰু QR ক'ড সংগ্ৰহ</p>
-                    </div>
-                    <i class="fa-solid fa-calendar-days text-xl text-blue-700"></i>
-                </div>
-
-                <div id="monthBreakdownContainer" class="space-y-3"></div>
-            </div>
-        </section>
-
-        <!-- TAB 5: PARENTS & STUDENTS DOUBT & QUESTION PORTAL -->
+        <!-- ================= PUBLIC TAB 2: DOUBTS / QUESTION FORM ================= -->
         <section id="tab-doubts" class="tab-content space-y-4">
             <div class="bg-gradient-to-r from-blue-900 to-indigo-800 p-4 rounded-2xl text-white shadow-sm space-y-1">
                 <span class="inline-block bg-amber-400 text-blue-950 text-[10px] font-bold px-2 py-0.5 rounded-full">অভিভাৱক আৰু ছাত্ৰ সহায় কক্ষ</span>
@@ -345,7 +160,7 @@
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">আপোনাৰ প্ৰশ্ন / জানিবলগীয়া কথা *</label>
-                    <textarea id="doubtMessage" rows="3" placeholder="যিকোনো পঢ়া-শুনাৰ প্ৰশ্ন, হোমৱৰ্ক, বা টিউচন মাচুল সম্পৰ্কীয় কথা ইয়াত লিখক..." class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600"></textarea>
+                    <textarea id="doubtMessage" rows="3" placeholder="যিকোনো পঢ়া-শুনাৰ প্ৰশ্ন, হোমৱৰ্ক, বা টিউচন সম্পৰ্কীয় কথা ইয়াত লিখক..." class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600"></textarea>
                 </div>
                 <button onclick="submitDoubtForm()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-2 shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
@@ -353,7 +168,7 @@
                 </button>
             </div>
 
-            <!-- Important Helplines & Links -->
+            <!-- Helplines & Official Channels -->
             <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
                 <h3 class="font-bold text-xs text-blue-900 uppercase tracking-wider">প্ৰয়োজনীয় সংযোগ আৰু হেল্পলাইন</h3>
                 <div class="space-y-2 text-xs">
@@ -361,7 +176,7 @@
                         <div class="flex items-center space-x-2.5">
                             <i class="fa-solid fa-phone text-blue-900"></i>
                             <div>
-                                <p class="font-bold text-slate-800">মালি ছাৰৰ ফোন নম্বৰ</p>
+                                <p class="font-bold text-slate-800">মালি ছাৰৰ ব্যক্তিগত ফোন</p>
                                 <p class="text-[11px] text-slate-500">7896723247</p>
                             </div>
                         </div>
@@ -371,7 +186,7 @@
                         <div class="flex items-center space-x-2.5">
                             <i class="fa-brands fa-whatsapp text-emerald-700 text-base"></i>
                             <div>
-                                <p class="font-bold text-emerald-950">জ্ঞান কেন্দ্ৰ অফিচিয়েল হোৱাটছএপ চেনেল</p>
+                                <p class="font-bold text-emerald-950">জ্ঞান কেন্দ্ৰ হোৱাটছএপ চেনেল</p>
                                 <p class="text-[11px] text-emerald-700">নোটছ আৰু গুৰুত্বপূৰ্ণ জাননীৰ বাবে</p>
                             </div>
                         </div>
@@ -381,62 +196,241 @@
             </div>
         </section>
 
-        <!-- TAB 6: NOTICES -->
+        <!-- ================= PUBLIC TAB 3: NOTICES ================= -->
         <section id="tab-notices" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
-                <h2 class="text-base font-bold text-slate-800">ৰুটিন আৰু নোটিচ বৰ্ড</h2>
-                <button onclick="openNoticeModal()" class="bg-blue-900 text-white text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1 shadow-sm">
+                <h2 class="text-base font-bold text-slate-800">জ্ঞান কেন্দ্ৰৰ জাননী বহী</h2>
+                <button id="adminAddNoticeBtn" onclick="openNoticeModal()" class="hidden bg-blue-900 text-white text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1 shadow-sm">
                     <i class="fa-solid fa-plus"></i>
                     <span>নতুন জাননী</span>
                 </button>
             </div>
+            <div id="noticesContainer" class="space-y-2"></div>
+        </section>
 
-            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm space-y-2">
-                <h3 class="text-xs font-bold text-blue-900 uppercase tracking-wider flex items-center space-x-1">
-                    <i class="fa-regular fa-clock"></i>
-                    <span>জ্ঞান কেন্দ্ৰৰ নিয়মীয়া সময়সূচী</span>
-                </h3>
-                <div class="space-y-1.5 text-xs text-slate-600 divide-y divide-slate-100">
-                    <div class="pt-1 flex justify-between">
-                        <span class="font-medium">Class 9 & 10 (পুৱাৰ বেচ):</span>
-                        <span class="font-bold text-slate-800">06:00 AM - 08:30 AM</span>
+        <!-- ================= ADMIN PROTECTED SECTION ================= -->
+        <!-- TAB 4: TEACHER DASHBOARD (ADMIN ONLY) -->
+        <section id="tab-dashboard" class="tab-content space-y-4">
+            <div class="bg-gradient-to-r from-blue-950 to-indigo-900 rounded-2xl p-4 text-white shadow-sm">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="inline-block bg-emerald-400 text-blue-950 font-black text-[10px] px-2 py-0.5 rounded-full mb-1">পৰিচালক ডেশ্ববৰ্ড (Verified)</span>
+                        <h2 class="text-lg font-bold">নমস্কাৰ, মালি ছাৰ!</h2>
+                        <p class="text-xs text-blue-200" id="currentDateAssamese">আজিৰ দিনটো শুভ হওক</p>
                     </div>
-                    <div class="pt-1 flex justify-between">
-                        <span class="font-medium">Class 6, 7 & 8 (আবেলিৰ বেচ):</span>
-                        <span class="font-bold text-slate-800">03:30 PM - 05:30 PM</span>
-                    </div>
-                    <div class="pt-1 flex justify-between">
-                        <span class="font-medium">প্ৰাথমিক (Nursery - Class 5):</span>
-                        <span class="font-bold text-slate-800">03:00 PM - 04:30 PM</span>
-                    </div>
-                    <div class="pt-1 flex justify-between">
-                        <span class="font-medium">দেওবৰীয়া বিশেষ টেষ্ট:</span>
-                        <span class="font-bold text-amber-600">09:00 AM - 12:00 PM</span>
+                    <div class="text-right">
+                        <span class="text-2xl font-black text-amber-300" id="dashTotalStudents">0</span>
+                        <p class="text-[10px] text-blue-200">মুঠ ছাত্ৰ-ছাত্ৰী</p>
                     </div>
                 </div>
             </div>
 
-            <div id="noticesContainer" class="space-y-2"></div>
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-200 flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-user-check"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-slate-500 font-medium">আজিৰ উপস্থিতি</p>
+                        <h3 class="text-lg font-bold text-slate-800" id="dashPresentCount">0</h3>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-200 flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-slate-500 font-medium">চলতি মাহৰ বাকী</p>
+                        <h3 class="text-lg font-bold text-rose-600" id="dashPendingFees">₹0</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Quick Actions -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">পৰিচালকৰ কাম-কাজ</h3>
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="openAddStudentModal()" class="flex flex-col items-center justify-center p-2.5 bg-blue-50 text-blue-800 rounded-lg hover:bg-blue-100 transition">
+                        <i class="fa-solid fa-user-plus text-base mb-1"></i>
+                        <span class="text-[11px] font-semibold text-center">নতুন নামভৰ্তি</span>
+                    </button>
+                    <button onclick="switchTab('attendance')" class="flex flex-col items-center justify-center p-2.5 bg-emerald-50 text-emerald-800 rounded-lg hover:bg-emerald-100 transition">
+                        <i class="fa-solid fa-clipboard-user text-base mb-1"></i>
+                        <span class="text-[11px] font-semibold text-center">উপস্থিতি লওক</span>
+                    </button>
+                    <button onclick="switchTab('fees'); setFeeView('breakdown');" class="flex flex-col items-center justify-center p-2.5 bg-amber-50 text-amber-800 rounded-lg hover:bg-amber-100 transition">
+                        <i class="fa-solid fa-chart-pie text-base mb-1"></i>
+                        <span class="text-[11px] font-semibold text-center">মাহেকীয়া বাকী</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex space-x-2">
+                <button onclick="shareDoubtPortalToWhatsApp()" class="flex-1 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-1 shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span>প'ৰ্টেল লিংক গ্ৰুপত দিয়ক</span>
+                </button>
+                <button onclick="changeAdminPinModal()" class="px-3 py-2 bg-slate-200 text-slate-700 rounded-xl text-xs font-bold hover:bg-slate-300">
+                    <i class="fa-solid fa-key mr-1"></i>পিন সলনি
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 5: STUDENTS DATABASE (ADMIN ONLY) -->
+        <section id="tab-students" class="tab-content space-y-3">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-base font-bold text-slate-800">ছাত্ৰ-ছাত্ৰীৰ বহী (গুপ্ত)</h2>
+                    <p class="text-[11px] text-slate-500" id="studentCountLabel">মুঠ: 0 জন</p>
+                </div>
+                <button onclick="openAddStudentModal()" class="bg-blue-900 text-white text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1 shadow-sm font-semibold">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>নতুন নাম</span>
+                </button>
+            </div>
+
+            <div class="flex space-x-2">
+                <div class="relative flex-1">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
+                    <input type="text" id="studentSearchInput" oninput="renderStudents()" placeholder="নাম, ফোন বা ৰোল নং..." class="w-full bg-white pl-8 pr-3 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm">
+                </div>
+                <select id="studentClassFilter" onchange="renderStudents()" class="bg-white px-2 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm font-semibold">
+                    <option value="ALL">সকলো শ্ৰেণী</option>
+                    <option value="Class 10">Class 10</option>
+                    <option value="Class 9">Class 9</option>
+                    <option value="Class 8">Class 8</option>
+                    <option value="Class 7">Class 7</option>
+                    <option value="Class 6">Class 6</option>
+                    <option value="Class 5">Class 5</option>
+                    <option value="Class 4">Class 4</option>
+                    <option value="Class 3">Class 3</option>
+                    <option value="Class 2">Class 2</option>
+                    <option value="Class 1">Class 1</option>
+                    <option value="Nursery">Nursery / KG</option>
+                </select>
+            </div>
+
+            <div id="studentsListContainer" class="space-y-2"></div>
+        </section>
+
+        <!-- TAB 6: ATTENDANCE REGISTER (ADMIN ONLY) -->
+        <section id="tab-attendance" class="tab-content space-y-3">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-base font-bold text-slate-800">দৈনিক উপস্থিতি বহী</h2>
+                    <p class="text-[11px] text-slate-500" id="attDateLabel"></p>
+                </div>
+                <input type="date" id="attDatePicker" onchange="onAttDateChange()" class="text-xs bg-white border border-slate-200 rounded-lg px-2 py-1 outline-none font-semibold text-slate-700">
+            </div>
+
+            <div class="flex space-x-2">
+                <select id="attClassFilter" onchange="renderAttendance()" class="w-full bg-white px-3 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm font-bold text-blue-950">
+                    <option value="ALL">সকলো শ্ৰেণী</option>
+                    <option value="Class 10">Class 10</option>
+                    <option value="Class 9">Class 9</option>
+                    <option value="Class 8">Class 8</option>
+                    <option value="Class 7">Class 7</option>
+                    <option value="Class 6">Class 6</option>
+                    <option value="Class 5">Class 5</option>
+                    <option value="Class 4">Class 4</option>
+                    <option value="Class 3">Class 3</option>
+                    <option value="Class 2">Class 2</option>
+                    <option value="Class 1">Class 1</option>
+                    <option value="Nursery">Nursery / KG</option>
+                </select>
+            </div>
+
+            <div class="flex items-center justify-between bg-slate-200/70 p-2 rounded-xl text-xs">
+                <div class="flex space-x-1">
+                    <button onclick="markAllAttendance(true)" class="bg-emerald-600 text-white px-2.5 py-1 rounded-md text-[11px] font-medium shadow-sm">সকলো উপস্থিত (P)</button>
+                    <button onclick="markAllAttendance(false)" class="bg-rose-600 text-white px-2.5 py-1 rounded-md text-[11px] font-medium shadow-sm">সকলো অনুপস্থিত (A)</button>
+                </div>
+                <span class="font-bold text-slate-700" id="attSummaryText">0 / 0</span>
+            </div>
+
+            <div id="attendanceListContainer" class="space-y-2"></div>
+        </section>
+
+        <!-- TAB 7: FEES ACCOUNTS (ADMIN ONLY) -->
+        <section id="tab-fees" class="tab-content space-y-3">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-base font-bold text-slate-800">মাচুল ব্যৱস্থাপনা</h2>
+                    <p class="text-[11px] text-slate-500">জমা, বাকী আৰু WhatsApp ৰসিদ</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-[10px] text-slate-400 font-bold block">সৰ্বমুঠ বাকী</span>
+                    <span class="text-xs font-black text-rose-600" id="totalAllMonthsPending">₹0</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-1 bg-slate-200/80 p-1 rounded-xl text-xs font-bold">
+                <button id="btnViewRegular" onclick="setFeeView('regular')" class="py-2 rounded-lg bg-blue-900 text-white shadow-sm transition">
+                    <i class="fa-solid fa-list-check mr-1"></i> মাহ অনুযায়ী হিচাপ
+                </button>
+                <button id="btnViewBreakdown" onclick="setFeeView('breakdown')" class="py-2 rounded-lg text-slate-600 hover:text-slate-900 transition">
+                    <i class="fa-solid fa-chart-pie mr-1"></i> মাহেকীয়া বাকীৰ ভাগ
+                </button>
+            </div>
+
+            <!-- View Regular -->
+            <div id="feeRegularSection" class="space-y-3">
+                <div class="grid grid-cols-2 gap-2 bg-white p-2.5 rounded-xl border border-slate-200">
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 block mb-0.5">মাহ বাছক:</label>
+                        <select id="feeMonthSelect" onchange="renderFees()" class="w-full bg-slate-50 border border-slate-200 text-xs rounded-lg px-2 py-1.5 outline-none font-bold text-blue-900"></select>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 block mb-0.5">শ্ৰেণী বাছক:</label>
+                        <select id="feeClassSelect" onchange="renderFees()" class="w-full bg-slate-50 border border-slate-200 text-xs rounded-lg px-2 py-1.5 outline-none font-semibold text-slate-700">
+                            <option value="ALL">সকলো শ্ৰেণী</option>
+                            <option value="Class 10">Class 10</option>
+                            <option value="Class 9">Class 9</option>
+                            <option value="Class 8">Class 8</option>
+                            <option value="Class 7">Class 7</option>
+                            <option value="Class 6">Class 6</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="Class 4">Class 4</option>
+                            <option value="Class 3">Class 3</option>
+                            <option value="Class 2">Class 2</option>
+                            <option value="Class 1">Class 1</option>
+                            <option value="Nursery">Nursery / KG</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex space-x-2">
+                    <button onclick="filterFees('ALL')" id="feeFilterAll" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-blue-900 text-white shadow-sm">সকলো</button>
+                    <button onclick="filterFees('PENDING')" id="feeFilterPending" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200">বাকী থকা</button>
+                    <button onclick="filterFees('PAID')" id="feeFilterPaid" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200">পৰিশোধিত</button>
+                </div>
+
+                <div id="feesListContainer" class="space-y-2"></div>
+            </div>
+
+            <!-- View Breakdown -->
+            <div id="feeBreakdownSection" class="space-y-3 hidden">
+                <div class="bg-blue-50 border border-blue-200 p-3 rounded-xl flex items-center justify-between text-xs text-blue-900">
+                    <div>
+                        <p class="font-bold">মাহেকীয়া বাকীৰ তালিকা</p>
+                        <p class="text-[11px] text-blue-700">প্ৰতিটো মাহৰ সুকীয়া বাকী আৰু QR ক'ড সংগ্ৰহ</p>
+                    </div>
+                    <i class="fa-solid fa-calendar-days text-xl text-blue-700"></i>
+                </div>
+
+                <div id="monthBreakdownContainer" class="space-y-3"></div>
+            </div>
         </section>
     </main>
 
-    <!-- Bottom Navigation Bar (Now with Doubt Portal Tab) -->
+    <!-- Dynamic Bottom Navigation Bar (Adapts to Public vs Admin Login) -->
     <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-2 px-2 z-40 flex justify-around items-center max-w-md mx-auto shadow-lg">
-        <button onclick="switchTab('dashboard')" class="nav-btn active flex flex-col items-center text-blue-900" id="nav-dashboard">
+        <!-- Public Navigation Items -->
+        <button onclick="switchTab('public-home')" class="nav-btn active flex flex-col items-center text-blue-900" id="nav-public-home">
             <i class="fa-solid fa-house text-base"></i>
             <span class="text-[9px] font-semibold mt-0.5">গৃহ</span>
-        </button>
-        <button onclick="switchTab('students')" class="nav-btn flex flex-col items-center text-slate-400" id="nav-students">
-            <i class="fa-solid fa-users text-base"></i>
-            <span class="text-[9px] font-semibold mt-0.5">ছাত্ৰ</span>
-        </button>
-        <button onclick="switchTab('attendance')" class="nav-btn flex flex-col items-center text-slate-400" id="nav-attendance">
-            <i class="fa-solid fa-calendar-check text-base"></i>
-            <span class="text-[9px] font-semibold mt-0.5">উপস্থিতি</span>
-        </button>
-        <button onclick="switchTab('fees')" class="nav-btn flex flex-col items-center text-slate-400" id="nav-fees">
-            <i class="fa-solid fa-indian-rupee-sign text-base"></i>
-            <span class="text-[9px] font-semibold mt-0.5">মাচুল</span>
         </button>
         <button onclick="switchTab('doubts')" class="nav-btn flex flex-col items-center text-slate-400" id="nav-doubts">
             <i class="fa-solid fa-comments text-base"></i>
@@ -446,62 +440,60 @@
             <i class="fa-solid fa-bullhorn text-base"></i>
             <span class="text-[9px] font-semibold mt-0.5">জাননী</span>
         </button>
+
+        <!-- Admin Only Navigation Items (Hidden for parents until unlocked) -->
+        <button onclick="switchTab('dashboard')" class="admin-only-nav hidden flex flex-col items-center text-slate-400" id="nav-dashboard">
+            <i class="fa-solid fa-chart-line text-base"></i>
+            <span class="text-[9px] font-semibold mt-0.5">হিচাপ</span>
+        </button>
+        <button onclick="switchTab('students')" class="admin-only-nav hidden flex flex-col items-center text-slate-400" id="nav-students">
+            <i class="fa-solid fa-users text-base"></i>
+            <span class="text-[9px] font-semibold mt-0.5">ছাত্ৰ</span>
+        </button>
+        <button onclick="switchTab('attendance')" class="admin-only-nav hidden flex flex-col items-center text-slate-400" id="nav-attendance">
+            <i class="fa-solid fa-calendar-check text-base"></i>
+            <span class="text-[9px] font-semibold mt-0.5">উপস্থিতি</span>
+        </button>
+        <button onclick="switchTab('fees')" class="admin-only-nav hidden flex flex-col items-center text-slate-400" id="nav-fees">
+            <i class="fa-solid fa-indian-rupee-sign text-base"></i>
+            <span class="text-[9px] font-semibold mt-0.5">মাচুল</span>
+        </button>
     </nav>
 
-    <!-- UPI SETTINGS MODAL -->
-    <div id="upiSettingsModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl space-y-3">
-            <div class="flex justify-between items-center">
-                <h3 class="font-bold text-base text-slate-800 flex items-center">
-                    <i class="fa-solid fa-qrcode text-emerald-600 mr-2"></i>UPI & QR ক'ড ছেটিং
-                </h3>
-                <button onclick="closeUpiSettingsModal()" class="text-slate-400 hover:text-slate-700 text-lg">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <p class="text-xs text-slate-500">মালি ছাৰৰ UPI ID সফলভাৱে সংযোগ কৰা আছে। প্ৰয়োজন হ'লে সলনি কৰিব পাৰে:</p>
-            <div>
-                <label class="block text-[11px] font-bold text-slate-600 mb-1">আপোনাৰ UPI ID *</label>
-                <input type="text" id="upiIdInput" placeholder="7896723247@upi" class="w-full text-xs font-bold px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
+    <!-- PIN AUTH MODAL -->
+    <div id="pinAuthModal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-xs p-5 shadow-2xl text-center space-y-3">
+            <div class="w-12 h-12 bg-blue-100 text-blue-900 rounded-full flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-user-shield"></i>
             </div>
             <div>
-                <label class="block text-[11px] font-bold text-slate-600 mb-1">একাউণ্টধাৰীৰ নাম</label>
-                <input type="text" id="upiNameInput" placeholder="DIPANKAR MALI" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
+                <h3 class="font-bold text-base text-slate-800">মালি ছাৰৰ প্ৰৱেশ কক্ষ</h3>
+                <p class="text-xs text-slate-500">অনুগ্ৰহ কৰি আপোনাৰ ৪ টা সংখ্যাৰ গোপন PIN মাৰক</p>
             </div>
-            <div class="flex space-x-2 pt-2">
-                <button type="button" onclick="closeUpiSettingsModal()" class="flex-1 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg">বাতিল</button>
-                <button type="button" onclick="saveUpiSettings()" class="flex-1 py-2 text-xs font-bold text-white bg-emerald-600 rounded-lg shadow hover:bg-emerald-700">সংৰক্ষণ কৰক</button>
+            <div>
+                <input type="password" id="adminPinInput" maxlength="6" placeholder="PIN লিখক" class="w-full text-center text-lg tracking-widest font-black py-2 border-2 border-blue-900 rounded-xl outline-none">
             </div>
+            <div class="flex space-x-2 pt-1">
+                <button onclick="closePinAuthModal()" class="flex-1 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg">বাতিল</button>
+                <button onclick="verifyAdminPin()" class="flex-1 py-2 text-xs font-bold text-white bg-blue-900 rounded-lg shadow">আনলক কৰক</button>
+            </div>
+            <p class="text-[10px] text-slate-400 pt-1">ডিফল্ট পিন: 1234</p>
         </div>
     </div>
 
-    <!-- QR CODE VIEW MODAL (SHOWS EXACT QR CODE) -->
-    <div id="qrCodeModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl text-center space-y-3">
-            <div class="flex justify-between items-center">
-                <h3 class="font-bold text-sm text-slate-800" id="qrModalTitle">মাচুল পৰিশোধৰ QR Code</h3>
-                <button onclick="closeQrCodeModal()" class="text-slate-400 hover:text-slate-700 text-lg">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+    <!-- CHANGE PIN MODAL -->
+    <div id="changePinModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-xs p-5 shadow-2xl space-y-3">
+            <h3 class="font-bold text-sm text-slate-800 flex items-center">
+                <i class="fa-solid fa-key text-amber-500 mr-2"></i>এডমিন পিন সলনি কৰক
+            </h3>
+            <div>
+                <label class="block text-[11px] font-bold text-slate-600 mb-1">নতুন PIN (৪ টা সংখ্যা) *</label>
+                <input type="password" id="newPinInput" maxlength="6" placeholder="যেনে: 4321" class="w-full text-center text-sm font-bold py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
             </div>
-            
-            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <p class="font-bold text-xs text-blue-950" id="qrModalStudentName">জ্ঞান কেন্দ্ৰ (DIPANKAR MALI)</p>
-                <p class="text-[11px] text-slate-500" id="qrModalDetails">Google Pay • PhonePe • Paytm</p>
-                <p class="text-base font-black text-rose-600 mt-1" id="qrModalAmount">₹0</p>
-            </div>
-
-            <!-- Dynamic Direct QR Code Image -->
-            <div class="p-3 bg-white border-2 border-dashed border-emerald-500 rounded-2xl inline-block shadow-sm">
-                <img id="qrCodeImage" src="" alt="DIPANKAR MALI UPI QR Code" class="w-48 h-48 mx-auto object-contain">
-                <p class="text-[10px] text-emerald-800 font-bold mt-1">DIPANKAR MALI • 7896723247@upi</p>
-            </div>
-
-            <div class="pt-1">
-                <button id="qrWhatsAppShareBtn" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-md">
-                    <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span>অভিভাৱকলৈ পেমেণ্ট লিংক আৰু খতিয়ান পঠাওক</span>
-                </button>
+            <div class="flex space-x-2 pt-1">
+                <button onclick="closeChangePinModal()" class="flex-1 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg">বাতিল</button>
+                <button onclick="saveNewAdminPin()" class="flex-1 py-2 text-xs font-bold text-white bg-blue-900 rounded-lg shadow">চেভ কৰক</button>
             </div>
         </div>
     </div>
@@ -620,23 +612,19 @@
         </div>
     </div>
 
-    <!-- Application Script Engine -->
+    <!-- Application Engine Script -->
     <script>
         const allMonths = [
             "January 2026", "February 2026", "March 2026", "April 2026", "May 2026", "June 2026",
             "July 2026", "August 2026", "September 2026", "October 2026", "November 2026", "December 2026"
         ];
 
-        // Mali Sir's Verified UPI Configuration from Uploaded QR
-        const defaultUpiConfig = {
-            upiId: "7896723247@upi",
-            name: "DIPANKAR MALI"
-        };
+        let isAdminUnlocked = false;
+        let storedPin = localStorage.getItem('gk_admin_pin') || '1234';
 
         let students = JSON.parse(localStorage.getItem('gk_my_students')) || [];
         let attendance = JSON.parse(localStorage.getItem('gk_my_attendance')) || {};
         let feeRecords = JSON.parse(localStorage.getItem('gk_my_feeRecords')) || {};
-        let upiConfig = JSON.parse(localStorage.getItem('gk_upi_config')) || defaultUpiConfig;
         let notices = JSON.parse(localStorage.getItem('gk_my_notices')) || [
             { id: 1, title: "HSLC বিশেষ মক টেষ্ট", desc: "জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ • পৰিচালক: দীপংকৰ মালি (মালি ছাৰ), বৰমেৰা • নিয়মীয়া উপস্থিতি বাধ্যতামূলক।", date: "2026-11-08" }
         ];
@@ -650,102 +638,90 @@
             renderCurrentDate();
             initMonthSelector();
             updateMarquee();
-            renderDashboard();
-            renderStudents();
-            initAttendanceDate();
-            renderFees();
             renderNotices();
+            updateAdminUI();
         }
 
-        // Generate General QR Modal
-        function showGeneralQrModal() {
-            const upiId = upiConfig.upiId || '7896723247@upi';
-            const payeeName = encodeURIComponent(upiConfig.name || 'DIPANKAR MALI');
-            const upiUrl = `upi://pay?pa=${upiId}&pn=${payeeName}&cu=INR&tn=${encodeURIComponent('Gyan Kendra Tuition Fee')}`;
-            const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
-
-            document.getElementById('qrModalTitle').innerText = `জ্ঞান কেন্দ্ৰৰ অফিচিয়েল UPI QR Code`;
-            document.getElementById('qrModalStudentName').innerText = `পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)`;
-            document.getElementById('qrModalDetails').innerText = `বৰমেৰা, আগমণি, ধুবুৰী`;
-            document.getElementById('qrModalAmount').innerText = `Google Pay / PhonePe / Paytm`;
-            document.getElementById('qrCodeImage').src = qrImageUrl;
-
-            const generalShareText = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (Gyan Kendra)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\nঠিকনা: বৰমেৰা, আগমণি, ধুবুৰী\\n--------------------------------\\nমাচুল পৰিশোধৰ অফিচিয়েল UPI বিৱৰণ:\\n\\n💳 *UPI ID:* \`${upiId}\`\\n👤 *নাম:* ${upiConfig.name}\\n🔗 *পেমেণ্ট লিংক:* ${upiUrl}\\n\\nসকলো অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰীক এই লিংক বা UPI ৰ জৰিয়তে মাচুল জমা দিবলৈ অনুৰোধ কৰা হ'ল। ধন্যবাদ!`;
-
-            const waBtn = document.getElementById('qrWhatsAppShareBtn');
-            waBtn.onclick = function() {
-                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(generalShareText)}`, '_blank');
-            };
-
-            document.getElementById('qrCodeModal').classList.remove('hidden');
+        // ================= ADMIN LOCK / UNLOCK =================
+        function toggleAdminAuth() {
+            if (isAdminUnlocked) {
+                // Lock Admin
+                isAdminUnlocked = false;
+                updateAdminUI();
+                switchTab('public-home');
+                alert("শিক্ষক এডমিন মোড সফলতাৰে লক হ'ল!");
+            } else {
+                // Open PIN Dialog
+                document.getElementById('adminPinInput').value = '';
+                document.getElementById('pinAuthModal').classList.remove('hidden');
+            }
         }
 
-        // Student-specific QR Modal
-        function showStudentQrCode(studId, month) {
-            const s = students.find(item => item.id === studId);
-            if (!s) return;
-
-            const recKey = `${s.id}_${month}`;
-            const rec = feeRecords[recKey];
-            const fee = Number(s.fee || 0);
-            const paid = rec ? Number(rec.paidAmount || 0) : 0;
-            const balance = Math.max(0, fee - paid);
-            const amountToPay = balance > 0 ? balance : fee;
-
-            const upiId = upiConfig.upiId || '7896723247@upi';
-            const payeeName = encodeURIComponent(upiConfig.name || 'DIPANKAR MALI');
-            const note = encodeURIComponent(`Tuition Fee ${s.name} ${month}`);
-
-            const upiUrl = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${amountToPay}&cu=INR&tn=${note}`;
-            const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
-
-            document.getElementById('qrModalTitle').innerText = `${s.name} ৰ মাচুলৰ QR ক'ড`;
-            document.getElementById('qrModalStudentName').innerText = `${s.name} (${s.class})`;
-            document.getElementById('qrModalDetails').innerText = `${month} মাহৰ বাকী থকা মাচুল`;
-            document.getElementById('qrModalAmount').innerText = `পৰিশোধ কৰিবলগীয়া: ₹${amountToPay}`;
-            document.getElementById('qrCodeImage').src = qrImageUrl;
-
-            const shareMsg = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (Gyan Kendra)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\nঠিকনা: বৰমেৰা, আগমণি, ধুবুৰী\\n--------------------------------\\nনমস্কাৰ, শ্ৰদ্ধাৰ অভিভাৱক।\\n\\nছাত্ৰ/ছাত্ৰীৰ নাম: *${s.name}*\\nশ্ৰেণী: *${s.class}*\\nমাহ: *${month}*\\nধাৰ্য মাচুল: ₹${fee}\\nজমা দিয়া ধন: ₹${paid}\\n👉 *বৰ্তমান বাকী থকা ধন: ₹${balance}*\\n\\nঅনুগ্ৰহ কৰি তলৰ QR ক'ড বা লিংকৰ জৰিয়তে মাচুল পৰিশোধ কৰক:\\n\\n💳 *UPI ID:* \`${upiId}\`\\n🔗 *ডাইৰেক্ট পেমেণ্ট লিংক:* ${upiUrl}\\n\\nপৰিশোধ কৰাৰ পিছত অনুগ্ৰহ কৰি স্ক্ৰীনশ্বট প্ৰেৰণ কৰিব। ধন্যবাদ!`;
-
-            const waBtn = document.getElementById('qrWhatsAppShareBtn');
-            waBtn.onclick = function() {
-                window.open(`https://wa.me/91${s.phone}?text=${encodeURIComponent(shareMsg)}`, '_blank');
-            };
-
-            document.getElementById('qrCodeModal').classList.remove('hidden');
+        function closePinAuthModal() {
+            document.getElementById('pinAuthModal').classList.add('hidden');
         }
 
-        function closeQrCodeModal() {
-            document.getElementById('qrCodeModal').classList.add('hidden');
+        function verifyAdminPin() {
+            const entered = document.getElementById('adminPinInput').value.trim();
+            if (entered === storedPin) {
+                isAdminUnlocked = true;
+                closePinAuthModal();
+                updateAdminUI();
+                renderDashboard();
+                renderStudents();
+                initAttendanceDate();
+                renderFees();
+                switchTab('dashboard');
+                alert("নমস্কাৰ মালি ছাৰ, এডমিন মোড আনলক হ'ল!");
+            } else {
+                alert("ভুল PIN! অনুগ্ৰহ কৰি সঠিক PIN প্ৰবিষ্ট কৰক।");
+            }
         }
 
-        // UPI Settings Modal
-        function openUpiSettingsModal() {
-            document.getElementById('upiIdInput').value = upiConfig.upiId || '7896723247@upi';
-            document.getElementById('upiNameInput').value = upiConfig.name || 'DIPANKAR MALI';
-            document.getElementById('upiSettingsModal').classList.remove('hidden');
+        function updateAdminUI() {
+            const toggleBtn = document.getElementById('adminAuthToggleBtn');
+            const icon = document.getElementById('adminLockIcon');
+            const text = document.getElementById('adminLockText');
+            const addNoticeBtn = document.getElementById('adminAddNoticeBtn');
+            const adminNavs = document.querySelectorAll('.admin-only-nav');
+
+            if (isAdminUnlocked) {
+                toggleBtn.className = "px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1 bg-rose-600 text-white shadow";
+                icon.className = "fa-solid fa-lock-open";
+                text.innerText = "লক কৰক";
+                if (addNoticeBtn) addNoticeBtn.classList.remove('hidden');
+                adminNavs.forEach(el => el.classList.remove('hidden'));
+            } else {
+                toggleBtn.className = "px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1 bg-amber-400 text-blue-950 shadow";
+                icon.className = "fa-solid fa-lock";
+                text.innerText = "শিক্ষক লগইন";
+                if (addNoticeBtn) addNoticeBtn.classList.add('hidden');
+                adminNavs.forEach(el => el.classList.add('hidden'));
+            }
         }
 
-        function closeUpiSettingsModal() {
-            document.getElementById('upiSettingsModal').classList.add('hidden');
+        function changeAdminPinModal() {
+            document.getElementById('newPinInput').value = '';
+            document.getElementById('changePinModal').classList.remove('hidden');
         }
 
-        function saveUpiSettings() {
-            const upiId = document.getElementById('upiIdInput').value.trim();
-            const name = document.getElementById('upiNameInput').value.trim() || 'DIPANKAR MALI';
-            if (!upiId) {
-                alert("অনুগ্ৰহ কৰি সঠিক UPI ID দিয়ক!");
+        function closeChangePinModal() {
+            document.getElementById('changePinModal').classList.add('hidden');
+        }
+
+        function saveNewAdminPin() {
+            const p = document.getElementById('newPinInput').value.trim();
+            if (!p || p.length < 4) {
+                alert("অনুগ্ৰহ কৰি অতি কমেও ৪ টা সংখ্যাৰ PIN দিয়ক!");
                 return;
             }
-            upiConfig = { upiId, name };
-            localStorage.setItem('gk_upi_config', JSON.stringify(upiConfig));
-            closeUpiSettingsModal();
-            renderFees();
-            if (currentFeeView === 'breakdown') renderMonthWiseBreakdown();
-            alert("UPI ID সফলতাৰে সংৰক্ষণ হ'ল!");
+            storedPin = p;
+            localStorage.setItem('gk_admin_pin', p);
+            closeChangePinModal();
+            alert("আপোনাৰ এডমিন PIN সফলতাৰে সলনি হ'ল!");
         }
 
-        // Doubt / Question Submission to Mali Sir's WhatsApp
+        // ================= PUBLIC DOUBT SUBMIT =================
         function submitDoubtForm() {
             const name = document.getElementById('doubtSenderName').value.trim();
             const sClass = document.getElementById('doubtSenderClass').value;
@@ -763,7 +739,7 @@
 
         function shareDoubtPortalToWhatsApp() {
             const portalUrl = window.location.href;
-            const shareText = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (বৰমেৰা)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\n\\nশ্ৰদ্ধাৰ অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰীসকল,\\nপঢ়া-শুনাৰ কোনো প্ৰশ্ন, হোমৱৰ্ক বা মাচুল পৰিশোধৰ বাবে আমাৰ অনলাইন প'ৰ্টেল ব্যৱহাৰ কৰক:\\n\\n🔗 *জ্ঞান কেন্দ্ৰ প'ৰ্টেল লিংক:*\\n${portalUrl}\\n\\n📞 *হেল্পলাইন নম্বৰ:* 7896723247\\nধন্যবাদ!`;
+            const shareText = `*জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ (বৰমেৰা)*\\n*পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)*\\n\\nশ্ৰদ্ধাৰ অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰীসকল,\\nপঢ়া-শুনাৰ যিকোনো প্ৰশ্ন, হোমৱৰ্ক বা মাচুল পৰিশোধৰ বাবে আমাৰ অনলাইন প'ৰ্টেল ব্যৱহাৰ কৰক:\\n\\n🔗 *জ্ঞান কেন্দ্ৰ প'ৰ্টেল লিংক:*\\n${portalUrl}\\n\\n📞 *হেল্পলাইন নম্বৰ:* 7896723247\\nধন্যবাদ!`;
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
         }
 
@@ -775,20 +751,33 @@
         function renderCurrentDate() {
             const today = new Date();
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('currentDateAssamese').innerText = today.toLocaleDateString('as-IN', options);
+            const formatted = today.toLocaleDateString('as-IN', options);
+            document.getElementById('currentDateAssamese').innerText = formatted;
+            document.getElementById('publicTodayDate').innerText = formatted;
         }
 
         function switchTab(tabId) {
+            // Guard admin tabs if not logged in
+            const adminTabs = ['dashboard', 'students', 'attendance', 'fees'];
+            if (adminTabs.includes(tabId) && !isAdminUnlocked) {
+                toggleAdminAuth();
+                return;
+            }
+
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(el => {
+            document.querySelectorAll('.nav-btn, .admin-only-nav').forEach(el => {
                 el.classList.remove('text-blue-900');
                 el.classList.add('text-slate-400');
             });
 
-            document.getElementById('tab-' + tabId).classList.add('active');
+            const contentEl = document.getElementById('tab-' + tabId);
+            if (contentEl) contentEl.classList.add('active');
+
             const activeBtn = document.getElementById('nav-' + tabId);
-            activeBtn.classList.remove('text-slate-400');
-            activeBtn.classList.add('text-blue-900');
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-400');
+                activeBtn.classList.add('text-blue-900');
+            }
 
             if (tabId === 'dashboard') renderDashboard();
             if (tabId === 'students') renderStudents();
@@ -799,6 +788,7 @@
             }
         }
 
+        // ================= DASHBOARD & STATS =================
         function renderDashboard() {
             document.getElementById('dashTotalStudents').innerText = students.length;
             const todayStr = getTodayDateStr();
@@ -859,7 +849,7 @@
             }
         }
 
-        // ==================== STUDENTS CRUD ====================
+        // ================= STUDENTS =================
         function renderStudents() {
             const container = document.getElementById('studentsListContainer');
             const filterClass = document.getElementById('studentClassFilter').value;
@@ -902,10 +892,10 @@
                         <a href="https://wa.me/91${s.phone}?text=${encodeURIComponent(`নমস্কাৰ, জ্ঞান কেন্দ্ৰৰ (Mali Sir) তৰফৰ পৰা যোগাযোগ কৰা হৈছে।`)}" target="_blank" class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[11px]">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
-                        <button onclick="editStudent(${s.id})" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-[11px]" title="সম্পাদনা">
+                        <button onclick="editStudent(${s.id})" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-[11px]">
                             <i class="fa-solid fa-pen"></i>
                         </button>
-                        <button onclick="deleteStudent(${s.id}, '${s.name}')" class="w-7 h-7 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-100 flex items-center justify-center text-[11px]" title="মচি পেলাওক">
+                        <button onclick="deleteStudent(${s.id}, '${s.name}')" class="w-7 h-7 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-100 flex items-center justify-center text-[11px]">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
@@ -977,7 +967,7 @@
             renderFees();
         }
 
-        // ==================== ATTENDANCE ====================
+        // ================= ATTENDANCE =================
         function initAttendanceDate() {
             document.getElementById('attDatePicker').value = getTodayDateStr();
             onAttDateChange();
@@ -1057,7 +1047,7 @@
             renderDashboard();
         }
 
-        // ==================== FEES ====================
+        // ================= FEES & QR =================
         function initMonthSelector() {
             const sel = document.getElementById('feeMonthSelect');
             const curMonth = getCurrentMonthKey();
@@ -1101,7 +1091,7 @@
                 return;
             }
 
-            const upiId = upiConfig.upiId || '7896723247@upi';
+            const upiId = '7896723247@upi';
 
             container.innerHTML = filtered.map(s => {
                 const recKey = `${s.id}_${selectedMonth}`;
@@ -1112,7 +1102,7 @@
                 const isPaid = paid >= fee;
                 const isPartial = paid > 0 && paid < fee;
 
-                const payeeName = encodeURIComponent(upiConfig.name || 'DIPANKAR MALI');
+                const payeeName = encodeURIComponent('DIPANKAR MALI');
                 const note = encodeURIComponent(`Fee ${s.name} ${selectedMonth}`);
                 const upiLink = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${balance > 0 ? balance : fee}&cu=INR&tn=${note}`;
 
@@ -1135,9 +1125,6 @@
                             <p class="text-[11px] text-slate-500 mt-0.5 ml-4">ধাৰ্য: ₹${fee} | জমা: <span class="text-emerald-700 font-bold">₹${paid}</span> | বাকী: <span class="text-rose-600 font-bold">₹${balance}</span></p>
                         </div>
                         <div class="flex items-center space-x-1.5">
-                            <button onclick="showStudentQrCode(${s.id}, '${selectedMonth}')" class="w-7 h-7 rounded-full bg-blue-50 text-blue-700 hover:bg-blue-100 flex items-center justify-center text-xs" title="QR Code চাওক">
-                                <i class="fa-solid fa-qrcode"></i>
-                            </button>
                             <button onclick="openPaymentModal(${s.id}, '${selectedMonth}')" class="px-2 py-1 rounded-lg text-xs font-bold ${isPaid ? 'bg-slate-100 text-slate-600' : 'bg-emerald-600 text-white shadow-sm'}">
                                 ${isPaid ? 'এডিট' : 'জমা'}
                             </button>
@@ -1199,14 +1186,13 @@
             if (currentFeeView === 'breakdown') renderMonthWiseBreakdown();
         }
 
-        // MONTH-WISE BREAKDOWN
         function renderMonthWiseBreakdown() {
             const container = document.getElementById('monthBreakdownContainer');
             calculateTotalAllPending();
 
             let html = '';
             let anyMonthPending = false;
-            const upiId = upiConfig.upiId || '7896723247@upi';
+            const upiId = '7896723247@upi';
 
             allMonths.forEach(month => {
                 let monthPendingTotal = 0;
@@ -1242,7 +1228,7 @@
                             <div id="brk_${month.replace(/\\s+/g,'')}" class="divide-y divide-slate-100 p-2 space-y-1">
                                 ${unpaidList.map(item => {
                                     const st = item.student;
-                                    const payeeName = encodeURIComponent(upiConfig.name || 'DIPANKAR MALI');
+                                    const payeeName = encodeURIComponent('DIPANKAR MALI');
                                     const note = encodeURIComponent(`Fee ${st.name} ${month}`);
                                     const upiLink = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${item.balance}&cu=INR&tn=${note}`;
 
@@ -1255,9 +1241,6 @@
                                                 <p class="text-[11px] text-slate-500">ধাৰ্য: ₹${item.fee} | জমা: ₹${item.paid} | <span class="text-rose-600 font-bold">বাকী: ₹${item.balance}</span></p>
                                             </div>
                                             <div class="flex items-center space-x-1.5">
-                                                <button onclick="showStudentQrCode(${st.id}, '${month}')" class="w-7 h-7 rounded-full bg-blue-50 text-blue-700 hover:bg-blue-100 flex items-center justify-center text-xs" title="QR Code চাওক">
-                                                    <i class="fa-solid fa-qrcode"></i>
-                                                </button>
                                                 <button onclick="openPaymentModal(${st.id}, '${month}')" class="px-2 py-1 bg-emerald-600 text-white rounded text-[10px] font-bold shadow-sm">
                                                     জমা
                                                 </button>
@@ -1287,7 +1270,7 @@
             }
         }
 
-        // ==================== NOTICES ====================
+        // ================= NOTICES =================
         function renderNotices() {
             const container = document.getElementById('noticesContainer');
             if (notices.length === 0) {
@@ -1334,7 +1317,7 @@
         }
 
         function exportData() {
-            const fullBackup = { students, attendance, feeRecords, upiConfig, notices, exportDate: new Date().toISOString() };
+            const fullBackup = { students, attendance, feeRecords, notices, exportDate: new Date().toISOString() };
             const blob = new Blob([JSON.stringify(fullBackup, null, 2)], { type: "application/json" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
