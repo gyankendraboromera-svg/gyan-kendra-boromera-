@@ -19,11 +19,19 @@
         .marquee-text { display: inline-block; padding-left: 100%; animation: marqueeAnim 22s linear infinite; }
         .marquee-box:hover .marquee-text { animation-play-state: paused; }
         @keyframes marqueeAnim { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+
+        /* Print styles for official receipt download */
+        @media print {
+            body * { visibility: hidden; }
+            #printableReceiptArea, #printableReceiptArea * { visibility: visible; }
+            #printableReceiptArea { position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 20px; }
+            .no-print { display: none !important; }
+        }
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800 pb-20 select-none">
 
-    <!-- Top Header (No visible Teacher Login button for outsiders) -->
+    <!-- Top Header (Secret admin lock on GK logo) -->
     <header class="bg-blue-900 text-white sticky top-0 z-40 shadow-md">
         <div class="px-4 py-3 flex items-center justify-between">
             <div class="flex items-center space-x-2">
@@ -117,23 +125,58 @@
                 </div>
             </div>
 
-            <button onclick="switchTab('doubts')" class="w-full py-2.5 bg-blue-900 hover:bg-blue-800 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-2 shadow">
-                <i class="fa-solid fa-pen-to-square"></i>
-                <span>মালি ছাৰলৈ প্ৰশ্ন বা সংশয় পঠাওক</span>
-            </button>
+            <div class="grid grid-cols-2 gap-2">
+                <button onclick="switchTab('public-receipts')" class="py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <span>মাচুল ৰচিদ ডাউনলোড</span>
+                </button>
+                <button onclick="switchTab('doubts')" class="py-2.5 bg-blue-900 hover:bg-blue-800 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow">
+                    <i class="fa-solid fa-camera"></i>
+                    <span>প্ৰশ্ন বা ফটো পঠাওক</span>
+                </button>
+            </div>
         </section>
 
-        <!-- ================= PUBLIC TAB 2: DOUBTS / QUESTION FORM ================= -->
+        <!-- ================= PUBLIC TAB 2: STUDENT RECEIPT / BILL DOWNLOAD ================= -->
+        <section id="tab-public-receipts" class="tab-content space-y-4">
+            <div class="bg-gradient-to-r from-emerald-800 to-teal-900 p-4 rounded-2xl text-white shadow-sm space-y-1">
+                <span class="inline-block bg-amber-400 text-blue-950 text-[10px] font-bold px-2 py-0.5 rounded-full">ডিজিটেল মাচুল ৰচিদ</span>
+                <h2 class="text-base font-bold">পেমেণ্ট ৰচিদ (Bill) ডাউনলোড</h2>
+                <p class="text-xs text-emerald-100">আপোনাৰ ৰোল নম্বৰ বা ফোন নম্বৰ মাৰি পৰিশোধিত মাচুলৰ ৰচিদ ডাউনলোড কৰক।</p>
+            </div>
+
+            <!-- Student Search Box -->
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <label class="block text-xs font-bold text-slate-700">ছাত্ৰ/ছাত্ৰীৰ ৰোল নম্বৰ বা ১০ টা সংখ্যাৰ ফোন নম্বৰ দিয়ক:</label>
+                <div class="flex space-x-2">
+                    <input type="text" id="receiptSearchQuery" placeholder="যেনে: 1 বা 9876543210" class="flex-1 text-xs px-3 py-2 border-2 border-slate-300 rounded-xl outline-none focus:border-emerald-600 font-bold">
+                    <button onclick="searchStudentReceipts()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow">
+                        বিচাৰক
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Result Container -->
+            <div id="receiptSearchResultsContainer" class="space-y-3">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-dashed border-slate-300 text-center text-xs text-slate-500">
+                    <i class="fa-solid fa-magnifying-glass text-2xl text-slate-400 mb-2"></i>
+                    <p class="font-bold">ৰোল নম্বৰ বা মোবাইল নম্বৰ মাৰি ওপৰত বিচাৰক</p>
+                    <p class="text-[11px] text-slate-400 mt-0.5">কেৱল মালি ছাৰে গ্ৰহণ কৰা পৰিশোধিত মাচুলৰ ৰচিদহে ইয়াত উপলব্ধ হ'ব।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PUBLIC TAB 3: DOUBTS FORM ================= -->
         <section id="tab-doubts" class="tab-content space-y-4">
             <div class="bg-gradient-to-r from-blue-900 to-indigo-800 p-4 rounded-2xl text-white shadow-sm space-y-1">
-                <span class="inline-block bg-amber-400 text-blue-950 text-[10px] font-bold px-2 py-0.5 rounded-full">অভিভাৱক আৰু ছাত্ৰ সহায় কক্ষ</span>
-                <h2 class="text-base font-bold">প্ৰশ্ন, সংশয় বা দিহা-পৰামৰ্শ</h2>
-                <p class="text-xs text-blue-200">তলৰ ফৰ্মখন পূৰণ কৰি পোনে পোনে মালি ছাৰৰ ব্যক্তিগত WhatsApp-লৈ পঠাওক।</p>
+                <span class="inline-block bg-amber-400 text-blue-950 text-[10px] font-bold px-2 py-0.5 rounded-full">প্ৰশ্ন আৰু স্ক্ৰীনশ্বট সহায় কক্ষ</span>
+                <h2 class="text-base font-bold">প্ৰশ্ন, সংশয় বা ফটো প্ৰেৰণ</h2>
+                <p class="text-xs text-blue-200">কিতাপৰ প্ৰশ্ন, অংক বা হোমৱৰ্কৰ ফটো তুলি পোনপটীয়াকৈ মালি ছাৰলৈ পঠাওক।</p>
             </div>
 
             <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
                 <h3 class="font-bold text-xs text-slate-700 uppercase tracking-wider flex items-center">
-                    <i class="fa-solid fa-pen-to-square text-blue-900 mr-1.5"></i>প্ৰশ্ন বা অসুবিধা প্ৰেৰণ কৰক
+                    <i class="fa-solid fa-pen-to-square text-blue-900 mr-1.5"></i>প্ৰশ্ন বা অসুবিধা লিখক
                 </h3>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">ছাত্ৰ/ছাত্ৰী বা অভিভাৱকৰ নাম *</label>
@@ -159,15 +202,41 @@
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">আপোনাৰ প্ৰশ্ন / জানিবলগীয়া কথা *</label>
-                    <textarea id="doubtMessage" rows="3" placeholder="যিকোনো পঢ়া-শুনাৰ প্ৰশ্ন, হোমৱৰ্ক, বা টিউচন সম্পৰ্কীয় কথা ইয়াত লিখক..." class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600"></textarea>
+                    <textarea id="doubtMessage" rows="3" placeholder="প্ৰশ্নটো কি ইয়াত চমুকৈ লিখক..." class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600"></textarea>
                 </div>
+
+                <!-- DIRECT PHOTO / SCREENSHOT ATTACHMENT BOX -->
+                <div class="bg-blue-50/70 p-3 rounded-xl border border-blue-200 space-y-2">
+                    <label class="block text-[11px] font-bold text-blue-950">
+                        <i class="fa-solid fa-camera text-blue-700 mr-1"></i>প্ৰশ্নৰ ফটো বা স্ক্ৰীনশ্বট বাছক (ঐচ্ছিক)
+                    </label>
+                    <div class="flex items-center space-x-2">
+                        <label class="flex-1 flex items-center justify-center px-3 py-2 border-2 border-dashed border-blue-400 rounded-xl bg-white hover:bg-blue-50 cursor-pointer text-xs font-bold text-blue-900 transition shadow-sm">
+                            <i class="fa-solid fa-image mr-1.5 text-blue-600"></i>
+                            <span id="photoUploadLabel">কেমেৰা বা গেলাৰীৰ পৰা বাছক</span>
+                            <input type="file" id="doubtImageInput" accept="image/*" class="hidden" onchange="handleDoubtImagePreview(event)">
+                        </label>
+                        <button type="button" id="removePhotoBtn" onclick="removeDoubtPhoto()" class="hidden px-2.5 py-2 bg-rose-100 hover:bg-rose-200 text-rose-700 rounded-xl text-xs font-bold">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+
+                    <!-- Photo Preview Frame -->
+                    <div id="doubtImagePreviewContainer" class="hidden mt-2 p-2 bg-white border border-slate-200 rounded-xl text-center">
+                        <img id="doubtImagePreview" src="" alt="Doubt Preview" class="max-h-48 mx-auto rounded-lg object-contain shadow-sm border border-slate-100">
+                        <p class="text-[10px] text-emerald-800 font-bold mt-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i>ফটো সফলভাৱে সংলগ্ন হ'ল! তলৰ বুটামত টিপক।
+                        </p>
+                    </div>
+                </div>
+
                 <button onclick="submitDoubtForm()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-2 shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span>মালি ছাৰলৈ WhatsApp মেচেজ পঠাওক</span>
                 </button>
             </div>
 
-            <!-- Helplines & Official Channels -->
+            <!-- Helplines -->
             <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
                 <h3 class="font-bold text-xs text-blue-900 uppercase tracking-wider">প্ৰয়োজনীয় সংযোগ আৰু হেল্পলাইন</h3>
                 <div class="space-y-2 text-xs">
@@ -181,21 +250,11 @@
                         </div>
                         <span class="text-blue-900 font-bold text-[11px]">Call <i class="fa-solid fa-chevron-right text-[9px]"></i></span>
                     </a>
-                    <a href="https://whatsapp.com/channel/0029Vb7YYlADZ4LZOtGek320" target="_blank" class="flex items-center justify-between p-2.5 bg-emerald-50 hover:bg-emerald-100 rounded-xl border border-emerald-200">
-                        <div class="flex items-center space-x-2.5">
-                            <i class="fa-brands fa-whatsapp text-emerald-700 text-base"></i>
-                            <div>
-                                <p class="font-bold text-emerald-950">জ্ঞান কেন্দ্ৰ হোৱাটছএপ চেনেল</p>
-                                <p class="text-[11px] text-emerald-700">নোটছ আৰু গুৰুত্বপূৰ্ণ জাননীৰ বাবে</p>
-                            </div>
-                        </div>
-                        <span class="text-emerald-700 font-bold text-[11px]">Join <i class="fa-solid fa-chevron-right text-[9px]"></i></span>
-                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- ================= PUBLIC TAB 3: NOTICES ================= -->
+        <!-- ================= PUBLIC TAB 4: NOTICES ================= -->
         <section id="tab-notices" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
                 <h2 class="text-base font-bold text-slate-800">জ্ঞান কেন্দ্ৰৰ জাননী বহী</h2>
@@ -208,7 +267,7 @@
         </section>
 
         <!-- ================= ADMIN PROTECTED SECTION (MALI SIR ONLY) ================= -->
-        <!-- TAB 4: TEACHER DASHBOARD (ADMIN ONLY) -->
+        <!-- TAB 5: TEACHER DASHBOARD (ADMIN ONLY) -->
         <section id="tab-dashboard" class="tab-content space-y-4">
             <div class="bg-gradient-to-r from-blue-950 to-indigo-900 rounded-2xl p-4 text-white shadow-sm">
                 <div class="flex justify-between items-start">
@@ -277,7 +336,7 @@
             </div>
         </section>
 
-        <!-- TAB 5: STUDENTS DATABASE (ADMIN ONLY) -->
+        <!-- TAB 6: STUDENTS DATABASE (ADMIN ONLY) -->
         <section id="tab-students" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
                 <div>
@@ -314,7 +373,7 @@
             <div id="studentsListContainer" class="space-y-2"></div>
         </section>
 
-        <!-- TAB 6: ATTENDANCE REGISTER (ADMIN ONLY) -->
+        <!-- TAB 7: ATTENDANCE REGISTER (ADMIN ONLY) -->
         <section id="tab-attendance" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
                 <div>
@@ -352,7 +411,7 @@
             <div id="attendanceListContainer" class="space-y-2"></div>
         </section>
 
-        <!-- TAB 7: ENHANCED MONTHLY FEES & MANUAL MONTH PASSBOOK (ADMIN ONLY) -->
+        <!-- TAB 8: FEES PASSBOOK (ADMIN ONLY) -->
         <section id="tab-fees" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
                 <div>
@@ -394,9 +453,14 @@
 
     <!-- Dynamic Bottom Navigation Bar -->
     <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-2 px-2 z-40 flex justify-around items-center max-w-md mx-auto shadow-lg">
+        <!-- Public Navigation Items (Visible to students/parents) -->
         <button onclick="switchTab('public-home')" class="nav-btn active flex flex-col items-center text-blue-900" id="nav-public-home">
             <i class="fa-solid fa-house text-base"></i>
             <span class="text-[9px] font-semibold mt-0.5">গৃহ</span>
+        </button>
+        <button onclick="switchTab('public-receipts')" class="nav-btn flex flex-col items-center text-slate-400" id="nav-public-receipts">
+            <i class="fa-solid fa-file-invoice-dollar text-base"></i>
+            <span class="text-[9px] font-semibold mt-0.5">ৰচিদ (Bill)</span>
         </button>
         <button onclick="switchTab('doubts')" class="nav-btn flex flex-col items-center text-slate-400" id="nav-doubts">
             <i class="fa-solid fa-comments text-base"></i>
@@ -407,7 +471,7 @@
             <span class="text-[9px] font-semibold mt-0.5">জাননী</span>
         </button>
 
-        <!-- Admin Only Navigation Items -->
+        <!-- Admin Only Navigation Items (Visible only when Mali Sir unlocks) -->
         <button onclick="switchTab('dashboard')" class="admin-only-nav hidden flex flex-col items-center text-slate-400" id="nav-dashboard">
             <i class="fa-solid fa-chart-line text-base"></i>
             <span class="text-[9px] font-semibold mt-0.5">হিচাপ</span>
@@ -426,7 +490,97 @@
         </button>
     </nav>
 
-    <!-- FULL STUDENT MONTHLY PASSBOOK MODAL (100% MANUAL MONTHS ONLY) -->
+    <!-- ================= OFFICIAL PRINTABLE RECEIPT / BILL MODAL ================= -->
+    <div id="receiptModal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center p-3">
+        <div class="bg-white rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden flex flex-col">
+            <!-- Printable Bill Container -->
+            <div id="printableReceiptArea" class="p-5 bg-white text-slate-800 space-y-4">
+                <!-- Institution Header -->
+                <div class="text-center border-b-2 border-blue-900 pb-3">
+                    <div class="w-12 h-12 bg-blue-900 text-amber-400 font-black rounded-full flex items-center justify-center mx-auto text-xl border-2 border-amber-400 shadow">
+                        GK
+                    </div>
+                    <h2 class="font-black text-lg text-blue-900 mt-1 leading-tight">জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ</h2>
+                    <p class="text-[11px] font-bold text-slate-600">বৰমেৰা, আগমণি, ধুবুৰী (অসম) • পিন: ৭৮৩৩৩৫</p>
+                    <p class="text-[10px] text-blue-800 font-semibold">পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ) • ফোন: 7896723247</p>
+                    <div class="mt-2 inline-block bg-blue-100 text-blue-900 font-black text-xs px-3 py-0.5 rounded-full uppercase border border-blue-200">
+                        মাচুল পৰিশোধৰ ৰচিদ (Payment Receipt)
+                    </div>
+                </div>
+
+                <!-- Receipt Particulars -->
+                <div class="space-y-1.5 text-xs">
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">ৰচিদ নং (Receipt No):</span>
+                        <span class="font-bold text-slate-800" id="billReceiptNo">GK-2026-001</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">তাৰিখ (Date):</span>
+                        <span class="font-bold text-slate-800" id="billReceiptDate">-</span>
+                    </div>
+                    <div class="flex justify-between border-t border-slate-100 pt-1">
+                        <span class="text-slate-500">ছাত্ৰ/ছাত্ৰীৰ নাম:</span>
+                        <span class="font-bold text-slate-900" id="billStudentName">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">শ্ৰেণী (Class):</span>
+                        <span class="font-bold text-slate-900" id="billStudentClass">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">ৰোল নং (Roll No):</span>
+                        <span class="font-bold text-slate-900" id="billStudentRoll">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">মাহ (Month):</span>
+                        <span class="font-black text-blue-900 text-sm" id="billMonthName">-</span>
+                    </div>
+                </div>
+
+                <!-- Payment Table Box -->
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-1.5 text-xs">
+                    <div class="flex justify-between text-slate-600">
+                        <span>ধাৰ্য মাহেকীয়া মাচুল:</span>
+                        <span class="font-bold" id="billFeeAmount">₹0</span>
+                    </div>
+                    <div class="flex justify-between text-emerald-700 font-bold text-sm border-t border-slate-200 pt-1">
+                        <span>জমা দিয়া ধন (Paid):</span>
+                        <span class="font-black" id="billPaidAmount">₹0</span>
+                    </div>
+                    <div class="flex justify-between text-slate-500 text-[11px]">
+                        <span>বাকী ধন (Remaining Due):</span>
+                        <span class="font-bold text-rose-600" id="billBalanceAmount">₹0</span>
+                    </div>
+                </div>
+
+                <!-- Status & Seal -->
+                <div class="flex justify-between items-end pt-2 border-t border-slate-200">
+                    <div>
+                        <span class="inline-flex items-center text-[11px] font-black bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-lg border border-emerald-300">
+                            <i class="fa-solid fa-circle-check mr-1 text-emerald-600"></i> পৰিশোধিত (PAID)
+                        </span>
+                    </div>
+                    <div class="text-right">
+                        <div class="w-16 h-8 border-b-2 border-dashed border-blue-900 mx-auto"></div>
+                        <p class="text-[10px] font-bold text-blue-950 mt-1">মালি ছাৰ (স্বাক্ষৰ)</p>
+                        <p class="text-[8px] text-slate-400">জ্ঞান কেন্দ্ৰ, বৰমেৰা</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Action Buttons (No-print) -->
+            <div class="p-3 bg-slate-50 border-t border-slate-200 flex space-x-2 no-print">
+                <button onclick="closeReceiptModal()" class="flex-1 py-2 text-xs font-bold text-slate-600 bg-white border border-slate-200 rounded-xl">
+                    বন্ধ কৰক
+                </button>
+                <button onclick="printOrSaveReceipt()" class="flex-1 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow flex items-center justify-center space-x-1">
+                    <i class="fa-solid fa-download"></i>
+                    <span>PDF / Download</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULL STUDENT MONTHLY PASSBOOK MODAL (TEACHER VIEW) -->
     <div id="studentPassbookModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-3">
         <div class="bg-white rounded-2xl w-full max-w-sm max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
             <div class="bg-blue-900 text-white p-3.5 flex justify-between items-start flex-shrink-0">
@@ -448,10 +602,8 @@
                 <span class="text-lg font-black text-rose-600" id="pbModalTotalBalance">₹0</span>
             </div>
 
-            <!-- Scrollable Months List (ONLY MANUALLY ADDED MONTHS APPEAR HERE) -->
             <div class="p-3 overflow-y-auto space-y-2.5 flex-grow" id="pbModalMonthsList"></div>
 
-            <!-- Footer: Add Month to this Student + WhatsApp Share -->
             <div class="p-3 bg-white border-t border-slate-200 flex-shrink-0 space-y-2">
                 <button onclick="openSingleAddMonthModal()" class="w-full py-2 bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition">
                     <i class="fa-solid fa-plus text-xs"></i>
@@ -465,7 +617,7 @@
         </div>
     </div>
 
-    <!-- MODAL TO MANUALLY ADD A MONTH (SINGLE OR BULK) -->
+    <!-- MODAL TO MANUALLY ADD A MONTH -->
     <div id="addMonthModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-xs p-5 shadow-2xl space-y-3">
             <div class="flex justify-between items-center">
@@ -528,7 +680,7 @@
         </div>
     </div>
 
-    <!-- RECORD PAYMENT MODAL (CUSTOM AMOUNT) -->
+    <!-- RECORD PAYMENT MODAL -->
     <div id="paymentModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl space-y-3">
             <div class="flex justify-between items-center">
@@ -688,9 +840,6 @@
 
         let students = JSON.parse(localStorage.getItem('gk_my_students')) || [];
         let attendance = JSON.parse(localStorage.getItem('gk_my_attendance')) || {};
-        
-        // In the new system: Each student has an explicit list of months Mali Sir added!
-        // gk_student_billed_months: { studentId: [ "August 2026", "September 2026", "October 2026" ] }
         let studentBilledMonths = JSON.parse(localStorage.getItem('gk_student_billed_months')) || {};
         let feeRecords = JSON.parse(localStorage.getItem('gk_my_feeRecords')) || {};
         
@@ -702,6 +851,7 @@
         let activePayStudent = null;
         let activePayMonth = null;
         let isBulkAddMonth = false;
+        let doubtAttachedImage = null;
 
         let logoTapCount = 0;
         let logoTapTimeout = null;
@@ -802,15 +952,169 @@
             alert("আপোনাৰ এডমিন PIN সফলতাৰে সলনি হ'ল!");
         }
 
-        // ================= PUBLIC TAB FUNCTIONS =================
+        // ================= PUBLIC TAB: STUDENT RECEIPT SEARCH & DOWNLOAD =================
+        function searchStudentReceipts() {
+            const query = (document.getElementById('receiptSearchQuery').value || '').trim().toLowerCase();
+            const container = document.getElementById('receiptSearchResultsContainer');
+
+            if (!query) {
+                alert("অনুগ্ৰহ কৰি ৰোল নম্বৰ বা মোবাইল নম্বৰ লিখক!");
+                return;
+            }
+
+            const matchedStudent = students.find(s => 
+                String(s.roll || '').toLowerCase() === query || 
+                s.phone.includes(query) || 
+                s.name.toLowerCase().includes(query)
+            );
+
+            if (!matchedStudent) {
+                container.innerHTML = `
+                    <div class="bg-rose-50 p-6 rounded-2xl border border-rose-200 text-center text-xs text-rose-700 space-y-1">
+                        <i class="fa-solid fa-circle-exclamation text-xl text-rose-500 mb-1"></i>
+                        <p class="font-bold text-sm">কোনো ছাত্ৰ-ছাত্ৰীৰ ৰেকৰ্ড পোৱা নগ'ল!</p>
+                        <p class="text-[11px] text-slate-500">অনুগ্ৰহ কৰি নামভৰ্তি কৰা সঠিক ৰোল নং বা মোবাইল নম্বৰ দিয়ক।</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const sMonths = studentBilledMonths[matchedStudent.id] || [];
+            let paidMonthsList = [];
+
+            sMonths.forEach(m => {
+                const recKey = `${matchedStudent.id}_${m}`;
+                const rec = feeRecords[recKey];
+                const fee = Number(matchedStudent.fee || 0);
+                const paid = rec ? Number(rec.paidAmount || 0) : 0;
+                
+                if (paid > 0) {
+                    paidMonthsList.push({
+                        month: m,
+                        fee: fee,
+                        paid: paid,
+                        balance: Math.max(0, fee - paid),
+                        date: rec.date || 'পৰিশোধিত'
+                    });
+                }
+            });
+
+            if (paidMonthsList.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-7 h-7 bg-blue-100 text-blue-900 rounded-full font-black text-xs flex items-center justify-center">#${matchedStudent.roll || matchedStudent.id}</span>
+                            <div>
+                                <h3 class="font-bold text-xs text-slate-800">${matchedStudent.name} (${matchedStudent.class})</h3>
+                                <p class="text-[11px] text-slate-500">মোবাইল: ${matchedStudent.phone}</p>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-amber-50 rounded-xl text-center text-xs text-amber-800 font-bold border border-amber-200">
+                            আপোনাৰ কোনো মাহৰ মাচুল জমাৰ এন্ট্ৰী পোৱা নগ'ল। মাচুল জমা দিলে মালি ছাৰে এন্ট্ৰী কৰাৰ পিছত ৰচিদ ওলাব।
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="flex justify-between items-start border-b border-slate-100 pb-2.5">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-8 h-8 bg-emerald-100 text-emerald-800 rounded-full font-black text-xs flex items-center justify-center shadow-sm">#${matchedStudent.roll || matchedStudent.id}</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-slate-900">${matchedStudent.name}</h3>
+                                <p class="text-xs text-slate-500">${matchedStudent.class} • ফোন: ${matchedStudent.phone}</p>
+                            </div>
+                        </div>
+                        <span class="bg-emerald-100 text-emerald-800 text-[10px] font-black px-2 py-0.5 rounded-full">ভেৰিফাইড</span>
+                    </div>
+
+                    <p class="text-[11px] font-bold text-slate-600">পৰিশোধিত মাচুলৰ মাহসমূহ (ৰচিদ ডাউনলোড কৰক):</p>
+
+                    <div class="space-y-2">
+                        ${paidMonthsList.map(item => `
+                            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-bold text-xs text-blue-950">${item.month}</h4>
+                                    <p class="text-[11px] text-emerald-700 font-bold">জমা: ₹${item.paid} ${item.balance > 0 ? `<span class="text-rose-600 text-[10px]">(বাকী ₹${item.balance})</span>` : ''}</p>
+                                    <p class="text-[10px] text-slate-400">তাৰিখ: ${item.date}</p>
+                                </div>
+                                <button onclick="openReceiptModal(${matchedStudent.id}, '${item.month}', ${item.fee}, ${item.paid}, ${item.balance}, '${item.date}')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center space-x-1 shadow-sm">
+                                    <i class="fa-solid fa-file-invoice text-[10px]"></i>
+                                    <span>Bill চাওক</span>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Open Printable Official Receipt Modal
+        function openReceiptModal(studId, month, fee, paid, balance, date) {
+            const s = students.find(item => item.id === studId);
+            if (!s) return;
+
+            const receiptNum = "GK-" + new Date().getFullYear() + "-" + String(studId).slice(-3) + String(allMonths.indexOf(month) + 1).padStart(2, '0');
+            document.getElementById('billReceiptNo').innerText = receiptNum;
+            document.getElementById('billReceiptDate').innerText = date || getTodayDateStr();
+            document.getElementById('billStudentName').innerText = s.name;
+            document.getElementById('billStudentClass').innerText = s.class;
+            document.getElementById('billStudentRoll').innerText = s.roll || s.id;
+            document.getElementById('billMonthName').innerText = month;
+            document.getElementById('billFeeAmount').innerText = "₹" + fee;
+            document.getElementById('billPaidAmount').innerText = "₹" + paid;
+            document.getElementById('billBalanceAmount').innerText = "₹" + balance;
+
+            document.getElementById('receiptModal').classList.remove('hidden');
+        }
+
+        function closeReceiptModal() {
+            document.getElementById('receiptModal').classList.add('hidden');
+        }
+
+        function printOrSaveReceipt() {
+            window.print();
+        }
+
+        // ================= PUBLIC DOUBTS WITH PHOTO =================
+        function handleDoubtImagePreview(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                doubtAttachedImage = e.target.result;
+                document.getElementById('doubtImagePreview').src = doubtAttachedImage;
+                document.getElementById('doubtImagePreviewContainer').classList.remove('hidden');
+                document.getElementById('removePhotoBtn').classList.remove('hidden');
+                document.getElementById('photoUploadLabel').innerText = "ফটো সলনি কৰক";
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeDoubtPhoto() {
+            doubtAttachedImage = null;
+            document.getElementById('doubtImageInput').value = '';
+            document.getElementById('doubtImagePreview').src = '';
+            document.getElementById('doubtImagePreviewContainer').classList.add('hidden');
+            document.getElementById('removePhotoBtn').classList.add('hidden');
+            document.getElementById('photoUploadLabel').innerText = "কেমেৰা বা গেলাৰীৰ পৰা বাছক";
+        }
+
         function submitDoubtForm() {
             const name = document.getElementById('doubtSenderName').value.trim();
             const sClass = document.getElementById('doubtSenderClass').value;
             const subject = document.getElementById('doubtSubject').value.trim() || 'টিউচন / সাধাৰণ';
             const msg = document.getElementById('doubtMessage').value.trim();
 
-            if (!name || !msg) {
-                alert("অনুগ্ৰহ কৰি আপোনাৰ নাম আৰু প্ৰশ্নটো লিখক!");
+            if (!name) {
+                alert("অনুগ্ৰহ কৰি আপোনাৰ নাম লিখক!");
+                return;
+            }
+            if (!msg && !doubtAttachedImage) {
+                alert("অনুগ্ৰহ কৰি প্ৰশ্নটো লিখক অথবা ফটো/স্ক্ৰীনশ্বট বাছক!");
                 return;
             }
 
@@ -821,12 +1125,25 @@
                 "নাম: " + name,
                 "শ্ৰেণী: " + sClass,
                 "বিষয়: " + subject,
-                "",
-                "প্ৰশ্ন বা জানিবলগীয়া কথা:",
-                msg,
-                "",
-                "অনুগ্ৰহ কৰি সময় পালে উত্তৰ জনাব। ধন্যবাদ।"
+                ""
             ];
+
+            if (msg) {
+                messageLines.push("প্ৰশ্ন বা জানিবলগীয়া কথা:");
+                messageLines.push(msg);
+                messageLines.push("");
+            }
+
+            if (doubtAttachedImage) {
+                messageLines.push("টোকা: মই প্ৰশ্নটোৰ ফটো/স্ক্ৰীনশ্বট তলত সংলগ্ন (Attach) কৰি দিছোঁ।");
+                messageLines.push("");
+            }
+
+            messageLines.push("অনুগ্ৰহ কৰি সময় পালে উত্তৰ জনাব। ধন্যবাদ।");
+
+            if (doubtAttachedImage) {
+                alert("WhatsApp খোল খোৱাৰ পিছত আপোনাৰ বাছনি কৰা ফটো/স্ক্ৰীনশ্বটটো অনুগ্ৰহ কৰি তলৰ কেমেৰা বা গেলেৰী আইকনত টিপি চেণ্ড কৰি দিয়ক!");
+            }
 
             window.open("https://wa.me/917896723247?text=" + encodeURIComponent(messageLines.join("\n")), "_blank");
         }
@@ -838,7 +1155,7 @@
                 "পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)",
                 "",
                 "শ্ৰদ্ধাৰ অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰীসকল,",
-                "পঢ়া-শুনাৰ যিকোনো প্ৰশ্ন, হোমৱৰ্ক বা মাচুল পৰিশোধৰ বাবে আমাৰ অনলাইন প'ৰ্টেল ব্যৱহাৰ কৰক:",
+                "পঢ়া-শুনাৰ যিকোনো প্ৰশ্ন, হোমৱৰ্ক বা মাচুলৰ ৰচিদ ডাউনলোডৰ বাবে আমাৰ অনলাইন প'ৰ্টেল ব্যৱহাৰ কৰক:",
                 "",
                 "প'ৰ্টেল লিংক:",
                 portalUrl,
@@ -904,7 +1221,6 @@
             calculateTotalAllPending();
         }
 
-        // CALCULATES DUES ONLY FOR MONTHS MANUALLY ADDED BY MALI SIR
         function calculateTotalAllPending() {
             let total = 0;
             students.forEach(s => {
@@ -959,7 +1275,7 @@
                                 <h4 class="font-bold text-xs text-slate-800">${s.name}</h4>
                                 <span class="text-[9px] bg-blue-100 text-blue-800 font-bold px-1.5 py-0.5 rounded">${s.class}</span>
                             </div>
-                            <p class="text-[11px] text-slate-500 mt-0.5 ml-8">মাচুল: ₹${s.fee}/মাহ • যোগ কৰা মাহ: <span class="font-bold text-blue-900">${sMonths.length} টা</span></p>
+                            <p class="text-[11px] text-slate-500 mt-0.5 ml-8">মাচুল: ₹${s.fee}/মাহ • বিল কৰা মাহ: <span class="font-bold text-blue-900">${sMonths.length} টা</span></p>
                             <p class="text-[11px] text-slate-500 ml-8">ফোন: ${s.phone}</p>
                         </div>
                         <div class="flex items-center space-x-1.5">
@@ -1038,7 +1354,6 @@
                 if (idx !== -1) students[idx] = newObj;
             } else {
                 students.push(newObj);
-                // When a new student is added, initialize their months array
                 if (!studentBilledMonths[studId]) {
                     studentBilledMonths[studId] = [];
                 }
@@ -1189,12 +1504,10 @@
                             </div>
                         </div>
 
-                        <!-- Active Months Badges -->
                         <div class="flex flex-wrap gap-1 pt-0.5">
                             ${monthBadges.length > 0 ? monthBadges.join('') : '<span class="text-[10px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded">কোনো মাহ যোগ কৰা হোৱা নাই (তলৰ বুটামত টিপি যোগ কৰক)</span>'}
                         </div>
 
-                        <!-- Action Buttons -->
                         <div class="flex items-center justify-between pt-1 border-t border-slate-100">
                             <button onclick="openStudentPassbookModal(${s.id})" class="px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-sm">
                                 <i class="fa-solid fa-book-bookmark text-[11px]"></i>
@@ -1209,7 +1522,6 @@
             }).join('');
         }
 
-        // Open Individual Student Passbook Modal
         function openStudentPassbookModal(studId) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
@@ -1231,7 +1543,6 @@
             renderFeesPassbookList();
         }
 
-        // Render ONLY the months Mali Sir actually added for this student
         function renderPassbookModalMonths() {
             if (!activePassbookStudent) return;
             const s = activePassbookStudent;
@@ -1279,27 +1590,22 @@
                             ${statusBadge}
                         </div>
                         
-                        <!-- Actions Grid: Paid, Unpaid, Partial, and DELETE MONTH -->
                         <div class="grid grid-cols-4 gap-1 pt-1">
-                            <!-- Paid -->
                             <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'PAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPaid ? 'bg-emerald-700 text-white shadow' : 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'}">
                                 <i class="fa-solid fa-check text-[9px]"></i>
                                 <span>Paid</span>
                             </button>
 
-                            <!-- Unpaid -->
                             <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'UNPAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isUnpaid ? 'bg-rose-700 text-white shadow' : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}">
                                 <i class="fa-solid fa-xmark text-[9px]"></i>
                                 <span>Unpaid</span>
                             </button>
 
-                            <!-- Partial Deposit -->
                             <button onclick="openPaymentModal(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPartial ? 'bg-amber-600 text-white shadow' : 'bg-amber-100 text-amber-900 hover:bg-amber-200'}">
                                 <i class="fa-solid fa-pen text-[9px]"></i>
                                 <span>জমা/Edit</span>
                             </button>
 
-                            <!-- DELETE THIS MONTH -->
                             <button onclick="deleteBilledMonth(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black bg-rose-50 hover:bg-rose-100 text-rose-700 flex items-center justify-center space-x-0.5 transition" title="এই মাহটো বহীৰ পৰা মচি পেলাওক">
                                 <i class="fa-solid fa-trash-can text-[9px]"></i>
                                 <span>মচক</span>
@@ -1312,7 +1618,6 @@
             document.getElementById('pbModalTotalBalance').innerText = '₹' + totalDue;
         }
 
-        // Direct Toggle: Full Paid OR Full Unpaid
         function setMonthFeeStatus(studId, month, type) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
@@ -1335,7 +1640,6 @@
             calculateTotalAllPending();
         }
 
-        // DELETE MONTH FOR THIS STUDENT
         function deleteBilledMonth(studId, month) {
             if (confirm(`আপুনি সঁচাকৈয়ে এই ছাত্ৰজনৰ বহীৰ পৰা ${month} মাহটো মচি পেলাব বিচাৰেনে? (ইয়াৰ বাকী ধন শূন্য হৈ যাব)`)) {
                 if (studentBilledMonths[studId]) {
@@ -1375,7 +1679,6 @@
             const initStatus = document.getElementById('addMonthInitialStatus').value;
 
             if (isBulkAddMonth) {
-                // Add to multiple students
                 const targetClass = document.getElementById('bulkAddClassSelect').value;
                 let targetStudents = students.filter(s => targetClass === 'ALL' || s.class === targetClass);
 
@@ -1405,7 +1708,6 @@
                 calculateTotalAllPending();
                 alert(`সফলতাৰে ${targetStudents.length} জন ছাত্ৰৰ নামত ${selectedMonth} যোগ হ'ল!`);
             } else {
-                // Add to single active student
                 if (!activePassbookStudent) return;
                 const s = activePassbookStudent;
 
@@ -1478,7 +1780,7 @@
             renderFeesPassbookList();
         }
 
-        // ================= CLEAN WHATSAPP MESSAGE (ZERO SYMBOLS, SINGLE COMPLETE MESSAGE) =================
+        // ================= CLEAN WHATSAPP MESSAGE =================
         function shareStudentPassbookWhatsApp(studId) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
