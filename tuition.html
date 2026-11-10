@@ -20,7 +20,7 @@
         .marquee-box:hover .marquee-text { animation-play-state: paused; }
         @keyframes marqueeAnim { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
-        /* Print styles for official receipt download */
+        /* Print styling for official bill download */
         @media print {
             body * { visibility: hidden; }
             #printableReceiptArea, #printableReceiptArea * { visibility: visible; }
@@ -60,7 +60,7 @@
             </span>
             <div class="marquee-box w-full">
                 <div class="marquee-text font-bold" id="runningMarqueeText">
-                    জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ • পৰিচালক: দীপংকৰ মালি (মালি ছাৰ), বৰমেৰা • হেল্পলাইন: 7896723247 • নিয়মীয়া উপস্থিতি আৰু সাপ্তাহিক মক টেষ্ট বাধ্যতামূলক।
+                    জ্ঞান কেন্দ্ৰ টিউচন ক্লাচেচ • পৰিচালক: দীপংকৰ মালি (মালি ছাৰ), বৰমেৰা • হেল্পলাইন: 7896723247 • ২০ দিনীয়া নিয়মীয়া উপস্থিতি আৰু সাপ্তাহিক মক টেষ্ট বাধ্যতামূলক।
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
             <div class="bg-gradient-to-r from-blue-900 to-indigo-800 rounded-2xl p-4 text-white shadow-sm space-y-1.5">
                 <span class="inline-block bg-amber-400 text-blue-950 font-bold text-[10px] px-2 py-0.5 rounded-full">জ্ঞান কেন্দ্ৰ প'ৰ্টেল</span>
                 <h2 class="text-base font-bold">অভিভাৱক আৰু ছাত্ৰ-ছাত্ৰী কক্ষ</h2>
-                <p class="text-xs text-blue-200">নিয়মীয়া পঢ়া-শুনা, বিষয়ভিত্তিক টেষ্ট আৰু শৈক্ষিক সহায়ৰ একমাত্ৰ বিশ্বস্ত কেন্দ্ৰ।</p>
+                <p class="text-xs text-blue-200">২০ দিনীয়া পাঠদান ব্যৱস্থা, বিষয়ভিত্তিক টেষ্ট আৰু শৈক্ষিক সহায়ৰ একমাত্ৰ কেন্দ্ৰ।</p>
                 <div class="pt-1 flex items-center justify-between text-[11px] text-amber-300">
                     <span>পৰিচালক: শ্ৰী দীপংকৰ মালি (মালি ছাৰ)</span>
                     <span id="publicTodayDate">২০২৬</span>
@@ -103,7 +103,7 @@
             <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
                 <h3 class="text-xs font-bold text-blue-900 uppercase tracking-wider flex items-center space-x-1">
                     <i class="fa-regular fa-clock"></i>
-                    <span>ক্লাচৰ নিয়মীয়া সময়সূচী</span>
+                    <span>ক্লাচৰ নিয়মীয়া সময়সূচী (২০ দিনীয়া পৰ্যায়)</span>
                 </h3>
                 <div class="space-y-1.5 text-xs text-slate-600 divide-y divide-slate-100">
                     <div class="pt-1 flex justify-between">
@@ -145,7 +145,6 @@
                 <p class="text-xs text-emerald-100">আপোনাৰ ৰোল নম্বৰ বা ফোন নম্বৰ মাৰি পৰিশোধিত মাচুলৰ ৰচিদ ডাউনলোড কৰক।</p>
             </div>
 
-            <!-- Student Search Box -->
             <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
                 <label class="block text-xs font-bold text-slate-700">ছাত্ৰ/ছাত্ৰীৰ ৰোল নম্বৰ বা ১০ টা সংখ্যাৰ ফোন নম্বৰ দিয়ক:</label>
                 <div class="flex space-x-2">
@@ -156,17 +155,16 @@
                 </div>
             </div>
 
-            <!-- Search Result Container -->
             <div id="receiptSearchResultsContainer" class="space-y-3">
                 <div class="bg-slate-50 p-6 rounded-2xl border border-dashed border-slate-300 text-center text-xs text-slate-500">
                     <i class="fa-solid fa-magnifying-glass text-2xl text-slate-400 mb-2"></i>
                     <p class="font-bold">ৰোল নম্বৰ বা মোবাইল নম্বৰ মাৰি ওপৰত বিচাৰক</p>
-                    <p class="text-[11px] text-slate-400 mt-0.5">কেৱল মালি ছাৰে গ্ৰহণ কৰা পৰিশোধিত মাচুলৰ ৰচিদহে ইয়াত উপলব্ধ হ'ব।</p>
+                    <p class="text-[11px] text-slate-400 mt-0.5">মালি ছাৰে গ্ৰহণ কৰা ২০ দিনীয়া পৰিশোধিত মাচুলৰ ৰচিদ ইয়াত ওলাব।</p>
                 </div>
             </div>
         </section>
 
-        <!-- ================= PUBLIC TAB 3: DOUBTS FORM ================= -->
+        <!-- ================= PUBLIC TAB 3: DOUBTS FORM (WITH PHOTO ATTACHMENT) ================= -->
         <section id="tab-doubts" class="tab-content space-y-4">
             <div class="bg-gradient-to-r from-blue-900 to-indigo-800 p-4 rounded-2xl text-white shadow-sm space-y-1">
                 <span class="inline-block bg-amber-400 text-blue-950 text-[10px] font-bold px-2 py-0.5 rounded-full">প্ৰশ্ন আৰু স্ক্ৰীনশ্বট সহায় কক্ষ</span>
@@ -205,7 +203,7 @@
                     <textarea id="doubtMessage" rows="3" placeholder="প্ৰশ্নটো কি ইয়াত চমুকৈ লিখক..." class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600"></textarea>
                 </div>
 
-                <!-- DIRECT PHOTO / SCREENSHOT ATTACHMENT BOX -->
+                <!-- Direct Photo Attachment -->
                 <div class="bg-blue-50/70 p-3 rounded-xl border border-blue-200 space-y-2">
                     <label class="block text-[11px] font-bold text-blue-950">
                         <i class="fa-solid fa-camera text-blue-700 mr-1"></i>প্ৰশ্নৰ ফটো বা স্ক্ৰীনশ্বট বাছক (ঐচ্ছিক)
@@ -221,11 +219,10 @@
                         </button>
                     </div>
 
-                    <!-- Photo Preview Frame -->
                     <div id="doubtImagePreviewContainer" class="hidden mt-2 p-2 bg-white border border-slate-200 rounded-xl text-center">
                         <img id="doubtImagePreview" src="" alt="Doubt Preview" class="max-h-48 mx-auto rounded-lg object-contain shadow-sm border border-slate-100">
                         <p class="text-[10px] text-emerald-800 font-bold mt-1.5">
-                            <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i>ফটো সফলভাৱে সংলগ্ন হ'ল! তলৰ বুটামত টিপক।
+                            <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i>ফটো সংলগ্ন হ'ল! তলৰ বুটামত টিপক।
                         </p>
                     </div>
                 </div>
@@ -236,7 +233,6 @@
                 </button>
             </div>
 
-            <!-- Helplines -->
             <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
                 <h3 class="font-bold text-xs text-blue-900 uppercase tracking-wider">প্ৰয়োজনীয় সংযোগ আৰু হেল্পলাইন</h3>
                 <div class="space-y-2 text-xs">
@@ -320,7 +316,7 @@
                     </button>
                     <button onclick="switchTab('fees');" class="flex flex-col items-center justify-center p-2.5 bg-amber-50 text-amber-800 rounded-lg hover:bg-amber-100 transition">
                         <i class="fa-solid fa-book-bookmark text-base mb-1"></i>
-                        <span class="text-[11px] font-semibold text-center">মাহেকীয়া খতিয়ান</span>
+                        <span class="text-[11px] font-semibold text-center">২০ দিনীয়া খতিয়ান</span>
                     </button>
                 </div>
             </div>
@@ -411,12 +407,12 @@
             <div id="attendanceListContainer" class="space-y-2"></div>
         </section>
 
-        <!-- TAB 8: FEES PASSBOOK (ADMIN ONLY) -->
+        <!-- TAB 8: CUSTOM 20-DAY CYCLE FEES PASSBOOK (ADMIN ONLY) -->
         <section id="tab-fees" class="tab-content space-y-3">
             <div class="flex items-center justify-between">
                 <div>
-                    <h2 class="text-base font-bold text-slate-800">মাহেকীয়া মাচুল ব্যৱস্থাপনা</h2>
-                    <p class="text-[11px] text-slate-500">আপুনি নিজে যোগ কৰা মাহসমূহৰ সঠিক হিচাপ</p>
+                    <h2 class="text-base font-bold text-slate-800">২০ দিনীয়া মাচুল ব্যৱস্থাপনা</h2>
+                    <p class="text-[11px] text-slate-500">আপুনি নিজে বহুওৱা ২০ দিনীয়া মাহৰ হিচাপ</p>
                 </div>
                 <div class="text-right">
                     <span class="text-[10px] text-slate-400 font-bold block">সৰ্বমুঠ বাকী</span>
@@ -424,7 +420,7 @@
                 </div>
             </div>
 
-            <!-- Top Filter and Global Add Month Button -->
+            <!-- Top Filter and Global Add 20-Day Cycle Button -->
             <div class="flex items-center space-x-2">
                 <select id="feeStudentClassFilter" onchange="renderFeesPassbookList()" class="flex-1 bg-white px-3 py-2 rounded-xl border border-slate-200 text-xs outline-none focus:border-blue-600 shadow-sm font-bold text-blue-950">
                     <option value="ALL">সকলো শ্ৰেণীৰ ছাত্ৰ-ছাত্ৰী</option>
@@ -440,20 +436,19 @@
                     <option value="Class 1">Class 1</option>
                     <option value="Nursery">Nursery / KG</option>
                 </select>
-                <button onclick="openBulkAddMonthModal()" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center space-x-1 shadow-sm whitespace-nowrap">
-                    <i class="fa-solid fa-calendar-plus text-xs"></i>
-                    <span>নতুন মাহ যোগ কৰক</span>
+                <button onclick="openBulkAddCycleModal()" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center space-x-1 shadow-sm whitespace-nowrap">
+                    <i class="fa-solid fa-plus-circle text-xs"></i>
+                    <span>নতুন মাহ বহুৱাওক</span>
                 </button>
             </div>
 
-            <!-- Student Fee Cards -->
+            <!-- Student Cards List -->
             <div id="feesPassbookContainer" class="space-y-3"></div>
         </section>
     </main>
 
     <!-- Dynamic Bottom Navigation Bar -->
     <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-2 px-2 z-40 flex justify-around items-center max-w-md mx-auto shadow-lg">
-        <!-- Public Navigation Items (Visible to students/parents) -->
         <button onclick="switchTab('public-home')" class="nav-btn active flex flex-col items-center text-blue-900" id="nav-public-home">
             <i class="fa-solid fa-house text-base"></i>
             <span class="text-[9px] font-semibold mt-0.5">গৃহ</span>
@@ -471,7 +466,7 @@
             <span class="text-[9px] font-semibold mt-0.5">জাননী</span>
         </button>
 
-        <!-- Admin Only Navigation Items (Visible only when Mali Sir unlocks) -->
+        <!-- Admin Only Navigation Items -->
         <button onclick="switchTab('dashboard')" class="admin-only-nav hidden flex flex-col items-center text-slate-400" id="nav-dashboard">
             <i class="fa-solid fa-chart-line text-base"></i>
             <span class="text-[9px] font-semibold mt-0.5">হিচাপ</span>
@@ -493,9 +488,7 @@
     <!-- ================= OFFICIAL PRINTABLE RECEIPT / BILL MODAL ================= -->
     <div id="receiptModal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center p-3">
         <div class="bg-white rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden flex flex-col">
-            <!-- Printable Bill Container -->
             <div id="printableReceiptArea" class="p-5 bg-white text-slate-800 space-y-4">
-                <!-- Institution Header -->
                 <div class="text-center border-b-2 border-blue-900 pb-3">
                     <div class="w-12 h-12 bg-blue-900 text-amber-400 font-black rounded-full flex items-center justify-center mx-auto text-xl border-2 border-amber-400 shadow">
                         GK
@@ -508,7 +501,6 @@
                     </div>
                 </div>
 
-                <!-- Receipt Particulars -->
                 <div class="space-y-1.5 text-xs">
                     <div class="flex justify-between">
                         <span class="text-slate-500">ৰচিদ নং (Receipt No):</span>
@@ -531,15 +523,14 @@
                         <span class="font-bold text-slate-900" id="billStudentRoll">-</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-slate-500">মাহ (Month):</span>
+                        <span class="text-slate-500">মাহ / পৰ্যায় (Cycle):</span>
                         <span class="font-black text-blue-900 text-sm" id="billMonthName">-</span>
                     </div>
                 </div>
 
-                <!-- Payment Table Box -->
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-1.5 text-xs">
                     <div class="flex justify-between text-slate-600">
-                        <span>ধাৰ্য মাহেকীয়া মাচুল:</span>
+                        <span>ধাৰ্য মাচুল (Fee):</span>
                         <span class="font-bold" id="billFeeAmount">₹0</span>
                     </div>
                     <div class="flex justify-between text-emerald-700 font-bold text-sm border-t border-slate-200 pt-1">
@@ -547,12 +538,11 @@
                         <span class="font-black" id="billPaidAmount">₹0</span>
                     </div>
                     <div class="flex justify-between text-slate-500 text-[11px]">
-                        <span>বাকী ধন (Remaining Due):</span>
+                        <span>বাকী ধন (Remaining Balance):</span>
                         <span class="font-bold text-rose-600" id="billBalanceAmount">₹0</span>
                     </div>
                 </div>
 
-                <!-- Status & Seal -->
                 <div class="flex justify-between items-end pt-2 border-t border-slate-200">
                     <div>
                         <span class="inline-flex items-center text-[11px] font-black bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-lg border border-emerald-300">
@@ -567,7 +557,6 @@
                 </div>
             </div>
 
-            <!-- Modal Action Buttons (No-print) -->
             <div class="p-3 bg-slate-50 border-t border-slate-200 flex space-x-2 no-print">
                 <button onclick="closeReceiptModal()" class="flex-1 py-2 text-xs font-bold text-slate-600 bg-white border border-slate-200 rounded-xl">
                     বন্ধ কৰক
@@ -580,12 +569,12 @@
         </div>
     </div>
 
-    <!-- FULL STUDENT MONTHLY PASSBOOK MODAL (TEACHER VIEW) -->
+    <!-- FULL STUDENT MONTHLY PASSBOOK MODAL (TEACHER PASSBOOK) -->
     <div id="studentPassbookModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-3">
         <div class="bg-white rounded-2xl w-full max-w-sm max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
             <div class="bg-blue-900 text-white p-3.5 flex justify-between items-start flex-shrink-0">
                 <div>
-                    <span class="text-[10px] bg-amber-400 text-blue-950 px-2 py-0.5 rounded-full font-black uppercase">মাহেকীয়া খতিয়ান বহী</span>
+                    <span class="text-[10px] bg-amber-400 text-blue-950 px-2 py-0.5 rounded-full font-black uppercase">২০ দিনীয়া খতিয়ান বহী</span>
                     <h3 class="font-bold text-base mt-1" id="pbModalStudentName">-</h3>
                     <p class="text-xs text-blue-200" id="pbModalClassInfo">-</p>
                 </div>
@@ -597,17 +586,19 @@
             <div class="bg-slate-50 border-b border-slate-200 px-4 py-2.5 flex justify-between items-center text-xs flex-shrink-0">
                 <div>
                     <span class="font-bold text-slate-600 block">সৰ্বমুঠ বাকী মাচুল:</span>
-                    <span class="text-[10px] text-slate-400">কেৱল যোগ কৰা মাহসমূহৰ হিচাপ</span>
+                    <span class="text-[10px] text-slate-400">কেৱল নিজে বহুওৱা মাহসমূহৰ হিচাপ</span>
                 </div>
                 <span class="text-lg font-black text-rose-600" id="pbModalTotalBalance">₹0</span>
             </div>
 
+            <!-- Scrollable List of 20-Day Cycles -->
             <div class="p-3 overflow-y-auto space-y-2.5 flex-grow" id="pbModalMonthsList"></div>
 
+            <!-- Modal Footer -->
             <div class="p-3 bg-white border-t border-slate-200 flex-shrink-0 space-y-2">
-                <button onclick="openSingleAddMonthModal()" class="w-full py-2 bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition">
+                <button onclick="openSingleAddCycleModal()" class="w-full py-2 bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition">
                     <i class="fa-solid fa-plus text-xs"></i>
-                    <span>এই ছাত্ৰজনৰ নামত নতুন মাহ যোগ কৰক</span>
+                    <span>এই ছাত্ৰজনৰ নামত ২০ দিনীয়া মাহ বহুৱাওক</span>
                 </button>
                 <button id="pbWhatsAppShareBtn" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
@@ -617,37 +608,37 @@
         </div>
     </div>
 
-    <!-- MODAL TO MANUALLY ADD A MONTH -->
-    <div id="addMonthModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+    <!-- MODAL TO MANUALLY ADD A 20-DAY CYCLE / MONTH -->
+    <div id="addCycleModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-xs p-5 shadow-2xl space-y-3">
             <div class="flex justify-between items-center">
-                <h3 class="font-bold text-sm text-slate-800" id="addMonthModalTitle">নতুন মাহ যোগ কৰক</h3>
-                <button onclick="closeAddMonthModal()" class="text-slate-400 hover:text-slate-700 text-lg">
+                <h3 class="font-bold text-sm text-slate-800" id="addCycleModalTitle">২০ দিনীয়া মাহ বহুৱাওক</h3>
+                <button onclick="closeAddCycleModal()" class="text-slate-400 hover:text-slate-700 text-lg">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
             <div class="space-y-2.5">
                 <div>
-                    <label class="block text-[11px] font-bold text-slate-600 mb-1">কোনটো মাহ যোগ কৰিব? *</label>
-                    <select id="selectMonthToAdd" class="w-full text-xs font-bold px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600 text-blue-900">
-                        <option value="August 2026" selected>August 2026</option>
-                        <option value="September 2026">September 2026</option>
-                        <option value="October 2026">October 2026</option>
-                        <option value="November 2026">November 2026</option>
-                        <option value="December 2026">December 2026</option>
-                        <option value="July 2026">July 2026</option>
-                        <option value="June 2026">June 2026</option>
-                        <option value="May 2026">May 2026</option>
-                        <option value="April 2026">April 2026</option>
-                        <option value="March 2026">March 2026</option>
-                        <option value="February 2026">February 2026</option>
-                        <option value="January 2026">January 2026</option>
-                    </select>
+                    <label class="block text-[11px] font-bold text-slate-600 mb-1">মাহৰ নাম বা তাৰিখ লিখক/বাছক *</label>
+                    <input type="text" id="customCycleNameInput" list="suggestedCycleNames" placeholder="যেনে: ১ম মাহ (২০ দিন)" class="w-full text-xs font-bold px-3 py-2 border-2 border-blue-500 rounded-lg outline-none text-blue-900">
+                    <datalist id="suggestedCycleNames">
+                        <option value="১ম মাহ (২০ দিন)">
+                        <option value="২য় মাহ (২০ দিন)">
+                        <option value="৩য় মাহ (২০ দিন)">
+                        <option value="৪ৰ্থ মাহ (২০ দিন)">
+                        <option value="৫ম মাহ (২০ দিন)">
+                        <option value="৬ষ্ঠ মাহ (২০ দিন)">
+                        <option value="৭ম মাহ (২০ দিন)">
+                        <option value="৮ম মাহ (২০ দিন)">
+                        <option value="৯ম মাহ (২০ দিন)">
+                        <option value="১০ম মাহ (২০ দিন)">
+                    </datalist>
+                    <p class="text-[10px] text-slate-500 mt-1">আপুনি নিজে যিকোনো নাম বা তাৰিখ লিখিব পাৰে (যেনে: ১-২০ আগষ্ট)।</p>
                 </div>
 
                 <div id="bulkClassOptionDiv" class="hidden">
-                    <label class="block text-[11px] font-bold text-slate-600 mb-1">কাৰ নামত যোগ কৰিব? *</label>
+                    <label class="block text-[11px] font-bold text-slate-600 mb-1">কাৰ কাৰ নামত বহুৱাব? *</label>
                     <select id="bulkAddClassSelect" class="w-full text-xs font-bold px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600 text-slate-700">
                         <option value="ALL">সকলো শ্ৰেণীৰ ছাত্ৰ-ছাত্ৰী</option>
                         <option value="Class 10">Class 10 ৰ সকলো ছাত্ৰ</option>
@@ -666,15 +657,15 @@
 
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">প্ৰাৰম্ভিক অৱস্থা</label>
-                    <select id="addMonthInitialStatus" class="w-full text-xs font-bold px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600 text-slate-700">
+                    <select id="addCycleInitialStatus" class="w-full text-xs font-bold px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600 text-slate-700">
                         <option value="UNPAID">অপৰিশোধিত (Unpaid - বাকী থাকিব)</option>
                         <option value="PAID">পৰিশোধিত (Paid - সম্পূৰ্ণ জমা)</option>
                     </select>
                 </div>
 
                 <div class="flex space-x-2 pt-2">
-                    <button onclick="closeAddMonthModal()" class="flex-1 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg">বাতিল</button>
-                    <button onclick="confirmAddMonthExecution()" class="flex-1 py-2 text-xs font-bold text-white bg-emerald-600 rounded-lg shadow">যোগ কৰক</button>
+                    <button onclick="closeAddCycleModal()" class="flex-1 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg">বাতিল</button>
+                    <button onclick="confirmAddCycleExecution()" class="flex-1 py-2 text-xs font-bold text-white bg-emerald-600 rounded-lg shadow">যোগ কৰক</button>
                 </div>
             </div>
         </div>
@@ -780,7 +771,7 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-[11px] font-bold text-slate-600 mb-1">মাহেকীয়া মাচুল (₹) *</label>
+                        <label class="block text-[11px] font-bold text-slate-600 mb-1">২০ দিনৰ মাচুল (₹) *</label>
                         <input type="number" id="sFee" required placeholder="500" value="500" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600">
                     </div>
                 </div>
@@ -840,7 +831,9 @@
 
         let students = JSON.parse(localStorage.getItem('gk_my_students')) || [];
         let attendance = JSON.parse(localStorage.getItem('gk_my_attendance')) || {};
-        let studentBilledMonths = JSON.parse(localStorage.getItem('gk_student_billed_months')) || {};
+        
+        // Dynamic custom 20-day cycles per student: { studentId: [ "১ম মাহ (২০ দিন)", "২য় মাহ (২০ দিন)", ... ] }
+        let studentBilledCycles = JSON.parse(localStorage.getItem('gk_student_billed_cycles')) || {};
         let feeRecords = JSON.parse(localStorage.getItem('gk_my_feeRecords')) || {};
         
         let notices = JSON.parse(localStorage.getItem('gk_my_notices')) || [
@@ -850,7 +843,7 @@
         let activePassbookStudent = null;
         let activePayStudent = null;
         let activePayMonth = null;
-        let isBulkAddMonth = false;
+        let isBulkAddCycle = false;
         let doubtAttachedImage = null;
 
         let logoTapCount = 0;
@@ -979,18 +972,18 @@
                 return;
             }
 
-            const sMonths = studentBilledMonths[matchedStudent.id] || [];
-            let paidMonthsList = [];
+            const sCycles = studentBilledCycles[matchedStudent.id] || [];
+            let paidCyclesList = [];
 
-            sMonths.forEach(m => {
+            sCycles.forEach(m => {
                 const recKey = `${matchedStudent.id}_${m}`;
                 const rec = feeRecords[recKey];
                 const fee = Number(matchedStudent.fee || 0);
                 const paid = rec ? Number(rec.paidAmount || 0) : 0;
                 
                 if (paid > 0) {
-                    paidMonthsList.push({
-                        month: m,
+                    paidCyclesList.push({
+                        cycleName: m,
                         fee: fee,
                         paid: paid,
                         balance: Math.max(0, fee - paid),
@@ -999,7 +992,7 @@
                 }
             });
 
-            if (paidMonthsList.length === 0) {
+            if (paidCyclesList.length === 0) {
                 container.innerHTML = `
                     <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
                         <div class="flex items-center space-x-2">
@@ -1010,7 +1003,7 @@
                             </div>
                         </div>
                         <div class="p-4 bg-amber-50 rounded-xl text-center text-xs text-amber-800 font-bold border border-amber-200">
-                            আপোনাৰ কোনো মাহৰ মাচুল জমাৰ এন্ট্ৰী পোৱা নগ'ল। মাচুল জমা দিলে মালি ছাৰে এন্ট্ৰী কৰাৰ পিছত ৰচিদ ওলাব।
+                            আপোনাৰ কোনো পৰিশোধিত মাচুলৰ এন্ট্ৰী পোৱা নগ'ল। মাচুল জমা দিয়াৰ পিছত মালি ছাৰে এন্ট্ৰী কৰিলেহে ৰচিদ ওলাব।
                         </div>
                     </div>
                 `;
@@ -1030,17 +1023,17 @@
                         <span class="bg-emerald-100 text-emerald-800 text-[10px] font-black px-2 py-0.5 rounded-full">ভেৰিফাইড</span>
                     </div>
 
-                    <p class="text-[11px] font-bold text-slate-600">পৰিশোধিত মাচুলৰ মাহসমূহ (ৰচিদ ডাউনলোড কৰক):</p>
+                    <p class="text-[11px] font-bold text-slate-600">পৰিশোধিত ২০ দিনীয়া মাহসমূহ (Bill ডাউনলোড কৰক):</p>
 
                     <div class="space-y-2">
-                        ${paidMonthsList.map(item => `
+                        ${paidCyclesList.map(item => `
                             <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 flex items-center justify-between">
                                 <div>
-                                    <h4 class="font-bold text-xs text-blue-950">${item.month}</h4>
+                                    <h4 class="font-bold text-xs text-blue-950">${item.cycleName}</h4>
                                     <p class="text-[11px] text-emerald-700 font-bold">জমা: ₹${item.paid} ${item.balance > 0 ? `<span class="text-rose-600 text-[10px]">(বাকী ₹${item.balance})</span>` : ''}</p>
                                     <p class="text-[10px] text-slate-400">তাৰিখ: ${item.date}</p>
                                 </div>
-                                <button onclick="openReceiptModal(${matchedStudent.id}, '${item.month}', ${item.fee}, ${item.paid}, ${item.balance}, '${item.date}')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center space-x-1 shadow-sm">
+                                <button onclick="openReceiptModal(${matchedStudent.id}, '${item.cycleName}', ${item.fee}, ${item.paid}, ${item.balance}, '${item.date}')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center space-x-1 shadow-sm">
                                     <i class="fa-solid fa-file-invoice text-[10px]"></i>
                                     <span>Bill চাওক</span>
                                 </button>
@@ -1052,17 +1045,17 @@
         }
 
         // Open Printable Official Receipt Modal
-        function openReceiptModal(studId, month, fee, paid, balance, date) {
+        function openReceiptModal(studId, cycleName, fee, paid, balance, date) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
 
-            const receiptNum = "GK-" + new Date().getFullYear() + "-" + String(studId).slice(-3) + String(allMonths.indexOf(month) + 1).padStart(2, '0');
+            const receiptNum = "GK-" + new Date().getFullYear() + "-" + String(studId).slice(-3) + String(Math.floor(Math.random() * 900) + 100);
             document.getElementById('billReceiptNo').innerText = receiptNum;
             document.getElementById('billReceiptDate').innerText = date || getTodayDateStr();
             document.getElementById('billStudentName').innerText = s.name;
             document.getElementById('billStudentClass').innerText = s.class;
             document.getElementById('billStudentRoll').innerText = s.roll || s.id;
-            document.getElementById('billMonthName').innerText = month;
+            document.getElementById('billMonthName').innerText = cycleName;
             document.getElementById('billFeeAmount').innerText = "₹" + fee;
             document.getElementById('billPaidAmount').innerText = "₹" + paid;
             document.getElementById('billBalanceAmount').innerText = "₹" + balance;
@@ -1224,8 +1217,8 @@
         function calculateTotalAllPending() {
             let total = 0;
             students.forEach(s => {
-                const sMonths = studentBilledMonths[s.id] || [];
-                sMonths.forEach(m => {
+                const sCycles = studentBilledCycles[s.id] || [];
+                sCycles.forEach(m => {
                     const recKey = `${s.id}_${m}`;
                     const rec = feeRecords[recKey];
                     const fee = Number(s.fee || 0);
@@ -1266,7 +1259,7 @@
             }
 
             container.innerHTML = filtered.map(s => {
-                const sMonths = studentBilledMonths[s.id] || [];
+                const sCycles = studentBilledCycles[s.id] || [];
                 return `
                     <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
                         <div>
@@ -1275,7 +1268,7 @@
                                 <h4 class="font-bold text-xs text-slate-800">${s.name}</h4>
                                 <span class="text-[9px] bg-blue-100 text-blue-800 font-bold px-1.5 py-0.5 rounded">${s.class}</span>
                             </div>
-                            <p class="text-[11px] text-slate-500 mt-0.5 ml-8">মাচুল: ₹${s.fee}/মাহ • বিল কৰা মাহ: <span class="font-bold text-blue-900">${sMonths.length} টা</span></p>
+                            <p class="text-[11px] text-slate-500 mt-0.5 ml-8">মাচুল: ₹${s.fee}/২০ দিন • বিল কৰা মাহ: <span class="font-bold text-blue-900">${sCycles.length} টা</span></p>
                             <p class="text-[11px] text-slate-500 ml-8">ফোন: ${s.phone}</p>
                         </div>
                         <div class="flex items-center space-x-1.5">
@@ -1300,9 +1293,9 @@
         function deleteStudent(id, name) {
             if (confirm(`আপুনি সঁচাকৈয়ে "${name}" ক সম্পূৰ্ণ তালিকাৰ পৰা মচি পেলাব বিচাৰেনে?`)) {
                 students = students.filter(s => s.id !== id);
-                delete studentBilledMonths[id];
+                delete studentBilledCycles[id];
                 localStorage.setItem('gk_my_students', JSON.stringify(students));
-                localStorage.setItem('gk_student_billed_months', JSON.stringify(studentBilledMonths));
+                localStorage.setItem('gk_student_billed_cycles', JSON.stringify(studentBilledCycles));
                 renderStudents();
                 renderDashboard();
                 renderAttendance();
@@ -1354,12 +1347,12 @@
                 if (idx !== -1) students[idx] = newObj;
             } else {
                 students.push(newObj);
-                if (!studentBilledMonths[studId]) {
-                    studentBilledMonths[studId] = [];
+                if (!studentBilledCycles[studId]) {
+                    studentBilledCycles[studId] = [];
                 }
             }
             localStorage.setItem('gk_my_students', JSON.stringify(students));
-            localStorage.setItem('gk_student_billed_months', JSON.stringify(studentBilledMonths));
+            localStorage.setItem('gk_student_billed_cycles', JSON.stringify(studentBilledCycles));
             closeStudentModal();
             renderStudents();
             renderDashboard();
@@ -1447,7 +1440,7 @@
             renderDashboard();
         }
 
-        // ================= MANUAL MONTHS PASSBOOK ENGINE =================
+        // ================= CUSTOM 20-DAY CYCLES PASSBOOK ENGINE =================
         function renderFeesPassbookList() {
             const container = document.getElementById('feesPassbookContainer');
             const classFilter = document.getElementById('feeStudentClassFilter').value;
@@ -1465,11 +1458,11 @@
             }
 
             container.innerHTML = filtered.map(s => {
-                const sMonths = studentBilledMonths[s.id] || [];
+                const sCycles = studentBilledCycles[s.id] || [];
                 let totalDue = 0;
-                let monthBadges = [];
+                let cycleBadges = [];
 
-                sMonths.forEach(m => {
+                sCycles.forEach(m => {
                     const recKey = `${s.id}_${m}`;
                     const rec = feeRecords[recKey];
                     const fee = Number(s.fee || 0);
@@ -1477,13 +1470,12 @@
                     const bal = Math.max(0, fee - paid);
                     totalDue += bal;
 
-                    const shortM = m.split(' ')[0];
                     if (paid >= fee) {
-                        monthBadges.push(`<span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">${shortM}: Paid</span>`);
+                        cycleBadges.push(`<span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">${m}: Paid</span>`);
                     } else if (paid > 0) {
-                        monthBadges.push(`<span class="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.5 rounded">${shortM}: জমা ₹${paid} (বাকী ₹${bal})</span>`);
+                        cycleBadges.push(`<span class="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.5 rounded">${m}: জমা ₹${paid} (বাকী ₹${bal})</span>`);
                     } else {
-                        monthBadges.push(`<span class="text-[9px] bg-rose-100 text-rose-800 font-bold px-1.5 py-0.5 rounded">${shortM}: বাকী ₹${fee}</span>`);
+                        cycleBadges.push(`<span class="text-[9px] bg-rose-100 text-rose-800 font-bold px-1.5 py-0.5 rounded">${m}: বাকী ₹${fee}</span>`);
                     }
                 });
 
@@ -1496,7 +1488,7 @@
                                     <h3 class="font-bold text-xs text-slate-800">${s.name}</h3>
                                     <span class="text-[9px] bg-blue-50 text-blue-800 font-bold px-1.5 py-0.5 rounded">${s.class}</span>
                                 </div>
-                                <p class="text-[11px] text-slate-500 mt-0.5 ml-7.5">মাচুল: ₹${s.fee}/মাহ • বিল কৰা মাহ: <span class="font-bold text-blue-900">${sMonths.length} টা</span></p>
+                                <p class="text-[11px] text-slate-500 mt-0.5 ml-7.5">মাচুল: ₹${s.fee}/২০ দিন • সম্পূৰ্ণ মাহ: <span class="font-bold text-blue-900">${sCycles.length} টা</span></p>
                             </div>
                             <div class="text-right">
                                 <span class="text-[10px] text-slate-400 font-bold block">সৰ্বমুঠ বাকী</span>
@@ -1505,13 +1497,13 @@
                         </div>
 
                         <div class="flex flex-wrap gap-1 pt-0.5">
-                            ${monthBadges.length > 0 ? monthBadges.join('') : '<span class="text-[10px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded">কোনো মাহ যোগ কৰা হোৱা নাই (তলৰ বুটামত টিপি যোগ কৰক)</span>'}
+                            ${cycleBadges.length > 0 ? cycleBadges.join('') : '<span class="text-[10px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded">কোনো ২০ দিনীয়া মাহ যোগ কৰা হোৱা নাই</span>'}
                         </div>
 
                         <div class="flex items-center justify-between pt-1 border-t border-slate-100">
                             <button onclick="openStudentPassbookModal(${s.id})" class="px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-sm">
                                 <i class="fa-solid fa-book-bookmark text-[11px]"></i>
-                                <span>মাহেকীয়া খতিয়ান বহী</span>
+                                <span>২০ দিনীয়া খতিয়ান বহী</span>
                             </button>
                             <button onclick="shareStudentPassbookWhatsApp(${s.id})" class="w-8 h-8 bg-emerald-100 text-emerald-700 hover:bg-emerald-200 rounded-full flex items-center justify-center text-xs shadow-sm" title="WhatsApp ত খতিয়ান পঠাওক">
                                 <i class="fa-brands fa-whatsapp text-sm"></i>
@@ -1528,9 +1520,9 @@
             activePassbookStudent = s;
 
             document.getElementById('pbModalStudentName').innerText = `${s.name} (#${s.roll || s.id})`;
-            document.getElementById('pbModalClassInfo').innerText = `${s.class} • মাহেকীয়া মাচুল: ₹${s.fee}`;
+            document.getElementById('pbModalClassInfo').innerText = `${s.class} • ২০ দিনৰ মাচুল: ₹${s.fee}`;
 
-            renderPassbookModalMonths();
+            renderPassbookModalCycles();
             document.getElementById('studentPassbookModal').classList.remove('hidden');
 
             document.getElementById('pbWhatsAppShareBtn').onclick = function() {
@@ -1543,27 +1535,28 @@
             renderFeesPassbookList();
         }
 
-        function renderPassbookModalMonths() {
+        // Render EXACTLY the 20-day cycles Mali Sir added for this student
+        function renderPassbookModalCycles() {
             if (!activePassbookStudent) return;
             const s = activePassbookStudent;
             const container = document.getElementById('pbModalMonthsList');
-            const sMonths = studentBilledMonths[s.id] || [];
+            const sCycles = studentBilledCycles[s.id] || [];
             let totalDue = 0;
 
-            if (sMonths.length === 0) {
+            if (sCycles.length === 0) {
                 container.innerHTML = `
                     <div class="p-6 text-center bg-slate-50 border border-dashed border-slate-300 rounded-xl space-y-2">
                         <i class="fa-regular fa-calendar-xmark text-2xl text-slate-400"></i>
-                        <p class="text-xs font-bold text-slate-600">কোনো মাহ যোগ কৰা হোৱা নাই</p>
-                        <p class="text-[11px] text-slate-400">তলৰ 'নতুন মাহ যোগ কৰক' বুটামত টিপি ছাত্ৰজনে পঢ়া মাহটো বাছক।</p>
+                        <p class="text-xs font-bold text-slate-600">কোনো ২০ দিনীয়া মাহ যোগ কৰা হোৱা নাই</p>
+                        <p class="text-[11px] text-slate-400">তলৰ '২০ দিনীয়া মাহ বহুৱাওক' বুটামত টিপি প্ৰথম মাহটো আৰম্ভ কৰক।</p>
                     </div>
                 `;
                 document.getElementById('pbModalTotalBalance').innerText = '₹0';
                 return;
             }
 
-            container.innerHTML = sMonths.map(month => {
-                const recKey = `${s.id}_${month}`;
+            container.innerHTML = sCycles.map(cycleName => {
+                const recKey = `${s.id}_${cycleName}`;
                 const rec = feeRecords[recKey];
                 const fee = Number(s.fee || 0);
                 const paid = rec ? Number(rec.paidAmount || 0) : 0;
@@ -1572,7 +1565,6 @@
 
                 const isPaid = paid >= fee;
                 const isPartial = paid > 0 && paid < fee;
-                const isUnpaid = paid === 0;
 
                 let statusBadge = '';
                 if (isPaid) {
@@ -1586,27 +1578,31 @@
                 return `
                     <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 flex flex-col space-y-2">
                         <div class="flex items-center justify-between">
-                            <span class="font-bold text-xs text-slate-800">${month}</span>
+                            <span class="font-bold text-xs text-blue-950">${cycleName}</span>
                             ${statusBadge}
                         </div>
                         
                         <div class="grid grid-cols-4 gap-1 pt-1">
-                            <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'PAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPaid ? 'bg-emerald-700 text-white shadow' : 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'}">
+                            <!-- Paid -->
+                            <button onclick="setCycleFeeStatus(${s.id}, '${cycleName}', 'PAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPaid ? 'bg-emerald-700 text-white shadow' : 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'}">
                                 <i class="fa-solid fa-check text-[9px]"></i>
                                 <span>Paid</span>
                             </button>
 
-                            <button onclick="setMonthFeeStatus(${s.id}, '${month}', 'UNPAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isUnpaid ? 'bg-rose-700 text-white shadow' : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}">
+                            <!-- Unpaid -->
+                            <button onclick="setCycleFeeStatus(${s.id}, '${cycleName}', 'UNPAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${!isPaid && !isPartial ? 'bg-rose-700 text-white shadow' : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}">
                                 <i class="fa-solid fa-xmark text-[9px]"></i>
                                 <span>Unpaid</span>
                             </button>
 
-                            <button onclick="openPaymentModal(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPartial ? 'bg-amber-600 text-white shadow' : 'bg-amber-100 text-amber-900 hover:bg-amber-200'}">
+                            <!-- Partial Deposit -->
+                            <button onclick="openPaymentModal(${s.id}, '${cycleName}')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPartial ? 'bg-amber-600 text-white shadow' : 'bg-amber-100 text-amber-900 hover:bg-amber-200'}">
                                 <i class="fa-solid fa-pen text-[9px]"></i>
                                 <span>জমা/Edit</span>
                             </button>
 
-                            <button onclick="deleteBilledMonth(${s.id}, '${month}')" class="py-1 px-1 rounded-lg text-[10px] font-black bg-rose-50 hover:bg-rose-100 text-rose-700 flex items-center justify-center space-x-0.5 transition" title="এই মাহটো বহীৰ পৰা মচি পেলাওক">
+                            <!-- DELETE THIS 20-DAY CYCLE -->
+                            <button onclick="deleteBilledCycle(${s.id}, '${cycleName}')" class="py-1 px-1 rounded-lg text-[10px] font-black bg-rose-50 hover:bg-rose-100 text-rose-700 flex items-center justify-center space-x-0.5 transition" title="এই ২০ দিনীয়া মাহটো মচি পেলাওক">
                                 <i class="fa-solid fa-trash-can text-[9px]"></i>
                                 <span>মচক</span>
                             </button>
@@ -1618,10 +1614,10 @@
             document.getElementById('pbModalTotalBalance').innerText = '₹' + totalDue;
         }
 
-        function setMonthFeeStatus(studId, month, type) {
+        function setCycleFeeStatus(studId, cycleName, type) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
-            const recKey = `${s.id}_${month}`;
+            const recKey = `${s.id}_${cycleName}`;
 
             if (type === 'PAID') {
                 feeRecords[recKey] = {
@@ -1636,49 +1632,62 @@
             }
 
             localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
-            renderPassbookModalMonths();
+            renderPassbookModalCycles();
             calculateTotalAllPending();
         }
 
-        function deleteBilledMonth(studId, month) {
-            if (confirm(`আপুনি সঁচাকৈয়ে এই ছাত্ৰজনৰ বহীৰ পৰা ${month} মাহটো মচি পেলাব বিচাৰেনে? (ইয়াৰ বাকী ধন শূন্য হৈ যাব)`)) {
-                if (studentBilledMonths[studId]) {
-                    studentBilledMonths[studId] = studentBilledMonths[studId].filter(m => m !== month);
-                    localStorage.setItem('gk_student_billed_months', JSON.stringify(studentBilledMonths));
+        function deleteBilledCycle(studId, cycleName) {
+            if (confirm(`আপুনি সঁচাকৈয়ে এই ছাত্ৰজনৰ বহীৰ পৰা "${cycleName}" মচি পেলাব বিচাৰেনে? (ইয়াৰ বাকী ধন শূন্য হৈ যাব)`)) {
+                if (studentBilledCycles[studId]) {
+                    studentBilledCycles[studId] = studentBilledCycles[studId].filter(m => m !== cycleName);
+                    localStorage.setItem('gk_student_billed_cycles', JSON.stringify(studentBilledCycles));
                 }
-                delete feeRecords[`${studId}_${month}`];
+                delete feeRecords[`${studId}_${cycleName}`];
                 localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
 
-                renderPassbookModalMonths();
+                renderPassbookModalCycles();
                 calculateTotalAllPending();
             }
         }
 
-        // ================= ADD MONTH MODAL LOGIC =================
-        function openSingleAddMonthModal() {
+        // ================= ADD 20-DAY CYCLE MODAL LOGIC =================
+        function openSingleAddCycleModal() {
             if (!activePassbookStudent) return;
-            isBulkAddMonth = false;
-            document.getElementById('addMonthModalTitle').innerText = `${activePassbookStudent.name} ৰ নামত মাহ যোগ কৰক`;
+            isBulkAddCycle = false;
+            document.getElementById('addCycleModalTitle').innerText = `${activePassbookStudent.name} ৰ নামত মাহ বহুৱাওক`;
             document.getElementById('bulkClassOptionDiv').classList.add('hidden');
-            document.getElementById('addMonthModal').classList.remove('hidden');
+            
+            // Suggest next cycle name based on existing count
+            const currentCount = (studentBilledCycles[activePassbookStudent.id] || []).length;
+            const numerals = ["১ম", "২য়", "৩য়", "৪ৰ্থ", "৫ম", "৬ষ্ঠ", "৭ম", "৮ম", "৯ম", "১০ম", "১১তম", "১২তম"];
+            const nextSuggested = (numerals[currentCount] || `${currentCount + 1}তম`) + " মাহ (২০ দিন)";
+            document.getElementById('customCycleNameInput').value = nextSuggested;
+
+            document.getElementById('addCycleModal').classList.remove('hidden');
         }
 
-        function openBulkAddMonthModal() {
-            isBulkAddMonth = true;
-            document.getElementById('addMonthModalTitle').innerText = 'নতুন মাহৰ মাচুল যোগ কৰক';
+        function openBulkAddCycleModal() {
+            isBulkAddCycle = true;
+            document.getElementById('addCycleModalTitle').innerText = 'নতুন ২০ দিনীয়া মাহ বহুৱাওক';
             document.getElementById('bulkClassOptionDiv').classList.remove('hidden');
-            document.getElementById('addMonthModal').classList.remove('hidden');
+            document.getElementById('customCycleNameInput').value = '১ম মাহ (২০ দিন)';
+            document.getElementById('addCycleModal').classList.remove('hidden');
         }
 
-        function closeAddMonthModal() {
-            document.getElementById('addMonthModal').classList.add('hidden');
+        function closeAddCycleModal() {
+            document.getElementById('addCycleModal').classList.add('hidden');
         }
 
-        function confirmAddMonthExecution() {
-            const selectedMonth = document.getElementById('selectMonthToAdd').value;
-            const initStatus = document.getElementById('addMonthInitialStatus').value;
+        function confirmAddCycleExecution() {
+            const enteredCycleName = document.getElementById('customCycleNameInput').value.trim();
+            const initStatus = document.getElementById('addCycleInitialStatus').value;
 
-            if (isBulkAddMonth) {
+            if (!enteredCycleName) {
+                alert("অনুগ্ৰহ কৰি মাহৰ নাম বা তাৰিখ লিখক!");
+                return;
+            }
+
+            if (isBulkAddCycle) {
                 const targetClass = document.getElementById('bulkAddClassSelect').value;
                 let targetStudents = students.filter(s => targetClass === 'ALL' || s.class === targetClass);
 
@@ -1688,11 +1697,11 @@
                 }
 
                 targetStudents.forEach(s => {
-                    if (!studentBilledMonths[s.id]) studentBilledMonths[s.id] = [];
-                    if (!studentBilledMonths[s.id].includes(selectedMonth)) {
-                        studentBilledMonths[s.id].push(selectedMonth);
+                    if (!studentBilledCycles[s.id]) studentBilledCycles[s.id] = [];
+                    if (!studentBilledCycles[s.id].includes(enteredCycleName)) {
+                        studentBilledCycles[s.id].push(enteredCycleName);
                     }
-                    const recKey = `${s.id}_${selectedMonth}`;
+                    const recKey = `${s.id}_${enteredCycleName}`;
                     if (!feeRecords[recKey]) {
                         feeRecords[recKey] = {
                             paidAmount: initStatus === 'PAID' ? Number(s.fee || 0) : 0,
@@ -1701,49 +1710,49 @@
                     }
                 });
 
-                localStorage.setItem('gk_student_billed_months', JSON.stringify(studentBilledMonths));
+                localStorage.setItem('gk_student_billed_cycles', JSON.stringify(studentBilledCycles));
                 localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
-                closeAddMonthModal();
+                closeAddCycleModal();
                 renderFeesPassbookList();
                 calculateTotalAllPending();
-                alert(`সফলতাৰে ${targetStudents.length} জন ছাত্ৰৰ নামত ${selectedMonth} যোগ হ'ল!`);
+                alert(`সফলতাৰে ${targetStudents.length} জন ছাত্ৰৰ নামত "${enteredCycleName}" বহুওৱা হ'ল!`);
             } else {
                 if (!activePassbookStudent) return;
                 const s = activePassbookStudent;
 
-                if (!studentBilledMonths[s.id]) studentBilledMonths[s.id] = [];
-                if (!studentBilledMonths[s.id].includes(selectedMonth)) {
-                    studentBilledMonths[s.id].push(selectedMonth);
+                if (!studentBilledCycles[s.id]) studentBilledCycles[s.id] = [];
+                if (!studentBilledCycles[s.id].includes(enteredCycleName)) {
+                    studentBilledCycles[s.id].push(enteredCycleName);
                 }
 
-                const recKey = `${s.id}_${selectedMonth}`;
+                const recKey = `${s.id}_${enteredCycleName}`;
                 feeRecords[recKey] = {
                     paidAmount: initStatus === 'PAID' ? Number(s.fee || 0) : 0,
                     date: initStatus === 'PAID' ? getTodayDateStr() : ''
                 };
 
-                localStorage.setItem('gk_student_billed_months', JSON.stringify(studentBilledMonths));
+                localStorage.setItem('gk_student_billed_cycles', JSON.stringify(studentBilledCycles));
                 localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
-                closeAddMonthModal();
-                renderPassbookModalMonths();
+                closeAddCycleModal();
+                renderPassbookModalCycles();
                 calculateTotalAllPending();
-                alert(`${s.name} ৰ নামত ${selectedMonth} সফলতাৰে যোগ হ'ল!`);
+                alert(`${s.name} ৰ নামত "${enteredCycleName}" সফলতাৰে যোগ হ'ল!`);
             }
         }
 
         // Custom Partial Payment Modal
-        function openPaymentModal(studId, month) {
+        function openPaymentModal(studId, cycleName) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
             activePayStudent = s;
-            activePayMonth = month;
+            activePayMonth = cycleName;
 
-            const recKey = `${s.id}_${month}`;
+            const recKey = `${s.id}_${cycleName}`;
             const rec = feeRecords[recKey];
             const currentPaid = rec ? Number(rec.paidAmount || 0) : 0;
 
             document.getElementById('payModalStudentName').innerText = s.name;
-            document.getElementById('payModalClassMonth').innerText = `${s.class} • ${month}`;
+            document.getElementById('payModalClassMonth').innerText = `${s.class} • ${cycleName}`;
             document.getElementById('payModalTotalFee').innerText = `ধাৰ্য মাহেকীয়া মাচুল: ₹${s.fee}`;
             document.getElementById('payDepositedAmount').value = currentPaid;
             calculateModalBalance();
@@ -1775,21 +1784,21 @@
 
             localStorage.setItem('gk_my_feeRecords', JSON.stringify(feeRecords));
             closePaymentModal();
-            renderPassbookModalMonths();
+            renderPassbookModalCycles();
             calculateTotalAllPending();
             renderFeesPassbookList();
         }
 
-        // ================= CLEAN WHATSAPP MESSAGE =================
+        // ================= CLEAN WHATSAPP MESSAGE (ZERO UNWANTED CHARACTERS) =================
         function shareStudentPassbookWhatsApp(studId) {
             const s = students.find(item => item.id === studId);
             if (!s) return;
 
             let totalDue = 0;
-            let monthLedgerLines = [];
-            const sMonths = studentBilledMonths[s.id] || [];
+            let cycleLedgerLines = [];
+            const sCycles = studentBilledCycles[s.id] || [];
 
-            sMonths.forEach(m => {
+            sCycles.forEach(m => {
                 const recKey = `${s.id}_${m}`;
                 const rec = feeRecords[recKey];
                 const fee = Number(s.fee || 0);
@@ -1798,16 +1807,16 @@
                 totalDue += bal;
 
                 if (paid >= fee) {
-                    monthLedgerLines.push(m + ": সম্পূৰ্ণ পৰিশোধিত");
+                    cycleLedgerLines.push(m + ": সম্পূৰ্ণ পৰিশোধিত");
                 } else if (paid > 0) {
-                    monthLedgerLines.push(m + ": জমা দিলে " + paid + " টকা, বাকী আছে " + bal + " টকা");
+                    cycleLedgerLines.push(m + ": জমা দিলে " + paid + " টকা, বাকী আছে " + bal + " টকা");
                 } else {
-                    monthLedgerLines.push(m + ": বাকী আছে " + fee + " টকা");
+                    cycleLedgerLines.push(m + ": বাকী আছে " + fee + " টকা");
                 }
             });
 
-            if (monthLedgerLines.length === 0) {
-                monthLedgerLines.push("কোনো মাহৰ মাচুল ধাৰ্য কৰা হোৱা নাই");
+            if (cycleLedgerLines.length === 0) {
+                cycleLedgerLines.push("কোনো ২০ দিনীয়া মাহৰ মাচুল ধাৰ্য কৰা হোৱা নাই");
             }
 
             const cleanLines = [
@@ -1819,8 +1828,8 @@
                 "ছাত্ৰ ছাত্ৰীৰ নাম: " + s.name,
                 "শ্ৰেণী: " + s.class,
                 "",
-                "মাহেকীয়া মাচুলৰ খতিয়ান:",
-                monthLedgerLines.join("\n"),
+                "২০ দিনীয়া টিউচন মাচুলৰ খতিয়ান:",
+                cycleLedgerLines.join("\n"),
                 "",
                 "সৰ্বমুঠ বাকী থকা মাচুল: " + totalDue + " টকা",
                 "",
