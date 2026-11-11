@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="as">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Digital Writing Tablet</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #1e1e24;
+    }
+
+    /* Container */
+    #app-container {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    /* Top Toolbar */
+    #toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      background: #2b2d42;
+      padding: 8px 12px;
+      color: #edf2f4;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      z-index: 10;
+      gap: 8px;
+    }
+
+    .tool-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn {
+      background: #3d405b;
+      color: #fff;
+      border: 1px solid #4a4e69;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .btn:active, .btn.active {
+      background: #e63946;
+      border-color: #ff4d6d;
+      font-weight: bold;
+      transform: scale(0.96);
+    }
+
+    /* Color Palette */
+    .color-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.15s;
+    }
+    .color-btn.active {
+      transform: scale(1.25);
+      box-shadow: 0 0 6px #fff;
+    }
+
+    /* Pen size slider */
+    .slider-box {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    input[type="range"] {
+      width: 70px;
+      cursor: pointer;
+    }
+
+    /* Canvas Area */
+    #canvas-container {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      touch-action: none; /* Prevents scrolling while writing */
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Board Background Styles */
+    .bg-blackboard {
+      background-color: #1a1a1a;
+    }
+
+    .bg-whiteboard {
+      background-color: #ffffff;
+    }
+
+    .bg-ruled {
+      background-color: #fffdf5;
+      background-image: repeating-linear-gradient(
+        transparent,
+        transparent 31px,
+        #b8d8d8 31px,
+        #b8d8d8 32px
+      );
+    }
+
+    .bg-grid {
+      background-color: #f7f9fa;
+      background-size: 28px 28px;
+      background-image: 
+        linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+        linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app-container">
+    <!-- Toolbar -->
+    <div id="toolbar">
+      <!-- Tools Selection -->
+      <div class="tool-group">
+        <button id="tool-pen" class="btn active" onclick="setTool('pen')">🖊️ Pen</button>
+        <button id="tool-highlighter" class="btn" onclick="setTool('highlighter')">🖍️ Highlighter</button>
+        <button id="tool-eraser" class="btn" onclick="setTool('eraser')">🧹 Eraser</button>
+      </div>
+
+      <!-- Quick Colors -->
+      <div class="tool-group">
+        <span class="color-btn active" style="background:#ffffff;" onclick="setColor('#ffffff', this)"></span>
+        <span class="color-btn" style="background:#ffeb3b;" onclick="setColor('#ffeb3b', this)"></span>
+        <span class="color-btn" style="background:#4caf50;" onclick="setColor('#4caf50', this)"></span>
+        <span class="color-btn" style="background:#2196f3;" onclick="setColor('#2196f3', this)"></span>
+        <span class="color-btn" style="background:#f44336;" onclick="setColor('#f44336', this)"></span>
+        <input type="color" id="customColor" value="#ffffff" onchange="setColor(this.value, null)" style="width:24px; height:24px; border:none; cursor:pointer;">
+      </div>
+
+      <!-- Stroke Size -->
+      <div class="tool-group slider-box">
+        <span>আকাৰ:</span>
+        <input type="range" id="lineWidth" min="1" max="50" value="4" oninput="updateSize(this.value)">
+        <span id="sizeValue">4</span>
+      </div>
+
+      <!-- Board Background Styles -->
+      <div class="tool-group">
+        <select id="bgSelect" class="btn" onchange="changeBackground(this.value)" style="outline:none;">
+          <option value="blackboard">⬛ Blackboard</option>
+          <option value="whiteboard">⬜ Whiteboard</option>
+          <option value="ruled">📄 Ruled Lines</option>
+          <option value="grid">📐 Math Grid</option>
+        </select>
+      </div>
+
+      <!-- Actions -->
+      <div class="tool-group">
+        <button class="btn" onclick="undo()" title="Undo">↩️ Undo</button>
+        <button class="btn" onclick="redo()" title="Redo">↪️ Redo</button>
+        <button class="btn" onclick="clearCanvas()" style="background:#e63946;" title="Clear Screen">🗑️ Clear</button>
+        <button class="btn" onclick="saveNote()" style="background:#2a9d8f;">💾 Save</button>
+        <button class="btn" onclick="toggleFullScreen()">⛶ Full</button>
+      </div>
+    </div>
+
+    <!-- Canvas Workspace -->
+    <div id="canvas-container" class="bg-blackboard">
+      <canvas id="paintCanvas"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('paintCanvas');
+    const container = document.getElementById('canvas-container');
+    const ctx = canvas.getContext('2d');
+
+    let currentTool = 'pen';
+    let currentColor = '#ffffff';
+    let currentSize = 4;
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    // Undo / Redo History
+    let history = [];
+    let historyStep = -1;
+    const MAX_HISTORY = 20;
+
+    function resizeCanvas() {
+      // Create temporary canvas to keep drawings during resize
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      const tempCtx = tempCanvas.getContext('2d');
+      tempCtx.drawImage(canvas, 0, 0);
+
+      // Resize
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+
+      // Restore content
+      ctx.drawImage(tempCanvas, 0, 0);
+      saveState();
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('load', () => {
+      resizeCanvas();
+    });
+
+    // History Save
+    function saveState() {
+      if (historyStep < history.length - 1) {
+        history = history.slice(0, historyStep + 1);
+      }
+      history.push(canvas.toDataURL());
+      if (history.length > MAX_HISTORY) {
+        history.shift();
+      } else {
+        historyStep++;
+      }
+    }
+
+    function undo() {
+      if (historyStep > 0) {
+        historyStep--;
+        let canvasPic = new Image();
+        canvasPic.src = history[historyStep];
+        canvasPic.onload = function () {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(canvasPic, 0, 0);
+        };
+      }
+    }
+
+    function redo() {
+      if (historyStep < history.length - 1) {
+        historyStep++;
+        let canvasPic = new Image();
+        canvasPic.src = history[historyStep];
+        canvasPic.onload = function () {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(canvasPic, 0, 0);
+        };
+      }
+    }
+
+    // Pointer Events (Touch, Stylus Pen, Mouse - all supported)
+    canvas.addEventListener('pointerdown', (e) => {
+      isDrawing = true;
+      const rect = canvas.getBoundingClientRect();
+      lastX = e.clientX - rect.left;
+      lastY = e.clientY - rect.top;
+
+      // Dot tap
+      draw(lastX, lastY, lastX, lastY);
+    });
+
+    canvas.addEventListener('pointermove', (e) => {
+      if (!isDrawing) return;
+      const rect = canvas.getBoundingClientRect();
+      const currentX = e.clientX - rect.left;
+      const currentY = e.clientY - rect.top;
+
+      draw(lastX, lastY, currentX, currentY);
+
+      lastX = currentX;
+      lastY = currentY;
+    });
+
+    canvas.addEventListener('pointerup', () => {
+      if (isDrawing) {
+        isDrawing = false;
+        saveState();
+      }
+    });
+
+    canvas.addEventListener('pointercancel', () => {
+      isDrawing = false;
+    });
+
+    function draw(x1, y1, x2, y2) {
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      if (currentTool === 'pen') {
+        ctx.globalAlpha = 1.0;
+        ctx.strokeStyle = currentColor;
+        ctx.lineWidth = currentSize;
+        ctx.globalCompositeOperation = 'source-over';
+      } else if (currentTool === 'highlighter') {
+        ctx.globalAlpha = 0.35;
+        ctx.strokeStyle = currentColor;
+        ctx.lineWidth = currentSize * 3;
+        ctx.globalCompositeOperation = 'source-over';
+      } else if (currentTool === 'eraser') {
+        ctx.globalAlpha = 1.0;
+        ctx.lineWidth = currentSize * 4;
+        ctx.globalCompositeOperation = 'destination-out';
+      }
+
+      ctx.stroke();
+    }
+
+    // Tools Switching
+    function setTool(tool) {
+      currentTool = tool;
+      document.querySelectorAll('#toolbar .btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tool-' + tool).classList.add('active');
+    }
+
+    function setColor(color, element) {
+      currentColor = color;
+      if (currentTool === 'eraser') {
+        setTool('pen');
+      }
+      if (element) {
+        document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+        element.classList.add('active');
+      }
+    }
+
+    function updateSize(val) {
+      currentSize = val;
+      document.getElementById('sizeValue').innerText = val;
+    }
+
+    function changeBackground(bgType) {
+      container.className = 'bg-' + bgType;
+      // Auto adjust default pen color for visibility
+      if (bgType === 'whiteboard' || bgType === 'ruled' || bgType === 'grid') {
+        if (currentColor === '#ffffff') {
+          setColor('#212529', null);
+        }
+      } else if (bgType === 'blackboard') {
+        if (currentColor === '#212529') {
+          setColor('#ffffff', null);
+        }
+      }
+    }
+
+    function clearCanvas() {
+      if (confirm('আপুনি সঁচাকৈ সমগ্ৰ পৃষ্ঠাখন মচিব বিচাৰেনে?')) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        saveState();
+      }
+    }
+
+    function saveNote() {
+      const link = document.createElement('a');
+      link.download = 'writing_note_' + new Date().toISOString().slice(0, 10) + '.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+  </script>
+</body>
+</html>
