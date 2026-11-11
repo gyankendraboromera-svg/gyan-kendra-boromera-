@@ -164,7 +164,7 @@
             </div>
         </section>
 
-        <!-- ================= PUBLIC TAB 3: DOUBTS FORM (WITH PHOTO ATTACHMENT) ================= -->
+        <!-- ================= PUBLIC TAB 3: DOUBTS FORM (WITH REAL PHOTO ATTACHMENT) ================= -->
         <section id="tab-doubts" class="tab-content space-y-4">
             <div class="bg-gradient-to-r from-blue-900 to-indigo-800 p-4 rounded-2xl text-white shadow-sm space-y-1">
                 <span class="inline-block bg-amber-400 text-blue-950 text-[10px] font-bold px-2 py-0.5 rounded-full">প্ৰশ্ন আৰু স্ক্ৰীনশ্বট সহায় কক্ষ</span>
@@ -199,22 +199,22 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-[11px] font-bold text-slate-600 mb-1">আপোনাৰ প্ৰশ্ন / জানিবলগীয়া কথা *</label>
+                    <label class="block text-[11px] font-bold text-slate-600 mb-1">আপোনাৰ প্ৰশ্ন / জানিবলগীয়া কথা</label>
                     <textarea id="doubtMessage" rows="3" placeholder="প্ৰশ্নটো কি ইয়াত চমুকৈ লিখক..." class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg outline-none focus:border-blue-600"></textarea>
                 </div>
 
-                <!-- Photo Attachment -->
+                <!-- Direct Camera / File Attachment -->
                 <div class="bg-blue-50/70 p-3 rounded-xl border border-blue-200 space-y-2">
                     <label class="block text-[11px] font-bold text-blue-950">
-                        <i class="fa-solid fa-camera text-blue-700 mr-1"></i>প্ৰশ্নৰ ফটো বা স্ক্ৰীনশ্বট বাছক (ঐচ্ছিক)
+                        <i class="fa-solid fa-camera text-blue-700 mr-1"></i>প্ৰশ্নৰ ফটো বা স্ক্ৰীনশ্বট সংলগ্ন কৰক
                     </label>
                     <div class="flex items-center space-x-2">
-                        <label class="flex-1 flex items-center justify-center px-3 py-2 border-2 border-dashed border-blue-400 rounded-xl bg-white hover:bg-blue-50 cursor-pointer text-xs font-bold text-blue-900 transition shadow-sm">
+                        <label class="flex-1 flex items-center justify-center px-3 py-2.5 border-2 border-dashed border-blue-400 rounded-xl bg-white hover:bg-blue-50 cursor-pointer text-xs font-bold text-blue-900 transition shadow-sm">
                             <i class="fa-solid fa-image mr-1.5 text-blue-600"></i>
-                            <span id="photoUploadLabel">কেমেৰা বা গেলাৰীৰ পৰা বাছক</span>
+                            <span id="photoUploadLabel">কেমেৰা বা গেলাৰীৰ পৰা ফটো বাছক</span>
                             <input type="file" id="doubtImageInput" accept="image/*" class="hidden" onchange="handleDoubtImagePreview(event)">
                         </label>
-                        <button type="button" id="removePhotoBtn" onclick="removeDoubtPhoto()" class="hidden px-2.5 py-2 bg-rose-100 hover:bg-rose-200 text-rose-700 rounded-xl text-xs font-bold">
+                        <button type="button" id="removePhotoBtn" onclick="removeDoubtPhoto()" class="hidden px-3 py-2.5 bg-rose-100 hover:bg-rose-200 text-rose-700 rounded-xl text-xs font-bold">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
@@ -222,15 +222,16 @@
                     <div id="doubtImagePreviewContainer" class="hidden mt-2 p-2 bg-white border border-slate-200 rounded-xl text-center">
                         <img id="doubtImagePreview" src="" alt="Doubt Preview" class="max-h-48 mx-auto rounded-lg object-contain shadow-sm border border-slate-100">
                         <p class="text-[10px] text-emerald-800 font-bold mt-1.5">
-                            <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i>ফটো সংলগ্ন হ'ল! তলৰ বুটামত টিপক।
+                            <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i>ফটো সংলগ্ন হৈছে! তলৰ বুটামত টিপক।
                         </p>
                     </div>
                 </div>
 
                 <button onclick="submitDoubtForm()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center space-x-2 shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span>মালি ছাৰলৈ WhatsApp মেচেজ পঠাওক</span>
+                    <span>মালি ছাৰলৈ ফটো আৰু মেচেজ পঠাওক</span>
                 </button>
+                <p class="text-[10px] text-slate-400 text-center">বুটামত টিপিলে মোবাইলত WhatsApp বাছি ল'লেই ফটোসহ খোল খাব।</p>
             </div>
 
             <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
@@ -485,7 +486,7 @@
         </button>
     </nav>
 
-    <!-- FULL STUDENT MONTHLY PASSBOOK MODAL (CUSTOM MONTH PERIODS) -->
+    <!-- FULL STUDENT MONTHLY PASSBOOK MODAL -->
     <div id="studentPassbookModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-3">
         <div class="bg-white rounded-2xl w-full max-w-sm max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
             <div class="bg-blue-900 text-white p-3.5 flex justify-between items-start flex-shrink-0">
@@ -749,7 +750,7 @@
         let students = JSON.parse(localStorage.getItem('gk_my_students')) || [];
         let attendance = JSON.parse(localStorage.getItem('gk_my_attendance')) || {};
         
-        // Fully dynamic structure: studentCustomPeriods[studentId] = [ { id: 1, name: "August 1 to 20", fee: 600, paid: 600, date: "2026-08-20" }, ... ]
+        // Custom periods per student
         let studentCustomPeriods = JSON.parse(localStorage.getItem('gk_student_custom_periods')) || {};
         
         let notices = JSON.parse(localStorage.getItem('gk_my_notices')) || [
@@ -760,7 +761,7 @@
         let activePayStudent = null;
         let activePayPeriodId = null;
         let isBulkAddPeriod = false;
-        let doubtAttachedImage = null;
+        let selectedDoubtFile = null;
 
         let logoTapCount = 0;
         let logoTapTimeout = null;
@@ -972,15 +973,15 @@
             window.print();
         }
 
-        // ================= PUBLIC DOUBTS WITH PHOTO =================
+        // ================= PUBLIC DOUBTS WITH REAL WEB-SHARE PHOTO ATTACHMENT =================
         function handleDoubtImagePreview(event) {
             const file = event.target.files[0];
             if (!file) return;
+            selectedDoubtFile = file;
 
             const reader = new FileReader();
             reader.onload = function(e) {
-                doubtAttachedImage = e.target.result;
-                document.getElementById('doubtImagePreview').src = doubtAttachedImage;
+                document.getElementById('doubtImagePreview').src = e.target.result;
                 document.getElementById('doubtImagePreviewContainer').classList.remove('hidden');
                 document.getElementById('removePhotoBtn').classList.remove('hidden');
                 document.getElementById('photoUploadLabel').innerText = "ফটো সলনি কৰক";
@@ -989,15 +990,15 @@
         }
 
         function removeDoubtPhoto() {
-            doubtAttachedImage = null;
+            selectedDoubtFile = null;
             document.getElementById('doubtImageInput').value = '';
             document.getElementById('doubtImagePreview').src = '';
             document.getElementById('doubtImagePreviewContainer').classList.add('hidden');
             document.getElementById('removePhotoBtn').classList.add('hidden');
-            document.getElementById('photoUploadLabel').innerText = "কেমেৰা বা গেলাৰীৰ পৰা বাছক";
+            document.getElementById('photoUploadLabel').innerText = "কেমেৰা বা গেলাৰীৰ পৰা ফটো বাছক";
         }
 
-        function submitDoubtForm() {
+        async function submitDoubtForm() {
             const name = document.getElementById('doubtSenderName').value.trim();
             const sClass = document.getElementById('doubtSenderClass').value;
             const subject = document.getElementById('doubtSubject').value.trim() || 'টিউচন / সাধাৰণ';
@@ -1007,8 +1008,8 @@
                 alert("অনুগ্ৰহ কৰি আপোনাৰ নাম লিখক!");
                 return;
             }
-            if (!msg && !doubtAttachedImage) {
-                alert("অনুগ্ৰহ কৰি প্ৰশ্নটো লিখক অথবা ফটো/স্ক্ৰীনশ্বট বাছক!");
+            if (!msg && !selectedDoubtFile) {
+                alert("অনুগ্ৰহ কৰি প্ৰশ্নটো লিখক অথবা ফটো বাছক!");
                 return;
             }
 
@@ -1028,18 +1029,25 @@
                 messageLines.push("");
             }
 
-            if (doubtAttachedImage) {
-                messageLines.push("টোকা: মই প্ৰশ্নটোৰ ফটো/স্ক্ৰীনশ্বট তলত সংলগ্ন (Attach) কৰি দিছোঁ।");
-                messageLines.push("");
-            }
-
             messageLines.push("অনুগ্ৰহ কৰি সময় পালে উত্তৰ জনাব। ধন্যবাদ।");
+            const fullText = messageLines.join("\n");
 
-            if (doubtAttachedImage) {
-                alert("WhatsApp খোল খোৱাৰ পিছত আপোনাৰ বাছনি কৰা ফটো/স্ক্ৰীনশ্বটটো অনুগ্ৰহ কৰি তলৰ কেমেৰা বা গেলেৰী আইকনত টিপি চেণ্ড কৰি দিয়ক!");
+            // REAL ATTACHMENT VIA SYSTEM SHARE API (Attaches both photo and message directly)
+            if (selectedDoubtFile && navigator.canShare && navigator.canShare({ files: [selectedDoubtFile] })) {
+                try {
+                    await navigator.share({
+                        title: "জ্ঞান কেন্দ্ৰ - প্ৰশ্ন আৰু সংশয়",
+                        text: fullText,
+                        files: [selectedDoubtFile]
+                    });
+                    return;
+                } catch (err) {
+                    console.log("Share cancelled or not completed:", err);
+                }
             }
 
-            window.open("https://wa.me/917896723247?text=" + encodeURIComponent(messageLines.join("\n")), "_blank");
+            // Fallback for simple text URL
+            window.open("https://wa.me/917896723247?text=" + encodeURIComponent(fullText), "_blank");
         }
 
         function shareDoubtPortalToWhatsApp() {
@@ -1480,25 +1488,21 @@
                         </div>
                         
                         <div class="grid grid-cols-4 gap-1 pt-1">
-                            <!-- Paid -->
                             <button onclick="setPeriodFeeStatus(${s.id}, ${p.id}, 'PAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPaid ? 'bg-emerald-700 text-white shadow' : 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'}">
                                 <i class="fa-solid fa-check text-[9px]"></i>
                                 <span>Paid</span>
                             </button>
 
-                            <!-- Unpaid -->
                             <button onclick="setPeriodFeeStatus(${s.id}, ${p.id}, 'UNPAID')" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${!isPaid && !isPartial ? 'bg-rose-700 text-white shadow' : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}">
                                 <i class="fa-solid fa-xmark text-[9px]"></i>
                                 <span>Unpaid</span>
                             </button>
 
-                            <!-- Partial Deposit -->
                             <button onclick="openPaymentModal(${s.id}, ${p.id})" class="py-1 px-1 rounded-lg text-[10px] font-black flex items-center justify-center space-x-0.5 transition ${isPartial ? 'bg-amber-600 text-white shadow' : 'bg-amber-100 text-amber-900 hover:bg-amber-200'}">
                                 <i class="fa-solid fa-pen text-[9px]"></i>
                                 <span>জমা/Edit</span>
                             </button>
 
-                            <!-- DELETE THIS PERIOD -->
                             <button onclick="deleteCustomPeriod(${s.id}, ${p.id})" class="py-1 px-1 rounded-lg text-[10px] font-black bg-rose-50 hover:bg-rose-100 text-rose-700 flex items-center justify-center space-x-0.5 transition" title="এই মাহটো মচি পেলাওক">
                                 <i class="fa-solid fa-trash-can text-[9px]"></i>
                                 <span>মচক</span>
