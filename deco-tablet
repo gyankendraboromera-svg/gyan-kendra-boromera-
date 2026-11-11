@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="as">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>XP-Pen Deco 01 V3 Digital Slate</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #0d0e12;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #fff;
+    }
+
+    /* Outer Wrapper / Desk */
+    #tablet-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: 100vh;
+      background: #111216;
+      padding: 6px;
+    }
+
+    /* Top Quick Settings Bar */
+    #top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 12px;
+      background: #18191f;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      border: 1px solid #2a2c35;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #00f0ff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .led-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00ff88;
+      box-shadow: 0 0 8px #00ff88;
+      transition: all 0.2s;
+    }
+
+    .led-active {
+      transform: scale(1.4);
+      box-shadow: 0 0 14px #00ff88, 0 0 20px #00ff88;
+    }
+
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Color Swatches */
+    .color-pill {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #333;
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.15s;
+    }
+    .color-pill.active {
+      transform: scale(1.2);
+      border-color: #fff;
+      box-shadow: 0 0 8px rgba(255,255,255,0.7);
+    }
+
+    /* Deco 01 V3 Hardware Chassis */
+    #deco-chassis {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      background: #1e1f26;
+      border-radius: 16px;
+      border: 2px solid #2d2f3b;
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.05), 0 10px 25px rgba(0,0,0,0.7);
+      padding: 10px;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Left Express Keys Panel (Deco 01 style 8 round buttons in 2 clusters) */
+    #keys-column {
+      width: 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      background: #17181e;
+      border-radius: 12px;
+      padding: 6px 0;
+      border: 1px solid #262833;
+    }
+
+    .key-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .express-key {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #252733;
+      border: 1px solid #36394a;
+      color: #9499ab;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+      transition: all 0.1s;
+    }
+
+    .express-key span {
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .express-key:active, .express-key.active {
+      background: #00f0ff;
+      color: #0b0c10;
+      border-color: #00f0ff;
+      transform: scale(0.94);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+    }
+
+    /* Active Drawing Area (10 x 6.25 ratio workspace) */
+    #canvas-container {
+      flex: 1;
+      height: 100%;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      touch-action: none;
+      background-color: #121316;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Deco 01 V3 Corner Landing L-Lights */
+    .corner-light {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .corner-tl {
+      top: 10px;
+      left: 10px;
+      border-top: 2.5px solid #00f0ff;
+      border-left: 2.5px solid #00f0ff;
+      filter: drop-shadow(0 0 4px #00f0ff);
+    }
+    .corner-tr {
+      top: 10px;
+      right: 10px;
+      border-top: 2.5px solid #00f0ff;
+      border-right: 2.5px solid #00f0ff;
+      filter: drop-shadow(0 0 4px #00f0ff);
+    }
+    .corner-bl {
+      bottom: 10px;
+      left: 10px;
+      border-bottom: 2.5px solid #00f0ff;
+      border-left: 2.5px solid #00f0ff;
+      filter: drop-shadow(0 0 4px #00f0ff);
+    }
+    .corner-br {
+      bottom: 10px;
+      right: 10px;
+      border-bottom: 2.5px solid #00f0ff;
+      border-right: 2.5px solid #00f0ff;
+      filter: drop-shadow(0 0 4px #00f0ff);
+    }
+
+    /* Boards Background Themes */
+    .bg-blackboard {
+      background-color: #151618 !important;
+    }
+    .bg-whiteboard {
+      background-color: #f8fafc !important;
+    }
+    .bg-ruled {
+      background-color: #fdfbf7 !important;
+      background-image: 
+        repeating-linear-gradient(transparent, transparent 31px, #d1d5db 31px, #d1d5db 32px),
+        linear-gradient(to right, transparent 55px, #fca5a5 55px, #fca5a5 57px, transparent 57px) !important;
+    }
+    .bg-grid {
+      background-color: #f8fafc !important;
+      background-size: 26px 26px !important;
+      background-image: 
+        linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+        linear-gradient(to bottom, #e2e8f0 1px, transparent 1px) !important;
+    }
+
+    /* Floating Toast */
+    #toast {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 17, 23, 0.9);
+      border: 1px solid #00f0ff;
+      color: #00f0ff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 50;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="tablet-wrapper">
+    <!-- Top Configuration Header -->
+    <div id="top-bar">
+      <div class="brand-title">
+        <div id="statusLed" class="led-indicator"></div>
+        <span>XP-PEN Deco 01 V3</span>
+      </div>
+
+      <div class="top-controls">
+        <!-- Quick Color Palette -->
+        <span class="color-pill active" style="background:#ffffff;" onclick="selectColor('#ffffff', this)"></span>
+        <span class="color-pill" style="background:#facc15;" onclick="selectColor('#facc15', this)"></span>
+        <span class="color-pill" style="background:#4ade80;" onclick="selectColor('#4ade80', this)"></span>
+        <span class="color-pill" style="background:#38bdf8;" onclick="selectColor('#38bdf8', this)"></span>
+        <span class="color-pill" style="background:#f87171;" onclick="selectColor('#f87171', this)"></span>
+        <input type="color" id="customColorPicker" value="#ffffff" onchange="selectColor(this.value, null)" style="width:24px; height:24px; border:none; background:none; cursor:pointer;">
+        
+        <!-- Full Screen Button -->
+        <button onclick="toggleFullScreen()" style="background:#282a36; border:1px solid #44475a; color:#fff; padding:4px 8px; border-radius:6px; cursor:pointer; font-size:12px;">⛶ Full</button>
+      </div>
+    </div>
+
+    <!-- Main Tablet Physical Body -->
+    <div id="deco-chassis">
+      <!-- 8 Round Express Keys on Left Edge -->
+      <div id="keys-column">
+        <!-- Top 4 Keys (K1 - K4) -->
+        <div class="key-group">
+          <div class="express-key active" id="key-k1" onclick="useTool('pen')">
+            <span>🖊️</span>K1
+          </div>
+          <div class="express-key" id="key-k2" onclick="useTool('highlighter')">
+            <span>🖍️</span>K2
+          </div>
+          <div class="express-key" id="key-k3" onclick="useTool('eraser')">
+            <span>🧹</span>K3
+          </div>
+          <div class="express-key" id="key-k4" onclick="toggleStrokeWidth()">
+            <span>📏</span>K4
+          </div>
+        </div>
+
+        <!-- Bottom 4 Keys (K5 - K8) -->
+        <div class="key-group">
+          <div class="express-key" id="key-k5" onclick="undo()">
+            <span>↩️</span>K5
+          </div>
+          <div class="express-key" id="key-k6" onclick="redo()">
+            <span>↪️</span>K6
+          </div>
+          <div class="express-key" id="key-k7" onclick="cycleBoard()">
+            <span>📑</span>K7
+          </div>
+          <div class="express-key" id="key-k8" onclick="exportImage()">
+            <span>💾</span>K8
+          </div>
+        </div>
+      </div>
+
+      <!-- Active 10 x 6.25 Working Canvas Area -->
+      <div id="canvas-container" class="bg-blackboard">
+        <!-- 4 Luminous Corner Landing Lights -->
+        <div class="corner-light corner-tl"></div>
+        <div class="corner-light corner-tr"></div>
+        <div class="corner-light corner-bl"></div>
+        <div class="corner-light corner-br"></div>
+
+        <canvas id="paintCanvas"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast">Pen Mode (K1)</div>
+
+  <script>
+    const canvas = document.getElementById('paintCanvas');
+    const container = document.getElementById('canvas-container');
+    const ctx = canvas.getContext('2d');
+    const statusLed = document.getElementById('statusLed');
+    const toast = document.getElementById('toast');
+
+    // Tablet State
+    let currentTool = 'pen'; // 'pen', 'highlighter', 'eraser'
+    let currentColor = '#ffffff';
+    let baseStrokeWidth = 3;
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    // Background Themes
+    const boards = ['blackboard', 'whiteboard', 'ruled', 'grid'];
+    let currentBoardIndex = 0;
+
+    // History for Undo/Redo
+    let historyStack = [];
+    let historyStep = -1;
+    const MAX_HISTORY = 25;
+
+    // Web Audio Sound Engine (Tactile Click)
+    let audioCtx = null;
+    function playClickSound() {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(650, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.04);
+        gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.04);
+      } catch (e) {}
+    }
+
+    function showToast(text) {
+      toast.innerText = text;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(5px)';
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+      }, 1400);
+    }
+
+    // High DPI Canvas Scaling
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = container.getBoundingClientRect();
+
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      tempCanvas.getContext('2d').drawImage(canvas, 0, 0);
+
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width / dpr, tempCanvas.height / dpr);
+      saveState();
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('load', resizeCanvas);
+
+    // History Functions
+    function saveState() {
+      if (historyStep < historyStack.length - 1) {
+        historyStack = historyStack.slice(0, historyStep + 1);
+      }
+      historyStack.push(canvas.toDataURL());
+      if (historyStack.length > MAX_HISTORY) historyStack.shift();
+      else historyStep++;
+    }
+
+    function undo() {
+      playClickSound();
+      if (historyStep > 0) {
+        historyStep--;
+        const img = new Image();
+        img.src = historyStack[historyStep];
+        img.onload = () => {
+          ctx.save();
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          ctx.restore();
+        };
+        showToast('Undo (K5)');
+      }
+    }
+
+    function redo() {
+      playClickSound();
+      if (historyStep < historyStack.length - 1) {
+        historyStep++;
+        const img = new Image();
+        img.src = historyStack[historyStep];
+        img.onload = () => {
+          ctx.save();
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          ctx.restore();
+        };
+        showToast('Redo (K6)');
+      }
+    }
+
+    // Pointer Events for Ultra-Smooth Writing (Finger & Stylus)
+    canvas.addEventListener('pointerdown', (e) => {
+      canvas.setPointerCapture(e.pointerId);
+      isDrawing = true;
+      statusLed.classList.add('led-active');
+
+      const rect = canvas.getBoundingClientRect();
+      lastX = e.clientX - rect.left;
+      lastY = e.clientY - rect.top;
+
+      drawStroke(lastX, lastY, lastX, lastY, e.pressure);
+    });
+
+    canvas.addEventListener('pointermove', (e) => {
+      if (!isDrawing) return;
+      const rect = canvas.getBoundingClientRect();
+      const currentX = e.clientX - rect.left;
+      const currentY = e.clientY - rect.top;
+
+      drawStroke(lastX, lastY, currentX, currentY, e.pressure);
+
+      lastX = currentX;
+      lastY = currentY;
+    });
+
+    canvas.addEventListener('pointerup', (e) => {
+      if (isDrawing) {
+        isDrawing = false;
+        statusLed.classList.remove('led-active');
+        saveState();
+      }
+    });
+
+    canvas.addEventListener('pointercancel', () => {
+      isDrawing = false;
+      statusLed.classList.remove('led-active');
+    });
+
+    // 16K Pressure Emulation Stroke Engine
+    function drawStroke(x1, y1, x2, y2, pressure) {
+      let dynamicWidth = baseStrokeWidth;
+
+      // Stylus or simulated pressure
+      if (pressure && pressure > 0) {
+        dynamicWidth = baseStrokeWidth * (0.5 + pressure * 1.5);
+      }
+
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      if (currentTool === 'pen') {
+        ctx.globalAlpha = 1.0;
+        ctx.strokeStyle = currentColor;
+        ctx.lineWidth = dynamicWidth;
+        ctx.globalCompositeOperation = 'source-over';
+      } else if (currentTool === 'highlighter') {
+        ctx.globalAlpha = 0.35;
+        ctx.strokeStyle = currentColor;
+        ctx.lineWidth = dynamicWidth * 3.5;
+        ctx.globalCompositeOperation = 'source-over';
+      } else if (currentTool === 'eraser') {
+        ctx.globalAlpha = 1.0;
+        ctx.lineWidth = dynamicWidth * 4.5;
+        ctx.globalCompositeOperation = 'destination-out';
+      }
+
+      ctx.stroke();
+    }
+
+    // Express Keys (K1 - K8) Actions
+    function useTool(tool) {
+      playClickSound();
+      currentTool = tool;
+      document.querySelectorAll('.express-key').forEach(k => k.classList.remove('active'));
+
+      if (tool === 'pen') {
+        document.getElementById('key-k1').classList.add('active');
+        showToast('Pen Mode (K1)');
+      } else if (tool === 'highlighter') {
+        document.getElementById('key-k2').classList.add('active');
+        showToast('Highlighter (K2)');
+      } else if (tool === 'eraser') {
+        document.getElementById('key-k3').classList.add('active');
+        showToast('Eraser (K3)');
+      }
+    }
+
+    function toggleStrokeWidth() {
+      playClickSound();
+      if (baseStrokeWidth === 3) baseStrokeWidth = 6;
+      else if (baseStrokeWidth === 6) baseStrokeWidth = 12;
+      else baseStrokeWidth = 3;
+      showToast(`Stroke Size: ${baseStrokeWidth}px (K4)`);
+    }
+
+    function cycleBoard() {
+      playClickSound();
+      currentBoardIndex = (currentBoardIndex + 1) % boards.length;
+      const type = boards[currentBoardIndex];
+      container.className = 'bg-' + type;
+
+      // Automatic ink color contrast
+      if (type === 'whiteboard' || type === 'ruled' || type === 'grid') {
+        if (currentColor === '#ffffff') selectColor('#1e293b', null);
+      } else {
+        if (currentColor === '#1e293b') selectColor('#ffffff', null);
+      }
+
+      showToast(`Board: ${type.toUpperCase()} (K7)`);
+    }
+
+    function selectColor(color, el) {
+      currentColor = color;
+      if (currentTool === 'eraser') useTool('pen');
+      if (el) {
+        document.querySelectorAll('.color-pill').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+      }
+    }
+
+    function exportImage() {
+      playClickSound();
+      showToast('Saving Image... (K8)');
+      
+      const rect = container.getBoundingClientRect();
+      const exportCanvas = document.createElement('canvas');
+      exportCanvas.width = rect.width;
+      exportCanvas.height = rect.height;
+      const eCtx = exportCanvas.getContext('2d');
+
+      // Draw active board background
+      const boardType = boards[currentBoardIndex];
+      if (boardType === 'blackboard') {
+        eCtx.fillStyle = '#151618';
+        eCtx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+      } else if (boardType === 'whiteboard') {
+        eCtx.fillStyle = '#f8fafc';
+        eCtx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+      } else if (boardType === 'ruled') {
+        eCtx.fillStyle = '#fdfbf7';
+        eCtx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+        eCtx.strokeStyle = '#d1d5db';
+        eCtx.lineWidth = 1;
+        for (let y = 32; y < exportCanvas.height; y += 32) {
+          eCtx.beginPath();
+          eCtx.moveTo(0, y);
+          eCtx.lineTo(exportCanvas.width, y);
+          eCtx.stroke();
+        }
+        eCtx.strokeStyle = '#fca5a5';
+        eCtx.lineWidth = 2;
+        eCtx.beginPath();
+        eCtx.moveTo(56, 0);
+        eCtx.lineTo(56, exportCanvas.height);
+        eCtx.stroke();
+      } else if (boardType === 'grid') {
+        eCtx.fillStyle = '#f8fafc';
+        eCtx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+        eCtx.strokeStyle = '#e2e8f0';
+        eCtx.lineWidth = 1;
+        for (let x = 0; x < exportCanvas.width; x += 26) {
+          eCtx.beginPath(); eCtx.moveTo(x, 0); eCtx.lineTo(x, exportCanvas.height); eCtx.stroke();
+        }
+        for (let y = 0; y < exportCanvas.height; y += 26) {
+          eCtx.beginPath(); eCtx.moveTo(0, y); eCtx.lineTo(exportCanvas.width, y); eCtx.stroke();
+        }
+      }
+
+      // Draw handwriting layer
+      eCtx.drawImage(canvas, 0, 0, exportCanvas.width, exportCanvas.height);
+
+      // Download file
+      const link = document.createElement('a');
+      link.download = `Deco01_Note_${new Date().toISOString().slice(0, 10)}.png`;
+      link.href = exportCanvas.toDataURL('image/png');
+      link.click();
+    }
+
+    function toggleFullScreen() {
+      playClickSound();
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>
