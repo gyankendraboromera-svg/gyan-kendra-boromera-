@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dipankar Mali (Mali Sir) | Gyan Kendra Tuition Center & SEBA Study Portal</title>
-  <meta name="description" content="Official website of Dipankar Mali (Mali Sir) - Assistant Teacher at Gandhiji Jatiya Bidyalaya & Founder of Gyan Kendra Tuition Center, Boromera, Agomani, Dhubri, Assam. SEBA Class 10 Chapter-wise PDFs at ₹29, Mock Test Papers, HSLC Results & Teaching Staff." />
+  <meta name="description" content="Official website of Dipankar Mali (Mali Sir) - Assistant Teacher at Gandhiji Jatiya Bidyalaya & Founder of Gyan Kendra Tuition Center, Boromera, Agomani, Dhubri, Assam. SEBA Class 10 Most Important Topics, Chapter-wise PDFs at ₹29, Mock Test Papers & HSLC Results." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,9 +20,16 @@
       display: inline-block;
       white-space: nowrap;
       padding-left: 100%;
-      animation: marquee 26s linear infinite;
+      animation: marquee 28s linear infinite;
     }
-    .marquee-track:hover {
+    .marquee-track-topics {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: marquee 32s linear infinite;
+    }
+    .marquee-track:hover,
+    .marquee-track-topics:hover {
       animation-play-state: paused;
     }
     @keyframes marquee {
@@ -31,12 +38,12 @@
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-600 selection:text-white">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-600 selection:text-white pb-16 sm:pb-0">
 
   <!-- Top Running Notice Banner -->
   <div class="bg-indigo-950 text-amber-300 text-xs sm:text-sm py-2 px-3 overflow-hidden border-b border-indigo-800">
     <div class="max-w-7xl mx-auto flex items-center gap-3">
-      <span class="bg-amber-400 text-indigo-950 font-bold px-2.5 py-0.5 rounded text-[11px] uppercase shrink-0 z-10 shadow" data-as="জাননী" data-en="NOTICE">জাননী</span>
+      <span class="bg-amber-400 text-indigo-950 font-extrabold px-2.5 py-0.5 rounded text-[11px] uppercase shrink-0 z-10 shadow" data-as="জাননী" data-en="NOTICE">জাননী</span>
       <div class="overflow-hidden flex-1">
         <span class="marquee-track font-medium" data-as="📢 ২০২৬-২৭ শিক্ষাবৰ্ষৰ বাবে জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)-ত নাৰ্চাৰীৰ পৰা দশম শ্ৰেণীলৈ নামভৰ্তি চলি আছে  |  অসমৰ সকলো জিলাৰ Mock Test Paper (Solved & Unsolved) আৰু ₹29 অধ্যায়ভিত্তিক PDF নোটছ উপলব্ধ!  |  নতুন আপডেটৰ বাবে আমাৰ Telegram চেনেলত যোগ দিয়ক।" data-en="📢 Admissions Open for 2026-27 Session (Nursery to Class 10) at Gyan Kendra Tuition Center, Boromera  |  All-Assam District Mock Test Papers (Solved & Unsolved) and ₹29 Chapter-wise PDF Notes Available!  |  Join our Telegram channel for updates.">
           📢 ২০২৬-২৭ শিক্ষাবৰ্ষৰ বাবে জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)-ত নাৰ্চাৰীৰ পৰা দশম শ্ৰেণীলৈ নামভৰ্তি চলি আছে  |  অসমৰ সকলো জিলাৰ Mock Test Paper (Solved & Unsolved) আৰু ₹29 অধ্যায়ভিত্তিক PDF নোটছ উপলব্ধ!  |  নতুন আপডেটৰ বাবে আমাৰ Telegram চেনেলত যোগ দিয়ক।
@@ -45,62 +52,98 @@
     </div>
   </div>
 
-  <!-- Sticky Navigation -->
+  <!-- Sticky Navigation with Back, Home & Global Search -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-3 group">
-        <img src="4446.jpg" alt="Dipankar Mali" onerror="if(!this.dataset.step){this.dataset.step='1';this.src='photo.jpg';}else if(this.dataset.step==='1'){this.dataset.step='2';this.src='photo.png';}else{this.onerror=null;this.src='https://ui-avatars.com/api/?name=Dipankar+Mali&background=4338ca&color=fff&bold=true';}" class="w-11 h-11 rounded-xl object-cover object-top shadow-md border border-indigo-200 group-hover:scale-105 transition shrink-0" />
-        <div>
-          <span class="block font-extrabold text-slate-900 text-base sm:text-lg leading-tight" data-as="দীপাংকৰ মালী" data-en="Dipankar Mali">দীপাংকৰ মালী</span>
-          <span class="block text-[11px] font-semibold text-indigo-600 tracking-wide" data-as="বৰমেৰা, আগমনী • ধুবুৰী" data-en="Boromera, Agomani • Dhubri">বৰমেৰা, আগমনী • ধুবুৰী</span>
-        </div>
-      </a>
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
+      <!-- Left: Back Button + Brand/Home -->
+      <div class="flex items-center gap-2 min-w-0">
+        <button onclick="goBackSmart()" title="Back" class="p-2 rounded-xl bg-slate-100 hover:bg-indigo-100 text-slate-700 hover:text-indigo-800 transition shrink-0 flex items-center gap-1 text-xs font-bold" aria-label="Back">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+          <span class="hidden sm:inline" data-as="Back" data-en="Back">Back</span>
+        </button>
 
-      <nav class="hidden lg:flex items-center gap-4 text-sm font-semibold text-slate-600">
-        <a href="#about" class="hover:text-indigo-700 transition" data-as="পৰিচয়" data-en="About">পৰিচয়</a>
+        <a href="#home" class="flex items-center gap-2.5 group min-w-0">
+          <img src="4446.jpg" alt="Dipankar Mali" onerror="if(!this.dataset.step){this.dataset.step='1';this.src='photo.jpg';}else if(this.dataset.step==='1'){this.dataset.step='2';this.src='photo.png';}else{this.onerror=null;this.src='https://ui-avatars.com/api/?name=Dipankar+Mali&background=4338ca&color=fff&bold=true';}" class="w-10 h-10 rounded-xl object-cover object-top shadow border border-indigo-200 group-hover:scale-105 transition shrink-0" />
+          <div class="truncate">
+            <span class="block font-extrabold text-slate-900 text-sm sm:text-base leading-tight truncate" data-as="দীপাংকৰ মালী" data-en="Dipankar Mali">দীপাংকৰ মালী</span>
+            <span class="block text-[10px] sm:text-[11px] font-semibold text-indigo-600 truncate" data-as="জ্ঞান কেন্দ্ৰ, বৰমেৰা" data-en="Gyan Kendra, Boromera">জ্ঞান কেন্দ্ৰ, বৰমেৰা</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center: Desktop Nav Links -->
+      <nav class="hidden xl:flex items-center gap-4 text-sm font-semibold text-slate-600">
+        <a href="#home" class="hover:text-indigo-700 transition flex items-center gap-1" data-as="🏠 Home" data-en="🏠 Home">🏠 Home</a>
         <a href="test-papers.html" class="px-3 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-950 font-extrabold transition flex items-center gap-1.5 shadow-sm">
           <span>📝</span>
           <span>Mock Test Paper</span>
         </a>
-        <a href="#chapter-store" class="text-indigo-700 font-extrabold hover:text-indigo-800 transition" data-as="₹29 PDF নোটছ" data-en="₹29 Chapter PDFs">₹29 PDF নোটছ</a>
-        <a href="#staff" class="hover:text-indigo-700 transition" data-as="শিক্ষকবৃন্দ" data-en="Teaching Staff">শিক্ষকবৃন্দ</a>
-        <a href="#results" class="hover:text-indigo-700 transition" data-as="HSLC ফলাফল" data-en="HSLC Results">HSLC ফলাফল</a>
+        <a href="#chapter-store" class="text-indigo-700 font-extrabold hover:text-indigo-800 transition" data-as="₹29 PDF নোটছ" data-en="₹29 PDFs">₹29 PDF নোটছ</a>
+        <a href="#staff" class="hover:text-indigo-700 transition" data-as="শিক্ষকবৃন্দ" data-en="Staff">শিক্ষকবৃন্দ</a>
+        <a href="#results" class="hover:text-indigo-700 transition" data-as="HSLC ফলাফল" data-en="Results">HSLC ফলাফল</a>
         <a href="#admission" class="hover:text-indigo-700 transition" data-as="নামভৰ্তি" data-en="Admission">নামভৰ্তি</a>
       </nav>
 
-      <div class="flex items-center gap-2">
-        <a href="test-papers.html" class="lg:hidden px-2.5 py-1.5 rounded-xl bg-amber-400 text-slate-950 text-xs font-extrabold shadow-sm flex items-center gap-1">
+      <!-- Right: Global Search Button + Language + Menu -->
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <button onclick="openGlobalSearch()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-indigo-50 text-slate-700 hover:text-indigo-700 border border-slate-200 text-xs font-bold transition shadow-sm" title="Search Website">
+          <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
+          <span class="hidden sm:inline" data-as="Search" data-en="Search">Search</span>
+        </button>
+
+        <a href="test-papers.html" class="xl:hidden px-2.5 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold shadow-sm flex items-center gap-1">
           <span>📝</span>
           <span>Mock Test</span>
         </a>
-        <button id="langToggle" onclick="toggleLanguage()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-800 border border-indigo-200 text-xs sm:text-sm font-bold transition shadow-sm">
-          <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+
+        <button id="langToggle" onclick="toggleLanguage()" class="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-800 border border-indigo-200 text-xs font-bold transition shadow-sm">
           <span id="langLabel">English</span>
         </button>
-        <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Menu">
+
+        <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="xl:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Menu">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </div>
     </div>
 
-    <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 py-3 space-y-2 text-sm font-semibold text-slate-700">
+    <!-- Mobile / Tablet Dropdown Menu -->
+    <div id="mobileMenu" class="hidden xl:hidden bg-white border-t border-slate-100 px-4 py-3 space-y-2 text-sm font-semibold text-slate-700 shadow-lg">
+      <a href="#home" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600 font-bold" data-as="🏠 মূল পৃষ্ঠা (Home)" data-en="🏠 Home">🏠 মূল পৃষ্ঠা (Home)</a>
       <a href="test-papers.html" class="block py-2 px-3 rounded-xl bg-amber-100 text-amber-950 font-extrabold">📝 Mock Test Paper (All Districts)</a>
-      <a href="#about" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="পৰিচয় (About)" data-en="About Mali Sir">পৰিচয় (About)</a>
-      <a href="#tuition" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ" data-en="Gyan Kendra Tuition Center">জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ</a>
       <a href="#chapter-store" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-indigo-700 font-extrabold" data-as="📚 ₹29 অধ্যায়ভিত্তিক PDF নোটছ (সকলো বিষয়)" data-en="📚 ₹29 Chapter-wise PDF Store">📚 ₹29 অধ্যায়ভিত্তিক PDF নোটছ (সকলো বিষয়)</a>
+      <a href="#about" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="পৰিচয় (About Mali Sir)" data-en="About Mali Sir">পৰিচয় (About Mali Sir)</a>
+      <a href="#tuition" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ" data-en="Gyan Kendra Tuition Center">জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ</a>
       <a href="#staff" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="👨‍🏫 আমাৰ শিক্ষকবৃন্দ (Teaching Staff)" data-en="👨‍🏫 Teaching Staff">👨‍🏫 আমাৰ শিক্ষকবৃন্দ (Teaching Staff)</a>
       <a href="#results" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="🏆 HSLC ফলাফলৰ তালিকা" data-en="🏆 HSLC Results List">🏆 HSLC ফলাফলৰ তালিকা</a>
       <a href="#materials" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="গাইডবুক আৰু বিনামূলীয়া PDF" data-en="Guidebooks & Free PDFs">গাইডবুক আৰু বিনামূলীয়া PDF</a>
-      <a href="#admission" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-indigo-700 font-bold" data-as="অনলাইন নামভৰ্তি / যোগাযোগ" data-en="Admission & Contact">অনলাইন নামভৰ্তি / যোগাযোগ</a>
+      <a href="#admission" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-emerald-700 font-bold" data-as="💬 অনলাইন নামভৰ্তি / যোগাযোগ" data-en="💬 Admission & Contact">💬 অনলাইন নামভৰ্তি / যোগাযোগ</a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white py-14 sm:py-20">
+  <!-- Running Most Important Topics Bar -->
+  <div class="bg-gradient-to-r from-rose-700 via-red-600 to-amber-600 text-white text-xs sm:text-sm py-2 px-3 overflow-hidden shadow-inner border-b border-red-800">
+    <div class="max-w-7xl mx-auto flex items-center gap-2.5">
+      <span class="bg-white text-red-700 font-extrabold px-2.5 py-0.5 rounded-md text-[10px] sm:text-[11px] uppercase shrink-0 z-10 shadow flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping"></span>
+        <span data-as="🔥 MOST IMPORTANT TOPICS" data-en="🔥 MOST IMPORTANT TOPICS">🔥 MOST IMPORTANT TOPICS</span>
+      </span>
+      <div class="overflow-hidden flex-1">
+        <a href="#chapter-store" id="runningTopicsText" class="marquee-track-topics font-bold tracking-wide hover:underline">
+          ⭐ বংগ বিভাজন (১৯০৫) আৰু স্বদেশী আন্দোলন  •  ⭐ মহাত্মা গান্ধী আৰু ভাৰতৰ স্বাধীনতা সংগ্ৰাম  •  ⭐ অসমৰ মানচিত্ৰ অংকন (Map Pointing — ৰাষ্ট্ৰীয় উদ্যান আৰু তেল শোধনাগাৰ)  •  ⭐ ৰাসায়নিক বিক্ৰিয়া আৰু সমীকৰণ  •  ⭐ English Grammar (Tenses, Voice Change, Narration)  •  ⭐ ভাৰতীয় গণতন্ত্ৰ আৰু মুদ্ৰা-বেংক ব্যৱস্থা  •  ⭐ HSLC ২০২৭ ৯০ নম্বৰৰ MCQ কৌশল
+        </a>
+      </div>
+      <button onclick="editRunningTopics()" title="Edit Topics (Admin)" class="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded bg-black/25 hover:bg-black/40 text-white text-[10px] font-bold shrink-0 z-10 transition">
+        ✏️ Edit
+      </button>
+    </div>
+  </div>
+
+  <!-- Hero Section with Quick Search Box -->
+  <section id="home" class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white py-12 sm:py-20">
     <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#818cf8_1px,transparent_1px)] [background-size:20px_20px]"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="grid lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-7 space-y-6">
+        <div class="lg:col-span-7 space-y-5">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-200 text-xs sm:text-sm font-semibold">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span data-as="সহকাৰী শিক্ষক • শিক্ষাবিদ • লেখক" data-en="Assistant Teacher • Educator • Author">সহকাৰী শিক্ষক • শিক্ষাবিদ • লেখক</span>
@@ -115,16 +158,21 @@
             M.A., B.Ed. (Sociology) | <span data-as="প্ৰতিষ্ঠাপক আৰু সঞ্চালক, জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)" data-en="Founder & Director, Gyan Kendra Tuition Center (Boromera)">প্ৰতিষ্ঠাপক আৰু সঞ্চালক, জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)</span>
           </p>
 
-          <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl" data-as="অসম মাধ্যমিক শিক্ষা পৰিষদ (SEBA)-ৰ পাঠ্যক্ৰম অনুসৰি নাৰ্চাৰীৰ পৰা দশম শ্ৰেণীলৈ ছাত্ৰ-ছাত্ৰীসকলক সহজ, সৰল আৰু মানদণ্ডসম্পন্ন শিক্ষা প্ৰদানৰ এক ডিজিটেল মঞ্চ। সকলো জিলাৰ Mock Test Paper আৰু ₹29 অধ্যায়ভিত্তিক PDF নোটছ ইয়াত উপলব্ধ।" data-en="A dedicated digital learning portal for Nursery to Class 10 students under the SEBA curriculum. Access All-District Mock Test Papers and ₹29 chapter-wise PDF notes.">
-            অসম মাধ্যমিক শিক্ষা পৰিষদ (SEBA)-ৰ পাঠ্যক্ৰম অনুসৰি নাৰ্চাৰীৰ পৰা দশম শ্ৰেণীলৈ ছাত্ৰ-ছাত্ৰীসকলক সহজ, সৰল আৰু মানদণ্ডসম্পন্ন শিক্ষা প্ৰদানৰ এক ডিজিটেল মঞ্চ। সকলো জিলাৰ Mock Test Paper আৰু ₹29 অধ্যায়ভিত্তিক PDF নোটছ ইয়াত উপলব্ধ।
-          </p>
+          <!-- Prominent Hero Search Bar -->
+          <div class="max-w-xl pt-1">
+            <div class="relative flex items-center">
+              <svg class="w-5 h-5 text-slate-400 absolute left-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
+              <input type="text" id="heroQuickSearch" readonly onclick="openGlobalSearch()" placeholder="🔍 অধ্যায়, বিষয় (Social Science, English...), বা Mock Test বিচাৰক..." class="w-full pl-11 pr-24 py-3.5 rounded-2xl bg-white text-slate-900 placeholder-slate-500 text-xs sm:text-sm font-semibold shadow-xl cursor-pointer focus:outline-none" />
+              <button onclick="openGlobalSearch()" class="absolute right-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold transition">Search</button>
+            </div>
+          </div>
 
-          <div class="flex flex-wrap gap-3.5 pt-2">
-            <a href="test-papers.html" class="px-6 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-sm sm:text-base shadow-lg shadow-amber-500/20 transition flex items-center gap-2">
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a href="test-papers.html" class="px-5 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs sm:text-base shadow-lg shadow-amber-500/20 transition flex items-center gap-2">
               <span class="text-lg">📝</span>
               <span>Mock Test Paper (All Districts)</span>
             </a>
-            <a href="#chapter-store" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm sm:text-base transition flex items-center gap-2">
+            <a href="#chapter-store" class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs sm:text-base transition flex items-center gap-2">
               <span data-as="📚 ₹29 অধ্যায়ভিত্তিক PDF" data-en="📚 ₹29 Chapter PDFs">📚 ₹29 অধ্যায়ভিত্তিক PDF</span>
             </a>
           </div>
@@ -801,6 +849,47 @@
     </div>
   </footer>
 
+  <!-- Floating Quick Navigation Bar (Back • Home • Search • Top) -->
+  <div class="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 bg-slate-900/95 backdrop-blur-md text-white px-3 py-2 rounded-full shadow-2xl border border-white/15 flex items-center gap-1.5 sm:gap-2.5 text-xs font-bold">
+    <button onclick="goBackSmart()" class="px-3 py-1.5 rounded-full hover:bg-white/15 transition flex items-center gap-1" title="Go Back">
+      <span>←</span>
+      <span>Back</span>
+    </button>
+    <span class="text-slate-600">|</span>
+    <a href="#home" class="px-3 py-1.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-1" title="Home">
+      <span>🏠</span>
+      <span>Home</span>
+    </a>
+    <span class="text-slate-600">|</span>
+    <button onclick="openGlobalSearch()" class="px-3 py-1.5 rounded-full hover:bg-white/15 transition flex items-center gap-1" title="Search">
+      <span>🔍</span>
+      <span>Search</span>
+    </button>
+    <span class="text-slate-600">|</span>
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="px-2.5 py-1.5 rounded-full hover:bg-white/15 text-amber-400 transition" title="Scroll to Top">
+      ↑ Top
+    </button>
+  </div>
+
+  <!-- Global Search Modal -->
+  <div id="globalSearchModal" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-start justify-center p-4 pt-16 sm:pt-24">
+    <div class="bg-white rounded-3xl max-w-xl w-full p-5 sm:p-6 shadow-2xl border border-slate-200">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="text-base sm:text-lg font-extrabold text-slate-900 flex items-center gap-2">
+          <span>🔍</span>
+          <span data-as="ৱেবছাইটত বিচাৰক (Search Portal)" data-en="Search Website">ৱেবছাইটত বিচাৰক (Search Portal)</span>
+        </h3>
+        <button onclick="closeGlobalSearch()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold">✕</button>
+      </div>
+
+      <div class="mt-4">
+        <input type="text" id="globalSearchInput" oninput="runGlobalSearch()" placeholder="যেনে: Social Science, English, Woodcraft, Mock Test, Jinti..." class="w-full px-4 py-3 rounded-2xl border-2 border-indigo-200 focus:border-indigo-600 focus:outline-none text-sm font-semibold" />
+      </div>
+
+      <div id="globalSearchResults" class="mt-4 max-h-80 overflow-y-auto divide-y divide-slate-100 space-y-1"></div>
+    </div>
+  </div>
+
   <!-- UPI Order Modal -->
   <div id="orderModal" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl relative">
@@ -841,6 +930,9 @@
     const RESULTS_STORAGE_KEY = 'gyankendra_hslc_results_v1';
     const STAFF_STORAGE_KEY = 'gyankendra_teaching_staff_v1';
     const CHAPTER_STORAGE_KEY = 'gyankendra_chapter_pdfs_v1';
+    const TOPICS_STORAGE_KEY = 'gyankendra_running_topics_v1';
+
+    const DEFAULT_TOPICS = "⭐ বংগ বিভাজন (১৯০৫) আৰু স্বদেশী আন্দোলন  •  ⭐ মহাত্মা গান্ধী আৰু ভাৰতৰ স্বাধীনতা সংগ্ৰাম  •  ⭐ অসমৰ মানচিত্ৰ অংকন (Map Pointing — ৰাষ্ট্ৰীয় উদ্যান আৰু তেল শোধনাগাৰ)  •  ⭐ ৰাসায়নিক বিক্ৰিয়া আৰু সমীকৰণ  •  ⭐ English Grammar (Tenses, Voice Change, Narration)  •  ⭐ ভাৰতীয় গণতন্ত্ৰ আৰু মুদ্ৰা-বেংক ব্যৱস্থা  •  ⭐ HSLC ২০২৭ ৯০ নম্বৰৰ MCQ কৌশল";
 
     /* CHAPTER_PDFS_START */
     const DEFAULT_CHAPTER_PDFS = [
@@ -971,6 +1063,114 @@
     ];
     /* RESULTS_DATA_END */
 
+    /* --- SMART BACK & GLOBAL SEARCH --- */
+    function goBackSmart() {
+      if (window.location.hash && window.location.hash !== '#home') {
+        window.location.hash = '#home';
+      } else if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function loadRunningTopics() {
+      const saved = localStorage.getItem(TOPICS_STORAGE_KEY);
+      if (saved && saved.trim() !== '') {
+        document.getElementById('runningTopicsText').textContent = saved;
+      }
+    }
+
+    function editRunningTopics() {
+      const pin = prompt('Most Important Topics সলনি কৰিবলৈ Admin PIN দিয়ক (PIN: 2026):');
+      if (pin !== ADMIN_PIN) {
+        if (pin !== null) alert('❌ ভুল পিন!');
+        return;
+      }
+      const current = document.getElementById('runningTopicsText').textContent.trim();
+      const updated = prompt('নতুন Most Important Topics সমূহ লিখক (মাজত • দি লিখিব):', current);
+      if (updated && updated.trim() !== '') {
+        localStorage.setItem(TOPICS_STORAGE_KEY, updated.trim());
+        document.getElementById('runningTopicsText').textContent = updated.trim();
+        alert('✅ Running Most Important Topics আপডেট কৰা হ’ল!');
+      }
+    }
+
+    function openGlobalSearch() {
+      document.getElementById('globalSearchModal').classList.remove('hidden');
+      const input = document.getElementById('globalSearchInput');
+      input.value = '';
+      input.focus();
+      runGlobalSearch();
+    }
+
+    function closeGlobalSearch() {
+      document.getElementById('globalSearchModal').classList.add('hidden');
+    }
+
+    function runGlobalSearch() {
+      const q = document.getElementById('globalSearchInput').value.trim().toLowerCase();
+      const container = document.getElementById('globalSearchResults');
+
+      const quickLinks = [
+        { type: 'Page', title: '📝 Mock Test Paper & All 35 Districts Question Bank', sub: '2025, 2026, 2027 Solved & Unsolved PDFs', action: () => { window.location.href = 'test-papers.html'; } },
+        { type: 'Section', title: '📚 ₹29 Chapter-wise PDF Store (All Subjects)', sub: 'Social Science, Science, English, Assamese, Sanskrit, Hindi, Woodcraft', action: () => { closeGlobalSearch(); document.getElementById('chapter-store').scrollIntoView({ behavior: 'smooth' }); } },
+        { type: 'Section', title: '👨‍🏫 Teaching Staff (Gyan Kendra Tuition Center)', sub: 'Jinti Jhakuriya, Dipika Sarkar, Dipankar Mali', action: () => { closeGlobalSearch(); document.getElementById('staff').scrollIntoView({ behavior: 'smooth' }); } },
+        { type: 'Section', title: '🏆 HSLC Results List', sub: 'Star Marks, Distinction & Letter Holders', action: () => { closeGlobalSearch(); document.getElementById('results').scrollIntoView({ behavior: 'smooth' }); } },
+        { type: 'Section', title: '🎓 Admission & Contact (WhatsApp)', sub: 'Nursery to Class 10 • Boromera, Agomani', action: () => { closeGlobalSearch(); document.getElementById('admission').scrollIntoView({ behavior: 'smooth' }); } }
+      ];
+
+      const chapters = getChapterPdfData().map(c => ({
+        type: `₹${c.price} PDF`,
+        title: `${c.subject}: ${c.title}`,
+        sub: c.description || c.className,
+        action: () => {
+          closeGlobalSearch();
+          setSubjectFilter(c.subject);
+          document.getElementById('chapter-store').scrollIntoView({ behavior: 'smooth' });
+        }
+      }));
+
+      const staff = getStaffData().map(s => ({
+        type: 'Teacher',
+        title: s.name,
+        sub: s.qualification,
+        action: () => {
+          closeGlobalSearch();
+          document.getElementById('staff').scrollIntoView({ behavior: 'smooth' });
+        }
+      }));
+
+      const allItems = [...quickLinks, ...chapters, ...staff];
+      const matches = q === '' ? quickLinks : allItems.filter(it =>
+        it.title.toLowerCase().includes(q) ||
+        (it.sub || '').toLowerCase().includes(q) ||
+        it.type.toLowerCase().includes(q)
+      );
+
+      if (matches.length === 0) {
+        container.innerHTML = `<div class="py-8 text-center text-sm text-slate-500">কোনো তথ্য বিচাৰি পোৱা নগ’ল। বেলেগ শব্দ লিখি চাওক।</div>`;
+        return;
+      }
+
+      container.innerHTML = '';
+      matches.slice(0, 12).forEach(item => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'w-full text-left p-3 rounded-xl hover:bg-indigo-50 transition flex items-start justify-between gap-3';
+        btn.innerHTML = `
+          <div>
+            <div class="text-sm font-extrabold text-slate-900">${escapeHtml(item.title)}</div>
+            <div class="text-xs text-slate-500 mt-0.5">${escapeHtml(item.sub)}</div>
+          </div>
+          <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 text-[10px] font-extrabold shrink-0">${escapeHtml(item.type)}</span>
+        `;
+        btn.onclick = item.action;
+        container.appendChild(btn);
+      });
+    }
+
+    /* --- ₹29 CHAPTER-WISE PDF STORE MANAGEMENT --- */
     const SUBJECT_LIST = [
       { key: 'ALL', labelAs: 'সকলো বিষয় (All)', labelEn: 'All Subjects' },
       { key: 'Social Science', labelAs: 'Social Science', labelEn: 'Social Science' },
@@ -1583,6 +1783,7 @@
       docClone.querySelector('#adminPanel').classList.add('hidden');
       docClone.querySelector('#staffAdminPanel').classList.add('hidden');
       docClone.querySelector('#adminActionHeader').classList.add('hidden');
+      docClone.querySelector('#globalSearchModal').classList.add('hidden');
       docClone.querySelectorAll('.admin-btn-label').forEach(el => {
         el.textContent = '🔒 Admin Edit (যোগ/সলনি কৰক)';
       });
@@ -1689,6 +1890,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      loadRunningTopics();
       renderSubjectFilters();
       renderChapterPdfGrid();
       renderStaffGrid();
