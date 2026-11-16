@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dipankar Mali (Mali Sir) | Gyan Kendra Tuition Center & SEBA Study Portal</title>
-  <meta name="description" content="Official website of Dipankar Mali (Mali Sir) - Assistant Teacher at Gandhiji Jatiya Bidyalaya & Founder of Gyan Kendra Tuition Center, Boromera, Agomani, Dhubri, Assam. SEBA Class 10 Most Important Topics, Chapter-wise PDFs at ₹29, Mock Test Papers & HSLC Results." />
+  <meta name="description" content="Official website of Dipankar Mali (Mali Sir) - Assistant Teacher at Gandhiji Jatiya Bidyalaya & Founder of Gyan Kendra Tuition Center, Boromera, Agomani, Dhubri, Assam. SEBA Class 10 Class Routine, Photo Gallery, Chapter-wise PDFs at ₹29, Mock Test Papers & HSLC Results." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,14 +52,13 @@
     </div>
   </div>
 
-  <!-- Sticky Navigation with Back, Home & Global Search -->
+  <!-- Sticky Navigation -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
-      <!-- Left: Back Button + Brand/Home -->
       <div class="flex items-center gap-2 min-w-0">
         <button onclick="goBackSmart()" title="Back" class="p-2 rounded-xl bg-slate-100 hover:bg-indigo-100 text-slate-700 hover:text-indigo-800 transition shrink-0 flex items-center gap-1 text-xs font-bold" aria-label="Back">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-          <span class="hidden sm:inline" data-as="Back" data-en="Back">Back</span>
+          <span class="hidden sm:inline">Back</span>
         </button>
 
         <a href="#home" class="flex items-center gap-2.5 group min-w-0">
@@ -71,24 +70,23 @@
         </a>
       </div>
 
-      <!-- Center: Desktop Nav Links -->
-      <nav class="hidden xl:flex items-center gap-4 text-sm font-semibold text-slate-600">
-        <a href="#home" class="hover:text-indigo-700 transition flex items-center gap-1" data-as="🏠 Home" data-en="🏠 Home">🏠 Home</a>
-        <a href="test-papers.html" class="px-3 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-950 font-extrabold transition flex items-center gap-1.5 shadow-sm">
+      <nav class="hidden xl:flex items-center gap-3.5 text-sm font-semibold text-slate-600">
+        <a href="#home" class="hover:text-indigo-700 transition" data-as="🏠 Home" data-en="🏠 Home">🏠 Home</a>
+        <a href="test-papers.html" class="px-2.5 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-950 font-extrabold transition flex items-center gap-1 shadow-sm">
           <span>📝</span>
-          <span>Mock Test Paper</span>
+          <span>Mock Test</span>
         </a>
-        <a href="#chapter-store" class="text-indigo-700 font-extrabold hover:text-indigo-800 transition" data-as="₹29 PDF নোটছ" data-en="₹29 PDFs">₹29 PDF নোটছ</a>
+        <a href="#chapter-store" class="text-indigo-700 font-extrabold hover:text-indigo-800 transition" data-as="₹29 PDF" data-en="₹29 PDF">₹29 PDF</a>
+        <a href="#routine" class="hover:text-indigo-700 transition" data-as="সময়সূচী" data-en="Routine">সময়সূচী</a>
+        <a href="#gallery" class="hover:text-indigo-700 transition" data-as="গেলাৰী" data-en="Gallery">গেলাৰী</a>
         <a href="#staff" class="hover:text-indigo-700 transition" data-as="শিক্ষকবৃন্দ" data-en="Staff">শিক্ষকবৃন্দ</a>
-        <a href="#results" class="hover:text-indigo-700 transition" data-as="HSLC ফলাফল" data-en="Results">HSLC ফলাফল</a>
-        <a href="#admission" class="hover:text-indigo-700 transition" data-as="নামভৰ্তি" data-en="Admission">নামভৰ্তি</a>
+        <a href="#results" class="hover:text-indigo-700 transition" data-as="ফলাফল" data-en="Results">ফলাফল</a>
       </nav>
 
-      <!-- Right: Global Search Button + Language + Menu -->
       <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
         <button onclick="openGlobalSearch()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-indigo-50 text-slate-700 hover:text-indigo-700 border border-slate-200 text-xs font-bold transition shadow-sm" title="Search Website">
           <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
-          <span class="hidden sm:inline" data-as="Search" data-en="Search">Search</span>
+          <span class="hidden sm:inline">Search</span>
         </button>
 
         <a href="test-papers.html" class="xl:hidden px-2.5 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold shadow-sm flex items-center gap-1">
@@ -106,16 +104,14 @@
       </div>
     </div>
 
-    <!-- Mobile / Tablet Dropdown Menu -->
     <div id="mobileMenu" class="hidden xl:hidden bg-white border-t border-slate-100 px-4 py-3 space-y-2 text-sm font-semibold text-slate-700 shadow-lg">
       <a href="#home" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600 font-bold" data-as="🏠 মূল পৃষ্ঠা (Home)" data-en="🏠 Home">🏠 মূল পৃষ্ঠা (Home)</a>
       <a href="test-papers.html" class="block py-2 px-3 rounded-xl bg-amber-100 text-amber-950 font-extrabold">📝 Mock Test Paper (All Districts)</a>
-      <a href="#chapter-store" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-indigo-700 font-extrabold" data-as="📚 ₹29 অধ্যায়ভিত্তিক PDF নোটছ (সকলো বিষয়)" data-en="📚 ₹29 Chapter-wise PDF Store">📚 ₹29 অধ্যায়ভিত্তিক PDF নোটছ (সকলো বিষয়)</a>
-      <a href="#about" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="পৰিচয় (About Mali Sir)" data-en="About Mali Sir">পৰিচয় (About Mali Sir)</a>
-      <a href="#tuition" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ" data-en="Gyan Kendra Tuition Center">জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ</a>
+      <a href="#chapter-store" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-indigo-700 font-extrabold" data-as="📚 ₹29 অধ্যায়ভিত্তিক PDF নোটছ" data-en="📚 ₹29 Chapter-wise PDF Store">📚 ₹29 অধ্যায়ভিত্তিক PDF নোটছ</a>
+      <a href="#routine" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="🕒 ক্লাছৰ সময়সূচী (Class Routine)" data-en="🕒 Class Routine">🕒 ক্লাছৰ সময়সূচী (Class Routine)</a>
+      <a href="#gallery" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="📸 ফটো গেলাৰী (Photo Gallery)" data-en="📸 Photo Gallery">📸 ফটো গেলাৰী (Photo Gallery)</a>
       <a href="#staff" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="👨‍🏫 আমাৰ শিক্ষকবৃন্দ (Teaching Staff)" data-en="👨‍🏫 Teaching Staff">👨‍🏫 আমাৰ শিক্ষকবৃন্দ (Teaching Staff)</a>
       <a href="#results" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="🏆 HSLC ফলাফলৰ তালিকা" data-en="🏆 HSLC Results List">🏆 HSLC ফলাফলৰ তালিকা</a>
-      <a href="#materials" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="গাইডবুক আৰু বিনামূলীয়া PDF" data-en="Guidebooks & Free PDFs">গাইডবুক আৰু বিনামূলীয়া PDF</a>
       <a href="#admission" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-emerald-700 font-bold" data-as="💬 অনলাইন নামভৰ্তি / যোগাযোগ" data-en="💬 Admission & Contact">💬 অনলাইন নামভৰ্তি / যোগাযোগ</a>
     </div>
   </header>
@@ -125,7 +121,7 @@
     <div class="max-w-7xl mx-auto flex items-center gap-2.5">
       <span class="bg-white text-red-700 font-extrabold px-2.5 py-0.5 rounded-md text-[10px] sm:text-[11px] uppercase shrink-0 z-10 shadow flex items-center gap-1">
         <span class="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping"></span>
-        <span data-as="🔥 MOST IMPORTANT TOPICS" data-en="🔥 MOST IMPORTANT TOPICS">🔥 MOST IMPORTANT TOPICS</span>
+        <span>🔥 MOST IMPORTANT TOPICS</span>
       </span>
       <div class="overflow-hidden flex-1">
         <a href="#chapter-store" id="runningTopicsText" class="marquee-track-topics font-bold tracking-wide hover:underline">
@@ -138,7 +134,7 @@
     </div>
   </div>
 
-  <!-- Hero Section with Quick Search Box -->
+  <!-- Hero Section -->
   <section id="home" class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white py-12 sm:py-20">
     <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#818cf8_1px,transparent_1px)] [background-size:20px_20px]"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -158,11 +154,11 @@
             M.A., B.Ed. (Sociology) | <span data-as="প্ৰতিষ্ঠাপক আৰু সঞ্চালক, জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)" data-en="Founder & Director, Gyan Kendra Tuition Center (Boromera)">প্ৰতিষ্ঠাপক আৰু সঞ্চালক, জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)</span>
           </p>
 
-          <!-- Prominent Hero Search Bar -->
+          <!-- Quick Search Box -->
           <div class="max-w-xl pt-1">
             <div class="relative flex items-center">
               <svg class="w-5 h-5 text-slate-400 absolute left-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
-              <input type="text" id="heroQuickSearch" readonly onclick="openGlobalSearch()" placeholder="🔍 অধ্যায়, বিষয় (Social Science, English...), বা Mock Test বিচাৰক..." class="w-full pl-11 pr-24 py-3.5 rounded-2xl bg-white text-slate-900 placeholder-slate-500 text-xs sm:text-sm font-semibold shadow-xl cursor-pointer focus:outline-none" />
+              <input type="text" readonly onclick="openGlobalSearch()" placeholder="🔍 অধ্যায়, বিষয়, Class Routine বা Mock Test বিচাৰক..." class="w-full pl-11 pr-24 py-3.5 rounded-2xl bg-white text-slate-900 placeholder-slate-500 text-xs sm:text-sm font-semibold shadow-xl cursor-pointer focus:outline-none" />
               <button onclick="openGlobalSearch()" class="absolute right-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold transition">Search</button>
             </div>
           </div>
@@ -193,9 +189,9 @@
                 <div class="text-amber-400 font-extrabold text-lg sm:text-xl">📝 35 Districts</div>
                 <div class="text-xs text-slate-300 mt-0.5" data-as="Mock Test Paper বেংক" data-en="Mock Test Paper Bank">Mock Test Paper বেংক</div>
               </a>
-              <a href="#chapter-store" class="bg-slate-900/70 hover:bg-slate-900 rounded-xl p-3 border border-emerald-400/40 transition block">
-                <div class="text-emerald-400 font-extrabold text-lg sm:text-xl">₹29 / Ch.</div>
-                <div class="text-xs text-slate-300 mt-0.5" data-as="অধ্যায়ভিত্তিক PDF" data-en="Chapter-wise PDFs">অধ্যায়ভিত্তিক PDF</div>
+              <a href="#routine" class="bg-slate-900/70 hover:bg-slate-900 rounded-xl p-3 border border-emerald-400/40 transition block">
+                <div class="text-emerald-400 font-extrabold text-lg sm:text-xl">🕒 Routine</div>
+                <div class="text-xs text-slate-300 mt-0.5" data-as="ক্লাছৰ সময়সূচী চাওক" data-en="View Class Routine">ক্লাছৰ সময়সূচী চাওক</div>
               </a>
             </div>
 
@@ -290,6 +286,173 @@
     </div>
   </section>
 
+  <!-- Class Routine Section (Editable with Admin PIN: 2026) -->
+  <section id="routine" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-200">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-extrabold uppercase tracking-wider" data-as="নিয়মীয়া পাঠদানৰ সময়" data-en="WEEKLY SCHEDULE">নিয়মীয়া পাঠদানৰ সময়</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-as="জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰৰ সময়সূচী (Class Routine)" data-en="Class Routine — Gyan Kendra Tuition Center">জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰৰ সময়সূচী (Class Routine)</h2>
+        <p class="text-sm sm:text-base text-slate-600 mt-1" data-as="প্ৰতিটো শ্ৰেণীৰ অফলাইন (বৰমেৰা) আৰু অনলাইন (Teachmint) ক্লাছৰ সময়সূচী।" data-en="Batch timings for Nursery to Class 10 offline and online classes.">
+          প্ৰতিটো শ্ৰেণীৰ অফলাইন (বৰমেৰা) আৰু অনলাইন (Teachmint) ক্লাছৰ সময়সূচী।
+        </p>
+      </div>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <button onclick="toggleAdminPanel()" class="admin-toggle-btn px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow transition flex items-center gap-2">
+          <span class="admin-btn-label">🔒 Admin Edit (সময়সূচী সলনি কৰক)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Routine Admin Panel -->
+    <div id="routineAdminPanel" class="hidden mb-10 bg-emerald-50 border-2 border-emerald-400 rounded-3xl p-5 sm:p-7 shadow-lg">
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-emerald-200">
+        <div>
+          <h3 id="routineFormTitle" class="text-lg sm:text-xl font-extrabold text-slate-900">➕ নতুন ক্লাছৰ সময়সূচী যোগ কৰক</h3>
+          <p class="text-xs text-slate-700">শ্ৰেণী, দিন, সময়, বিষয় আৰু শিক্ষকৰ নাম লিখি Save কৰক।</p>
+        </div>
+        <button onclick="lockAdminPanel()" class="px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">✕ বন্ধ কৰক (Lock)</button>
+      </div>
+
+      <form id="routineForm" onsubmit="saveRoutineItem(event)" class="mt-5 space-y-4">
+        <input type="hidden" id="editRoutineId" value="" />
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">শ্ৰেণী (Class) *</label>
+            <input type="text" id="routClass" required placeholder="যেনে: Class X (HSLC)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm font-bold" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">দিন (Days) *</label>
+            <input type="text" id="routDays" required placeholder="যেনে: সোম – শনি (Mon–Sat)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">সময় (Time) *</label>
+            <input type="text" id="routTime" required placeholder="যেনে: পুৱা ৬:৩০ – ৮:৩০ বজা" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">বিষয় (Subjects) *</label>
+            <input type="text" id="routSubject" required placeholder="যেনে: সমাজ বিজ্ঞান, গণিত, বিজ্ঞান" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">শিক্ষক (Teacher)</label>
+            <input type="text" id="routTeacher" placeholder="যেনে: দীপাংকৰ মালী ছাৰ" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <button type="submit" id="saveRoutineBtn" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow transition">
+            ✅ সময়সূচী যোগ কৰক (Save Routine)
+          </button>
+          <button type="button" id="cancelRoutineEditBtn" onclick="resetRoutineForm()" class="hidden px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs">
+            Cancel Edit
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-6 pt-5 border-t border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl">
+        <div class="text-xs text-slate-700">
+          <strong class="text-indigo-950 block text-sm">🌐 সকলো ছাত্ৰ-ছাত্ৰীৰ মোবাইলত দেখুৱাবলৈ:</strong>
+          সময়সূচী আপডেট কৰাৰ পিছত এই বুটামত টিপি কোড কপি কৰক আৰু GitHub-ৰ <code class="bg-slate-200 px-1 rounded">index.html</code> ফাইলত পেষ্ট কৰি ছেভ কৰক।
+        </div>
+        <button type="button" onclick="copyUpdatedHTMLForGitHub()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow shrink-0 transition">
+          📋 GitHub-ৰ বাবে আপডেট কোড কপি কৰক
+        </button>
+      </div>
+      <p class="github-copy-msg hidden text-xs font-bold text-emerald-700 mt-2">✓ সম্পূৰ্ণ আপডেট কৰা HTML কোড কপি হৈছে! এতিয়া GitHub-ৰ index.html-ত পেষ্ট কৰি Commit কৰক।</p>
+    </div>
+
+    <!-- Routine Table -->
+    <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-indigo-950 text-white text-xs sm:text-sm uppercase tracking-wider">
+              <th class="py-3.5 px-4 font-bold" data-as="শ্ৰেণী (Class)" data-en="Class">শ্ৰেণী (Class)</th>
+              <th class="py-3.5 px-4 font-bold" data-as="দিন (Days)" data-en="Days">দিন (Days)</th>
+              <th class="py-3.5 px-4 font-bold" data-as="সময় (Time)" data-en="Time">সময় (Time)</th>
+              <th class="py-3.5 px-4 font-bold" data-as="বিষয়সমূহ (Subjects)" data-en="Subjects">বিষয়সমূহ (Subjects)</th>
+              <th class="py-3.5 px-4 font-bold" data-as="শিক্ষক (Teacher)" data-en="Teacher">শিক্ষক (Teacher)</th>
+              <th id="routineAdminHeader" class="hidden py-3.5 px-4 font-bold text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody id="routineTableBody" class="divide-y divide-slate-200 text-xs sm:text-sm"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery Section (Editable with Admin PIN: 2026) -->
+  <section id="gallery" class="py-14 sm:py-20 bg-slate-100/70 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-purple-100 text-purple-900 text-xs font-extrabold uppercase tracking-wider" data-as="স্মৃতি আৰু কাৰ্যকলাপ" data-en="CAMPUS & EVENTS">স্মৃতি আৰু কাৰ্যকলাপ</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-as="জ্ঞান কেন্দ্ৰ ফটো গেলাৰী (Photo Gallery)" data-en="Gyan Kendra Photo Gallery">জ্ঞান কেন্দ্ৰ ফটো গেলাৰী (Photo Gallery)</h2>
+          <p class="text-sm sm:text-base text-slate-600 mt-1" data-as="আমাৰ ক্লাছৰুম, HSLC প্ৰস্তুতি কৰ্মশালা আৰু শিক্ষামূলক কাৰ্যসূচীৰ কিছু বিশেষ মুহূৰ্ত।" data-en="Glimpses of classroom sessions, HSLC exam seminars, and student activities at Boromera.">
+            আমাৰ ক্লাছৰুম, HSLC প্ৰস্তুতি কৰ্মশালা আৰু শিক্ষামূলক কাৰ্যসূচীৰ কিছু বিশেষ মুহূৰ্ত।
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <button onclick="toggleAdminPanel()" class="admin-toggle-btn px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow transition flex items-center gap-2">
+            <span class="admin-btn-label">🔒 Admin Edit (ফটো যোগ কৰক)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Gallery Admin Panel -->
+      <div id="galleryAdminPanel" class="hidden mb-10 bg-purple-50 border-2 border-purple-400 rounded-3xl p-5 sm:p-7 shadow-lg">
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-purple-200">
+          <div>
+            <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">📸 গেলাৰীত নতুন ফটো আপলোড কৰক</h3>
+            <p class="text-xs text-slate-700">ফোনৰ গেলাৰীৰ পৰা ফটো বাছনি কৰক আৰু শিৰোনাম (Caption) লিখি Upload কৰক।</p>
+          </div>
+          <button onclick="lockAdminPanel()" class="px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">✕ বন্ধ কৰক (Lock)</button>
+        </div>
+
+        <form id="galleryForm" onsubmit="saveGalleryPhoto(event)" class="mt-5 space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4 items-center">
+            <div class="bg-white p-3.5 rounded-2xl border border-purple-200 flex items-center gap-3.5">
+              <img id="galleryPhotoPreview" src="https://placehold.co/160x120/e0e7ff/3730a3?text=Photo" alt="Gallery Preview" class="w-24 h-16 rounded-xl object-cover border border-purple-300 shrink-0" />
+              <div class="flex-1 min-w-0">
+                <label class="block text-xs font-bold text-slate-700 mb-1">ফটো বাছনি কৰক (Choose Image) *</label>
+                <input type="file" id="galleryFileInput" accept="image/*" required onchange="handleGalleryFileUpload(event)" class="block w-full text-xs text-slate-600 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">ফটোৰ শিৰোনাম (Caption / Title) *</label>
+              <input type="text" id="galleryCaption" required placeholder="যেনে: HSLC ২০২৭ প্ৰস্তুতি কৰ্মশালা, জ্ঞান কেন্দ্ৰ বৰমেৰা" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-purple-600 focus:outline-none text-sm" />
+            </div>
+          </div>
+
+          <button type="submit" class="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow transition">
+            ✅ গেলাৰীত যোগ কৰক (Add Photo)
+          </button>
+        </form>
+
+        <div class="mt-6 pt-5 border-t border-purple-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl">
+          <div class="text-xs text-slate-700">
+            <strong class="text-indigo-950 block text-sm">🌐 সকলোৰে মোবাইলত স্থায়ীভাৱে দেখুৱাবলৈ:</strong>
+            ফটো যোগ কৰাৰ পিছত এই বুটামত টিপি কোড কপি কৰক আৰু GitHub-ৰ <code class="bg-slate-200 px-1 rounded">index.html</code> ফাইলত পেষ্ট কৰি ছেভ কৰক।
+          </div>
+          <button type="button" onclick="copyUpdatedHTMLForGitHub()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow shrink-0 transition">
+            📋 GitHub-ৰ বাবে আপডেট কোড কপি কৰক
+          </button>
+        </div>
+        <p class="github-copy-msg hidden text-xs font-bold text-emerald-700 mt-2">✓ সম্পূৰ্ণ আপডেট কৰা HTML কোড কপি হৈছে! এতিয়া GitHub-ৰ index.html-ত পেষ্ট কৰি Commit কৰক।</p>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div id="galleryGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
   <!-- ₹29 Chapter-wise PDF Store Section -->
   <section id="chapter-store" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-200">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
@@ -308,7 +471,7 @@
       </div>
     </div>
 
-    <!-- Chapter PDF Admin Panel (PIN: 2026) -->
+    <!-- Chapter PDF Admin Panel -->
     <div id="chapterPdfAdminPanel" class="hidden mb-10 bg-amber-50 border-2 border-amber-400 rounded-3xl p-5 sm:p-7 shadow-lg">
       <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-amber-200">
         <div>
@@ -389,7 +552,6 @@
       <p class="github-copy-msg hidden text-xs font-bold text-emerald-700 mt-2">✓ সম্পূৰ্ণ আপডেট কৰা HTML কোড কপি হৈছে! এতিয়া GitHub-ৰ index.html-ত পেষ্ট কৰি Commit কৰক।</p>
     </div>
 
-    <!-- Subject Filter Tabs & Search -->
     <div class="space-y-4 mb-8">
       <div id="subjectFilterBar" class="flex flex-wrap gap-2"></div>
       <div class="max-w-md">
@@ -397,7 +559,6 @@
       </div>
     </div>
 
-    <!-- Chapter PDF Cards Grid -->
     <div id="chapterPdfGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </section>
 
@@ -419,7 +580,7 @@
       </div>
     </div>
 
-    <!-- Staff Admin Control Panel -->
+    <!-- Staff Admin Panel -->
     <div id="staffAdminPanel" class="hidden mb-10 bg-indigo-50 border-2 border-indigo-300 rounded-3xl p-5 sm:p-7 shadow-lg">
       <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-indigo-200">
         <div>
@@ -475,7 +636,6 @@
       <p class="github-copy-msg hidden text-xs font-bold text-emerald-700 mt-2">✓ সম্পূৰ্ণ আপডেট কৰা HTML কোড কপি হৈছে! এতিয়া GitHub-ৰ index.html-ত পেষ্ট কৰি Commit কৰক।</p>
     </div>
 
-    <!-- Staff Cards Grid -->
     <div id="staffGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </section>
 
@@ -497,7 +657,6 @@
       </div>
     </div>
 
-    <!-- Results Admin Control Panel -->
     <div id="adminPanel" class="hidden mb-10 bg-indigo-50 border-2 border-indigo-300 rounded-3xl p-5 sm:p-7 shadow-lg">
       <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-indigo-200">
         <div>
@@ -617,130 +776,6 @@
     </div>
   </section>
 
-  <!-- Complete Guidebooks & Free PDFs Section -->
-  <section id="materials" class="py-14 sm:py-20 bg-slate-100/70 border-t border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-        <div>
-          <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600" data-as="সম্পূৰ্ণ গাইডবুক আৰু বিনামূলীয়া নোটছ" data-en="FULL GUIDEBOOKS & FREE PDFs">সম্পূৰ্ণ গাইডবুক আৰু বিনামূলীয়া নোটছ</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1" data-as="গাইডবুক, আৰ্হি প্ৰশ্নকাকত আৰু বিনামূলীয়া PDF" data-en="Guidebooks, Model Papers & Free PDFs">গাইডবুক, আৰ্হি প্ৰশ্নকাকত আৰু বিনামূলীয়া PDF</h2>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <button onclick="filterMaterials('all', this)" class="mat-filter active px-3.5 py-1.5 rounded-full text-xs font-bold bg-indigo-600 text-white transition" data-as="সকলো (All)" data-en="All">সকলো (All)</button>
-          <button onclick="filterMaterials('free', this)" class="mat-filter px-3.5 py-1.5 rounded-full text-xs font-bold bg-slate-200 text-slate-700 hover:bg-slate-300 transition" data-as="বিনামূলীয়া PDF" data-en="Free PDFs">বিনামূলীয়া PDF</button>
-          <button onclick="filterMaterials('paid', this)" class="mat-filter px-3.5 py-1.5 rounded-full text-xs font-bold bg-slate-200 text-slate-700 hover:bg-slate-300 transition" data-as="গাইডবুক আৰু পেপাৰ" data-en="Guidebooks & Sets">গাইডবুক আৰু পেপাৰ</button>
-        </div>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Paid Item 1 -->
-        <div class="material-card bg-white rounded-2xl border-2 border-amber-400 p-6 shadow-md flex flex-col justify-between relative" data-category="paid">
-          <span class="absolute -top-3 right-4 bg-amber-400 text-slate-950 text-[11px] font-extrabold px-3 py-0.5 rounded-full uppercase">33% OFF • BESTSELLER</span>
-          <div>
-            <div class="text-xs font-bold text-indigo-600 mb-1">SEBA Class X • Assamese Medium</div>
-            <h3 class="text-lg font-extrabold text-slate-900" data-as="দশম শ্ৰেণী সমাজ বিজ্ঞান সম্পূৰ্ণ গাইডবুক (PDF)" data-en="Class 10 Social Science Complete Guidebook (PDF)">দশম শ্ৰেণী সমাজ বিজ্ঞান সম্পূৰ্ণ গাইডবুক (PDF)</h3>
-            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed" data-as="ইতিহাস, ভূগোল, ৰাজনীতি আৰু অৰ্থনীতি বিজ্ঞানৰ সকলো অধ্যায়ৰ অনুশীলনীৰ সমাধান, অতিৰিক্ত চমু প্ৰশ্ন আৰু HSLC পৰীক্ষাৰ উপযোগী নোটছ।" data-en="Complete chapter-wise exercise solutions, extra short Q&A, and exam-focused notes for History, Geography, Political Science & Economics.">
-              ইতিহাস, ভূগোল, ৰাজনীতি আৰু অৰ্থনীতি বিজ্ঞানৰ সকলো অধ্যায়ৰ অনুশীলনীৰ সমাধান, অতিৰিক্ত চমু প্ৰশ্ন আৰু HSLC পৰীক্ষাৰ উপযোগী নোটছ।
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div>
-              <span class="text-xs text-slate-400 line-through">₹299</span>
-              <span class="text-2xl font-extrabold text-slate-900 ml-1">₹199</span>
-            </div>
-            <button onclick="openOrderModal('Class 10 Social Science Complete Guidebook (PDF)', '199')" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow transition" data-as="এতিয়াই ক্ৰয় কৰক" data-en="Buy Now">
-              এতিয়াই ক্ৰয় কৰক
-            </button>
-          </div>
-        </div>
-
-        <!-- Paid Item 2 -->
-        <div class="material-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between" data-category="paid">
-          <div>
-            <div class="text-xs font-bold text-emerald-600 mb-1">HSLC 2026–2027 Session • 90 Marks</div>
-            <h3 class="text-lg font-extrabold text-slate-900" data-as="সমাজ বিজ্ঞান আৰ্হি প্ৰশ্নকাকত (Set-1 & Set-2) উত্তৰসহ" data-en="Social Science Model Question Papers (Set-1 & Set-2) with Key">সমাজ বিজ্ঞান আৰ্হি প্ৰশ্নকাকত (Set-1 & Set-2) উত্তৰসহ</h3>
-            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed" data-as="নতুন আৰ্হি অনুসৰি ৪৫টা MCQ + ৪৫ নম্বৰৰ বৰ্ণনামূলক প্ৰশ্ন, সম্পূৰ্ণ উত্তৰবহী আৰু অসমৰ মানচিত্ৰ অংকন (Map Pointing) সমাধান।" data-en="Strictly based on SEBA 90-mark pattern: 45 MCQs + 45 descriptive marks, complete answer keys & Assam Map Pointing solutions.">
-              নতুন আৰ্হি অনুসৰি ৪৫টা MCQ + ৪৫ নম্বৰৰ বৰ্ণনামূলক প্ৰশ্ন, সম্পূৰ্ণ উত্তৰবহী আৰু অসমৰ মানচিত্ৰ অংকন (Map Pointing) সমাধান।
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div>
-              <span class="text-xs text-slate-400 line-through">₹149</span>
-              <span class="text-2xl font-extrabold text-slate-900 ml-1">₹99</span>
-            </div>
-            <button onclick="openOrderModal('SEBA HSLC Social Science Model Papers (Set-1 & Set-2)', '99')" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold shadow transition" data-as="অৰ্ডাৰ কৰক" data-en="Order Set">
-              অৰ্ডাৰ কৰক
-            </button>
-          </div>
-        </div>
-
-        <!-- Free Item 1 -->
-        <div class="material-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between" data-category="free">
-          <div>
-            <span class="inline-block px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[11px] font-bold mb-2">FREE PDF • HISTORY CH-1</span>
-            <h3 class="text-lg font-extrabold text-slate-900" data-as="বংগ বিভাজন আৰু স্বদেশী আন্দোলন (অনুশীলনী সমাধান)" data-en="Partition of Bengal & Swadeshi Movement (Solutions)">বংগ বিভাজন আৰু স্বদেশী আন্দোলন (অনুশীলনী সমাধান)</h3>
-            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed" data-as="দশম শ্ৰেণী ইতিহাসৰ ১ম অধ্যায়ৰ পাঠ্যপুথিৰ সকলো প্ৰশ্নোত্তৰ সহজ অসমীয়া ভাষাত বিনামূলীয়াকৈ ডাউনলোড কৰক।" data-en="Free downloadable PDF covering complete textbook exercise solutions for Class 10 History Chapter 1 in Assamese.">
-              দশম শ্ৰেণী ইতিহাসৰ ১ম অধ্যায়ৰ পাঠ্যপুথিৰ সকলো প্ৰশ্নোত্তৰ সহজ অসমীয়া ভাষাত বিনামূলীয়াকৈ ডাউনলোড কৰক।
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100">
-            <a href="https://drive.google.com/file/d/1XvJLjAat8zJci6tSgCv27EtMl__WeQCx/view?usp=sharing" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold transition" data-as="⬇ বিনামূলীয়া PDF ডাউনলোড" data-en="⬇ Download Free PDF">
-              ⬇ বিনামূলীয়া PDF ডাউনলোড
-            </a>
-          </div>
-        </div>
-
-        <!-- Free Item 2 -->
-        <div class="material-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between" data-category="free">
-          <div>
-            <span class="inline-block px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[11px] font-bold mb-2">FREE PDF • EXTRA NOTES</span>
-            <h3 class="text-lg font-extrabold text-slate-900" data-as="ইতিহাস ১ম অধ্যায়: অতিৰিক্ত গুৰুত্বপূৰ্ণ প্ৰশ্নোত্তৰ" data-en="History Ch-1: Additional Important Q&A">ইতিহাস ১ম অধ্যায়: অতিৰিক্ত গুৰুত্বপূৰ্ণ প্ৰশ্নোত্তৰ</h3>
-            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed" data-as="HSLC পৰীক্ষাৰ বাবে অতিকৈ প্ৰয়োজনীয় অতিৰিক্ত চমু আৰু দীঘল প্ৰশ্নোত্তৰ সংকলন।" data-en="Curated exam-oriented extra short and long questions with answers for HSLC preparation.">
-              HSLC পৰীক্ষাৰ বাবে অতিকৈ প্ৰয়োজনীয় অতিৰিক্ত চমু আৰু দীঘল প্ৰশ্নোত্তৰ সংকলন।
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100">
-            <a href="https://drive.google.com/file/d/1aGwkdKWLwlfRtPumKnaQKat6jN6s-Rhj/view?usp=sharing" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold transition" data-as="⬇ বিনামূলীয়া PDF ডাউনলোড" data-en="⬇ Download Free PDF">
-              ⬇ বিনামূলীয়া PDF ডাউনলোড
-            </a>
-          </div>
-        </div>
-
-        <!-- Free Item 3 -->
-        <div class="material-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between" data-category="free">
-          <div>
-            <span class="inline-block px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[11px] font-bold mb-2">FREE PDF • NEW PATTERN</span>
-            <h3 class="text-lg font-extrabold text-slate-900" data-as="উক্তি আৰু কাৰণ (Assertion-Reason) প্ৰশ্নোত্তৰ" data-en="Assertion-Reason Type Questions (SEBA Pattern)">উক্তি আৰু কাৰণ (Assertion-Reason) প্ৰশ্নোত্তৰ</h3>
-            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed" data-as="SEBA-ৰ নতুন MCQ আৰ্হি অনুসৰি উক্তি আৰু কাৰণভিত্তিক বিশেষ অনুশীলনী।" data-en="Practice sheet for Assertion-Reason multiple-choice questions as per latest SEBA guidelines.">
-              SEBA-ৰ নতুন MCQ আৰ্হি অনুসৰি উক্তি আৰু কাৰণভিত্তিক বিশেষ অনুশীলনী।
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100">
-            <a href="https://drive.google.com/file/d/1Vp4o3fuSas7IConKn52sluYzagM5LoXa/view?usp=sharing" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold transition" data-as="⬇ বিনামূলীয়া PDF ডাউনলোড" data-en="⬇ Download Free PDF">
-              ⬇ বিনামূলীয়া PDF ডাউনলোড
-            </a>
-          </div>
-        </div>
-
-        <!-- Free Item 4 -->
-        <div class="material-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between" data-category="free">
-          <div>
-            <span class="inline-block px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[11px] font-bold mb-2">FREE PDF • MOCK TEST</span>
-            <h3 class="text-lg font-extrabold text-slate-900" data-as="HSLC ২০২৭ বিশেষ মক টেষ্ট (Mock Test Paper)" data-en="HSLC 2027 Special Mock Test Paper">HSLC ২০২৭ বিশেষ মক টেষ্ট (Mock Test Paper)</h3>
-            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed" data-as="নিজৰ প্ৰস্তুতি পৰীক্ষা কৰিবলৈ মালী ছাৰে প্ৰস্তুত কৰা বিশেষ অনুশীলন প্ৰশ্নকাকত।" data-en="Self-assessment mock test paper prepared by Mali Sir for HSLC 2027 candidates.">
-              নিজৰ প্ৰস্তুতি পৰীক্ষা কৰিবলৈ মালী ছাৰে প্ৰস্তুত কৰা বিশেষ অনুশীলন প্ৰশ্নকাকত।
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100">
-            <a href="https://drive.google.com/file/d/1615W-SZsrhx4vkz6R7TibUGg0EWBhhxT/view?usp=sharing" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold transition" data-as="⬇ বিনামূলীয়া PDF ডাউনলোড" data-en="⬇ Download Free PDF">
-              ⬇ বিনামূলীয়া PDF ডাউনলোড
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- YouTube & Social Showcase -->
   <section id="youtube" class="py-14 bg-slate-900 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -824,15 +859,15 @@
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-as="পাঠদানৰ মাধ্যম (Mode)" data-en="Learning Mode">পাঠদানৰ মাধ্যম (Mode)</label>
             <select id="studyMode" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm bg-white">
-              <option value="₹29 Chapter-wise PDF Notes">₹29 অধ্যায়ভিত্তিক PDF নোটছ</option>
               <option value="Offline (Boromera Center)">Offline (বৰমেৰা চেণ্টাৰ)</option>
               <option value="Online (Teachmint Live)">Online (Teachmint Live)</option>
+              <option value="₹29 Chapter-wise PDF Notes">₹29 অধ্যায়ভিত্তিক PDF নোটছ</option>
             </select>
           </div>
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-as="বিশেষ বাৰ্তা / বিষয় (Optional)" data-en="Subjects / Message">বিশেষ বাৰ্তা / বিষয় (Optional)</label>
-          <textarea id="studentMsg" rows="2" placeholder="যেনে: দশম শ্ৰেণীৰ সমাজ বিজ্ঞান বা ইংৰাজীৰ অধ্যায়ভিত্তিক PDF লাগে..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm"></textarea>
+          <textarea id="studentMsg" rows="2" placeholder="যেনে: দশম শ্ৰেণীৰ সমাজ বিজ্ঞান বা গণিতৰ বাবে নামভৰ্তি কৰিব বিচাৰোঁ..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm"></textarea>
         </div>
         <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-md transition flex items-center justify-center gap-2" data-as="💬 WhatsApp-ত বাৰ্তা পঠাওক" data-en="💬 Send Inquiry on WhatsApp">
           💬 WhatsApp-ত বাৰ্তা পঠাওক
@@ -849,7 +884,7 @@
     </div>
   </footer>
 
-  <!-- Floating Quick Navigation Bar (Back • Home • Search • Top) -->
+  <!-- Floating Quick Navigation Bar -->
   <div class="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 bg-slate-900/95 backdrop-blur-md text-white px-3 py-2 rounded-full shadow-2xl border border-white/15 flex items-center gap-1.5 sm:gap-2.5 text-xs font-bold">
     <button onclick="goBackSmart()" class="px-3 py-1.5 rounded-full hover:bg-white/15 transition flex items-center gap-1" title="Go Back">
       <span>←</span>
@@ -877,13 +912,13 @@
       <div class="flex items-center justify-between pb-3 border-b border-slate-100">
         <h3 class="text-base sm:text-lg font-extrabold text-slate-900 flex items-center gap-2">
           <span>🔍</span>
-          <span data-as="ৱেবছাইটত বিচাৰক (Search Portal)" data-en="Search Website">ৱেবছাইটত বিচাৰক (Search Portal)</span>
+          <span>ৱেবছাইটত বিচাৰক (Search Portal)</span>
         </h3>
         <button onclick="closeGlobalSearch()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold">✕</button>
       </div>
 
       <div class="mt-4">
-        <input type="text" id="globalSearchInput" oninput="runGlobalSearch()" placeholder="যেনে: Social Science, English, Woodcraft, Mock Test, Jinti..." class="w-full px-4 py-3 rounded-2xl border-2 border-indigo-200 focus:border-indigo-600 focus:outline-none text-sm font-semibold" />
+        <input type="text" id="globalSearchInput" oninput="runGlobalSearch()" placeholder="যেনে: Class Routine, Social Science, Woodcraft, Mock Test..." class="w-full px-4 py-3 rounded-2xl border-2 border-indigo-200 focus:border-indigo-600 focus:outline-none text-sm font-semibold" />
       </div>
 
       <div id="globalSearchResults" class="mt-4 max-h-80 overflow-y-auto divide-y divide-slate-100 space-y-1"></div>
@@ -896,9 +931,7 @@
       <button onclick="closeOrderModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold">✕</button>
       <span class="inline-block px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 text-xs font-bold mb-2">UPI INSTANT ORDER</span>
       <h3 id="modalTitle" class="text-lg font-extrabold text-slate-900">Product Name</h3>
-      <p class="text-sm text-slate-600 mt-1" data-as="তলত দিয়া UPI ID-ত মাচুল পৰিশোধ কৰি WhatsApp-ত স্ক্ৰীণশ্বট পঠাওক—লগে লগে PDF লাভ কৰিব।" data-en="Pay the amount to the UPI ID below and share the screenshot on WhatsApp to receive the PDF instantly.">
-        তলত দিয়া UPI ID-ত মাচুল পৰিশোধ কৰি WhatsApp-ত স্ক্ৰীণশ্বট পঠাওক—লগে লগে PDF লাভ কৰিব।
-      </p>
+      <p class="text-sm text-slate-600 mt-1">তলত দিয়া UPI ID-ত মাচুল পৰিশোধ কৰি WhatsApp-ত স্ক্ৰীণশ্বট পঠাওক—লগে লগে PDF লাভ কৰিব।</p>
 
       <div class="my-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-2">
         <div class="text-xs text-slate-500 font-semibold">Payable Amount</div>
@@ -913,7 +946,7 @@
         </div>
       </div>
 
-      <a id="whatsappOrderLink" href="#" target="_blank" rel="noopener" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow transition" data-as="✅ Payment স্ক্ৰীণশ্বট WhatsApp-ত পঠাওক" data-en="✅ Confirm Payment on WhatsApp">
+      <a id="whatsappOrderLink" href="#" target="_blank" rel="noopener" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow transition">
         ✅ Payment স্ক্ৰীণশ্বট WhatsApp-ত পঠাওক
       </a>
     </div>
@@ -926,13 +959,61 @@
     let selectedSubjectFilter = 'ALL';
     let currentUploadedPhotoBase64 = '';
     let currentUploadedStaffPhotoBase64 = '';
+    let currentUploadedGalleryBase64 = '';
     const ADMIN_PIN = '2026';
+    const ROUTINE_STORAGE_KEY = 'gyankendra_class_routine_v1';
+    const GALLERY_STORAGE_KEY = 'gyankendra_photo_gallery_v1';
     const RESULTS_STORAGE_KEY = 'gyankendra_hslc_results_v1';
     const STAFF_STORAGE_KEY = 'gyankendra_teaching_staff_v1';
     const CHAPTER_STORAGE_KEY = 'gyankendra_chapter_pdfs_v1';
     const TOPICS_STORAGE_KEY = 'gyankendra_running_topics_v1';
 
-    const DEFAULT_TOPICS = "⭐ বংগ বিভাজন (১৯০৫) আৰু স্বদেশী আন্দোলন  •  ⭐ মহাত্মা গান্ধী আৰু ভাৰতৰ স্বাধীনতা সংগ্ৰাম  •  ⭐ অসমৰ মানচিত্ৰ অংকন (Map Pointing — ৰাষ্ট্ৰীয় উদ্যান আৰু তেল শোধনাগাৰ)  •  ⭐ ৰাসায়নিক বিক্ৰিয়া আৰু সমীকৰণ  •  ⭐ English Grammar (Tenses, Voice Change, Narration)  •  ⭐ ভাৰতীয় গণতন্ত্ৰ আৰু মুদ্ৰা-বেংক ব্যৱস্থা  •  ⭐ HSLC ২০২৭ ৯০ নম্বৰৰ MCQ কৌশল";
+    /* ROUTINE_DATA_START */
+    const DEFAULT_ROUTINE = [
+      {
+        id: 401,
+        className: "Nursery – Class V",
+        days: "সোম – শনি (Mon – Sat)",
+        time: "পুৱা ৭:৩০ – ৯:০০ বজা",
+        subject: "ইংৰাজী, গণিত, অসমীয়া আৰু সাধাৰণ জ্ঞান",
+        teacher: "দীপিকা সৰকাৰ আৰু শিক্ষকবৃন্দ"
+      },
+      {
+        id: 402,
+        className: "Class VI – VIII",
+        days: "সোম – শনি (Mon – Sat)",
+        time: "বিয়লি ৩:৩০ – ৫:০০ বজা",
+        subject: "গণিত, বিজ্ঞান, সমাজ বিজ্ঞান, ইংৰাজী, সংস্কৃত",
+        teacher: "জিণ্টি ঝাকুৰীয়া আৰু মালী ছাৰ"
+      },
+      {
+        id: 403,
+        className: "Class IX & X (HSLC)",
+        days: "সোম – শনি (Mon – Sat)",
+        time: "পুৱা ৬:০০ – ৮:৩০ / সন্ধিয়া ৫:৩০ – ৭:৩০",
+        subject: "সমাজ বিজ্ঞান, গণিত, সাধাৰণ বিজ্ঞান, ইংৰাজী",
+        teacher: "দীপাংকৰ মালী ছাৰ আৰু জিণ্টি ঝাকুৰীয়া"
+      },
+      {
+        id: 404,
+        className: "Online Live (Teachmint)",
+        days: "মঙল, বৃহস্পতি, শনি",
+        time: "নিশা ৮:০০ – ৯:০০ বজা",
+        subject: "SEBA Class 10 Social Science & Map Pointing",
+        teacher: "দীপাংকৰ মালী ছাৰ"
+      }
+    ];
+    /* ROUTINE_DATA_END */
+
+    /* GALLERY_DATA_START */
+    const DEFAULT_GALLERY = [
+      {
+        id: 501,
+        caption: "দীপাংকৰ মালী (মালী ছাৰ) — প্ৰতিষ্ঠাপক, জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ",
+        image: "4446.jpg"
+      }
+    ];
+    /* GALLERY_DATA_END */
 
     /* CHAPTER_PDFS_START */
     const DEFAULT_CHAPTER_PDFS = [
@@ -1063,6 +1144,198 @@
     ];
     /* RESULTS_DATA_END */
 
+    /* --- CLASS ROUTINE MANAGEMENT --- */
+    function getRoutineData() {
+      try {
+        const saved = localStorage.getItem(ROUTINE_STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) {}
+      return [...DEFAULT_ROUTINE];
+    }
+
+    function saveRoutineData(data) {
+      localStorage.setItem(ROUTINE_STORAGE_KEY, JSON.stringify(data));
+      renderRoutineTable();
+    }
+
+    function renderRoutineTable() {
+      const data = getRoutineData();
+      const tbody = document.getElementById('routineTableBody');
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-500">কোনো সময়সূচী যোগ কৰা হোৱা নাই।</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = data.map(item => {
+        const actions = isAdminUnlocked ? `
+          <td class="py-3.5 px-4 text-right whitespace-nowrap">
+            <button onclick="editRoutineItem(${item.id})" class="px-2.5 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-bold mr-1">✏️ Edit</button>
+            <button onclick="deleteRoutineItem(${item.id})" class="px-2.5 py-1 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">🗑️ Delete</button>
+          </td>
+        ` : '';
+
+        return `
+          <tr class="hover:bg-indigo-50/40 transition">
+            <td class="py-3.5 px-4 font-extrabold text-indigo-800">${escapeHtml(item.className)}</td>
+            <td class="py-3.5 px-4 font-semibold text-slate-700">${escapeHtml(item.days)}</td>
+            <td class="py-3.5 px-4">
+              <span class="inline-block px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 font-bold text-xs border border-emerald-200">🕒 ${escapeHtml(item.time)}</span>
+            </td>
+            <td class="py-3.5 px-4 font-semibold text-slate-800">${escapeHtml(item.subject)}</td>
+            <td class="py-3.5 px-4 text-slate-600 font-medium">${escapeHtml(item.teacher || '')}</td>
+            ${actions}
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function saveRoutineItem(e) {
+      e.preventDefault();
+      const data = getRoutineData();
+      const editId = document.getElementById('editRoutineId').value;
+      const className = document.getElementById('routClass').value.trim();
+      const days = document.getElementById('routDays').value.trim();
+      const time = document.getElementById('routTime').value.trim();
+      const subject = document.getElementById('routSubject').value.trim();
+      const teacher = document.getElementById('routTeacher').value.trim();
+
+      if (editId) {
+        const idx = data.findIndex(r => String(r.id) === String(editId));
+        if (idx !== -1) {
+          data[idx] = { ...data[idx], className, days, time, subject, teacher };
+        }
+      } else {
+        data.push({ id: Date.now(), className, days, time, subject, teacher });
+      }
+
+      saveRoutineData(data);
+      resetRoutineForm();
+      alert('✅ ক্লাছৰ সময়সূচী সফলভাৱে ছেভ কৰা হ’ল!');
+    }
+
+    function editRoutineItem(id) {
+      const item = getRoutineData().find(r => String(r.id) === String(id));
+      if (!item) return;
+      document.getElementById('editRoutineId').value = item.id;
+      document.getElementById('routClass').value = item.className;
+      document.getElementById('routDays').value = item.days;
+      document.getElementById('routTime').value = item.time;
+      document.getElementById('routSubject').value = item.subject;
+      document.getElementById('routTeacher').value = item.teacher || '';
+
+      document.getElementById('routineFormTitle').textContent = '✏️ সময়সূচী সম্পাদনা (Edit Routine)';
+      document.getElementById('saveRoutineBtn').textContent = '💾 পৰিৱৰ্তন ছেভ কৰক';
+      document.getElementById('cancelRoutineEditBtn').classList.remove('hidden');
+      document.getElementById('routineAdminPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function deleteRoutineItem(id) {
+      if (!confirm('আপুনি নিশ্চিতনে যে এই সময়সূচীটো ডিলিট কৰিব বিচাৰে?')) return;
+      saveRoutineData(getRoutineData().filter(r => String(r.id) !== String(id)));
+    }
+
+    function resetRoutineForm() {
+      document.getElementById('routineForm').reset();
+      document.getElementById('editRoutineId').value = '';
+      document.getElementById('routineFormTitle').textContent = '➕ নতুন ক্লাছৰ সময়সূচী যোগ কৰক';
+      document.getElementById('saveRoutineBtn').textContent = '✅ সময়সূচী যোগ কৰক (Save Routine)';
+      document.getElementById('cancelRoutineEditBtn').classList.add('hidden');
+    }
+
+    /* --- PHOTO GALLERY MANAGEMENT --- */
+    function getGalleryData() {
+      try {
+        const saved = localStorage.getItem(GALLERY_STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) {}
+      return [...DEFAULT_GALLERY];
+    }
+
+    function saveGalleryData(data) {
+      localStorage.setItem(GALLERY_STORAGE_KEY, JSON.stringify(data));
+      renderGalleryGrid();
+    }
+
+    function handleGalleryFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const maxW = 640;
+          const scale = Math.min(1, maxW / img.width);
+          canvas.width = img.width * scale;
+          canvas.height = img.height * scale;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          currentUploadedGalleryBase64 = canvas.toDataURL('image/jpeg', 0.78);
+          document.getElementById('galleryPhotoPreview').src = currentUploadedGalleryBase64;
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function saveGalleryPhoto(e) {
+      e.preventDefault();
+      if (!currentUploadedGalleryBase64) {
+        alert('অনুগ্ৰহ কৰি এখন ফটো বাছনি কৰক।');
+        return;
+      }
+      const caption = document.getElementById('galleryCaption').value.trim();
+      const data = getGalleryData();
+      data.unshift({
+        id: Date.now(),
+        caption,
+        image: currentUploadedGalleryBase64
+      });
+      saveGalleryData(data);
+      document.getElementById('galleryForm').reset();
+      currentUploadedGalleryBase64 = '';
+      document.getElementById('galleryPhotoPreview').src = 'https://placehold.co/160x120/e0e7ff/3730a3?text=Photo';
+      alert('✅ গেলাৰীত ফটো সফলভাৱে যোগ কৰা হ’ল!');
+    }
+
+    function deleteGalleryPhoto(id) {
+      if (!confirm('আপুনি নিশ্চিতনে যে এই ফটোখন গেলাৰীৰ পৰা ডিলিট কৰিব বিচাৰে?')) return;
+      saveGalleryData(getGalleryData().filter(g => String(g.id) !== String(id)));
+    }
+
+    function renderGalleryGrid() {
+      const data = getGalleryData();
+      const grid = document.getElementById('galleryGrid');
+      if (data.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-10 text-center text-slate-500 text-sm bg-white rounded-2xl border border-slate-200">বৰ্তমান গেলাৰীত কোনো ফটো নাই।</div>`;
+        return;
+      }
+
+      grid.innerHTML = data.map(item => {
+        const delBtn = isAdminUnlocked ? `
+          <button onclick="deleteGalleryPhoto(${item.id})" class="mt-3 px-3 py-1 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">🗑️ Delete Photo</button>
+        ` : '';
+
+        return `
+          <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
+              <img src="${item.image}" alt="${escapeHtml(item.caption)}" onerror="this.onerror=null;this.src='https://placehold.co/600x450/e0e7ff/3730a3?text=Gyan+Kendra';" class="w-full h-full object-cover object-top hover:scale-105 transition duration-300" />
+            </div>
+            <div class="p-4">
+              <p class="text-xs sm:text-sm font-bold text-slate-800 leading-snug">${escapeHtml(item.caption)}</p>
+              ${delBtn}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     /* --- SMART BACK & GLOBAL SEARCH --- */
     function goBackSmart() {
       if (window.location.hash && window.location.hash !== '#home') {
@@ -1114,10 +1387,11 @@
 
       const quickLinks = [
         { type: 'Page', title: '📝 Mock Test Paper & All 35 Districts Question Bank', sub: '2025, 2026, 2027 Solved & Unsolved PDFs', action: () => { window.location.href = 'test-papers.html'; } },
+        { type: 'Section', title: '🕒 Class Routine (টিউচন চেণ্টাৰৰ সময়সূচী)', sub: 'Nursery to Class 10 Batch Timings', action: () => { closeGlobalSearch(); document.getElementById('routine').scrollIntoView({ behavior: 'smooth' }); } },
+        { type: 'Section', title: '📸 Photo Gallery (ফটো গেলাৰী)', sub: 'Classroom & Seminar Photos', action: () => { closeGlobalSearch(); document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' }); } },
         { type: 'Section', title: '📚 ₹29 Chapter-wise PDF Store (All Subjects)', sub: 'Social Science, Science, English, Assamese, Sanskrit, Hindi, Woodcraft', action: () => { closeGlobalSearch(); document.getElementById('chapter-store').scrollIntoView({ behavior: 'smooth' }); } },
         { type: 'Section', title: '👨‍🏫 Teaching Staff (Gyan Kendra Tuition Center)', sub: 'Jinti Jhakuriya, Dipika Sarkar, Dipankar Mali', action: () => { closeGlobalSearch(); document.getElementById('staff').scrollIntoView({ behavior: 'smooth' }); } },
-        { type: 'Section', title: '🏆 HSLC Results List', sub: 'Star Marks, Distinction & Letter Holders', action: () => { closeGlobalSearch(); document.getElementById('results').scrollIntoView({ behavior: 'smooth' }); } },
-        { type: 'Section', title: '🎓 Admission & Contact (WhatsApp)', sub: 'Nursery to Class 10 • Boromera, Agomani', action: () => { closeGlobalSearch(); document.getElementById('admission').scrollIntoView({ behavior: 'smooth' }); } }
+        { type: 'Section', title: '🏆 HSLC Results List', sub: 'Star Marks, Distinction & Letter Holders', action: () => { closeGlobalSearch(); document.getElementById('results').scrollIntoView({ behavior: 'smooth' }); } }
       ];
 
       const chapters = getChapterPdfData().map(c => ({
@@ -1131,27 +1405,12 @@
         }
       }));
 
-      const staff = getStaffData().map(s => ({
-        type: 'Teacher',
-        title: s.name,
-        sub: s.qualification,
-        action: () => {
-          closeGlobalSearch();
-          document.getElementById('staff').scrollIntoView({ behavior: 'smooth' });
-        }
-      }));
-
-      const allItems = [...quickLinks, ...chapters, ...staff];
+      const allItems = [...quickLinks, ...chapters];
       const matches = q === '' ? quickLinks : allItems.filter(it =>
         it.title.toLowerCase().includes(q) ||
         (it.sub || '').toLowerCase().includes(q) ||
         it.type.toLowerCase().includes(q)
       );
-
-      if (matches.length === 0) {
-        container.innerHTML = `<div class="py-8 text-center text-sm text-slate-500">কোনো তথ্য বিচাৰি পোৱা নগ’ল। বেলেগ শব্দ লিখি চাওক।</div>`;
-        return;
-      }
 
       container.innerHTML = '';
       matches.slice(0, 12).forEach(item => {
@@ -1170,7 +1429,7 @@
       });
     }
 
-    /* --- ₹29 CHAPTER-WISE PDF STORE MANAGEMENT --- */
+    /* --- ₹29 CHAPTER-WISE PDF STORE --- */
     const SUBJECT_LIST = [
       { key: 'ALL', labelAs: 'সকলো বিষয় (All)', labelEn: 'All Subjects' },
       { key: 'Social Science', labelAs: 'Social Science', labelEn: 'Social Science' },
@@ -1307,15 +1566,7 @@
           data[idx] = { ...data[idx], subject, className, price, title, link, description };
         }
       } else {
-        data.unshift({
-          id: Date.now(),
-          subject,
-          className,
-          price,
-          title,
-          link,
-          description
-        });
+        data.unshift({ id: Date.now(), subject, className, price, title, link, description });
       }
 
       saveChapterPdfData(data);
@@ -1324,10 +1575,8 @@
     }
 
     function editChapterPdf(id) {
-      const data = getChapterPdfData();
-      const item = data.find(c => String(c.id) === String(id));
+      const item = getChapterPdfData().find(c => String(c.id) === String(id));
       if (!item) return;
-
       document.getElementById('editChapterId').value = item.id;
       document.getElementById('chapSubject').value = item.subject;
       document.getElementById('chapClass').value = item.className || 'Class X (SEBA)';
@@ -1344,8 +1593,7 @@
 
     function deleteChapterPdf(id) {
       if (!confirm('আপুনি নিশ্চিতনে যে এই অধ্যায়টো তালিকাৰ পৰা ডিলিট কৰিব বিচাৰে?')) return;
-      const data = getChapterPdfData().filter(c => String(c.id) !== String(id));
-      saveChapterPdfData(data);
+      saveChapterPdfData(getChapterPdfData().filter(c => String(c.id) !== String(id)));
     }
 
     function resetChapterForm() {
@@ -1357,6 +1605,7 @@
       document.getElementById('cancelChapterEditBtn').classList.add('hidden');
     }
 
+    /* --- TEACHING STAFF MANAGEMENT --- */
     function getStaffData() {
       try {
         const saved = localStorage.getItem(STAFF_STORAGE_KEY);
@@ -1376,12 +1625,6 @@
     function renderStaffGrid() {
       const staffList = getStaffData();
       const grid = document.getElementById('staffGrid');
-
-      if (staffList.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-10 text-center text-slate-500 text-sm bg-white rounded-2xl border border-slate-200">বৰ্তমান কোনো শিক্ষকৰ নাম যোগ কৰা হোৱা নাই।</div>`;
-        return;
-      }
-
       grid.innerHTML = staffList.map(member => {
         const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=4338ca&color=fff&size=200&bold=true`;
         const photoSrc = member.photo && member.photo.trim() !== '' ? member.photo : fallbackAvatar;
@@ -1457,12 +1700,7 @@
           };
         }
       } else {
-        data.push({
-          id: Date.now(),
-          name,
-          qualification,
-          photo: currentUploadedStaffPhotoBase64
-        });
+        data.push({ id: Date.now(), name, qualification, photo: currentUploadedStaffPhotoBase64 });
       }
 
       saveStaffData(data);
@@ -1471,10 +1709,8 @@
     }
 
     function editStaffMember(id) {
-      const data = getStaffData();
-      const member = data.find(item => String(item.id) === String(id));
+      const member = getStaffData().find(item => String(item.id) === String(id));
       if (!member) return;
-
       document.getElementById('editStaffId').value = member.id;
       document.getElementById('staffName').value = member.name;
       document.getElementById('staffQualification').value = member.qualification;
@@ -1489,8 +1725,7 @@
 
     function deleteStaffMember(id) {
       if (!confirm('আপুনি নিশ্চিতনে যে এই শিক্ষক/শিক্ষয়িত্ৰীজনৰ নাম তালিকাৰ পৰা ডিলিট কৰিব বিচাৰে?')) return;
-      const data = getStaffData().filter(item => String(item.id) !== String(id));
-      saveStaffData(data);
+      saveStaffData(getStaffData().filter(item => String(item.id) !== String(id)));
     }
 
     function resetStaffForm() {
@@ -1502,6 +1737,7 @@
       document.getElementById('cancelStaffEditBtn').classList.add('hidden');
     }
 
+    /* --- HSLC RESULTS MANAGEMENT --- */
     function getResultsData() {
       try {
         const saved = localStorage.getItem(RESULTS_STORAGE_KEY);
@@ -1613,6 +1849,9 @@
       const enteredPin = prompt('Admin Edit খুলিবলৈ গোপন পিন (PIN) দিয়ক (PIN: 2026):');
       if (enteredPin === ADMIN_PIN) {
         isAdminUnlocked = true;
+        document.getElementById('routineAdminPanel').classList.remove('hidden');
+        document.getElementById('routineAdminHeader').classList.remove('hidden');
+        document.getElementById('galleryAdminPanel').classList.remove('hidden');
         document.getElementById('chapterPdfAdminPanel').classList.remove('hidden');
         document.getElementById('adminPanel').classList.remove('hidden');
         document.getElementById('staffAdminPanel').classList.remove('hidden');
@@ -1620,6 +1859,8 @@
         document.querySelectorAll('.admin-btn-label').forEach(el => {
           el.textContent = '🔓 Admin Mode Active';
         });
+        renderRoutineTable();
+        renderGalleryGrid();
         renderChapterPdfGrid();
         renderStaffGrid();
         renderResultsTable();
@@ -1630,6 +1871,9 @@
 
     function lockAdminPanel() {
       isAdminUnlocked = false;
+      document.getElementById('routineAdminPanel').classList.add('hidden');
+      document.getElementById('routineAdminHeader').classList.add('hidden');
+      document.getElementById('galleryAdminPanel').classList.add('hidden');
       document.getElementById('chapterPdfAdminPanel').classList.add('hidden');
       document.getElementById('adminPanel').classList.add('hidden');
       document.getElementById('staffAdminPanel').classList.add('hidden');
@@ -1637,9 +1881,12 @@
       document.querySelectorAll('.admin-btn-label').forEach(el => {
         el.textContent = '🔒 Admin Edit (যোগ/সলনি কৰক)';
       });
+      resetRoutineForm();
       resetChapterForm();
       resetResultForm();
       resetStaffForm();
+      renderRoutineTable();
+      renderGalleryGrid();
       renderChapterPdfGrid();
       renderStaffGrid();
       renderResultsTable();
@@ -1717,17 +1964,7 @@
           };
         }
       } else {
-        data.unshift({
-          id: Date.now(),
-          name,
-          year,
-          marks,
-          percentage,
-          division,
-          honour,
-          letters,
-          photo: currentUploadedPhotoBase64
-        });
+        data.unshift({ id: Date.now(), name, year, marks, percentage, division, honour, letters, photo: currentUploadedPhotoBase64 });
       }
 
       saveResultsData(data);
@@ -1736,10 +1973,8 @@
     }
 
     function editStudentResult(id) {
-      const data = getResultsData();
-      const student = data.find(item => String(item.id) === String(id));
+      const student = getResultsData().find(item => String(item.id) === String(id));
       if (!student) return;
-
       document.getElementById('editStudentId').value = student.id;
       document.getElementById('resName').value = student.name;
       document.getElementById('resYear').value = student.year;
@@ -1759,8 +1994,7 @@
 
     function deleteStudentResult(id) {
       if (!confirm('আপুনি নিশ্চিতনে যে এই ছাত্ৰ/ছাত্ৰীজনৰ ফলাফল তালিকাৰ পৰা ডিলিট কৰিব বিচাৰে?')) return;
-      const data = getResultsData().filter(item => String(item.id) !== String(id));
-      saveResultsData(data);
+      saveResultsData(getResultsData().filter(item => String(item.id) !== String(id)));
     }
 
     function resetResultForm() {
@@ -1774,11 +2008,16 @@
     }
 
     function copyUpdatedHTMLForGitHub() {
+      const currentRoutine = getRoutineData();
+      const currentGallery = getGalleryData();
       const currentChapters = getChapterPdfData();
       const currentResults = getResultsData();
       const currentStaff = getStaffData();
       const docClone = document.documentElement.cloneNode(true);
 
+      docClone.querySelector('#routineAdminPanel').classList.add('hidden');
+      docClone.querySelector('#routineAdminHeader').classList.add('hidden');
+      docClone.querySelector('#galleryAdminPanel').classList.add('hidden');
       docClone.querySelector('#chapterPdfAdminPanel').classList.add('hidden');
       docClone.querySelector('#adminPanel').classList.add('hidden');
       docClone.querySelector('#staffAdminPanel').classList.add('hidden');
@@ -1787,6 +2026,8 @@
       docClone.querySelectorAll('.admin-btn-label').forEach(el => {
         el.textContent = '🔒 Admin Edit (যোগ/সলনি কৰক)';
       });
+      docClone.querySelector('#routineTableBody').innerHTML = '';
+      docClone.querySelector('#galleryGrid').innerHTML = '';
       docClone.querySelector('#chapterPdfGrid').innerHTML = '';
       docClone.querySelector('#subjectFilterBar').innerHTML = '';
       docClone.querySelector('#resultsTableBody').innerHTML = '';
@@ -1794,21 +2035,25 @@
       docClone.querySelector('#staffGrid').innerHTML = '';
 
       let fullHtml = '<!DOCTYPE html>\n' + docClone.outerHTML;
-      const serializedChapters = JSON.stringify(currentChapters, null, 2);
-      const serializedStaff = JSON.stringify(currentStaff, null, 2);
-      const serializedResults = JSON.stringify(currentResults, null, 2);
-
+      fullHtml = fullHtml.replace(
+        /\/\* ROUTINE_DATA_START \*\/[\s\S]*?\/\* ROUTINE_DATA_END \*\//,
+        `/* ROUTINE_DATA_START */\n    const DEFAULT_ROUTINE = ${JSON.stringify(currentRoutine, null, 2)};\n    /* ROUTINE_DATA_END */`
+      );
+      fullHtml = fullHtml.replace(
+        /\/\* GALLERY_DATA_START \*\/[\s\S]*?\/\* GALLERY_DATA_END \*\//,
+        `/* GALLERY_DATA_START */\n    const DEFAULT_GALLERY = ${JSON.stringify(currentGallery, null, 2)};\n    /* GALLERY_DATA_END */`
+      );
       fullHtml = fullHtml.replace(
         /\/\* CHAPTER_PDFS_START \*\/[\s\S]*?\/\* CHAPTER_PDFS_END \*\//,
-        `/* CHAPTER_PDFS_START */\n    const DEFAULT_CHAPTER_PDFS = ${serializedChapters};\n    /* CHAPTER_PDFS_END */`
+        `/* CHAPTER_PDFS_START */\n    const DEFAULT_CHAPTER_PDFS = ${JSON.stringify(currentChapters, null, 2)};\n    /* CHAPTER_PDFS_END */`
       );
       fullHtml = fullHtml.replace(
         /\/\* STAFF_DATA_START \*\/[\s\S]*?\/\* STAFF_DATA_END \*\//,
-        `/* STAFF_DATA_START */\n    const DEFAULT_STAFF = ${serializedStaff};\n    /* STAFF_DATA_END */`
+        `/* STAFF_DATA_START */\n    const DEFAULT_STAFF = ${JSON.stringify(currentStaff, null, 2)};\n    /* STAFF_DATA_END */`
       );
       fullHtml = fullHtml.replace(
         /\/\* RESULTS_DATA_START \*\/[\s\S]*?\/\* RESULTS_DATA_END \*\//,
-        `/* RESULTS_DATA_START */\n    const DEFAULT_RESULTS = ${serializedResults};\n    /* RESULTS_DATA_END */`
+        `/* RESULTS_DATA_START */\n    const DEFAULT_RESULTS = ${JSON.stringify(currentResults, null, 2)};\n    /* RESULTS_DATA_END */`
       );
 
       const showCopiedMsg = () => {
@@ -1844,23 +2089,6 @@
       renderYearFilters();
     }
 
-    function filterMaterials(category, btn) {
-      document.querySelectorAll('.mat-filter').forEach(b => {
-        b.classList.remove('bg-indigo-600', 'text-white');
-        b.classList.add('bg-slate-200', 'text-slate-700');
-      });
-      btn.classList.remove('bg-slate-200', 'text-slate-700');
-      btn.classList.add('bg-indigo-600', 'text-white');
-
-      document.querySelectorAll('.material-card').forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    }
-
     function sendWhatsAppInquiry(e) {
       e.preventDefault();
       const name = document.getElementById('studentName').value.trim();
@@ -1891,6 +2119,8 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       loadRunningTopics();
+      renderRoutineTable();
+      renderGalleryGrid();
       renderSubjectFilters();
       renderChapterPdfGrid();
       renderStaffGrid();
