@@ -232,31 +232,125 @@
     </div>
   </section>
 
-  <!-- HSLC Results List Section -->
+  <!-- HSLC Results List Section (Interactive & Editable) -->
   <section id="results" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-10">
-      <span class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-extrabold uppercase tracking-wider" data-as="গৌৰৱোজ্জ্বল সফলতা" data-en="ACADEMIC EXCELLENCE">গৌৰৱোজ্জ্বল সফলতা</span>
-      <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-as="HSLC ফলাফলৰ তালিকা (কৃতী ছাত্ৰ-ছাত্ৰীসকল)" data-en="HSLC Results List (Our Top Achievers)">HSLC ফলাফলৰ তালিকা (কৃতী ছাত্ৰ-ছাত্ৰীসকল)</h2>
-      <p class="text-sm sm:text-base text-slate-600 mt-2" data-as="জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)-ৰ পৰা SEBA HSLC মেট্ৰিক পৰীক্ষাত বিশেষ কৃতিত্ব অৰ্জন কৰা ছাত্ৰ-ছাত্ৰীসকলৰ তালিকা।" data-en="Celebrating the outstanding SEBA HSLC examination results of students mentored at Gyan Kendra Tuition Center, Boromera.">
-        জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)-ৰ পৰা SEBA HSLC মেট্ৰিক পৰীক্ষাত বিশেষ কৃতিত্ব অৰ্জন কৰা ছাত্ৰ-ছাত্ৰীসকলৰ তালিকা।
-      </p>
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-extrabold uppercase tracking-wider" data-as="গৌৰৱোজ্জ্বল সফলতা" data-en="ACADEMIC EXCELLENCE">গৌৰৱোজ্জ্বল সফলতা</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-as="HSLC ফলাফলৰ তালিকা (কৃতী ছাত্ৰ-ছাত্ৰীসকল)" data-en="HSLC Results List (Our Top Achievers)">HSLC ফলাফলৰ তালিকা (কৃতী ছাত্ৰ-ছাত্ৰীসকল)</h2>
+        <p class="text-sm sm:text-base text-slate-600 mt-1" data-as="জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)-ৰ পৰা SEBA HSLC মেট্ৰিক পৰীক্ষাত কৃতিত্ব অৰ্জন কৰা ছাত্ৰ-ছাত্ৰীসকল।" data-en="SEBA HSLC examination achievers mentored at Gyan Kendra Tuition Center, Boromera.">
+          জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)-ৰ পৰা SEBA HSLC মেট্ৰিক পৰীক্ষাত কৃতিত্ব অৰ্জন কৰা ছাত্ৰ-ছাত্ৰীসকল।
+        </p>
+      </div>
+
+      <!-- Admin Edit Toggle Button -->
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="adminToggleBtn" onclick="toggleAdminPanel()" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow transition flex items-center gap-2">
+          <span id="adminBtnText">🔒 Admin Edit (ফলাফল যোগ কৰক)</span>
+        </button>
+      </div>
     </div>
 
-    <!-- Summary Badges -->
-    <div class="grid grid-cols-3 gap-3 sm:gap-6 max-w-3xl mx-auto mb-10 text-center">
-      <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white p-4 sm:p-5 rounded-2xl shadow-md">
-        <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">100%</div>
-        <div class="text-[11px] sm:text-xs text-indigo-100 font-semibold mt-1" data-as="উত্তীৰ্ণৰ হাৰ" data-en="Pass Percentage">উত্তীৰ্ণৰ হাৰ</div>
+    <!-- Admin Control Panel (Hidden until PIN 2026 is entered) -->
+    <div id="adminPanel" class="hidden mb-10 bg-indigo-50 border-2 border-indigo-300 rounded-3xl p-5 sm:p-7 shadow-lg">
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-indigo-200">
+        <div>
+          <h3 id="formModeTitle" class="text-lg sm:text-xl font-extrabold text-indigo-950">➕ নতুন ছাত্ৰ/ছাত্ৰীৰ ফলাফল যোগ কৰক</h3>
+          <p class="text-xs text-indigo-700">তলৰ ফৰ্মখন পূৰণ কৰি Save কৰক। আন সকলোৰে ফোনতো দেখুৱাবলৈ তলৰ "Copy Code" বুটাম ব্যৱহাৰ কৰিব।</p>
+        </div>
+        <button onclick="lockAdminPanel()" class="px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">✕ বন্ধ কৰক (Lock)</button>
       </div>
-      <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white p-4 sm:p-5 rounded-2xl shadow-md">
-        <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">85%+</div>
-        <div class="text-[11px] sm:text-xs text-indigo-100 font-semibold mt-1" data-as="ডিষ্টিংচন / ষ্টাৰ মাৰ্ক" data-en="Distinction / Star Marks">ডিষ্টিংচন / ষ্টাৰ মাৰ্ক</div>
+
+      <form id="resultForm" onsubmit="saveStudentResult(event)" class="mt-5 space-y-4">
+        <input type="hidden" id="editStudentId" value="" />
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Photo Upload -->
+          <div class="sm:col-span-2 lg:col-span-1 bg-white p-3.5 rounded-2xl border border-indigo-200 flex items-center gap-3.5">
+            <img id="photoPreview" src="https://ui-avatars.com/api/?name=Student&background=e0e7ff&color=3730a3&bold=true" alt="Preview" class="w-16 h-16 rounded-full object-cover border-2 border-indigo-400 shrink-0" />
+            <div class="flex-1 min-w-0">
+              <label class="block text-xs font-bold text-slate-700 mb-1">ছাত্ৰ/ছাত্ৰীৰ ফটো (Photo)</label>
+              <input type="file" id="studentPhotoInput" accept="image/*" onchange="handlePhotoUpload(event)" class="block w-full text-xs text-slate-600 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer" />
+              <button type="button" onclick="clearPhotoPreview()" class="text-[11px] text-red-600 hover:underline mt-1">ফটো আঁতৰাওক</button>
+            </div>
+          </div>
+
+          <!-- Student Name -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">ছাত্ৰ/ছাত্ৰীৰ নাম (Name) *</label>
+            <input type="text" id="resName" required placeholder="যেনে: ৰাহুল ৰায় (Rahul Roy)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+          </div>
+
+          <!-- Year -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">পৰীক্ষাৰ বৰ্ষ (Year) *</label>
+            <input type="number" id="resYear" required value="2026" min="2015" max="2035" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+          </div>
+
+          <!-- Marks -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">মুঠ নম্বৰ (Marks out of 600) *</label>
+            <input type="text" id="resMarks" required oninput="autoCalculatePercentage()" placeholder="যেনে: 537 বা 537/600" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+          </div>
+
+          <!-- Percentage -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">শতাংশ (Percentage %) *</label>
+            <input type="text" id="resPercentage" required placeholder="যেনে: 89.5%" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+          </div>
+
+          <!-- Division -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">বিভাগ (Division) *</label>
+            <select id="resDivision" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm">
+              <option value="1st Division">1st Division (প্ৰথম বিভাগ)</option>
+              <option value="2nd Division">2nd Division (দ্বিতীয় বিভাগ)</option>
+              <option value="3rd Division">3rd Division (তৃতীয় বিভাগ)</option>
+            </select>
+          </div>
+
+          <!-- Distinction / Star -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Star / Distinction</label>
+            <select id="resHonour" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm">
+              <option value="Distinction">Distinction (ডিষ্টিংচন - ৮৫%+)</option>
+              <option value="Star Marks">Star Marks (ষ্টাৰ মাৰ্ক - ৭৫%+)</option>
+              <option value="None">None (সাধাৰণ উত্তীৰ্ণ)</option>
+            </select>
+          </div>
+
+          <!-- Letter Marks -->
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">লেটাৰ মাৰ্ক (Letter Marks - ৮০+ নম্বৰ পোৱা বিষয়সমূহ)</label>
+            <input type="text" id="resLetters" placeholder="যেনে: ৫টা বিষয়ত লেটাৰ (সমাজ বিজ্ঞান, গণিত, বিজ্ঞান...)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <button type="submit" id="saveResultBtn" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow transition">
+            ✅ তালিকাভুক্ত কৰক (Save Student)
+          </button>
+          <button type="button" id="cancelEditBtn" onclick="resetResultForm()" class="hidden px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs">
+            Cancel Edit
+          </button>
+        </div>
+      </form>
+
+      <!-- GitHub Sync Helper -->
+      <div class="mt-6 pt-5 border-t border-indigo-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/80 p-4 rounded-2xl">
+        <div class="text-xs text-slate-700">
+          <strong class="text-indigo-950 block text-sm">🌐 সকলো ছাত্ৰ-ছাত্ৰী আৰু অভিভাৱকক দেখুৱাবলৈ:</strong>
+          তালিকাখন আপডেট কৰাৰ পিছত সোঁফালৰ বুটামত টিপি কোড কপি কৰক আৰু GitHub-ৰ <code class="bg-slate-200 px-1 rounded">index.html</code> ফাইলত পেষ্ট কৰি ছেভ কৰক।
+        </div>
+        <button type="button" onclick="copyUpdatedHTMLForGitHub()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow shrink-0 transition">
+          📋 GitHub-ৰ বাবে আপডেট কোড কপি কৰক
+        </button>
       </div>
-      <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white p-4 sm:p-5 rounded-2xl shadow-md">
-        <div class="text-2xl sm:text-3xl font-extrabold text-sky-400">90+</div>
-        <div class="text-[11px] sm:text-xs text-indigo-100 font-semibold mt-1" data-as="সমাজ বিজ্ঞানত সৰ্বোচ্চ" data-en="Highest in Social Science">সমাজ বিজ্ঞানত সৰ্বোচ্চ</div>
-      </div>
+      <p id="githubCopyMsg" class="hidden text-xs font-bold text-emerald-700 mt-2">✓ সম্পূৰ্ণ আপডেট কৰা HTML কোড কপি হৈছে! এতিয়া GitHub-ৰ index.html-ত পেষ্ট কৰি Commit কৰক।</p>
     </div>
+
+    <!-- Year Filter Buttons -->
+    <div id="yearFilterBar" class="flex flex-wrap items-center gap-2 mb-5"></div>
 
     <!-- Results Table -->
     <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
@@ -264,62 +358,19 @@
         <table class="w-full text-left border-collapse">
           <thead>
             <tr class="bg-indigo-950 text-white text-xs sm:text-sm uppercase tracking-wider">
-              <th class="py-3.5 px-4 sm:px-6 font-bold" data-as="ক্ৰমিক নং" data-en="Sl. No.">ক্ৰমিক নং</th>
-              <th class="py-3.5 px-4 sm:px-6 font-bold" data-as="ছাত্ৰ/ছাত্ৰীৰ নাম" data-en="Student Name">ছাত্ৰ/ছাত্ৰীৰ নাম</th>
-              <th class="py-3.5 px-4 sm:px-6 font-bold" data-as="বৰ্ষ" data-en="Year">বৰ্ষ</th>
-              <th class="py-3.5 px-4 sm:px-6 font-bold" data-as="শতাংশ (%)" data-en="Percentage">শতাংশ (%)</th>
-              <th class="py-3.5 px-4 sm:px-6 font-bold" data-as="ফলাফল / লেটাৰ মাৰ্ক" data-en="Division / Letters">ফলাফল / লেটাৰ মাৰ্ক</th>
+              <th class="py-3.5 px-4 font-bold" data-as="ক্ৰম" data-en="Sl.">ক্ৰম</th>
+              <th class="py-3.5 px-4 font-bold" data-as="ফটো আৰু নাম" data-en="Photo & Name">ফটো আৰু নাম</th>
+              <th class="py-3.5 px-4 font-bold" data-as="বৰ্ষ" data-en="Year">বৰ্ষ</th>
+              <th class="py-3.5 px-4 font-bold" data-as="নম্বৰ আৰু %" data-en="Marks & %">নম্বৰ আৰু %</th>
+              <th class="py-3.5 px-4 font-bold" data-as="বিভাগ (Division)" data-en="Division">বিভাগ (Division)</th>
+              <th class="py-3.5 px-4 font-bold" data-as="Star / Distinction / Letter" data-en="Honours & Letters">Star / Distinction / Letter</th>
+              <th id="adminActionHeader" class="hidden py-3.5 px-4 font-bold text-right">Action</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-200 text-xs sm:text-sm">
-            <tr class="hover:bg-indigo-50/50 transition">
-              <td class="py-3.5 px-4 sm:px-6 font-extrabold text-indigo-700">01</td>
-              <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900" data-as="ৰাহুল ৰায়" data-en="Rahul Roy">ৰাহুল ৰায়</td>
-              <td class="py-3.5 px-4 sm:px-6 text-slate-600">2026</td>
-              <td class="py-3.5 px-4 sm:px-6 font-extrabold text-emerald-700">89.5%</td>
-              <td class="py-3.5 px-4 sm:px-6">
-                <span class="inline-block px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 font-bold text-[11px]" data-as="Distinction • ৫টা বিষয়ত লেটাৰ" data-en="Distinction • 5 Letters">Distinction • ৫টা বিষয়ত লেটাৰ</span>
-              </td>
-            </tr>
-            <tr class="hover:bg-indigo-50/50 transition">
-              <td class="py-3.5 px-4 sm:px-6 font-extrabold text-indigo-700">02</td>
-              <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900" data-as="প্ৰিয়াঙ্কা বৰ্মন" data-en="Priyanka Barman">প্ৰিয়াঙ্কা বৰ্মন</td>
-              <td class="py-3.5 px-4 sm:px-6 text-slate-600">2026</td>
-              <td class="py-3.5 px-4 sm:px-6 font-extrabold text-emerald-700">86.2%</td>
-              <td class="py-3.5 px-4 sm:px-6">
-                <span class="inline-block px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 font-bold text-[11px]" data-as="Distinction • ৪টা বিষয়ত লেটাৰ" data-en="Distinction • 4 Letters">Distinction • ৪টা বিষয়ত লেটাৰ</span>
-              </td>
-            </tr>
-            <tr class="hover:bg-indigo-50/50 transition">
-              <td class="py-3.5 px-4 sm:px-6 font-extrabold text-indigo-700">03</td>
-              <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900" data-as="ছাহিল আহমেদ" data-en="Sahil Ahmed">ছাহিল আহমেদ</td>
-              <td class="py-3.5 px-4 sm:px-6 text-slate-600">2026</td>
-              <td class="py-3.5 px-4 sm:px-6 font-extrabold text-emerald-700">81.8%</td>
-              <td class="py-3.5 px-4 sm:px-6">
-                <span class="inline-block px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-[11px]" data-as="Star Marks • ৩টা বিষয়ত লেটাৰ" data-en="Star Marks • 3 Letters">Star Marks • ৩টা বিষয়ত লেটাৰ</span>
-              </td>
-            </tr>
-            <tr class="hover:bg-indigo-50/50 transition">
-              <td class="py-3.5 px-4 sm:px-6 font-extrabold text-indigo-700">04</td>
-              <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900" data-as="অংকিতা দাস" data-en="Ankita Das">অংকিতা দাস</td>
-              <td class="py-3.5 px-4 sm:px-6 text-slate-600">2026</td>
-              <td class="py-3.5 px-4 sm:px-6 font-extrabold text-emerald-700">78.4%</td>
-              <td class="py-3.5 px-4 sm:px-6">
-                <span class="inline-block px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-[11px]" data-as="Star Marks • ২টা বিষয়ত লেটাৰ" data-en="Star Marks • 2 Letters">Star Marks • ২টা বিষয়ত লেটাৰ</span>
-              </td>
-            </tr>
-            <tr class="hover:bg-indigo-50/50 transition">
-              <td class="py-3.5 px-4 sm:px-6 font-extrabold text-indigo-700">05</td>
-              <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900" data-as="জ্যোতিষ্মান অধিকাৰী" data-en="Jyotishman Adhikary">জ্যোতিষ্মান অধিকাৰী</td>
-              <td class="py-3.5 px-4 sm:px-6 text-slate-600">2026</td>
-              <td class="py-3.5 px-4 sm:px-6 font-extrabold text-indigo-700">72.0%</td>
-              <td class="py-3.5 px-4 sm:px-6">
-                <span class="inline-block px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-900 font-bold text-[11px]" data-as="1st Division • সমাজ বিজ্ঞানত লেটাৰ" data-en="1st Division • Letter in Social Sc.">1st Division • সমাজ বিজ্ঞানত লেটাৰ</span>
-              </td>
-            </tr>
-          </tbody>
+          <tbody id="resultsTableBody" class="divide-y divide-slate-200 text-xs sm:text-sm"></tbody>
         </table>
       </div>
+
       <div class="bg-slate-50 px-5 py-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
         <p class="text-xs text-slate-600 font-medium" data-as="আপোনাৰ সন্তানৰ উজ্জ্বল ভৱিষ্যতৰ বাবে আজিই নামভৰ্তি কৰক।" data-en="Enroll your child today for dedicated guidance and board exam success.">
           আপোনাৰ সন্তানৰ উজ্জ্বল ভৱিষ্যতৰ বাবে আজিই নামভৰ্তি কৰক।
@@ -594,6 +645,337 @@
 
   <script>
     let currentLang = 'as';
+    let isAdminUnlocked = false;
+    let selectedYearFilter = 'ALL';
+    let currentUploadedPhotoBase64 = '';
+    const ADMIN_PIN = '2026';
+    const STORAGE_KEY = 'gyankendra_hslc_results_v1';
+
+    // Default HSLC Results Data
+    const DEFAULT_RESULTS = [
+      {
+        id: 1,
+        name: "ৰাহুল ৰায় (Rahul Roy)",
+        year: "2026",
+        marks: "537 / 600",
+        percentage: "89.5%",
+        division: "1st Division",
+        honour: "Distinction",
+        letters: "৫টা বিষয়ত লেটাৰ (সমাজ বিজ্ঞান, গণিত, বিজ্ঞান...)",
+        photo: ""
+      },
+      {
+        id: 2,
+        name: "প্ৰিয়াঙ্কা বৰ্মন (Priyanka Barman)",
+        year: "2026",
+        marks: "517 / 600",
+        percentage: "86.2%",
+        division: "1st Division",
+        honour: "Distinction",
+        letters: "৪টা বিষয়ত লেটাৰ (সমাজ বিজ্ঞান, অসমীয়া...)",
+        photo: ""
+      },
+      {
+        id: 3,
+        name: "ছাহিল আহমেদ (Sahil Ahmed)",
+        year: "2026",
+        marks: "491 / 600",
+        percentage: "81.8%",
+        division: "1st Division",
+        honour: "Star Marks",
+        letters: "৩টা বিষয়ত লেটাৰ (সমাজ বিজ্ঞান, ইংৰাজী...)",
+        photo: ""
+      }
+    ];
+
+    function getResultsData() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) {}
+      return [...DEFAULT_RESULTS];
+    }
+
+    function saveResultsData(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      renderYearFilters();
+      renderResultsTable();
+    }
+
+    function renderYearFilters() {
+      const data = getResultsData();
+      const years = ['ALL', ...new Set(data.map(item => String(item.year)))].sort((a, b) => b.localeCompare(a));
+      const bar = document.getElementById('yearFilterBar');
+      bar.innerHTML = years.map(yr => {
+        const active = selectedYearFilter === yr;
+        const label = yr === 'ALL' ? (currentLang === 'as' ? 'সকলো বৰ্ষ (All Years)' : 'All Years') : yr;
+        return `<button onclick="setYearFilter('${yr}')" class="px-3.5 py-1.5 rounded-full text-xs font-bold transition ${active ? 'bg-indigo-600 text-white shadow-sm' : 'bg-slate-200 text-slate-700 hover:bg-slate-300'}">${label}</button>`;
+      }).join('');
+    }
+
+    function setYearFilter(yr) {
+      selectedYearFilter = yr;
+      renderYearFilters();
+      renderResultsTable();
+    }
+
+    function renderResultsTable() {
+      const data = getResultsData();
+      const filtered = selectedYearFilter === 'ALL' ? data : data.filter(r => String(r.year) === selectedYearFilter);
+      const tbody = document.getElementById('resultsTableBody');
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-500 text-sm">এই বৰ্ষৰ কোনো ফলাফল যোগ কৰা হোৱা নাই।</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map((item, idx) => {
+        const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=e0e7ff&color=3730a3&bold=true`;
+        const photoSrc = item.photo && item.photo.trim() !== '' ? item.photo : fallbackAvatar;
+
+        let honourBadge = '';
+        if (item.honour === 'Distinction') {
+          honourBadge = `<span class="inline-block px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-extrabold text-[11px] border border-amber-300">🏆 Distinction</span>`;
+        } else if (item.honour === 'Star Marks') {
+          honourBadge = `<span class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold text-[11px] border border-emerald-300">⭐ Star Marks</span>`;
+        }
+
+        const letterHtml = item.letters && item.letters.trim() !== '' && item.letters !== 'None'
+          ? `<div class="text-[11px] text-indigo-800 font-semibold mt-1">📜 ${escapeHtml(item.letters)}</div>`
+          : '';
+
+        const divBadgeColor = item.division === '1st Division'
+          ? 'bg-indigo-100 text-indigo-900'
+          : (item.division === '2nd Division' ? 'bg-sky-100 text-sky-900' : 'bg-slate-100 text-slate-800');
+
+        const adminActions = isAdminUnlocked ? `
+          <td class="py-3.5 px-4 text-right whitespace-nowrap">
+            <button onclick="editStudentResult(${item.id})" class="px-2.5 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-bold mr-1">✏️ Edit</button>
+            <button onclick="deleteStudentResult(${item.id})" class="px-2.5 py-1 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">🗑️ Delete</button>
+          </td>
+        ` : '';
+
+        return `
+          <tr class="hover:bg-indigo-50/40 transition">
+            <td class="py-3.5 px-4 font-extrabold text-indigo-700">${String(idx + 1).padStart(2, '0')}</td>
+            <td class="py-3.5 px-4">
+              <div class="flex items-center gap-3">
+                <img src="${photoSrc}" alt="${escapeHtml(item.name)}" onerror="this.onerror=null;this.src='${fallbackAvatar}';" class="w-11 h-11 rounded-full object-cover border-2 border-indigo-200 shadow-sm shrink-0" />
+                <span class="font-bold text-slate-900">${escapeHtml(item.name)}</span>
+              </div>
+            </td>
+            <td class="py-3.5 px-4 font-semibold text-slate-600">${escapeHtml(String(item.year))}</td>
+            <td class="py-3.5 px-4">
+              <div class="font-extrabold text-slate-900">${escapeHtml(item.marks)}</div>
+              <span class="inline-block mt-0.5 px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-extrabold text-xs">${escapeHtml(item.percentage)}</span>
+            </td>
+            <td class="py-3.5 px-4">
+              <span class="inline-block px-2.5 py-1 rounded-lg ${divBadgeColor} font-bold text-xs">${escapeHtml(item.division)}</span>
+            </td>
+            <td class="py-3.5 px-4">
+              ${honourBadge}
+              ${letterHtml}
+            </td>
+            ${adminActions}
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text || '';
+      return div.innerHTML;
+    }
+
+    function toggleAdminPanel() {
+      if (isAdminUnlocked) {
+        lockAdminPanel();
+        return;
+      }
+      const enteredPin = prompt('Admin Edit খুলিবলৈ গোপন পিন (PIN) দিয়ক (Default PIN: 2026):');
+      if (enteredPin === ADMIN_PIN) {
+        isAdminUnlocked = true;
+        document.getElementById('adminPanel').classList.remove('hidden');
+        document.getElementById('adminActionHeader').classList.remove('hidden');
+        document.getElementById('adminBtnText').textContent = '🔓 Admin Mode Active';
+        renderResultsTable();
+      } else if (enteredPin !== null) {
+        alert('❌ ভুল পিন! অনুগ্ৰহ কৰি সঠিক Admin PIN দিয়ক।');
+      }
+    }
+
+    function lockAdminPanel() {
+      isAdminUnlocked = false;
+      document.getElementById('adminPanel').classList.add('hidden');
+      document.getElementById('adminActionHeader').classList.add('hidden');
+      document.getElementById('adminBtnText').textContent = '🔒 Admin Edit (ফলাফল যোগ কৰক)';
+      resetResultForm();
+      renderResultsTable();
+    }
+
+    function handlePhotoUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const size = 140;
+          canvas.width = size;
+          canvas.height = size;
+          const ctx = canvas.getContext('2d');
+          const minSide = Math.min(img.width, img.height);
+          const sx = (img.width - minSide) / 2;
+          const sy = (img.height - minSide) / 2;
+          ctx.drawImage(img, sx, sy, minSide, minSide, 0, 0, size, size);
+          currentUploadedPhotoBase64 = canvas.toDataURL('image/jpeg', 0.75);
+          document.getElementById('photoPreview').src = currentUploadedPhotoBase64;
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearPhotoPreview() {
+      currentUploadedPhotoBase64 = '';
+      document.getElementById('studentPhotoInput').value = '';
+      document.getElementById('photoPreview').src = 'https://ui-avatars.com/api/?name=Student&background=e0e7ff&color=3730a3&bold=true';
+    }
+
+    function autoCalculatePercentage() {
+      const raw = document.getElementById('resMarks').value.trim();
+      const numMatch = raw.match(/^(\d+(\.\d+)?)/);
+      if (numMatch) {
+        const obtained = parseFloat(numMatch[1]);
+        if (obtained > 0 && obtained <= 600) {
+          const pct = ((obtained / 600) * 100).toFixed(1) + '%';
+          document.getElementById('resPercentage').value = pct;
+        }
+      }
+    }
+
+    function saveStudentResult(e) {
+      e.preventDefault();
+      const data = getResultsData();
+      const editId = document.getElementById('editStudentId').value;
+      const name = document.getElementById('resName').value.trim();
+      const year = document.getElementById('resYear').value.trim();
+      let marks = document.getElementById('resMarks').value.trim();
+      if (/^\d+$/.test(marks)) marks = marks + ' / 600';
+      let percentage = document.getElementById('resPercentage').value.trim();
+      if (percentage && !percentage.endsWith('%')) percentage += '%';
+      const division = document.getElementById('resDivision').value;
+      const honour = document.getElementById('resHonour').value;
+      const letters = document.getElementById('resLetters').value.trim();
+
+      if (editId) {
+        const index = data.findIndex(item => String(item.id) === String(editId));
+        if (index !== -1) {
+          data[index] = {
+            ...data[index],
+            name,
+            year,
+            marks,
+            percentage,
+            division,
+            honour,
+            letters,
+            photo: currentUploadedPhotoBase64 || data[index].photo
+          };
+        }
+      } else {
+        data.unshift({
+          id: Date.now(),
+          name,
+          year,
+          marks,
+          percentage,
+          division,
+          honour,
+          letters,
+          photo: currentUploadedPhotoBase64
+        });
+      }
+
+      saveResultsData(data);
+      resetResultForm();
+      alert('✅ ছাত্ৰ/ছাত্ৰীৰ ফলাফল সফলভাৱে যোগ কৰা হ’ল!');
+    }
+
+    function editStudentResult(id) {
+      const data = getResultsData();
+      const student = data.find(item => String(item.id) === String(id));
+      if (!student) return;
+
+      document.getElementById('editStudentId').value = student.id;
+      document.getElementById('resName').value = student.name;
+      document.getElementById('resYear').value = student.year;
+      document.getElementById('resMarks').value = student.marks;
+      document.getElementById('resPercentage').value = student.percentage;
+      document.getElementById('resDivision').value = student.division;
+      document.getElementById('resHonour').value = student.honour || 'None';
+      document.getElementById('resLetters').value = student.letters || '';
+      currentUploadedPhotoBase64 = student.photo || '';
+      document.getElementById('photoPreview').src = currentUploadedPhotoBase64 || `https://ui-avatars.com/api/?name=${encodeURIComponent(student.name)}&background=e0e7ff&color=3730a3&bold=true`;
+
+      document.getElementById('formModeTitle').textContent = '✏️ ছাত্ৰ/ছাত্ৰীৰ তথ্য সম্পাদনা (Edit Student)';
+      document.getElementById('saveResultBtn').textContent = '💾 পৰিৱৰ্তন ছেভ কৰক (Update)';
+      document.getElementById('cancelEditBtn').classList.remove('hidden');
+      document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function deleteStudentResult(id) {
+      if (!confirm('আপুনি নিশ্চিতনে যে এই ছাত্ৰ/ছাত্ৰীজনৰ ফলাফল তালিকাৰ পৰা ডিলিট কৰিব বিচাৰে?')) return;
+      const data = getResultsData().filter(item => String(item.id) !== String(id));
+      saveResultsData(data);
+    }
+
+    function resetResultForm() {
+      document.getElementById('resultForm').reset();
+      document.getElementById('editStudentId').value = '';
+      document.getElementById('resYear').value = '2026';
+      clearPhotoPreview();
+      document.getElementById('formModeTitle').textContent = '➕ নতুন ছাত্ৰ/ছাত্ৰীৰ ফলাফল যোগ কৰক';
+      document.getElementById('saveResultBtn').textContent = '✅ তালিকাভুক্ত কৰক (Save Student)';
+      document.getElementById('cancelEditBtn').classList.add('hidden');
+    }
+
+    function copyUpdatedHTMLForGitHub() {
+      const currentData = getResultsData();
+      const docClone = document.documentElement.cloneNode(true);
+      docClone.querySelector('#adminPanel').classList.add('hidden');
+      docClone.querySelector('#adminActionHeader').classList.add('hidden');
+      docClone.querySelector('#adminBtnText').textContent = '🔒 Admin Edit (ফলাফল যোগ কৰক)';
+      docClone.querySelector('#resultsTableBody').innerHTML = '';
+      docClone.querySelector('#yearFilterBar').innerHTML = '';
+
+      let fullHtml = '<!DOCTYPE html>\n' + docClone.outerHTML;
+      const serializedArray = JSON.stringify(currentData, null, 2);
+      fullHtml = fullHtml.replace(/const DEFAULT_RESULTS = \[[\s\S]*?\];/, `const DEFAULT_RESULTS = ${serializedArray};`);
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(fullHtml).then(() => {
+          document.getElementById('githubCopyMsg').classList.remove('hidden');
+        }).catch(() => fallbackCopyText(fullHtml));
+      } else {
+        fallbackCopyText(fullHtml);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      document.getElementById('githubCopyMsg').classList.remove('hidden');
+    }
 
     function toggleLanguage() {
       currentLang = currentLang === 'as' ? 'en' : 'as';
@@ -602,6 +984,7 @@
       document.querySelectorAll('[data-as][data-en]').forEach(el => {
         el.textContent = el.getAttribute('data-' + currentLang);
       });
+      renderYearFilters();
     }
 
     function filterMaterials(category, btn) {
@@ -648,6 +1031,12 @@
       navigator.clipboard.writeText('7896723247@upi');
       document.getElementById('copyStatus').classList.remove('hidden');
     }
+
+    // Initialize Results Table on Page Load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderYearFilters();
+      renderResultsTable();
+    });
   </script>
 </body>
 </html>
