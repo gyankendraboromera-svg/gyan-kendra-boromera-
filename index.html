@@ -251,7 +251,7 @@
       </div>
     </div>
 
-    <!-- Admin Control Panel (Hidden until PIN 2026 is entered) -->
+    <!-- Admin Control Panel (PIN: 2026) -->
     <div id="adminPanel" class="hidden mb-10 bg-indigo-50 border-2 border-indigo-300 rounded-3xl p-5 sm:p-7 shadow-lg">
       <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-indigo-200">
         <div>
@@ -651,7 +651,6 @@
     const ADMIN_PIN = '2026';
     const STORAGE_KEY = 'gyankendra_hslc_results_v1';
 
-    // Default HSLC Results Data
     const DEFAULT_RESULTS = [
       {
         id: 1,
@@ -1032,7 +1031,6 @@
       document.getElementById('copyStatus').classList.remove('hidden');
     }
 
-    // Initialize Results Table on Page Load
     document.addEventListener('DOMContentLoaded', () => {
       renderYearFilters();
       renderResultsTable();
