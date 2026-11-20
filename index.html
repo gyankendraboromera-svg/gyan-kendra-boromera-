@@ -40,6 +40,58 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-600 selection:text-white pb-16 sm:pb-0">
 
+  <!-- Student Entry / Access Gate Modal -->
+  <div id="studentAccessGate" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-indigo-100 relative overflow-hidden">
+      <div class="text-center space-y-2">
+        <img src="4446.jpg" alt="Dipankar Mali" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Gyan+Kendra&background=4338ca&color=fff&bold=true';" class="w-16 h-16 rounded-2xl object-cover object-top mx-auto shadow-md border-2 border-indigo-600" />
+        <span class="inline-block px-3 py-0.5 rounded-full bg-indigo-100 text-indigo-800 text-[11px] font-extrabold uppercase tracking-wider">GYAN KENDRA TUITION CENTER</span>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">স্বাগতম (Welcome Student)</h2>
+        <p class="text-xs sm:text-sm text-slate-600">ৱেবছাইট আৰু অধ্যয়ন সামগ্ৰী ব্যৱহাৰ কৰিবলৈ আপোনাৰ নাম আৰু মোবাইল নম্বৰ দি প্ৰৱেশ কৰক।</p>
+      </div>
+
+      <!-- Blocked Alert Box -->
+      <div id="blockedAlertBox" class="hidden mt-4 p-4 rounded-2xl bg-red-50 border-2 border-red-300 text-center space-y-1.5">
+        <div class="text-red-700 font-extrabold text-sm">🚫 প্ৰৱেশ বন্ধ কৰা হৈছে (Access Restricted)</div>
+        <p class="text-xs text-red-600">আপোনাৰ এই নম্বৰটো Admin (মালী ছাৰ)-এ ব্লক কৰিছে। অধিক জানিবলৈ WhatsApp (+91 78967 23247)-ত যোগাযোগ কৰক।</p>
+      </div>
+
+      <form id="accessGateForm" onsubmit="submitStudentAccess(event)" class="mt-5 space-y-3.5">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">ছাত্ৰ/ছাত্ৰী বা অভিভাৱকৰ নাম *</label>
+          <input type="text" id="gateName" required placeholder="আপোনাৰ সম্পূৰ্ণ নাম লিখক..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm font-semibold" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">শ্ৰেণী (Class) *</label>
+            <select id="gateClass" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm font-semibold">
+              <option value="Class X (HSLC)" selected>Class X (HSLC)</option>
+              <option value="Class IX">Class IX</option>
+              <option value="Class VI - VIII">Class VI – VIII</option>
+              <option value="Nursery - V">Nursery – V</option>
+              <option value="Parent / Guardian">Guardian / Parent</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">মোবাইল নম্বৰ *</label>
+            <input type="tel" id="gatePhone" required pattern="[0-9]{10}" maxlength="10" placeholder="10-digit number" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm font-bold" />
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm shadow-lg transition">
+          ✅ ৱেবছাইটত প্ৰৱেশ কৰক (Enter Website)
+        </button>
+
+        <div class="pt-2 border-t border-slate-100 text-center">
+          <button type="button" onclick="bypassGateAsAdmin()" class="text-xs font-bold text-slate-500 hover:text-indigo-700">
+            🔒 Admin Login (মালী ছাৰৰ বাবে)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Top Running Notice Banner -->
   <div class="bg-indigo-950 text-amber-300 text-xs sm:text-sm py-2 px-3 overflow-hidden border-b border-indigo-800">
     <div class="max-w-7xl mx-auto flex items-center gap-3">
@@ -65,7 +117,7 @@
           <img src="4446.jpg" alt="Dipankar Mali" onerror="if(!this.dataset.step){this.dataset.step='1';this.src='photo.jpg';}else if(this.dataset.step==='1'){this.dataset.step='2';this.src='photo.png';}else{this.onerror=null;this.src='https://ui-avatars.com/api/?name=Dipankar+Mali&background=4338ca&color=fff&bold=true';}" class="w-10 h-10 rounded-xl object-cover object-top shadow border border-indigo-200 group-hover:scale-105 transition shrink-0" />
           <div class="truncate">
             <span class="block font-extrabold text-slate-900 text-sm sm:text-base leading-tight truncate" data-as="দীপাংকৰ মালী" data-en="Dipankar Mali">দীপাংকৰ মালী</span>
-            <span class="block text-[10px] sm:text-[11px] font-semibold text-indigo-600 truncate" data-as="জ্ঞান কেন্দ্ৰ, বৰমেৰা" data-en="Gyan Kendra, Boromera">জ্ঞান কেন্দ্ৰ, বৰমেৰা</span>
+            <span id="loggedStudentBadge" class="block text-[10px] sm:text-[11px] font-semibold text-indigo-600 truncate" data-as="জ্ঞান কেন্দ্ৰ, বৰমেৰা" data-en="Gyan Kendra, Boromera">জ্ঞান কেন্দ্ৰ, বৰমেৰা</span>
           </div>
         </a>
       </div>
@@ -106,15 +158,16 @@
     </div>
 
     <div id="mobileMenu" class="hidden xl:hidden bg-white border-t border-slate-100 px-4 py-3 space-y-2 text-sm font-semibold text-slate-700 shadow-lg">
-      <a href="#home" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600 font-bold" data-as="🏠 মূল পৃষ্ঠা (Home)" data-en="🏠 Home">🏠 মূল পৃষ্ঠা (Home)</a>
+      <a href="#home" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600 font-bold">🏠 মূল পৃষ্ঠা (Home)</a>
       <a href="test-papers.html" class="block py-2 px-3 rounded-xl bg-amber-100 text-amber-950 font-extrabold">📝 Mock Test Paper (All Districts)</a>
-      <a href="#materials" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-emerald-700 font-extrabold" data-as="📘 ₹199 গাইডবুক আৰু History Ch-1 Free PDF" data-en="📘 ₹199 Guidebook & Free History Ch-1 PDFs">📘 ₹199 গাইডবুক আৰু History Ch-1 Free PDF</a>
-      <a href="#chapter-store" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-indigo-700 font-extrabold" data-as="📚 ₹29 অধ্যায়ভিত্তিক PDF নোটছ" data-en="📚 ₹29 Chapter-wise PDF Store">📚 ₹29 অধ্যায়ভিত্তিক PDF নোটছ</a>
-      <a href="#routine" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="🕒 ক্লাছৰ সময়সূচী (Class Routine)" data-en="🕒 Class Routine">🕒 ক্লাছৰ সময়সূচী (Class Routine)</a>
-      <a href="#gallery" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="📸 ফটো গেলাৰী (Photo Gallery)" data-en="📸 Photo Gallery">📸 ফটো গেলাৰী (Photo Gallery)</a>
-      <a href="#staff" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="👨‍🏫 আমাৰ শিক্ষকবৃন্দ (Teaching Staff)" data-en="👨‍🏫 Teaching Staff">👨‍🏫 আমাৰ শিক্ষকবৃন্দ (Teaching Staff)</a>
-      <a href="#results" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600" data-as="🏆 HSLC ফলাফলৰ তালিকা" data-en="🏆 HSLC Results List">🏆 HSLC ফলাফলৰ তালিকা</a>
-      <a href="#admission" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-emerald-700 font-bold" data-as="💬 অনলাইন নামভৰ্তি / যোগাযোগ" data-en="💬 Admission & Contact">💬 অনলাইন নামভৰ্তি / যোগাযোগ</a>
+      <a href="#materials" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-emerald-700 font-extrabold">📘 ₹199 গাইডবুক আৰু History Ch-1 Free PDF</a>
+      <a href="#chapter-store" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-indigo-700 font-extrabold">📚 ₹29 অধ্যায়ভিত্তিক PDF নোটছ</a>
+      <a href="#routine" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600">🕒 ক্লাছৰ সময়সূচী (Class Routine)</a>
+      <a href="#gallery" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600">📸 ফটো গেলাৰী (Photo Gallery)</a>
+      <a href="#staff" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600">👨‍🏫 আমাৰ শিক্ষকবৃন্দ (Teaching Staff)</a>
+      <a href="#results" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 hover:text-indigo-600">🏆 HSLC ফলাফলৰ তালিকা</a>
+      <a href="#admission" onclick="this.parentElement.classList.add('hidden')" class="block py-1.5 text-emerald-700 font-bold">💬 অনলাইন নামভৰ্তি / যোগাযোগ</a>
+      <button onclick="logoutStudentGate()" class="block w-full text-left py-1.5 text-xs text-red-600 font-bold">🚪 Switch User / Logout</button>
     </div>
   </header>
 
@@ -136,6 +189,56 @@
     </div>
   </div>
 
+  <!-- Admin Visitor Log & Block Control Panel (Visible only when Admin PIN is unlocked) -->
+  <section id="visitorAdminSection" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <div class="bg-rose-50 border-2 border-rose-400 rounded-3xl p-5 sm:p-7 shadow-xl space-y-5">
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-rose-200">
+        <div>
+          <span class="inline-block px-2.5 py-0.5 rounded bg-rose-600 text-white text-[10px] font-extrabold uppercase">ADMIN SECURITY CONTROL</span>
+          <h2 class="text-lg sm:text-2xl font-extrabold text-slate-900 mt-1">👥 ছাত্ৰ-ছাত্ৰীৰ প্ৰৱেশ তালিকা আৰু ব্লক নিয়ন্ত্ৰণ (Visitor Log & Block List)</h2>
+          <p class="text-xs text-slate-700">তলত যিকোনো মোবাইল নম্বৰ দি Block কৰিলে সেই নম্বৰটোৰে কোনেও এপ বা ৱেবছাইটত সোমাব নোৱাৰিব।</p>
+        </div>
+        <button onclick="lockAdminPanel()" class="px-3.5 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-bold">✕ Admin Lock</button>
+      </div>
+
+      <!-- Manual Block Form -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-4 rounded-2xl border border-rose-200 space-y-3">
+          <h3 class="text-sm font-extrabold text-rose-950">🚫 যিকোনো মোবাইল নম্বৰ ব্লক কৰক (Block Number)</h3>
+          <form onsubmit="blockNumberManual(event)" class="flex gap-2">
+            <input type="tel" id="manualBlockPhone" required pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile number" class="flex-1 px-3.5 py-2 rounded-xl border border-slate-300 text-sm font-bold focus:ring-2 focus:ring-rose-600 focus:outline-none" />
+            <button type="submit" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-extrabold shadow transition">🚫 Block</button>
+          </form>
+
+          <div>
+            <div class="text-xs font-bold text-slate-600 mb-1.5">ব্লক কৰা নম্বৰসমূহ (Blocked Numbers):</div>
+            <div id="blockedNumbersList" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+
+        <!-- Recent Visitors List -->
+        <div class="bg-white p-4 rounded-2xl border border-rose-200 space-y-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-extrabold text-slate-900">📋 এই ডিভাইচত সোমোৱা ছাত্ৰ-ছাত্ৰীসকল:</h3>
+            <button onclick="clearVisitorLog()" class="text-[11px] text-red-600 hover:underline font-bold">Clear Log</button>
+          </div>
+          <div id="visitorLogList" class="max-h-44 overflow-y-auto divide-y divide-slate-100 text-xs"></div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-rose-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl">
+        <div class="text-xs text-slate-700">
+          <strong class="text-rose-950 block text-sm">🌐 ব্লক তালিকা সকলোৰে মোবাইলত কাৰ্যকৰী কৰিবলৈ:</strong>
+          নম্বৰ ব্লক কৰাৰ পিছত এই বুটামত টিপি কোড কপি কৰক আৰু GitHub-ৰ <code class="bg-slate-200 px-1 rounded">index.html</code> ফাইলত পেষ্ট কৰি ছেভ কৰক।
+        </div>
+        <button type="button" onclick="copyUpdatedHTMLForGitHub()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow shrink-0 transition">
+          📋 GitHub-ৰ বাবে আপডেট কোড কপি কৰক
+        </button>
+      </div>
+      <p class="github-copy-msg hidden text-xs font-bold text-emerald-700">✓ সম্পূৰ্ণ আপডেট কৰা HTML কোড কপি হৈছে! এতিয়া GitHub-ৰ index.html-ত পেষ্ট কৰি Commit কৰক।</p>
+    </div>
+  </section>
+
   <!-- Hero Section -->
   <section id="home" class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white py-12 sm:py-20">
     <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#818cf8_1px,transparent_1px)] [background-size:20px_20px]"></div>
@@ -156,7 +259,6 @@
             M.A., B.Ed. (Sociology) | <span data-as="প্ৰতিষ্ঠাপক আৰু সঞ্চালক, জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)" data-en="Founder & Director, Gyan Kendra Tuition Center (Boromera)">প্ৰতিষ্ঠাপক আৰু সঞ্চালক, জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)</span>
           </p>
 
-          <!-- Quick Search Box -->
           <div class="max-w-xl pt-1">
             <div class="relative flex items-center">
               <svg class="w-5 h-5 text-slate-400 absolute left-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
@@ -460,9 +562,6 @@
       <div>
         <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-extrabold uppercase tracking-wider" data-as="নিয়মীয়া পাঠদানৰ সময়" data-en="WEEKLY SCHEDULE">নিয়মীয়া পাঠদানৰ সময়</span>
         <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-as="জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰৰ সময়সূচী (Class Routine)" data-en="Class Routine — Gyan Kendra Tuition Center">জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰৰ সময়সূচী (Class Routine)</h2>
-        <p class="text-sm sm:text-base text-slate-600 mt-1" data-as="প্ৰতিটো শ্ৰেণীৰ অফলাইন (বৰমেৰা) আৰু অনলাইন (Teachmint) ক্লাছৰ সময়সূচী।" data-en="Batch timings for Nursery to Class 10 offline and online classes.">
-          প্ৰতিটো শ্ৰেণীৰ অফলাইন (বৰমেৰা) আৰু অনলাইন (Teachmint) ক্লাছৰ সময়সূচী।
-        </p>
       </div>
 
       <div class="flex items-center gap-2 shrink-0">
@@ -476,61 +575,39 @@
       <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-emerald-200">
         <div>
           <h3 id="routineFormTitle" class="text-lg sm:text-xl font-extrabold text-slate-900">➕ নতুন ক্লাছৰ সময়সূচী যোগ কৰক</h3>
-          <p class="text-xs text-slate-700">শ্ৰেণী, দিন, সময়, বিষয় আৰু শিক্ষকৰ নাম লিখি Save কৰক।</p>
         </div>
         <button onclick="lockAdminPanel()" class="px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">✕ বন্ধ কৰক (Lock)</button>
       </div>
 
       <form id="routineForm" onsubmit="saveRoutineItem(event)" class="mt-5 space-y-4">
         <input type="hidden" id="editRoutineId" value="" />
-
         <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">শ্ৰেণী (Class) *</label>
             <input type="text" id="routClass" required placeholder="যেনে: Class X (HSLC)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm font-bold" />
           </div>
-
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">দিন (Days) *</label>
-            <input type="text" id="routDays" required placeholder="যেনে: সোম – শনি (Mon–Sat)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+            <input type="text" id="routDays" required placeholder="যেনে: সোম – শনি" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
           </div>
-
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">সময় (Time) *</label>
-            <input type="text" id="routTime" required placeholder="যেনে: পুৱা ৬:৩০ – ৮:৩০ বজা" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+            <input type="text" id="routTime" required placeholder="যেনে: পুৱা ৬:৩০ – ৮:৩০" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
           </div>
-
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">বিষয় (Subjects) *</label>
-            <input type="text" id="routSubject" required placeholder="যেনে: সমাজ বিজ্ঞান, গণিত, বিজ্ঞান" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+            <input type="text" id="routSubject" required placeholder="সমাজ বিজ্ঞান, গণিত..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
           </div>
-
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">শিক্ষক (Teacher)</label>
-            <input type="text" id="routTeacher" placeholder="যেনে: দীপাংকৰ মালী ছাৰ" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+            <input type="text" id="routTeacher" placeholder="দীপাংকৰ মালী ছাৰ" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
           </div>
         </div>
-
         <div class="flex flex-wrap items-center gap-3 pt-2">
-          <button type="submit" id="saveRoutineBtn" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow transition">
-            ✅ সময়সূচী যোগ কৰক (Save Routine)
-          </button>
-          <button type="button" id="cancelRoutineEditBtn" onclick="resetRoutineForm()" class="hidden px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs">
-            Cancel Edit
-          </button>
+          <button type="submit" id="saveRoutineBtn" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow transition">✅ সময়সূচী যোগ কৰক</button>
+          <button type="button" id="cancelRoutineEditBtn" onclick="resetRoutineForm()" class="hidden px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs">Cancel Edit</button>
         </div>
       </form>
-
-      <div class="mt-6 pt-5 border-t border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl">
-        <div class="text-xs text-slate-700">
-          <strong class="text-indigo-950 block text-sm">🌐 সকলো ছাত্ৰ-ছাত্ৰীৰ মোবাইলত দেখুৱাবলৈ:</strong>
-          সময়সূচী আপডেট কৰাৰ পিছত এই বুটামত টিপি কোড কপি কৰক আৰু GitHub-ৰ <code class="bg-slate-200 px-1 rounded">index.html</code> ফাইলত পেষ্ট কৰি ছেভ কৰক।
-        </div>
-        <button type="button" onclick="copyUpdatedHTMLForGitHub()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow shrink-0 transition">
-          📋 GitHub-ৰ বাবে আপডেট কোড কপি কৰক
-        </button>
-      </div>
-      <p class="github-copy-msg hidden text-xs font-bold text-emerald-700 mt-2">✓ সম্পূৰ্ণ আপডেট কৰা HTML কোড কপি হৈছে! এতিয়া GitHub-ৰ index.html-ত পেষ্ট কৰি Commit কৰক।</p>
     </div>
 
     <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
@@ -538,11 +615,11 @@
         <table class="w-full text-left border-collapse">
           <thead>
             <tr class="bg-indigo-950 text-white text-xs sm:text-sm uppercase tracking-wider">
-              <th class="py-3.5 px-4 font-bold" data-as="শ্ৰেণী (Class)" data-en="Class">শ্ৰেণী (Class)</th>
-              <th class="py-3.5 px-4 font-bold" data-as="দিন (Days)" data-en="Days">দিন (Days)</th>
-              <th class="py-3.5 px-4 font-bold" data-as="সময় (Time)" data-en="Time">সময় (Time)</th>
-              <th class="py-3.5 px-4 font-bold" data-as="বিষয়সমূহ (Subjects)" data-en="Subjects">বিষয়সমূহ (Subjects)</th>
-              <th class="py-3.5 px-4 font-bold" data-as="শিক্ষক (Teacher)" data-en="Teacher">শিক্ষক (Teacher)</th>
+              <th class="py-3.5 px-4 font-bold">শ্ৰেণী (Class)</th>
+              <th class="py-3.5 px-4 font-bold">দিন (Days)</th>
+              <th class="py-3.5 px-4 font-bold">সময় (Time)</th>
+              <th class="py-3.5 px-4 font-bold">বিষয়সমূহ (Subjects)</th>
+              <th class="py-3.5 px-4 font-bold">শিক্ষক (Teacher)</th>
               <th id="routineAdminHeader" class="hidden py-3.5 px-4 font-bold text-right">Action</th>
             </tr>
           </thead>
@@ -557,11 +634,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
-          <span class="inline-block px-3 py-1 rounded-full bg-purple-100 text-purple-900 text-xs font-extrabold uppercase tracking-wider" data-as="স্মৃতি আৰু কাৰ্যকলাপ" data-en="CAMPUS & EVENTS">স্মৃতি আৰু কাৰ্যকলাপ</span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-as="জ্ঞান কেন্দ্ৰ ফটো গেলাৰী (Photo Gallery)" data-en="Gyan Kendra Photo Gallery">জ্ঞান কেন্দ্ৰ ফটো গেলাৰী (Photo Gallery)</h2>
-          <p class="text-sm sm:text-base text-slate-600 mt-1" data-as="আমাৰ ক্লাছৰুম, HSLC প্ৰস্তুতি কৰ্মশালা আৰু শিক্ষামূলক কাৰ্যসূচীৰ কিছু বিশেষ মুহূৰ্ত।" data-en="Glimpses of classroom sessions, HSLC exam seminars, and student activities at Boromera.">
-            আমাৰ ক্লাছৰুম, HSLC প্ৰস্তুতি কৰ্মশালা আৰু শিক্ষামূলক কাৰ্যসূচীৰ কিছু বিশেষ মুহূৰ্ত।
-          </p>
+          <span class="inline-block px-3 py-1 rounded-full bg-purple-100 text-purple-900 text-xs font-extrabold uppercase tracking-wider">CAMPUS & EVENTS</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2">জ্ঞান কেন্দ্ৰ ফটো গেলাৰী (Photo Gallery)</h2>
         </div>
 
         <div class="flex items-center gap-2 shrink-0">
@@ -572,45 +646,22 @@
       </div>
 
       <div id="galleryAdminPanel" class="hidden mb-10 bg-purple-50 border-2 border-purple-400 rounded-3xl p-5 sm:p-7 shadow-lg">
-        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-purple-200">
-          <div>
-            <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">📸 গেলাৰীত নতুন ফটো আপলোড কৰক</h3>
-            <p class="text-xs text-slate-700">ফোনৰ গেলাৰীৰ পৰা ফটো বাছনি কৰক আৰু শিৰোনাম (Caption) লিখি Upload কৰক।</p>
-          </div>
-          <button onclick="lockAdminPanel()" class="px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">✕ বন্ধ কৰক (Lock)</button>
-        </div>
-
-        <form id="galleryForm" onsubmit="saveGalleryPhoto(event)" class="mt-5 space-y-4">
+        <form id="galleryForm" onsubmit="saveGalleryPhoto(event)" class="space-y-4">
           <div class="grid sm:grid-cols-2 gap-4 items-center">
             <div class="bg-white p-3.5 rounded-2xl border border-purple-200 flex items-center gap-3.5">
               <img id="galleryPhotoPreview" src="https://placehold.co/160x120/e0e7ff/3730a3?text=Photo" alt="Gallery Preview" class="w-24 h-16 rounded-xl object-cover border border-purple-300 shrink-0" />
               <div class="flex-1 min-w-0">
-                <label class="block text-xs font-bold text-slate-700 mb-1">ফটো বাছনি কৰক (Choose Image) *</label>
-                <input type="file" id="galleryFileInput" accept="image/*" required onchange="handleGalleryFileUpload(event)" class="block w-full text-xs text-slate-600 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer" />
+                <label class="block text-xs font-bold text-slate-700 mb-1">ফটো বাছনি কৰক *</label>
+                <input type="file" id="galleryFileInput" accept="image/*" required onchange="handleGalleryFileUpload(event)" class="block w-full text-xs text-slate-600 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-purple-600 file:text-white cursor-pointer" />
               </div>
             </div>
-
             <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">ফটোৰ শিৰোনাম (Caption / Title) *</label>
-              <input type="text" id="galleryCaption" required placeholder="যেনে: HSLC ২০২৭ প্ৰস্তুতি কৰ্মশালা, জ্ঞান কেন্দ্ৰ বৰমেৰা" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-purple-600 focus:outline-none text-sm" />
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">ফটোৰ শিৰোনাম (Caption) *</label>
+              <input type="text" id="galleryCaption" required placeholder="যেনে: HSLC ২০২৭ প্ৰস্তুতি কৰ্মশালা, জ্ঞান কেন্দ্ৰ বৰমেৰা" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm" />
             </div>
           </div>
-
-          <button type="submit" class="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow transition">
-            ✅ গেলাৰীত যোগ কৰক (Add Photo)
-          </button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow transition">✅ গেলাৰীত যোগ কৰক</button>
         </form>
-
-        <div class="mt-6 pt-5 border-t border-purple-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl">
-          <div class="text-xs text-slate-700">
-            <strong class="text-indigo-950 block text-sm">🌐 সকলোৰে মোবাইলত স্থায়ীভাৱে দেখুৱাবলৈ:</strong>
-            ফটো যোগ কৰাৰ পিছত এই বুটামত টিপি কোড কপি কৰক আৰু GitHub-ৰ <code class="bg-slate-200 px-1 rounded">index.html</code> ফাইলত পেষ্ট কৰি ছেভ কৰক।
-          </div>
-          <button type="button" onclick="copyUpdatedHTMLForGitHub()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow shrink-0 transition">
-            📋 GitHub-ৰ বাবে আপডেট কোড কপি কৰক
-          </button>
-        </div>
-        <p class="github-copy-msg hidden text-xs font-bold text-emerald-700 mt-2">✓ সম্পূৰ্ণ আপডেট কৰা HTML কোড কপি হৈছে! এতিয়া GitHub-ৰ index.html-ত পেষ্ট কৰি Commit কৰক।</p>
       </div>
 
       <div id="galleryGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -621,73 +672,36 @@
   <section id="staff" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-200">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
       <div>
-        <span class="inline-block px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-extrabold uppercase tracking-wider" data-as="অভিজ্ঞ শিক্ষকমণ্ডলী" data-en="OUR FACULTY">অভিজ্ঞ শিক্ষকমণ্ডলী</span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-as="জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰৰ শিক্ষক-শিক্ষয়িত্ৰীসকল" data-en="Teaching Staff — Gyan Kendra Tuition Center">জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰৰ শিক্ষক-শিক্ষয়িত্ৰীসকল</h2>
-        <p class="text-sm sm:text-base text-slate-600 mt-1" data-as="ছাত্ৰ-ছাত্ৰীসকলৰ উজ্জ্বল ভৱিষ্যত গঢ়াত নিয়োজিত আমাৰ দক্ষ আৰু অভিজ্ঞ শিক্ষকবৃন্দ।" data-en="Dedicated and qualified educators mentoring students at Gyan Kendra Tuition Center, Boromera.">
-          ছাত্ৰ-ছাত্ৰীসকলৰ উজ্জ্বল ভৱিষ্যত গঢ়াত নিয়োজিত আমাৰ দক্ষ আৰু অভিজ্ঞ শিক্ষকবৃন্দ।
-        </p>
+        <span class="inline-block px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-extrabold uppercase tracking-wider">OUR FACULTY</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2">জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰৰ শিক্ষক-শিক্ষয়িত্ৰীসকল</h2>
       </div>
-
-      <div class="flex items-center gap-2 shrink-0">
-        <button onclick="toggleAdminPanel()" class="admin-toggle-btn px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow transition flex items-center gap-2">
-          <span class="admin-btn-label">🔒 Admin Edit (শিক্ষক যোগ/সলনি কৰক)</span>
-        </button>
-      </div>
+      <button onclick="toggleAdminPanel()" class="admin-toggle-btn px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow transition">
+        <span class="admin-btn-label">🔒 Admin Edit (শিক্ষক যোগ/সলনি কৰক)</span>
+      </button>
     </div>
 
     <div id="staffAdminPanel" class="hidden mb-10 bg-indigo-50 border-2 border-indigo-300 rounded-3xl p-5 sm:p-7 shadow-lg">
-      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-indigo-200">
-        <div>
-          <h3 id="staffFormTitle" class="text-lg sm:text-xl font-extrabold text-indigo-950">➕ নতুন শিক্ষক/শিক্ষয়িত্ৰী যোগ কৰক</h3>
-          <p class="text-xs text-indigo-700">শিক্ষকৰ ফটো, নাম আৰু শিক্ষাগত অৰ্হতা লিখি Save কৰক।</p>
-        </div>
-        <button onclick="lockAdminPanel()" class="px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">✕ বন্ধ কৰক (Lock)</button>
-      </div>
-
-      <form id="staffForm" onsubmit="saveStaffMember(event)" class="mt-5 space-y-4">
+      <form id="staffForm" onsubmit="saveStaffMember(event)" class="space-y-4">
         <input type="hidden" id="editStaffId" value="" />
-
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div class="bg-white p-3.5 rounded-2xl border border-indigo-200 flex items-center gap-3.5">
             <img id="staffPhotoPreview" src="https://ui-avatars.com/api/?name=Teacher&background=e0e7ff&color=3730a3&bold=true" alt="Staff Preview" class="w-16 h-16 rounded-full object-cover object-top border-2 border-indigo-400 shrink-0" />
             <div class="flex-1 min-w-0">
-              <label class="block text-xs font-bold text-slate-700 mb-1">শিক্ষকৰ ফটো (Photo)</label>
-              <input type="file" id="staffPhotoInput" accept="image/*" onchange="handleStaffPhotoUpload(event)" class="block w-full text-xs text-slate-600 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer" />
-              <button type="button" onclick="clearStaffPhotoPreview()" class="text-[11px] text-red-600 hover:underline mt-1">ফটো আঁতৰাওক</button>
+              <label class="block text-xs font-bold text-slate-700 mb-1">শিক্ষকৰ ফটো</label>
+              <input type="file" id="staffPhotoInput" accept="image/*" onchange="handleStaffPhotoUpload(event)" class="block w-full text-xs text-slate-600 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-indigo-600 file:text-white cursor-pointer" />
             </div>
           </div>
-
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">শিক্ষক/শিক্ষয়িত্ৰীৰ নাম (Name) *</label>
-            <input type="text" id="staffName" required placeholder="যেনে: Jinti Jhakuriya" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">নাম (Name) *</label>
+            <input type="text" id="staffName" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm" />
           </div>
-
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">শিক্ষাগত অৰ্হতা (Qualification) *</label>
-            <input type="text" id="staffQualification" required placeholder="যেনে: MSc Cotton College Guwahati" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+            <input type="text" id="staffQualification" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm" />
           </div>
         </div>
-
-        <div class="flex flex-wrap items-center gap-3 pt-2">
-          <button type="submit" id="saveStaffBtn" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow transition">
-            ✅ শিক্ষক যোগ কৰক (Save Staff)
-          </button>
-          <button type="button" id="cancelStaffEditBtn" onclick="resetStaffForm()" class="hidden px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs">
-            Cancel Edit
-          </button>
-        </div>
+        <button type="submit" id="saveStaffBtn" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow transition">✅ শিক্ষক যোগ কৰক</button>
       </form>
-
-      <div class="mt-6 pt-5 border-t border-indigo-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/80 p-4 rounded-2xl">
-        <div class="text-xs text-slate-700">
-          <strong class="text-indigo-950 block text-sm">🌐 সকলোৰে মোবাইলত স্থায়ীভাৱে দেখুৱাবলৈ:</strong>
-          সকলো তথ্য যোগ/সলনি কৰাৰ পিছত এই বুটামত টিপি কোড কপি কৰক আৰু GitHub-ৰ <code class="bg-slate-200 px-1 rounded">index.html</code> ফাইলত পেষ্ট কৰি ছেভ কৰক।
-        </div>
-        <button type="button" onclick="copyUpdatedHTMLForGitHub()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow shrink-0 transition">
-          📋 GitHub-ৰ বাবে আপডেট কোড কপি কৰক
-        </button>
-      </div>
-      <p class="github-copy-msg hidden text-xs font-bold text-emerald-700 mt-2">✓ সম্পূৰ্ণ আপডেট কৰা HTML কোড কপি হৈছে! এতিয়া GitHub-ৰ index.html-ত পেষ্ট কৰি Commit কৰক।</p>
     </div>
 
     <div id="staffGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -697,106 +711,64 @@
   <section id="results" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
       <div>
-        <span class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-extrabold uppercase tracking-wider" data-as="গৌৰৱোজ্জ্বল সফলতা" data-en="ACADEMIC EXCELLENCE">গৌৰৱোজ্জ্বল সফলতা</span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-as="HSLC ফলাফলৰ তালিকা (কৃতী ছাত্ৰ-ছাত্ৰীসকল)" data-en="HSLC Results List (Our Top Achievers)">HSLC ফলাফলৰ তালিকা (কৃতী ছাত্ৰ-ছাত্ৰীসকল)</h2>
-        <p class="text-sm sm:text-base text-slate-600 mt-1" data-as="জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)-ৰ পৰা SEBA HSLC মেট্ৰিক পৰীক্ষাত কৃতিত্ব অৰ্জন কৰা ছাত্ৰ-ছাত্ৰীসকল।" data-en="SEBA HSLC examination achievers mentored at Gyan Kendra Tuition Center, Boromera.">
-          জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰ (বৰমেৰা)-ৰ পৰা SEBA HSLC মেট্ৰিক পৰীক্ষাত কৃতিত্ব অৰ্জন কৰা ছাত্ৰ-ছাত্ৰীসকল।
-        </p>
+        <span class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-extrabold uppercase tracking-wider">ACADEMIC EXCELLENCE</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2">HSLC ফলাফলৰ তালিকা (কৃতী ছাত্ৰ-ছাত্ৰীসকল)</h2>
       </div>
-
-      <div class="flex items-center gap-2 shrink-0">
-        <button onclick="toggleAdminPanel()" class="admin-toggle-btn px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow transition flex items-center gap-2">
-          <span class="admin-btn-label">🔒 Admin Edit (ফলাফল যোগ কৰক)</span>
-        </button>
-      </div>
+      <button onclick="toggleAdminPanel()" class="admin-toggle-btn px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow transition">
+        <span class="admin-btn-label">🔒 Admin Edit (ফলাফল যোগ কৰক)</span>
+      </button>
     </div>
 
     <div id="adminPanel" class="hidden mb-10 bg-indigo-50 border-2 border-indigo-300 rounded-3xl p-5 sm:p-7 shadow-lg">
-      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-indigo-200">
-        <div>
-          <h3 id="formModeTitle" class="text-lg sm:text-xl font-extrabold text-indigo-950">➕ নতুন ছাত্ৰ/ছাত্ৰীৰ ফলাফল যোগ কৰক</h3>
-          <p class="text-xs text-indigo-700">তলৰ ফৰ্মখন পূৰণ কৰি Save কৰক। আন সকলোৰে ফোনতো দেখুৱাবলৈ তলৰ "Copy Code" বুটাম ব্যৱহাৰ কৰিব।</p>
-        </div>
-        <button onclick="lockAdminPanel()" class="px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">✕ বন্ধ কৰক (Lock)</button>
-      </div>
-
-      <form id="resultForm" onsubmit="saveStudentResult(event)" class="mt-5 space-y-4">
+      <form id="resultForm" onsubmit="saveStudentResult(event)" class="space-y-4">
         <input type="hidden" id="editStudentId" value="" />
-
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div class="sm:col-span-2 lg:col-span-1 bg-white p-3.5 rounded-2xl border border-indigo-200 flex items-center gap-3.5">
             <img id="photoPreview" src="https://ui-avatars.com/api/?name=Student&background=e0e7ff&color=3730a3&bold=true" alt="Preview" class="w-16 h-16 rounded-full object-cover border-2 border-indigo-400 shrink-0" />
             <div class="flex-1 min-w-0">
-              <label class="block text-xs font-bold text-slate-700 mb-1">ছাত্ৰ/ছাত্ৰীৰ ফটো (Photo)</label>
-              <input type="file" id="studentPhotoInput" accept="image/*" onchange="handlePhotoUpload(event)" class="block w-full text-xs text-slate-600 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer" />
-              <button type="button" onclick="clearPhotoPreview()" class="text-[11px] text-red-600 hover:underline mt-1">ফটো আঁতৰাওক</button>
+              <label class="block text-xs font-bold text-slate-700 mb-1">ফটো (Photo)</label>
+              <input type="file" id="studentPhotoInput" accept="image/*" onchange="handlePhotoUpload(event)" class="block w-full text-xs text-slate-600 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-indigo-600 file:text-white cursor-pointer" />
             </div>
           </div>
-
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">ছাত্ৰ/ছাত্ৰীৰ নাম (Name) *</label>
-            <input type="text" id="resName" required placeholder="যেনে: ৰাহুল ৰায় (Rahul Roy)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">নাম *</label>
+            <input type="text" id="resName" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm" />
           </div>
-
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">পৰীক্ষাৰ বৰ্ষ (Year) *</label>
-            <input type="number" id="resYear" required value="2026" min="2015" max="2035" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">বৰ্ষ *</label>
+            <input type="number" id="resYear" required value="2026" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm" />
           </div>
-
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">মুঠ নম্বৰ (Marks out of 600) *</label>
-            <input type="text" id="resMarks" required oninput="autoCalculatePercentage()" placeholder="যেনে: 537 বা 537/600" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">মুঠ নম্বৰ (600) *</label>
+            <input type="text" id="resMarks" required oninput="autoCalculatePercentage()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm" />
           </div>
-
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">শতাংশ (Percentage %) *</label>
-            <input type="text" id="resPercentage" required placeholder="যেনে: 89.5%" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">শতাংশ (%) *</label>
+            <input type="text" id="resPercentage" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm" />
           </div>
-
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">বিভাগ (Division) *</label>
-            <select id="resDivision" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm">
-              <option value="1st Division">1st Division (প্ৰথম বিভাগ)</option>
-              <option value="2nd Division">2nd Division (দ্বিতীয় বিভাগ)</option>
-              <option value="3rd Division">3rd Division (তৃতীয় বিভাগ)</option>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">বিভাগ *</label>
+            <select id="resDivision" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm">
+              <option value="1st Division">1st Division</option>
+              <option value="2nd Division">2nd Division</option>
+              <option value="3rd Division">3rd Division</option>
             </select>
           </div>
-
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Star / Distinction</label>
-            <select id="resHonour" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm">
-              <option value="Distinction">Distinction (ডিষ্টিংচন - ৮৫%+)</option>
-              <option value="Star Marks">Star Marks (ষ্টাৰ মাৰ্ক - ৭৫%+)</option>
-              <option value="None">None (সাধাৰণ উত্তীৰ্ণ)</option>
+            <select id="resHonour" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm">
+              <option value="Distinction">Distinction</option>
+              <option value="Star Marks">Star Marks</option>
+              <option value="None">None</option>
             </select>
           </div>
-
           <div class="sm:col-span-2">
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">লেটাৰ মাৰ্ক (Letter Marks - ৮০+ নম্বৰ পোৱা বিষয়সমূহ)</label>
-            <input type="text" id="resLetters" placeholder="যেনে: ৫টা বিষয়ত লেটাৰ (সমাজ বিজ্ঞান, গণিত, বিজ্ঞান...)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">লেটাৰ মাৰ্ক</label>
+            <input type="text" id="resLetters" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm" />
           </div>
         </div>
-
-        <div class="flex flex-wrap items-center gap-3 pt-2">
-          <button type="submit" id="saveResultBtn" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow transition">
-            ✅ তালিকাভুক্ত কৰক (Save Student)
-          </button>
-          <button type="button" id="cancelEditBtn" onclick="resetResultForm()" class="hidden px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs">
-            Cancel Edit
-          </button>
-        </div>
+        <button type="submit" id="saveResultBtn" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow transition">✅ তালিকাভুক্ত কৰক</button>
       </form>
-
-      <div class="mt-6 pt-5 border-t border-indigo-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/80 p-4 rounded-2xl">
-        <div class="text-xs text-slate-700">
-          <strong class="text-indigo-950 block text-sm">🌐 সকলো ছাত্ৰ-ছাত্ৰী আৰু অভিভাৱকক দেখুৱাবলৈ:</strong>
-          তালিকাখন আপডেট কৰাৰ পিছত সোঁফালৰ বুটামত টিপি কোড কপি কৰক আৰু GitHub-ৰ <code class="bg-slate-200 px-1 rounded">index.html</code> ফাইলত পেষ্ট কৰি ছেভ কৰক।
-        </div>
-        <button type="button" onclick="copyUpdatedHTMLForGitHub()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow shrink-0 transition">
-          📋 GitHub-ৰ বাবে আপডেট কোড কপি কৰক
-        </button>
-      </div>
-      <p class="github-copy-msg hidden text-xs font-bold text-emerald-700 mt-2">✓ সম্পূৰ্ণ আপডেট কৰা HTML কোড কপি হৈছে! এতিয়া GitHub-ৰ index.html-ত পেষ্ট কৰি Commit কৰক।</p>
     </div>
 
     <div id="yearFilterBar" class="flex flex-wrap items-center gap-2 mb-5"></div>
@@ -806,71 +778,17 @@
         <table class="w-full text-left border-collapse">
           <thead>
             <tr class="bg-indigo-950 text-white text-xs sm:text-sm uppercase tracking-wider">
-              <th class="py-3.5 px-4 font-bold" data-as="ক্ৰম" data-en="Sl.">ক্ৰম</th>
-              <th class="py-3.5 px-4 font-bold" data-as="ফটো আৰু নাম" data-en="Photo & Name">ফটো আৰু নাম</th>
-              <th class="py-3.5 px-4 font-bold" data-as="বৰ্ষ" data-en="Year">বৰ্ষ</th>
-              <th class="py-3.5 px-4 font-bold" data-as="নম্বৰ আৰু %" data-en="Marks & %">নম্বৰ আৰু %</th>
-              <th class="py-3.5 px-4 font-bold" data-as="বিভাগ (Division)" data-en="Division">বিভাগ (Division)</th>
-              <th class="py-3.5 px-4 font-bold" data-as="Star / Distinction / Letter" data-en="Honours & Letters">Star / Distinction / Letter</th>
+              <th class="py-3.5 px-4 font-bold">ক্ৰম</th>
+              <th class="py-3.5 px-4 font-bold">ফটো আৰু নাম</th>
+              <th class="py-3.5 px-4 font-bold">বৰ্ষ</th>
+              <th class="py-3.5 px-4 font-bold">নম্বৰ আৰু %</th>
+              <th class="py-3.5 px-4 font-bold">বিভাগ</th>
+              <th class="py-3.5 px-4 font-bold">Star / Distinction / Letter</th>
               <th id="adminActionHeader" class="hidden py-3.5 px-4 font-bold text-right">Action</th>
             </tr>
           </thead>
           <tbody id="resultsTableBody" class="divide-y divide-slate-200 text-xs sm:text-sm"></tbody>
         </table>
-      </div>
-
-      <div class="bg-slate-50 px-5 py-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p class="text-xs text-slate-600 font-medium" data-as="আপোনাৰ সন্তানৰ উজ্জ্বল ভৱিষ্যতৰ বাবে আজিই নামভৰ্তি কৰক।" data-en="Enroll your child today for dedicated guidance and board exam success.">
-          আপোনাৰ সন্তানৰ উজ্জ্বল ভৱিষ্যতৰ বাবে আজিই নামভৰ্তি কৰক।
-        </p>
-        <a href="#admission" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow transition" data-as="নামভৰ্তিৰ বাবে যোগাযোগ কৰক →" data-en="Apply for Admission →">
-          নামভৰ্তিৰ বাবে যোগাযোগ কৰক →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- YouTube & Social Showcase -->
-  <section id="youtube" class="py-14 bg-slate-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-6 space-y-4">
-          <span class="inline-block px-3 py-1 rounded-full bg-red-600/20 border border-red-500/40 text-red-400 text-xs font-extrabold uppercase tracking-wider">OFFICIAL YOUTUBE & TELEGRAM</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold">Gyan kendra26</h2>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed" data-as="ঘৰতে বহি বিনামূলীয়াকৈ SEBA দশম শ্ৰেণীৰ সমাজ বিজ্ঞান, ইতিহাস, ভূগোল, মেপ পইণ্টিং আৰু পৰীক্ষাৰ গুৰুত্বপূৰ্ণ টিপছ শিকিবলৈ আমাৰ YouTube চেনেল Gyan kendra26 চাবস্ক্ৰাইব কৰক আৰু Telegram চেনেলত যোগ দিয়ক।" data-en="Learn SEBA Class 10 Social Science, History, Geography, Assam Map Pointing, and exam strategies for free in simple Assamese on our YouTube channel Gyan kendra26 and Telegram channel.">
-            ঘৰতে বহি বিনামূলীয়াকৈ SEBA দশম শ্ৰেণীৰ সমাজ বিজ্ঞান, ইতিহাস, ভূগোল, মেপ পইণ্টিং আৰু পৰীক্ষাৰ গুৰুত্বপূৰ্ণ টিপছ শিকিবলৈ আমাৰ YouTube চেনেল Gyan kendra26 চাবস্ক্ৰাইব কৰক আৰু Telegram চেনেলত যোগ দিয়ক।
-          </p>
-          <div class="flex flex-wrap gap-3 pt-2">
-            <a href="https://www.youtube.com/@GyanKendra26" target="_blank" rel="noopener" class="px-5 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm shadow-lg transition" data-as="▶ YouTube চেনেল চাওক" data-en="▶ Visit YouTube Channel">
-              ▶ YouTube চেনেল চাওক
-            </a>
-            <a href="https://t.me/+rlJ8R6YyFr1lMDA1" target="_blank" rel="noopener" class="px-5 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm transition" data-as="✈ টেলিগ্ৰামত যোগ দিয়ক" data-en="✈ Join Telegram">
-              ✈ টেলিগ্ৰামত যোগ দিয়ক
-            </a>
-          </div>
-        </div>
-        <div class="lg:col-span-6 grid sm:grid-cols-2 gap-4">
-          <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl">
-            <div class="text-red-400 text-xs font-bold mb-1">PLAYLIST 01</div>
-            <h3 class="font-bold text-base" data-as="দশম শ্ৰেণী ইতিহাস (SEBA)" data-en="Class 10 History (SEBA)">দশম শ্ৰেণী ইতিহাস (SEBA)</h3>
-            <p class="text-xs text-slate-400 mt-1.5" data-as="বংগ বিভাজন, মহাত্মা গান্ধী আৰু ভাৰতৰ স্বাধীনতা সংগ্ৰামৰ অধ্যায়ভিত্তিক আলোচনা।" data-en="Chapter-wise lectures on Partition of Bengal, Mahatma Gandhi & Freedom Movement.">বংগ বিভাজন, মহাত্মা গান্ধী আৰু ভাৰতৰ স্বাধীনতা সংগ্ৰামৰ অধ্যায়ভিত্তিক আলোচনা।</p>
-          </div>
-          <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl">
-            <div class="text-amber-400 text-xs font-bold mb-1">PLAYLIST 02</div>
-            <h3 class="font-bold text-base" data-as="অসম আৰু ভাৰতৰ ভূগোল + মেপ" data-en="Geography & Assam Map Pointing">অসম আৰু ভাৰতৰ ভূগোল + মেপ</h3>
-            <p class="text-xs text-slate-400 mt-1.5" data-as="ৰাষ্ট্ৰীয় উদ্যান, অভয়াৰণ্য, তেল শোধনাগাৰ আৰু উদ্যোগসমূহৰ মানচিত্ৰ অংকন।" data-en="Complete map pointing guide for National Parks, Refineries, Coal Mines & Industries.">ৰাষ্ট্ৰীয় উদ্যান, অভয়াৰণ্য, তেল শোধনাগাৰ আৰু উদ্যোগসমূহৰ মানচিত্ৰ অংকন।</p>
-          </div>
-          <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl">
-            <div class="text-emerald-400 text-xs font-bold mb-1">PLAYLIST 03</div>
-            <h3 class="font-bold text-base" data-as="HSLC MCQ মাৰাথন" data-en="HSLC MCQ Marathon">HSLC MCQ মাৰাথন</h3>
-            <p class="text-xs text-slate-400 mt-1.5" data-as="পৰীক্ষাত আহিবলগীয়া ৪৫ নম্বৰৰ গুৰুত্বপূৰ্ণ MCQ আৰু OMR কৌশল।" data-en="45-mark important MCQ series and OMR exam strategy for board students.">পৰীক্ষাত আহিবলগীয়া ৪৫ নম্বৰৰ গুৰুত্বপূৰ্ণ MCQ আৰু OMR কৌশল।</p>
-          </div>
-          <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl">
-            <div class="text-indigo-400 text-xs font-bold mb-1">PLAYLIST 04</div>
-            <h3 class="font-bold text-base" data-as="ৰাজনীতি আৰু অৰ্থনীতি বিজ্ঞান" data-en="Polity & Economics">ৰাজনীতি আৰু অৰ্থনীতি বিজ্ঞান</h3>
-            <p class="text-xs text-slate-400 mt-1.5" data-as="ভাৰতীয় গণতন্ত্ৰ, আন্তৰ্জাতিক সংস্থা, মুদ্ৰা আৰু বেংক ব্যৱস্থাৰ সহজ ব্যাখ্যা।" data-en="Easy explanations of Indian Democracy, International Organizations, Money & Banking.">ভাৰতীয় গণতন্ত্ৰ, আন্তৰ্জাতিক সংস্থা, মুদ্ৰা আৰু বেংক ব্যৱস্থাৰ সহজ ব্যাখ্যা।</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -880,29 +798,26 @@
     <div class="bg-white rounded-3xl shadow-md border border-slate-200 overflow-hidden grid md:grid-cols-12">
       <div class="md:col-span-5 bg-indigo-900 text-white p-7 sm:p-8 flex flex-col justify-between">
         <div>
-          <h3 class="text-2xl font-extrabold" data-as="নামভৰ্তি আৰু যোগাযোগ" data-en="Admission & Contact">নামভৰ্তি আৰু যোগাযোগ</h3>
-          <p class="text-indigo-200 text-sm mt-2 leading-relaxed" data-as="জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰত নামভৰ্তি বা গাইডবুক/PDF নোটছৰ বাবে তলৰ ফৰ্মখন পূৰণ কৰি পোনপটীয়াকৈ WhatsApp-ত বাৰ্তা পঠাওক।" data-en="Fill out the quick form to send a direct WhatsApp inquiry for tuition admission or study materials.">
-            জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰত নামভৰ্তি বা গাইডবুক/PDF নোটছৰ বাবে তলৰ ফৰ্মখন পূৰণ কৰি পোনপটীয়াকৈ WhatsApp-ত বাৰ্তা পঠাওক।
-          </p>
+          <h3 class="text-2xl font-extrabold">নামভৰ্তি আৰু যোগাযোগ</h3>
+          <p class="text-indigo-200 text-sm mt-2 leading-relaxed">জ্ঞান কেন্দ্ৰ টিউচন চেণ্টাৰত নামভৰ্তি বা গাইডবুক/PDF নোটছৰ বাবে তলৰ ফৰ্মখন পূৰণ কৰি পোনপটীয়াকৈ WhatsApp-ত বাৰ্তা পঠাওক।</p>
         </div>
         <div class="space-y-3 text-xs sm:text-sm text-indigo-100 mt-8">
           <p><strong>🏫 Centre:</strong> Gyan Kendra Tuition Center, Boromera</p>
           <p><strong>📍 Address:</strong> Vill. Boromera, P.O. & P.S. Agomani, Dist. Dhubri, Assam - 783335</p>
           <p><strong>📱 WhatsApp:</strong> +91 78967 23247</p>
-          <p><strong>▶ YouTube:</strong> <a href="https://www.youtube.com/@GyanKendra26" target="_blank" rel="noopener" class="underline hover:text-amber-300">@GyanKendra26</a></p>
-          <p><strong>✈ Telegram:</strong> <a href="https://t.me/+rlJ8R6YyFr1lMDA1" target="_blank" rel="noopener" class="underline hover:text-amber-300">Join Official Channel</a></p>
+          <p><strong>▶ YouTube:</strong> <a href="https://www.youtube.com/@GyanKendra26" target="_blank" rel="noopener" class="underline">@GyanKendra26</a></p>
         </div>
       </div>
 
       <form onsubmit="sendWhatsAppInquiry(event)" class="md:col-span-7 p-7 sm:p-8 space-y-4">
         <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-as="ছাত্ৰ/ছাত্ৰীৰ নাম *" data-en="Student Name *">ছাত্ৰ/ছাত্ৰীৰ নাম *</label>
-          <input type="text" id="studentName" required placeholder="যেনে: মিহিৰ মালী / Mihir Mali" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm" />
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">ছাত্ৰ/ছাত্ৰীৰ নাম *</label>
+          <input type="text" id="studentName" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm" />
         </div>
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-as="শ্ৰেণী (Class) *" data-en="Class *">শ্ৰেণী (Class) *</label>
-            <select id="studentClass" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm bg-white">
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">শ্ৰেণী (Class) *</label>
+            <select id="studentClass" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm bg-white">
               <option value="Nursery - KG">Nursery / KG</option>
               <option value="Class I - V">Class I – V</option>
               <option value="Class VI - VIII">Class VI – VIII</option>
@@ -911,8 +826,8 @@
             </select>
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-as="পাঠদানৰ মাধ্যম (Mode)" data-en="Learning Mode">পাঠদানৰ মাধ্যম (Mode)</label>
-            <select id="studyMode" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm bg-white">
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">মাধ্যম (Mode)</label>
+            <select id="studyMode" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm bg-white">
               <option value="Offline (Boromera Center)">Offline (বৰমেৰা চেণ্টাৰ)</option>
               <option value="Online (Teachmint Live)">Online (Teachmint Live)</option>
               <option value="₹199 Social Science Guidebook">₹199 সমাজ বিজ্ঞান গাইডবুক</option>
@@ -921,12 +836,10 @@
           </div>
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-as="বিশেষ বাৰ্তা / বিষয় (Optional)" data-en="Subjects / Message">বিশেষ বাৰ্তা / বিষয় (Optional)</label>
-          <textarea id="studentMsg" rows="2" placeholder="যেনে: দশম শ্ৰেণীৰ সমাজ বিজ্ঞান গাইডবুক বা টিউচন নামভৰ্তিৰ বিষয়ে জানিব বিচাৰোঁ..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-600 focus:outline-none text-sm"></textarea>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">বিশেষ বাৰ্তা</label>
+          <textarea id="studentMsg" rows="2" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm"></textarea>
         </div>
-        <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-md transition flex items-center justify-center gap-2" data-as="💬 WhatsApp-ত বাৰ্তা পঠাওক" data-en="💬 Send Inquiry on WhatsApp">
-          💬 WhatsApp-ত বাৰ্তা পঠাওক
-        </button>
+        <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition">💬 WhatsApp-ত বাৰ্তা পঠাওক</button>
       </form>
     </div>
   </section>
@@ -935,47 +848,31 @@
   <footer class="bg-slate-950 text-slate-400 py-8 border-t border-slate-800 text-center text-xs sm:text-sm">
     <div class="max-w-7xl mx-auto px-4 space-y-2">
       <p class="text-white font-bold">© 2026 Dipankar Mali (Mali Sir) • Gyan Kendra Tuition Center, Boromera</p>
-      <p>Vill. Boromera, P.O. & P.S. Agomani, Dist. Dhubri, Assam - 783335 | <a href="https://www.youtube.com/@GyanKendra26" target="_blank" rel="noopener" class="text-indigo-400 hover:underline">YouTube: @GyanKendra26</a></p>
+      <p>Vill. Boromera, P.O. & P.S. Agomani, Dist. Dhubri, Assam - 783335</p>
     </div>
   </footer>
 
   <!-- Floating Quick Navigation Bar -->
   <div class="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 bg-slate-900/95 backdrop-blur-md text-white px-3 py-2 rounded-full shadow-2xl border border-white/15 flex items-center gap-1.5 sm:gap-2.5 text-xs font-bold">
-    <button onclick="goBackSmart()" class="px-3 py-1.5 rounded-full hover:bg-white/15 transition flex items-center gap-1" title="Go Back">
-      <span>←</span>
-      <span>Back</span>
-    </button>
+    <button onclick="goBackSmart()" class="px-3 py-1.5 rounded-full hover:bg-white/15 transition">← Back</button>
     <span class="text-slate-600">|</span>
-    <a href="#home" class="px-3 py-1.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-1" title="Home">
-      <span>🏠</span>
-      <span>Home</span>
-    </a>
+    <a href="#home" class="px-3 py-1.5 rounded-full bg-indigo-600 text-white">🏠 Home</a>
     <span class="text-slate-600">|</span>
-    <button onclick="openGlobalSearch()" class="px-3 py-1.5 rounded-full hover:bg-white/15 transition flex items-center gap-1" title="Search">
-      <span>🔍</span>
-      <span>Search</span>
-    </button>
+    <button onclick="openGlobalSearch()" class="px-3 py-1.5 rounded-full hover:bg-white/15 transition">🔍 Search</button>
     <span class="text-slate-600">|</span>
-    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="px-2.5 py-1.5 rounded-full hover:bg-white/15 text-amber-400 transition" title="Scroll to Top">
-      ↑ Top
-    </button>
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="px-2.5 py-1.5 rounded-full hover:bg-white/15 text-amber-400">↑ Top</button>
   </div>
 
   <!-- Global Search Modal -->
   <div id="globalSearchModal" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-start justify-center p-4 pt-16 sm:pt-24">
     <div class="bg-white rounded-3xl max-w-xl w-full p-5 sm:p-6 shadow-2xl border border-slate-200">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-        <h3 class="text-base sm:text-lg font-extrabold text-slate-900 flex items-center gap-2">
-          <span>🔍</span>
-          <span>ৱেবছাইটত বিচাৰক (Search Portal)</span>
-        </h3>
+        <h3 class="text-base sm:text-lg font-extrabold text-slate-900">🔍 ৱেবছাইটত বিচাৰক (Search Portal)</h3>
         <button onclick="closeGlobalSearch()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold">✕</button>
       </div>
-
       <div class="mt-4">
         <input type="text" id="globalSearchInput" oninput="runGlobalSearch()" placeholder="যেনে: History Chapter 1, 199, Class Routine, Woodcraft, Mock Test..." class="w-full px-4 py-3 rounded-2xl border-2 border-indigo-200 focus:border-indigo-600 focus:outline-none text-sm font-semibold" />
       </div>
-
       <div id="globalSearchResults" class="mt-4 max-h-80 overflow-y-auto divide-y divide-slate-100 space-y-1"></div>
     </div>
   </div>
@@ -987,7 +884,6 @@
       <span class="inline-block px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 text-xs font-bold mb-2">UPI INSTANT ORDER</span>
       <h3 id="modalTitle" class="text-lg font-extrabold text-slate-900">Product Name</h3>
       <p class="text-sm text-slate-600 mt-1">তলত দিয়া UPI ID-ত মাচুল পৰিশোধ কৰি WhatsApp-ত স্ক্ৰীণশ্বট পঠাওক—লগে লগে PDF লাভ কৰিব।</p>
-
       <div class="my-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-2">
         <div class="text-xs text-slate-500 font-semibold">Payable Amount</div>
         <div id="modalPrice" class="text-3xl font-extrabold text-indigo-700">₹199</div>
@@ -995,15 +891,12 @@
           <div class="text-xs text-slate-500">Official UPI ID (Dipankar Mali)</div>
           <div class="flex items-center justify-center gap-2 mt-1">
             <code id="upiIdText" class="px-3 py-1 rounded bg-white border border-slate-300 font-bold text-slate-900 text-sm">7896723247@upi</code>
-            <button onclick="copyUpi()" class="px-2.5 py-1 rounded bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700">Copy</button>
+            <button onclick="copyUpi()" class="px-2.5 py-1 rounded bg-indigo-600 text-white text-xs font-bold">Copy</button>
           </div>
           <p id="copyStatus" class="text-[11px] text-emerald-600 font-bold mt-1 hidden">✓ UPI ID Copied!</p>
         </div>
       </div>
-
-      <a id="whatsappOrderLink" href="#" target="_blank" rel="noopener" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow transition">
-        ✅ Payment স্ক্ৰীণশ্বট WhatsApp-ত পঠাওক
-      </a>
+      <a id="whatsappOrderLink" href="#" target="_blank" rel="noopener" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow transition">✅ Payment স্ক্ৰীণশ্বট WhatsApp-ত পঠাওক</a>
     </div>
   </div>
 
@@ -1016,12 +909,20 @@
     let currentUploadedStaffPhotoBase64 = '';
     let currentUploadedGalleryBase64 = '';
     const ADMIN_PIN = '2026';
+
+    const USER_SESSION_KEY = 'gyankendra_current_student_v1';
+    const VISITOR_LOG_KEY = 'gyankendra_visitor_log_v1';
+    const BLOCKED_NUMBERS_KEY = 'gyankendra_blocked_numbers_v1';
     const ROUTINE_STORAGE_KEY = 'gyankendra_class_routine_v1';
     const GALLERY_STORAGE_KEY = 'gyankendra_photo_gallery_v1';
     const RESULTS_STORAGE_KEY = 'gyankendra_hslc_results_v1';
     const STAFF_STORAGE_KEY = 'gyankendra_teaching_staff_v1';
     const CHAPTER_STORAGE_KEY = 'gyankendra_chapter_pdfs_v1';
     const TOPICS_STORAGE_KEY = 'gyankendra_running_topics_v1';
+
+    /* BLOCKED_NUMBERS_START */
+    const DEFAULT_BLOCKED_NUMBERS = [];
+    /* BLOCKED_NUMBERS_END */
 
     /* ROUTINE_DATA_START */
     const DEFAULT_ROUTINE = [
@@ -1199,6 +1100,168 @@
     ];
     /* RESULTS_DATA_END */
 
+    /* --- STUDENT ACCESS GATE & BLOCK SYSTEM --- */
+    function getBlockedNumbers() {
+      try {
+        const saved = localStorage.getItem(BLOCKED_NUMBERS_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed)) return [...new Set([...DEFAULT_BLOCKED_NUMBERS, ...parsed])];
+        }
+      } catch (e) {}
+      return [...DEFAULT_BLOCKED_NUMBERS];
+    }
+
+    function saveBlockedNumbers(arr) {
+      localStorage.setItem(BLOCKED_NUMBERS_KEY, JSON.stringify([...new Set(arr)]));
+      renderBlockedNumbers();
+      renderVisitorLogs();
+    }
+
+    function getVisitorLogs() {
+      try {
+        const saved = localStorage.getItem(VISITOR_LOG_KEY);
+        if (saved) return JSON.parse(saved) || [];
+      } catch (e) {}
+      return [];
+    }
+
+    function checkStudentAccessGate() {
+      const blocked = getBlockedNumbers();
+      try {
+        const currentUser = JSON.parse(localStorage.getItem(USER_SESSION_KEY) || 'null');
+        if (currentUser && currentUser.phone) {
+          if (blocked.includes(currentUser.phone)) {
+            document.getElementById('studentAccessGate').classList.remove('hidden');
+            document.getElementById('blockedAlertBox').classList.remove('hidden');
+            return;
+          }
+          document.getElementById('studentAccessGate').classList.add('hidden');
+          document.getElementById('loggedStudentBadge').textContent = `👤 ${currentUser.name} (${currentUser.className})`;
+          return;
+        }
+      } catch (e) {}
+      document.getElementById('studentAccessGate').classList.remove('hidden');
+    }
+
+    function submitStudentAccess(e) {
+      e.preventDefault();
+      const name = document.getElementById('gateName').value.trim();
+      const className = document.getElementById('gateClass').value;
+      const phone = document.getElementById('gatePhone').value.trim();
+      const blocked = getBlockedNumbers();
+
+      if (blocked.includes(phone)) {
+        document.getElementById('blockedAlertBox').classList.remove('hidden');
+        return;
+      }
+
+      document.getElementById('blockedAlertBox').classList.add('hidden');
+      const userObj = { name, className, phone, time: new Date().toLocaleString('en-IN') };
+      localStorage.setItem(USER_SESSION_KEY, JSON.stringify(userObj));
+
+      const logs = getVisitorLogs().filter(v => v.phone !== phone);
+      logs.unshift(userObj);
+      localStorage.setItem(VISITOR_LOG_KEY, JSON.stringify(logs.slice(0, 50)));
+
+      document.getElementById('studentAccessGate').classList.add('hidden');
+      document.getElementById('loggedStudentBadge').textContent = `👤 ${name} (${className})`;
+    }
+
+    function bypassGateAsAdmin() {
+      const pin = prompt('Admin Login PIN দিয়ক:');
+      if (pin === ADMIN_PIN) {
+        const adminSession = { name: 'Dipankar Mali (Admin)', className: 'Admin', phone: '7896723247', time: new Date().toLocaleString('en-IN') };
+        localStorage.setItem(USER_SESSION_KEY, JSON.stringify(adminSession));
+        document.getElementById('studentAccessGate').classList.add('hidden');
+        document.getElementById('loggedStudentBadge').textContent = '🔓 Admin Mode';
+        unlockAdminDirectly();
+      } else if (pin !== null) {
+        alert('❌ ভুল পিন!');
+      }
+    }
+
+    function logoutStudentGate() {
+      localStorage.removeItem(USER_SESSION_KEY);
+      document.getElementById('blockedAlertBox').classList.add('hidden');
+      document.getElementById('studentAccessGate').classList.remove('hidden');
+    }
+
+    function blockNumberManual(e) {
+      e.preventDefault();
+      const num = document.getElementById('manualBlockPhone').value.trim();
+      if (!/^[0-9]{10}$/.test(num)) return;
+      const blocked = getBlockedNumbers();
+      if (!blocked.includes(num)) {
+        blocked.push(num);
+        saveBlockedNumbers(blocked);
+      }
+      document.getElementById('manualBlockPhone').value = '';
+      alert(`🚫 ${num} নম্বৰটো ব্লক কৰা হ’ল! সকলোৰে মোবাইলত কাৰ্যকৰী কৰিবলৈ "GitHub-ৰ বাবে আপডেট কোড কপি কৰক" টিপি ছেভ কৰিব।`);
+    }
+
+    function blockSpecificNumber(num) {
+      const blocked = getBlockedNumbers();
+      if (!blocked.includes(num)) {
+        blocked.push(num);
+        saveBlockedNumbers(blocked);
+      }
+    }
+
+    function unblockNumber(num) {
+      const updated = getBlockedNumbers().filter(n => n !== num);
+      localStorage.setItem(BLOCKED_NUMBERS_KEY, JSON.stringify(updated));
+      renderBlockedNumbers();
+      renderVisitorLogs();
+    }
+
+    function renderBlockedNumbers() {
+      const blocked = getBlockedNumbers();
+      const box = document.getElementById('blockedNumbersList');
+      if (blocked.length === 0) {
+        box.innerHTML = `<span class="text-xs text-slate-400">বৰ্তমান কোনো নম্বৰ ব্লক কৰা হোৱা নাই।</span>`;
+        return;
+      }
+      box.innerHTML = blocked.map(num => `
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-100 text-red-900 text-xs font-bold">
+          <span>🚫 ${escapeHtml(num)}</span>
+          <button type="button" onclick="unblockNumber('${escapeHtml(num)}')" class="text-red-700 hover:text-black font-extrabold">✕</button>
+        </span>
+      `).join('');
+    }
+
+    function renderVisitorLogs() {
+      const logs = getVisitorLogs();
+      const blocked = getBlockedNumbers();
+      const container = document.getElementById('visitorLogList');
+      if (logs.length === 0) {
+        container.innerHTML = `<div class="py-4 text-slate-400">এতিয়ালৈকে কোনো নতুন ভিজিটৰ লগ নাই।</div>`;
+        return;
+      }
+      container.innerHTML = logs.map(v => {
+        const isBlocked = blocked.includes(v.phone);
+        return `
+          <div class="py-2 flex items-center justify-between gap-2">
+            <div>
+              <span class="font-bold text-slate-900">${escapeHtml(v.name)}</span>
+              <span class="text-[11px] text-indigo-700 font-semibold ml-1">(${escapeHtml(v.className)})</span>
+              <div class="text-[11px] text-slate-500">📞 ${escapeHtml(v.phone)} • ${escapeHtml(v.time || '')}</div>
+            </div>
+            ${isBlocked
+              ? `<button type="button" onclick="unblockNumber('${escapeHtml(v.phone)}')" class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">Unblock</button>`
+              : `<button type="button" onclick="blockSpecificNumber('${escapeHtml(v.phone)}')" class="px-2 py-1 rounded bg-rose-100 hover:bg-rose-200 text-rose-800 text-[10px] font-bold">🚫 Block</button>`
+            }
+          </div>
+        `;
+      }).join('');
+    }
+
+    function clearVisitorLog() {
+      if (!confirm('ভিজিটৰ লগ মচিব বিচাৰেনে?')) return;
+      localStorage.removeItem(VISITOR_LOG_KEY);
+      renderVisitorLogs();
+    }
+
     function filterMaterials(category, btn) {
       document.querySelectorAll('.mat-filter').forEach(b => {
         b.classList.remove('bg-indigo-600', 'text-white');
@@ -1235,26 +1298,18 @@
     function renderRoutineTable() {
       const data = getRoutineData();
       const tbody = document.getElementById('routineTableBody');
-      if (data.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-500">কোনো সময়সূচী যোগ কৰা হোৱা নাই।</td></tr>`;
-        return;
-      }
-
       tbody.innerHTML = data.map(item => {
         const actions = isAdminUnlocked ? `
           <td class="py-3.5 px-4 text-right whitespace-nowrap">
-            <button onclick="editRoutineItem(${item.id})" class="px-2.5 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-bold mr-1">✏️ Edit</button>
-            <button onclick="deleteRoutineItem(${item.id})" class="px-2.5 py-1 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">🗑️ Delete</button>
+            <button onclick="editRoutineItem(${item.id})" class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 text-xs font-bold mr-1">✏️ Edit</button>
+            <button onclick="deleteRoutineItem(${item.id})" class="px-2.5 py-1 rounded-lg bg-red-100 text-red-800 text-xs font-bold">🗑️ Delete</button>
           </td>
         ` : '';
-
         return `
           <tr class="hover:bg-indigo-50/40 transition">
             <td class="py-3.5 px-4 font-extrabold text-indigo-800">${escapeHtml(item.className)}</td>
             <td class="py-3.5 px-4 font-semibold text-slate-700">${escapeHtml(item.days)}</td>
-            <td class="py-3.5 px-4">
-              <span class="inline-block px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 font-bold text-xs border border-emerald-200">🕒 ${escapeHtml(item.time)}</span>
-            </td>
+            <td class="py-3.5 px-4"><span class="inline-block px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 font-bold text-xs border border-emerald-200">🕒 ${escapeHtml(item.time)}</span></td>
             <td class="py-3.5 px-4 font-semibold text-slate-800">${escapeHtml(item.subject)}</td>
             <td class="py-3.5 px-4 text-slate-600 font-medium">${escapeHtml(item.teacher || '')}</td>
             ${actions}
@@ -1275,16 +1330,12 @@
 
       if (editId) {
         const idx = data.findIndex(r => String(r.id) === String(editId));
-        if (idx !== -1) {
-          data[idx] = { ...data[idx], className, days, time, subject, teacher };
-        }
+        if (idx !== -1) data[idx] = { ...data[idx], className, days, time, subject, teacher };
       } else {
         data.push({ id: Date.now(), className, days, time, subject, teacher });
       }
-
       saveRoutineData(data);
       resetRoutineForm();
-      alert('✅ ক্লাছৰ সময়সূচী সফলভাৱে ছেভ কৰা হ’ল!');
     }
 
     function editRoutineItem(id) {
@@ -1296,23 +1347,18 @@
       document.getElementById('routTime').value = item.time;
       document.getElementById('routSubject').value = item.subject;
       document.getElementById('routTeacher').value = item.teacher || '';
-
-      document.getElementById('routineFormTitle').textContent = '✏️ সময়সূচী সম্পাদনা (Edit Routine)';
-      document.getElementById('saveRoutineBtn').textContent = '💾 পৰিৱৰ্তন ছেভ কৰক';
       document.getElementById('cancelRoutineEditBtn').classList.remove('hidden');
       document.getElementById('routineAdminPanel').scrollIntoView({ behavior: 'smooth' });
     }
 
     function deleteRoutineItem(id) {
-      if (!confirm('আপুনি নিশ্চিতনে যে এই সময়সূচীটো ডিলিট কৰিব বিচাৰে?')) return;
+      if (!confirm('সময়সূচীটো ডিলিট কৰিব বিচাৰেনে?')) return;
       saveRoutineData(getRoutineData().filter(r => String(r.id) !== String(id)));
     }
 
     function resetRoutineForm() {
       document.getElementById('routineForm').reset();
       document.getElementById('editRoutineId').value = '';
-      document.getElementById('routineFormTitle').textContent = '➕ নতুন ক্লাছৰ সময়সূচী যোগ কৰক';
-      document.getElementById('saveRoutineBtn').textContent = '✅ সময়সূচী যোগ কৰক (Save Routine)';
       document.getElementById('cancelRoutineEditBtn').classList.add('hidden');
     }
 
@@ -1356,10 +1402,7 @@
 
     function saveGalleryPhoto(e) {
       e.preventDefault();
-      if (!currentUploadedGalleryBase64) {
-        alert('অনুগ্ৰহ কৰি এখন ফটো বাছনি কৰক।');
-        return;
-      }
+      if (!currentUploadedGalleryBase64) return;
       const caption = document.getElementById('galleryCaption').value.trim();
       const data = getGalleryData();
       data.unshift({ id: Date.now(), caption, image: currentUploadedGalleryBase64 });
@@ -1367,34 +1410,25 @@
       document.getElementById('galleryForm').reset();
       currentUploadedGalleryBase64 = '';
       document.getElementById('galleryPhotoPreview').src = 'https://placehold.co/160x120/e0e7ff/3730a3?text=Photo';
-      alert('✅ গেলাৰীত ফটো সফলভাৱে যোগ কৰা হ’ল!');
     }
 
     function deleteGalleryPhoto(id) {
-      if (!confirm('আপুনি নিশ্চিতনে যে এই ফটোখন গেলাৰীৰ পৰা ডিলিট কৰিব বিচাৰে?')) return;
+      if (!confirm('ফটোখন ডিলিট কৰিব বিচাৰেনে?')) return;
       saveGalleryData(getGalleryData().filter(g => String(g.id) !== String(id)));
     }
 
     function renderGalleryGrid() {
       const data = getGalleryData();
       const grid = document.getElementById('galleryGrid');
-      if (data.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-10 text-center text-slate-500 text-sm bg-white rounded-2xl border border-slate-200">বৰ্তমান গেলাৰীত কোনো ফটো নাই।</div>`;
-        return;
-      }
-
       grid.innerHTML = data.map(item => {
-        const delBtn = isAdminUnlocked ? `
-          <button onclick="deleteGalleryPhoto(${item.id})" class="mt-3 px-3 py-1 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">🗑️ Delete Photo</button>
-        ` : '';
-
+        const delBtn = isAdminUnlocked ? `<button onclick="deleteGalleryPhoto(${item.id})" class="mt-3 px-3 py-1 rounded-lg bg-red-100 text-red-800 text-xs font-bold">🗑️ Delete Photo</button>` : '';
         return `
-          <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between">
             <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
-              <img src="${item.image}" alt="${escapeHtml(item.caption)}" onerror="this.onerror=null;this.src='https://placehold.co/600x450/e0e7ff/3730a3?text=Gyan+Kendra';" class="w-full h-full object-cover object-top hover:scale-105 transition duration-300" />
+              <img src="${item.image}" alt="${escapeHtml(item.caption)}" class="w-full h-full object-cover object-top" />
             </div>
             <div class="p-4">
-              <p class="text-xs sm:text-sm font-bold text-slate-800 leading-snug">${escapeHtml(item.caption)}</p>
+              <p class="text-xs sm:text-sm font-bold text-slate-800">${escapeHtml(item.caption)}</p>
               ${delBtn}
             </div>
           </div>
@@ -1414,23 +1448,17 @@
 
     function loadRunningTopics() {
       const saved = localStorage.getItem(TOPICS_STORAGE_KEY);
-      if (saved && saved.trim() !== '') {
-        document.getElementById('runningTopicsText').textContent = saved;
-      }
+      if (saved && saved.trim() !== '') document.getElementById('runningTopicsText').textContent = saved;
     }
 
     function editRunningTopics() {
       const pin = prompt('Most Important Topics সলনি কৰিবলৈ Admin PIN দিয়ক:');
-      if (pin !== ADMIN_PIN) {
-        if (pin !== null) alert('❌ ভুল পিন!');
-        return;
-      }
+      if (pin !== ADMIN_PIN) return;
       const current = document.getElementById('runningTopicsText').textContent.trim();
-      const updated = prompt('নতুন Most Important Topics সমূহ লিখক (মাজত • দি লিখিব):', current);
+      const updated = prompt('নতুন Most Important Topics সমূহ লিখক:', current);
       if (updated && updated.trim() !== '') {
         localStorage.setItem(TOPICS_STORAGE_KEY, updated.trim());
         document.getElementById('runningTopicsText').textContent = updated.trim();
-        alert('✅ Running Most Important Topics আপডেট কৰা হ’ল!');
       }
     }
 
@@ -1449,48 +1477,31 @@
     function runGlobalSearch() {
       const q = document.getElementById('globalSearchInput').value.trim().toLowerCase();
       const container = document.getElementById('globalSearchResults');
-
       const quickLinks = [
-        { type: '₹199 Guidebook', title: '📘 Class 10 Social Science Complete Guidebook (PDF)', sub: 'History, Geography, Polity & Economics Complete Notes (₹199)', action: () => { closeGlobalSearch(); document.getElementById('materials').scrollIntoView({ behavior: 'smooth' }); } },
+        { type: '₹199 Guidebook', title: '📘 Class 10 Social Science Complete Guidebook (PDF)', sub: 'History, Geography, Polity & Economics (₹199)', action: () => { closeGlobalSearch(); document.getElementById('materials').scrollIntoView({ behavior: 'smooth' }); } },
         { type: 'Free PDF', title: '⬇ History Ch-1: বংগ বিভাজন আৰু স্বদেশী আন্দোলন (অনুশীলনী সমাধান)', sub: 'Free Textbook Exercise Solutions PDF', action: () => { closeGlobalSearch(); document.getElementById('materials').scrollIntoView({ behavior: 'smooth' }); } },
-        { type: 'Free PDF', title: '⬇ History Ch-1: অতিৰিক্ত গুৰুত্বপূৰ্ণ প্ৰশ্নোত্তৰ (Additional Q&A)', sub: 'Free Exam-Oriented Extra Questions & Answers PDF', action: () => { closeGlobalSearch(); document.getElementById('materials').scrollIntoView({ behavior: 'smooth' }); } },
+        { type: 'Free PDF', title: '⬇ History Ch-1: অতিৰিক্ত গুৰুত্বপূৰ্ণ প্ৰশ্নোত্তৰ (Additional Q&A)', sub: 'Free Extra Q&A PDF', action: () => { closeGlobalSearch(); document.getElementById('materials').scrollIntoView({ behavior: 'smooth' }); } },
         { type: 'Page', title: '📝 Mock Test Paper & All 35 Districts Question Bank', sub: '2025, 2026, 2027 Solved & Unsolved PDFs', action: () => { window.location.href = 'test-papers.html'; } },
         { type: 'Section', title: '📚 ₹29 Chapter-wise PDF Store (All Subjects)', sub: 'Social Science, Science, English, Assamese, Sanskrit, Hindi, Woodcraft', action: () => { closeGlobalSearch(); document.getElementById('chapter-store').scrollIntoView({ behavior: 'smooth' }); } },
-        { type: 'Section', title: '🕒 Class Routine (টিউচন চেণ্টাৰৰ সময়সূচী)', sub: 'Nursery to Class 10 Batch Timings', action: () => { closeGlobalSearch(); document.getElementById('routine').scrollIntoView({ behavior: 'smooth' }); } },
-        { type: 'Section', title: '📸 Photo Gallery (ফটো গেলাৰী)', sub: 'Classroom & Seminar Photos', action: () => { closeGlobalSearch(); document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' }); } },
-        { type: 'Section', title: '👨‍🏫 Teaching Staff & 🏆 HSLC Results', sub: 'Gyan Kendra Faculty & Top Achievers', action: () => { closeGlobalSearch(); document.getElementById('staff').scrollIntoView({ behavior: 'smooth' }); } }
+        { type: 'Section', title: '🕒 Class Routine & 📸 Photo Gallery', sub: 'Timings & Campus Photos', action: () => { closeGlobalSearch(); document.getElementById('routine').scrollIntoView({ behavior: 'smooth' }); } }
       ];
 
       const chapters = getChapterPdfData().map(c => ({
         type: `₹${c.price} PDF`,
         title: `${c.subject}: ${c.title}`,
         sub: c.description || c.className,
-        action: () => {
-          closeGlobalSearch();
-          setSubjectFilter(c.subject);
-          document.getElementById('chapter-store').scrollIntoView({ behavior: 'smooth' });
-        }
+        action: () => { closeGlobalSearch(); setSubjectFilter(c.subject); document.getElementById('chapter-store').scrollIntoView({ behavior: 'smooth' }); }
       }));
 
       const allItems = [...quickLinks, ...chapters];
-      const matches = q === '' ? quickLinks : allItems.filter(it =>
-        it.title.toLowerCase().includes(q) ||
-        (it.sub || '').toLowerCase().includes(q) ||
-        it.type.toLowerCase().includes(q)
-      );
+      const matches = q === '' ? quickLinks : allItems.filter(it => it.title.toLowerCase().includes(q) || (it.sub || '').toLowerCase().includes(q));
 
       container.innerHTML = '';
       matches.slice(0, 12).forEach(item => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'w-full text-left p-3 rounded-xl hover:bg-indigo-50 transition flex items-start justify-between gap-3';
-        btn.innerHTML = `
-          <div>
-            <div class="text-sm font-extrabold text-slate-900">${escapeHtml(item.title)}</div>
-            <div class="text-xs text-slate-500 mt-0.5">${escapeHtml(item.sub)}</div>
-          </div>
-          <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 text-[10px] font-extrabold shrink-0">${escapeHtml(item.type)}</span>
-        `;
+        btn.innerHTML = `<div><div class="text-sm font-extrabold text-slate-900">${escapeHtml(item.title)}</div><div class="text-xs text-slate-500 mt-0.5">${escapeHtml(item.sub)}</div></div><span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 text-[10px] font-extrabold shrink-0">${escapeHtml(item.type)}</span>`;
         btn.onclick = item.action;
         container.appendChild(btn);
       });
@@ -1544,10 +1555,7 @@
       const query = (document.getElementById('chapterSearchInput')?.value || '').trim().toLowerCase();
       const filtered = data.filter(item => {
         const matchesSub = selectedSubjectFilter === 'ALL' || item.subject === selectedSubjectFilter;
-        const matchesQuery = !query ||
-          item.title.toLowerCase().includes(query) ||
-          item.subject.toLowerCase().includes(query) ||
-          (item.description || '').toLowerCase().includes(query);
+        const matchesQuery = !query || item.title.toLowerCase().includes(query) || item.subject.toLowerCase().includes(query) || (item.description || '').toLowerCase().includes(query);
         return matchesSub && matchesQuery;
       });
 
@@ -1557,55 +1565,36 @@
         return;
       }
 
-      const subjectColors = {
-        'Social Science': 'bg-indigo-100 text-indigo-800',
-        'General Science': 'bg-emerald-100 text-emerald-800',
-        'English': 'bg-sky-100 text-sky-800',
-        'Assamese': 'bg-amber-100 text-amber-900',
-        'Sanskrit': 'bg-purple-100 text-purple-800',
-        'Hindi': 'bg-rose-100 text-rose-800',
-        'Woodcraft': 'bg-teal-100 text-teal-800'
-      };
-
       grid.innerHTML = filtered.map(item => {
-        const badgeStyle = subjectColors[item.subject] || 'bg-slate-100 text-slate-800';
         const priceNum = Number(item.price) || 0;
         const isFree = priceNum === 0;
-
-        let actionButton = '';
-        if (isFree && item.link) {
-          actionButton = `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow transition">⬇ Free PDF</a>`;
-        } else {
-          const safeTitle = `${item.subject} - ${item.title}`.replace(/'/g, "\\'");
-          actionButton = `<button onclick="openOrderModal('${safeTitle}', '${priceNum}')" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow transition">${currentLang === 'as' ? '🛒 ক্ৰয় কৰক' : '🛒 Buy PDF'}</button>`;
-        }
+        let actionButton = isFree && item.link
+          ? `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold">⬇ Free PDF</a>`
+          : `<button onclick="openOrderModal('${`${item.subject} - ${item.title}`.replace(/'/g, "\\'")}', '${priceNum}')" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold">🛒 ক্ৰয় কৰক</button>`;
 
         const adminControls = isAdminUnlocked ? `
-          <div class="mt-3 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
-            ${item.link ? `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener" class="text-[11px] font-bold text-indigo-600 hover:underline">🔗 Open Drive PDF</a>` : `<span class="text-[11px] text-slate-400">No Drive link added</span>`}
-            <div class="flex items-center gap-1.5">
-              <button onclick="editChapterPdf(${item.id})" class="px-2.5 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-bold">✏️ Edit</button>
-              <button onclick="deleteChapterPdf(${item.id})" class="px-2.5 py-1 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">🗑️ Delete</button>
+          <div class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+            ${item.link ? `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener" class="text-[11px] font-bold text-indigo-600 underline">🔗 Drive Link</a>` : `<span class="text-[11px] text-slate-400">No link</span>`}
+            <div class="flex gap-1.5">
+              <button onclick="editChapterPdf(${item.id})" class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 text-xs font-bold">✏️ Edit</button>
+              <button onclick="deleteChapterPdf(${item.id})" class="px-2.5 py-1 rounded-lg bg-red-100 text-red-800 text-xs font-bold">🗑️ Delete</button>
             </div>
           </div>
         ` : '';
 
         return `
-          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2.5">
-                <span class="px-2.5 py-0.5 rounded-md ${badgeStyle} text-[11px] font-extrabold">${escapeHtml(item.subject)}</span>
+                <span class="px-2.5 py-0.5 rounded-md bg-indigo-100 text-indigo-800 text-[11px] font-extrabold">${escapeHtml(item.subject)}</span>
                 <span class="text-[11px] font-semibold text-slate-500">${escapeHtml(item.className || 'Class X (SEBA)')}</span>
               </div>
-              <h3 class="text-base sm:text-lg font-extrabold text-slate-900 leading-snug">${escapeHtml(item.title)}</h3>
-              ${item.description ? `<p class="text-xs text-slate-600 mt-2 leading-relaxed">${escapeHtml(item.description)}</p>` : ''}
+              <h3 class="text-base sm:text-lg font-extrabold text-slate-900">${escapeHtml(item.title)}</h3>
+              ${item.description ? `<p class="text-xs text-slate-600 mt-2">${escapeHtml(item.description)}</p>` : ''}
             </div>
             <div>
               <div class="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between">
-                <div>
-                  <span class="text-[11px] text-slate-400 block leading-none">PDF Price</span>
-                  <span class="text-xl font-extrabold text-slate-900">${isFree ? 'FREE' : '₹' + priceNum}</span>
-                </div>
+                <span class="text-xl font-extrabold text-slate-900">${isFree ? 'FREE' : '₹' + priceNum}</span>
                 ${actionButton}
               </div>
               ${adminControls}
@@ -1628,16 +1617,12 @@
 
       if (editId) {
         const idx = data.findIndex(item => String(item.id) === String(editId));
-        if (idx !== -1) {
-          data[idx] = { ...data[idx], subject, className, price, title, link, description };
-        }
+        if (idx !== -1) data[idx] = { ...data[idx], subject, className, price, title, link, description };
       } else {
         data.unshift({ id: Date.now(), subject, className, price, title, link, description });
       }
-
       saveChapterPdfData(data);
       resetChapterForm();
-      alert('✅ অধ্যায়ৰ PDF সফলভাৱে যোগ কৰা হ’ল!');
     }
 
     function editChapterPdf(id) {
@@ -1650,15 +1635,12 @@
       document.getElementById('chapTitle').value = item.title;
       document.getElementById('chapLink').value = item.link || '';
       document.getElementById('chapDesc').value = item.description || '';
-
-      document.getElementById('chapterFormTitle').textContent = '✏️ অধ্যায়ৰ তথ্য সম্পাদনা (Edit Chapter PDF)';
-      document.getElementById('saveChapterBtn').textContent = '💾 পৰিৱৰ্তন ছেভ কৰক (Update)';
       document.getElementById('cancelChapterEditBtn').classList.remove('hidden');
       document.getElementById('chapterPdfAdminPanel').scrollIntoView({ behavior: 'smooth' });
     }
 
     function deleteChapterPdf(id) {
-      if (!confirm('আপুনি নিশ্চিতনে যে এই অধ্যায়টো তালিকাৰ পৰা ডিলিট কৰিব বিচাৰে?')) return;
+      if (!confirm('ডিলিট কৰিব বিচাৰেনে?')) return;
       saveChapterPdfData(getChapterPdfData().filter(c => String(c.id) !== String(id)));
     }
 
@@ -1666,8 +1648,6 @@
       document.getElementById('chapterPdfForm').reset();
       document.getElementById('editChapterId').value = '';
       document.getElementById('chapPrice').value = '29';
-      document.getElementById('chapterFormTitle').textContent = '➕ নতুন অধ্যায়ৰ PDF (₹29) যোগ কৰক';
-      document.getElementById('saveChapterBtn').textContent = '✅ অধ্যায় যোগ কৰক (Save Chapter)';
       document.getElementById('cancelChapterEditBtn').classList.add('hidden');
     }
 
@@ -1693,23 +1673,20 @@
       grid.innerHTML = staffList.map(member => {
         const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=4338ca&color=fff&size=200&bold=true`;
         const photoSrc = member.photo && member.photo.trim() !== '' ? member.photo : fallbackAvatar;
-
         const adminButtons = isAdminUnlocked ? `
           <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-center gap-2">
-            <button onclick="editStaffMember(${member.id})" class="px-3 py-1.5 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-bold transition">✏️ Edit</button>
-            <button onclick="deleteStaffMember(${member.id})" class="px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold transition">🗑️ Delete</button>
+            <button onclick="editStaffMember(${member.id})" class="px-3 py-1.5 rounded-lg bg-amber-100 text-amber-900 text-xs font-bold">✏️ Edit</button>
+            <button onclick="deleteStaffMember(${member.id})" class="px-3 py-1.5 rounded-lg bg-red-100 text-red-800 text-xs font-bold">🗑️ Delete</button>
           </div>
         ` : '';
-
         return `
-          <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition text-center flex flex-col justify-between">
+          <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm text-center flex flex-col justify-between">
             <div>
-              <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-indigo-100 shadow-md mb-4 bg-slate-100">
+              <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-indigo-100 shadow-md mb-4">
                 <img src="${photoSrc}" alt="${escapeHtml(member.name)}" onerror="this.onerror=null;this.src='${fallbackAvatar}';" class="w-full h-full object-cover object-top" />
               </div>
               <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">${escapeHtml(member.name)}</h3>
-              <p class="text-xs sm:text-sm font-semibold text-indigo-700 mt-1.5 leading-relaxed">🎓 ${escapeHtml(member.qualification)}</p>
-              <span class="inline-block mt-3 px-3 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[11px] font-bold">Gyan Kendra Tuition Center</span>
+              <p class="text-xs sm:text-sm font-semibold text-indigo-700 mt-1.5">🎓 ${escapeHtml(member.qualification)}</p>
             </div>
             ${adminButtons}
           </div>
@@ -1725,14 +1702,11 @@
         const img = new Image();
         img.onload = function() {
           const canvas = document.createElement('canvas');
-          const size = 180;
-          canvas.width = size;
-          canvas.height = size;
+          canvas.width = 180;
+          canvas.height = 180;
           const ctx = canvas.getContext('2d');
           const minSide = Math.min(img.width, img.height);
-          const sx = (img.width - minSide) / 2;
-          const sy = (img.height - minSide) / 2;
-          ctx.drawImage(img, sx, sy, minSide, minSide, 0, 0, size, size);
+          ctx.drawImage(img, (img.width - minSide) / 2, (img.height - minSide) / 2, minSide, minSide, 0, 0, 180, 180);
           currentUploadedStaffPhotoBase64 = canvas.toDataURL('image/jpeg', 0.78);
           document.getElementById('staffPhotoPreview').src = currentUploadedStaffPhotoBase64;
         };
@@ -1741,36 +1715,22 @@
       reader.readAsDataURL(file);
     }
 
-    function clearStaffPhotoPreview() {
-      currentUploadedStaffPhotoBase64 = '';
-      document.getElementById('staffPhotoInput').value = '';
-      document.getElementById('staffPhotoPreview').src = 'https://ui-avatars.com/api/?name=Teacher&background=e0e7ff&color=3730a3&bold=true';
-    }
-
     function saveStaffMember(e) {
       e.preventDefault();
       const data = getStaffData();
       const editId = document.getElementById('editStaffId').value;
       const name = document.getElementById('staffName').value.trim();
       const qualification = document.getElementById('staffQualification').value.trim();
-
       if (editId) {
         const idx = data.findIndex(item => String(item.id) === String(editId));
-        if (idx !== -1) {
-          data[idx] = {
-            ...data[idx],
-            name,
-            qualification,
-            photo: currentUploadedStaffPhotoBase64 !== '' ? currentUploadedStaffPhotoBase64 : data[idx].photo
-          };
-        }
+        if (idx !== -1) data[idx] = { ...data[idx], name, qualification, photo: currentUploadedStaffPhotoBase64 || data[idx].photo };
       } else {
         data.push({ id: Date.now(), name, qualification, photo: currentUploadedStaffPhotoBase64 });
       }
-
       saveStaffData(data);
-      resetStaffForm();
-      alert('✅ শিক্ষক/শিক্ষয়িত্ৰীৰ তথ্য সফলভাৱে ছেভ কৰা হ’ল!');
+      document.getElementById('staffForm').reset();
+      document.getElementById('editStaffId').value = '';
+      currentUploadedStaffPhotoBase64 = '';
     }
 
     function editStaffMember(id) {
@@ -1779,27 +1739,12 @@
       document.getElementById('editStaffId').value = member.id;
       document.getElementById('staffName').value = member.name;
       document.getElementById('staffQualification').value = member.qualification;
-      currentUploadedStaffPhotoBase64 = member.photo || '';
-      document.getElementById('staffPhotoPreview').src = currentUploadedStaffPhotoBase64 || `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=4338ca&color=fff&bold=true`;
-
-      document.getElementById('staffFormTitle').textContent = '✏️ শিক্ষক/শিক্ষয়িত্ৰীৰ তথ্য সম্পাদনা (Edit Staff)';
-      document.getElementById('saveStaffBtn').textContent = '💾 পৰিৱৰ্তন ছেভ কৰক (Update)';
-      document.getElementById('cancelStaffEditBtn').classList.remove('hidden');
       document.getElementById('staffAdminPanel').scrollIntoView({ behavior: 'smooth' });
     }
 
     function deleteStaffMember(id) {
-      if (!confirm('আপুনি নিশ্চিতনে যে এই শিক্ষক/শিক্ষয়িত্ৰীজনৰ নাম তালিকাৰ পৰা ডিলিট কৰিব বিচাৰে?')) return;
+      if (!confirm('ডিলিট কৰিব বিচাৰেনে?')) return;
       saveStaffData(getStaffData().filter(item => String(item.id) !== String(id)));
-    }
-
-    function resetStaffForm() {
-      document.getElementById('staffForm').reset();
-      document.getElementById('editStaffId').value = '';
-      clearStaffPhotoPreview();
-      document.getElementById('staffFormTitle').textContent = '➕ নতুন শিক্ষক/শিক্ষয়িত্ৰী যোগ কৰক';
-      document.getElementById('saveStaffBtn').textContent = '✅ শিক্ষক যোগ কৰক (Save Staff)';
-      document.getElementById('cancelStaffEditBtn').classList.add('hidden');
     }
 
     function getResultsData() {
@@ -1822,11 +1767,9 @@
     function renderYearFilters() {
       const data = getResultsData();
       const years = ['ALL', ...new Set(data.map(item => String(item.year)))].sort((a, b) => b.localeCompare(a));
-      const bar = document.getElementById('yearFilterBar');
-      bar.innerHTML = years.map(yr => {
+      document.getElementById('yearFilterBar').innerHTML = years.map(yr => {
         const active = selectedYearFilter === yr;
-        const label = yr === 'ALL' ? (currentLang === 'as' ? 'সকলো বৰ্ষ (All Years)' : 'All Years') : yr;
-        return `<button onclick="setYearFilter('${yr}')" class="px-3.5 py-1.5 rounded-full text-xs font-bold transition ${active ? 'bg-indigo-600 text-white shadow-sm' : 'bg-slate-200 text-slate-700 hover:bg-slate-300'}">${label}</button>`;
+        return `<button onclick="setYearFilter('${yr}')" class="px-3.5 py-1.5 rounded-full text-xs font-bold ${active ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-700'}">${yr === 'ALL' ? 'সকলো বৰ্ষ' : yr}</button>`;
       }).join('');
     }
 
@@ -1840,59 +1783,23 @@
       const data = getResultsData();
       const filtered = selectedYearFilter === 'ALL' ? data : data.filter(r => String(r.year) === selectedYearFilter);
       const tbody = document.getElementById('resultsTableBody');
-
-      if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-500 text-sm">এই বৰ্ষৰ কোনো ফলাফল যোগ কৰা হোৱা নাই।</td></tr>`;
-        return;
-      }
-
       tbody.innerHTML = filtered.map((item, idx) => {
         const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=e0e7ff&color=3730a3&bold=true`;
         const photoSrc = item.photo && item.photo.trim() !== '' ? item.photo : fallbackAvatar;
-
-        let honourBadge = '';
-        if (item.honour === 'Distinction') {
-          honourBadge = `<span class="inline-block px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-extrabold text-[11px] border border-amber-300">🏆 Distinction</span>`;
-        } else if (item.honour === 'Star Marks') {
-          honourBadge = `<span class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold text-[11px] border border-emerald-300">⭐ Star Marks</span>`;
-        }
-
-        const letterHtml = item.letters && item.letters.trim() !== '' && item.letters !== 'None'
-          ? `<div class="text-[11px] text-indigo-800 font-semibold mt-1">📜 ${escapeHtml(item.letters)}</div>`
-          : '';
-
-        const divBadgeColor = item.division === '1st Division'
-          ? 'bg-indigo-100 text-indigo-900'
-          : (item.division === '2nd Division' ? 'bg-sky-100 text-sky-900' : 'bg-slate-100 text-slate-800');
-
         const adminActions = isAdminUnlocked ? `
           <td class="py-3.5 px-4 text-right whitespace-nowrap">
-            <button onclick="editStudentResult(${item.id})" class="px-2.5 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-bold mr-1">✏️ Edit</button>
-            <button onclick="deleteStudentResult(${item.id})" class="px-2.5 py-1 rounded-lg bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold">🗑️ Delete</button>
+            <button onclick="editStudentResult(${item.id})" class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 text-xs font-bold mr-1">✏️ Edit</button>
+            <button onclick="deleteStudentResult(${item.id})" class="px-2.5 py-1 rounded-lg bg-red-100 text-red-800 text-xs font-bold">🗑️ Delete</button>
           </td>
         ` : '';
-
         return `
-          <tr class="hover:bg-indigo-50/40 transition">
+          <tr class="hover:bg-indigo-50/40">
             <td class="py-3.5 px-4 font-extrabold text-indigo-700">${String(idx + 1).padStart(2, '0')}</td>
-            <td class="py-3.5 px-4">
-              <div class="flex items-center gap-3">
-                <img src="${photoSrc}" alt="${escapeHtml(item.name)}" onerror="this.onerror=null;this.src='${fallbackAvatar}';" class="w-11 h-11 rounded-full object-cover border-2 border-indigo-200 shadow-sm shrink-0" />
-                <span class="font-bold text-slate-900">${escapeHtml(item.name)}</span>
-              </div>
-            </td>
-            <td class="py-3.5 px-4 font-semibold text-slate-600">${escapeHtml(String(item.year))}</td>
-            <td class="py-3.5 px-4">
-              <div class="font-extrabold text-slate-900">${escapeHtml(item.marks)}</div>
-              <span class="inline-block mt-0.5 px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-extrabold text-xs">${escapeHtml(item.percentage)}</span>
-            </td>
-            <td class="py-3.5 px-4">
-              <span class="inline-block px-2.5 py-1 rounded-lg ${divBadgeColor} font-bold text-xs">${escapeHtml(item.division)}</span>
-            </td>
-            <td class="py-3.5 px-4">
-              ${honourBadge}
-              ${letterHtml}
-            </td>
+            <td class="py-3.5 px-4"><div class="flex items-center gap-3"><img src="${photoSrc}" onerror="this.onerror=null;this.src='${fallbackAvatar}';" class="w-11 h-11 rounded-full object-cover border" /><span class="font-bold text-slate-900">${escapeHtml(item.name)}</span></div></td>
+            <td class="py-3.5 px-4">${escapeHtml(String(item.year))}</td>
+            <td class="py-3.5 px-4 font-extrabold">${escapeHtml(item.marks)} (${escapeHtml(item.percentage)})</td>
+            <td class="py-3.5 px-4 font-bold">${escapeHtml(item.division)}</td>
+            <td class="py-3.5 px-4 text-xs font-semibold text-indigo-800">${escapeHtml(item.honour || '')} ${item.letters ? '• ' + escapeHtml(item.letters) : ''}</td>
             ${adminActions}
           </tr>
         `;
@@ -1905,6 +1812,26 @@
       return div.innerHTML;
     }
 
+    function unlockAdminDirectly() {
+      isAdminUnlocked = true;
+      document.getElementById('visitorAdminSection').classList.remove('hidden');
+      document.getElementById('routineAdminPanel').classList.remove('hidden');
+      document.getElementById('routineAdminHeader').classList.remove('hidden');
+      document.getElementById('galleryAdminPanel').classList.remove('hidden');
+      document.getElementById('chapterPdfAdminPanel').classList.remove('hidden');
+      document.getElementById('adminPanel').classList.remove('hidden');
+      document.getElementById('staffAdminPanel').classList.remove('hidden');
+      document.getElementById('adminActionHeader').classList.remove('hidden');
+      document.querySelectorAll('.admin-btn-label').forEach(el => { el.textContent = '🔓 Admin Mode Active'; });
+      renderBlockedNumbers();
+      renderVisitorLogs();
+      renderRoutineTable();
+      renderGalleryGrid();
+      renderChapterPdfGrid();
+      renderStaffGrid();
+      renderResultsTable();
+    }
+
     function toggleAdminPanel() {
       if (isAdminUnlocked) {
         lockAdminPanel();
@@ -1912,29 +1839,15 @@
       }
       const enteredPin = prompt('Admin Edit খুলিবলৈ গোপন পিন (PIN) দিয়ক:');
       if (enteredPin === ADMIN_PIN) {
-        isAdminUnlocked = true;
-        document.getElementById('routineAdminPanel').classList.remove('hidden');
-        document.getElementById('routineAdminHeader').classList.remove('hidden');
-        document.getElementById('galleryAdminPanel').classList.remove('hidden');
-        document.getElementById('chapterPdfAdminPanel').classList.remove('hidden');
-        document.getElementById('adminPanel').classList.remove('hidden');
-        document.getElementById('staffAdminPanel').classList.remove('hidden');
-        document.getElementById('adminActionHeader').classList.remove('hidden');
-        document.querySelectorAll('.admin-btn-label').forEach(el => {
-          el.textContent = '🔓 Admin Mode Active';
-        });
-        renderRoutineTable();
-        renderGalleryGrid();
-        renderChapterPdfGrid();
-        renderStaffGrid();
-        renderResultsTable();
+        unlockAdminDirectly();
       } else if (enteredPin !== null) {
-        alert('❌ ভুল পিন! অনুগ্ৰহ কৰি সঠিক Admin PIN দিয়ক।');
+        alert('❌ ভুল পিন!');
       }
     }
 
     function lockAdminPanel() {
       isAdminUnlocked = false;
+      document.getElementById('visitorAdminSection').classList.add('hidden');
       document.getElementById('routineAdminPanel').classList.add('hidden');
       document.getElementById('routineAdminHeader').classList.add('hidden');
       document.getElementById('galleryAdminPanel').classList.add('hidden');
@@ -1942,13 +1855,7 @@
       document.getElementById('adminPanel').classList.add('hidden');
       document.getElementById('staffAdminPanel').classList.add('hidden');
       document.getElementById('adminActionHeader').classList.add('hidden');
-      document.querySelectorAll('.admin-btn-label').forEach(el => {
-        el.textContent = '🔒 Admin Edit (যোগ/সলনি কৰক)';
-      });
-      resetRoutineForm();
-      resetChapterForm();
-      resetResultForm();
-      resetStaffForm();
+      document.querySelectorAll('.admin-btn-label').forEach(el => { el.textContent = '🔒 Admin Edit (যোগ/সলনি কৰক)'; });
       renderRoutineTable();
       renderGalleryGrid();
       renderChapterPdfGrid();
@@ -1964,14 +1871,11 @@
         const img = new Image();
         img.onload = function() {
           const canvas = document.createElement('canvas');
-          const size = 140;
-          canvas.width = size;
-          canvas.height = size;
+          canvas.width = 140;
+          canvas.height = 140;
           const ctx = canvas.getContext('2d');
           const minSide = Math.min(img.width, img.height);
-          const sx = (img.width - minSide) / 2;
-          const sy = (img.height - minSide) / 2;
-          ctx.drawImage(img, sx, sy, minSide, minSide, 0, 0, size, size);
+          ctx.drawImage(img, (img.width - minSide) / 2, (img.height - minSide) / 2, minSide, minSide, 0, 0, 140, 140);
           currentUploadedPhotoBase64 = canvas.toDataURL('image/jpeg', 0.75);
           document.getElementById('photoPreview').src = currentUploadedPhotoBase64;
         };
@@ -1980,20 +1884,13 @@
       reader.readAsDataURL(file);
     }
 
-    function clearPhotoPreview() {
-      currentUploadedPhotoBase64 = '';
-      document.getElementById('studentPhotoInput').value = '';
-      document.getElementById('photoPreview').src = 'https://ui-avatars.com/api/?name=Student&background=e0e7ff&color=3730a3&bold=true';
-    }
-
     function autoCalculatePercentage() {
       const raw = document.getElementById('resMarks').value.trim();
       const numMatch = raw.match(/^(\d+(\.\d+)?)/);
       if (numMatch) {
         const obtained = parseFloat(numMatch[1]);
         if (obtained > 0 && obtained <= 600) {
-          const pct = ((obtained / 600) * 100).toFixed(1) + '%';
-          document.getElementById('resPercentage').value = pct;
+          document.getElementById('resPercentage').value = ((obtained / 600) * 100).toFixed(1) + '%';
         }
       }
     }
@@ -2014,26 +1911,14 @@
 
       if (editId) {
         const index = data.findIndex(item => String(item.id) === String(editId));
-        if (index !== -1) {
-          data[index] = {
-            ...data[index],
-            name,
-            year,
-            marks,
-            percentage,
-            division,
-            honour,
-            letters,
-            photo: currentUploadedPhotoBase64 !== '' ? currentUploadedPhotoBase64 : data[index].photo
-          };
-        }
+        if (index !== -1) data[index] = { ...data[index], name, year, marks, percentage, division, honour, letters, photo: currentUploadedPhotoBase64 || data[index].photo };
       } else {
         data.unshift({ id: Date.now(), name, year, marks, percentage, division, honour, letters, photo: currentUploadedPhotoBase64 });
       }
-
       saveResultsData(data);
-      resetResultForm();
-      alert('✅ ছাত্ৰ/ছাত্ৰীৰ ফলাফল সফলভাৱে যোগ কৰা হ’ল!');
+      document.getElementById('resultForm').reset();
+      document.getElementById('editStudentId').value = '';
+      currentUploadedPhotoBase64 = '';
     }
 
     function editStudentResult(id) {
@@ -2047,31 +1932,16 @@
       document.getElementById('resDivision').value = student.division;
       document.getElementById('resHonour').value = student.honour || 'None';
       document.getElementById('resLetters').value = student.letters || '';
-      currentUploadedPhotoBase64 = student.photo || '';
-      document.getElementById('photoPreview').src = currentUploadedPhotoBase64 || `https://ui-avatars.com/api/?name=${encodeURIComponent(student.name)}&background=e0e7ff&color=3730a3&bold=true`;
-
-      document.getElementById('formModeTitle').textContent = '✏️ ছাত্ৰ/ছাত্ৰীৰ তথ্য সম্পাদনা (Edit Student)';
-      document.getElementById('saveResultBtn').textContent = '💾 পৰিৱৰ্তন ছেভ কৰক (Update)';
-      document.getElementById('cancelEditBtn').classList.remove('hidden');
       document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
     }
 
     function deleteStudentResult(id) {
-      if (!confirm('আপুনি নিশ্চিতনে যে এই ছাত্ৰ/ছাত্ৰীজনৰ ফলাফল তালিকাৰ পৰা ডিলিট কৰিব বিচাৰে?')) return;
+      if (!confirm('ডিলিট কৰিব বিচাৰেনে?')) return;
       saveResultsData(getResultsData().filter(item => String(item.id) !== String(id)));
     }
 
-    function resetResultForm() {
-      document.getElementById('resultForm').reset();
-      document.getElementById('editStudentId').value = '';
-      document.getElementById('resYear').value = '2026';
-      clearPhotoPreview();
-      document.getElementById('formModeTitle').textContent = '➕ নতুন ছাত্ৰ/ছাত্ৰীৰ ফলাফল যোগ কৰক';
-      document.getElementById('saveResultBtn').textContent = '✅ তালিকাভুক্ত কৰক (Save Student)';
-      document.getElementById('cancelEditBtn').classList.add('hidden');
-    }
-
     function copyUpdatedHTMLForGitHub() {
+      const currentBlocked = getBlockedNumbers();
       const currentRoutine = getRoutineData();
       const currentGallery = getGalleryData();
       const currentChapters = getChapterPdfData();
@@ -2079,6 +1949,9 @@
       const currentStaff = getStaffData();
       const docClone = document.documentElement.cloneNode(true);
 
+      docClone.querySelector('#studentAccessGate').classList.remove('hidden');
+      docClone.querySelector('#blockedAlertBox').classList.add('hidden');
+      docClone.querySelector('#visitorAdminSection').classList.add('hidden');
       docClone.querySelector('#routineAdminPanel').classList.add('hidden');
       docClone.querySelector('#routineAdminHeader').classList.add('hidden');
       docClone.querySelector('#galleryAdminPanel').classList.add('hidden');
@@ -2087,9 +1960,8 @@
       docClone.querySelector('#staffAdminPanel').classList.add('hidden');
       docClone.querySelector('#adminActionHeader').classList.add('hidden');
       docClone.querySelector('#globalSearchModal').classList.add('hidden');
-      docClone.querySelectorAll('.admin-btn-label').forEach(el => {
-        el.textContent = '🔒 Admin Edit (যোগ/সলনি কৰক)';
-      });
+      docClone.querySelector('#loggedStudentBadge').textContent = 'জ্ঞান কেন্দ্ৰ, বৰমেৰা';
+      docClone.querySelectorAll('.admin-btn-label').forEach(el => { el.textContent = '🔒 Admin Edit (যোগ/সলনি কৰক)'; });
       docClone.querySelector('#routineTableBody').innerHTML = '';
       docClone.querySelector('#galleryGrid').innerHTML = '';
       docClone.querySelector('#chapterPdfGrid').innerHTML = '';
@@ -2099,6 +1971,10 @@
       docClone.querySelector('#staffGrid').innerHTML = '';
 
       let fullHtml = '<!DOCTYPE html>\n' + docClone.outerHTML;
+      fullHtml = fullHtml.replace(
+        /\/\* BLOCKED_NUMBERS_START \*\/[\s\S]*?\/\* BLOCKED_NUMBERS_END \*\//,
+        `/* BLOCKED_NUMBERS_START */\n    const DEFAULT_BLOCKED_NUMBERS = ${JSON.stringify(currentBlocked, null, 2)};\n    /* BLOCKED_NUMBERS_END */`
+      );
       fullHtml = fullHtml.replace(
         /\/\* ROUTINE_DATA_START \*\/[\s\S]*?\/\* ROUTINE_DATA_END \*\//,
         `/* ROUTINE_DATA_START */\n    const DEFAULT_ROUTINE = ${JSON.stringify(currentRoutine, null, 2)};\n    /* ROUTINE_DATA_END */`
@@ -2182,6 +2058,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      checkStudentAccessGate();
       loadRunningTopics();
       renderRoutineTable();
       renderGalleryGrid();
